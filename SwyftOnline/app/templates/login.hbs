@@ -1,0 +1,22 @@
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="top-bar"></div>
+        <div class="navbar-header"></div>
+        <a class="navbar-brand" href="/">SWYFT</a>
+    </div>
+</nav>
+
+<div class="container">
+    <form>
+        <fieldset>
+                <h2 style="text-align:center;margin-bottom:30px;">Login to your Swyft Account</h4>
+                <div>
+                    {{input class="form-control" value=username type="text" placeholder="Email"}}
+                    {{input class="form-control" value=password type="password" placeholder="Password"}}
+                </div>
+                <a>I forgot my password</a><br>
+                <a>Sign Up</a>
+                <button {{action 'login'}} class="btn btn-default" style="float:right;margin-top:10px;">LOGIN</button>
+        </fieldset>
+    </form>
+</div>

@@ -1,0 +1,15 @@
+module.exports={
+    tableName:'restaurants',
+    attributes:{
+        name:{
+            type:'string'
+        },
+        title:{
+            type:'string'
+        },  
+        unavailable:{
+            type:'boolean',
+            defaultsTo:true
+        }
+    },
+}

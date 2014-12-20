@@ -1,0 +1,81 @@
+module.exports={
+    publicAccess:function(req,res){
+        res.view('homepage');
+    },
+    userAccess:function(req,res){
+        if(req.isAuthenticated()){
+            if(req.user.verified){
+                res.view('homepage');
+            }
+            else{
+                res.redirect("/app/verify");
+            }
+        }
+        else{
+            res.redirect("/app/login");
+        }
+    },
+    adminAccess:function(req,res){
+        if(req.isAuthenticated()){
+            if(req.user.isAdmin){
+                res.view('admin/home');
+            }
+            else{
+                res.redirect("/admin/notAuthorized");
+            }
+        }
+        else{
+            res.redirect("/app/login");
+        }
+    },
+    unauthenticated:function(req,res){
+        if(!req.isAuthenticated()){
+            res.view('homepage');
+        }
+        else{
+            res.redirect("/");
+        }
+    },
+    delivererAccess:function(req,res){
+        if(req.isAuthenticated()){
+            if(req.user.isDeliverer){
+                res.view('delivery/home');
+            }
+            else{
+                res.redirect("/admin/notAuthorized");
+            }
+        }
+        else{
+            res.redirect("/app/login");
+        }
+    },
+    verify:function(req,res){
+        if(req.isAuthenticated()){
+            if(req.user.verified){
+                res.redirect("/");
+            }
+            else{
+                res.view('verify');
+            }
+        }
+        else{
+            res.redirect("/app/login");
+        }
+    },    
+    forgotPassword:function(req,res){
+        var id = req.param('id');
+        ForgotPasswordToken.find({token:id}).exec(function(err, token){
+            console.log(token);
+            if(err){
+                res.redirect('/');
+            }
+            else if(!token[0]){
+                res.redirect('/');
+                
+            }
+            else{
+                res.view('forgotPassword', {token:id});
+            }
+        });
+    }
+}

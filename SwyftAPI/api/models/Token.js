@@ -1,0 +1,23 @@
+module.exports={
+    tableName:'tokens',
+    attributes:{
+        token:{
+            type:'string'  
+        },
+        comments:{
+            type:'string'
+        },
+        hasBeenUsed:{
+            type:'boolean'
+        },
+        usedBy:{
+            type:'string'
+        },
+        orderId:{
+            type:'string'
+        },
+        couponCode:{
+            type:'string'
+        }
+    }    
+}

@@ -1,0 +1,17 @@
+module.exports={
+    tableName:'system',
+    attributes:{
+        suppressOrders:{
+            type:'boolean',
+            defaultsTo:false
+        },
+        suppressSignUps:{
+            type:'boolean',
+            defaultsTo:false
+        },
+        suppressSystem:{
+            type:'boolean',
+            defaultsTo:false
+        }
+    },
+}

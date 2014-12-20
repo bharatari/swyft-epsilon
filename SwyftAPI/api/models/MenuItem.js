@@ -1,0 +1,26 @@
+module.exports={
+    tableName:'menuItems',
+    attributes:{
+        name:{
+            type:'string'
+        },
+        baseprice:{
+            type:'float'
+        },
+        category:{
+            type:'string'
+        },
+        itemoptions:{
+            type:'string'
+        },
+        extras:{
+            type:'string'
+        },
+        unavailable:{
+            type:'boolean'
+        },
+        restaurant:{
+            type:'string'
+        }
+    },
+}

@@ -1,0 +1,27 @@
+module.exports={
+    tableName:'fulfillments',
+    attributes:{
+        deliverer:{
+            type:'string'
+        },
+        delivererId:{
+            type:'string'
+        },
+        deliveryDate:{
+            type:'datetime'
+        },
+        deliveryPeriod:{
+            type:'string'
+        },
+        comments:{
+            type:'string'
+        },
+        isDelivered:{
+            type:'boolean',
+            defaultsTo:false
+        },
+        deliveredAt:{
+            type:'datetime'
+        }
+    },
+}
