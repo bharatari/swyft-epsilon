@@ -1,3 +1,7 @@
+body {
+    overflow-x: hidden;
+}
+
 .navbar-toggle {
     display: block;
     position: absolute;
@@ -34,6 +38,11 @@
     letter-spacing: 2px;
     font-size: 16px;
     color: black;
+}
+
+.logo-light {
+    color: darkgray;
+    font-weight: 400;
 }
 
 .row {
@@ -111,44 +120,6 @@
     margin-right: 30px;
 }
 
-.list-container {
-    border-top: 1px solid #9daca9;
-    border-bottom: 1px solid #fff;
-    background-color: #fff;
-}
-
-.list-header {
-    padding: 3px 20px 3px 12px;
-    font-size: 0.9em;
-    font-weight: 400;
-    background-color: #212121;
-    color: #fff;
-    border-top: 1px solid rgba(255,255,255,0.5);
-    border-bottom: 1px solid rgba(255,255,255,0.23);
-    margin-top:-20px;
-    /*margin-bottom: -2px;*/
-    padding-left: -10px;
-}
-
-.list-view {
-    border-left: 1px solid #e3e3e3;
-    border-right: 1px solid #e3e3e3;
-    color: #454545;
-    list-style-type: none;
-    margin-bottom: 0px;
-}
-
-.list-item {
-    padding: 1.25rem;
-    border-top: 1px solid #fff;
-    border-bottom: 1px solid #9daca9;
-    margin-left: -39px;
-}
-
-.list-item:first-child {
-    border-top: 1px solid #d6dcdb;
-}
-
 .img-background {
     background-image: url('/images/Mountains.jpg');
     background-position: center;
@@ -156,6 +127,49 @@
     height:300px;
     margin-bottom: 50px;
     margin-top: -20px;
+}
+
+.info-well {
+    background-color: white !important;   
+}
+
+.item-title {
+    text-align: center;
+}
+
+.item-price {
+    text-align: center;
+}
+
+.option {
+    margin-left: 3px;
+}
+
+.option-text {
+    margin-left: 3px;   
+}
+
+.grid-product {
+    display: inline-block;
+    width: 200px;
+    margin-bottom: 20px;
+    height: 230px;
+    float: left;
+}
+
+.grid-restaurant {
+    display: inline-block;
+    width: 200px;
+    margin-bottom: 20px;
+    float: left;
+}
+
+.grid-product-title {
+    font-size: 32px;
+}
+
+.grid-products {
+    margin-bottom: 50px;
 }
 
 @media only screen and (max-device-width: 768px) {

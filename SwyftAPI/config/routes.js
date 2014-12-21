@@ -55,6 +55,7 @@ module.exports.routes = {
     
   'get /api/restaurants':'MenuController.restaurants',
   'get /api/menuItems/:restaurant_name':'MenuController.menuItems',
+  'get /api/item/:item_id':'MenuController.item',
     //OLD Routes    
   'post /api/login':'AuthController.login',
   'post /api/logout':'AuthController.logout', 

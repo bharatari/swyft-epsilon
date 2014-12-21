@@ -1,7 +1,8 @@
 module.exports = {
+    productMarkup: 1.2,
     processPricing: function(items) {
         for(var i = 0; i < items.length; i++){
-            items[i].baseprice = items[i].baseprice*settings.productMarkup;
+            items[i].baseprice = items[i].baseprice*this.productMarkup;
             items[i].baseprice=Math.round(10*items[i].baseprice)/10;
             if(items[i].small){
                 items[i].small=Math.round(10*items[i].small)/10;

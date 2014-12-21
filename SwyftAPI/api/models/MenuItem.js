@@ -10,6 +10,9 @@ module.exports={
         category:{
             type:'string'
         },
+        description:{
+            type:'string'
+        },
         itemoptions:{
             type:'string'
         },

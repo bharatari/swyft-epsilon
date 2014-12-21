@@ -15,15 +15,19 @@
 <div class="container">
     <ul class="breadcrumb">
         <li><a>{{#link-to 'index'}}Home{{/link-to}}</a></li>
-        <li class="active"></li>Restaurants</li>
+        <li><a>{{#link-to 'restaurants'}}Restaurants{{/link-to}}</a></li>
+        <li class="active">Menu</li>
     </ul>
-    <h1>Restaurants</h1>
-    <div class="list-group">
-        {{#each restaurant in restaurants}}
-        <a class="grid-restaurant list-group-item">
-            {{#link-to 'menu-items' restaurant.name}}<p>{{restaurant.title}}</p>{{/link-to}}
-        </a>
+    <h1>Menu</h1>
+    <div class="grid-products list-group">
+        {{#each menuItem in menuItems}}
+        <li class="grid-product list-group-item">
+            <div>
+                {{#link-to 'item' menuItem.id}}<h4 class="grid-product-title">{{menuItem.name}}</h4>{{/link-to}}
+                <br>
+                ${{render-decimals menuItem.baseprice}}
+            </div>
+        </li>
         {{/each}}
     </div>   
-    
 </div>

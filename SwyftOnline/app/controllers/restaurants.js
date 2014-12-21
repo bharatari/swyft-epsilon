@@ -6,7 +6,7 @@ export default Ember.Controller.extend({
     }.property('model'),
     actions: {
         toggleSidebar: function(){
-            Ember.$('#nav-menu').offcanvas('toggle');
+            $('#nav-menu').offcanvas('toggle');
         }
     }
 });
