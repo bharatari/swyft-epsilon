@@ -1,24 +1,20 @@
 module.exports = function(req, res, next){
-    var token = req.body.token;
-    if (token) {
-        try {
-            var decoded = jwt.decode(token, app.get('jwtTokenSecret'));
-
-            if (decoded.exp <= Date.now()) {
-                return res.send(400, {message:'Access token has expired'});
-            }
-            else{
-                User.findOne({ id: decoded.iss }, function(err, user) {
+    var tokenId = (req.body) ? req. body.user.token.id : req.query.tokenId;
+    var token = (req.body) ? req. body.user.token.token : req.query.token;
+    AuthService.authenticated(tokenId, function(response) {
+        if(response) {
+            var user = AuthService.getUser(token, function(user){
+                if(user) {
                     req.user = user;
                     next();
-                });
-            }
-
-        } catch (err) {
-            return res.send(403, {message:'Not Authorized'});
+                }   
+                else {
+                    return res.forbidden();
+                }
+            }); 
         }
-    } else {
-        return res.send(403, {message:'Not Authorized'});
-    }
-
+        else {
+            return res.forbidden();
+        }
+    });
 }

@@ -13,7 +13,7 @@ module.exports={
         description:{
             type:'string'
         },
-        itemoptions:{
+        itemOptions:{
             type:'string'
         },
         extras:{

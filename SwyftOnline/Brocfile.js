@@ -4,6 +4,12 @@ var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 var app = new EmberApp();
 
+//Added
+app.import('bower_components/jasny-bootstrap/dist/css/jasny-bootstrap.min.css');
+app.import('bower_components/bootstrap/dist/js/bootstrap.min.js');
+app.import('bower_components/jasny-bootstrap/dist/js/jasny-bootstrap.min.js');
+app.import('bower_components/moment/moment.js');
+
 // Use `app.import` to add additional libraries to the generated
 // output files.
 //

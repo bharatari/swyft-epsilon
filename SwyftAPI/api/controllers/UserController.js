@@ -1,23 +1,24 @@
-var Chance=require('chance');
-var chance=new Chance();
-var mandrill=require('mandrill-api/mandrill');
+var Chance = require('chance');
+var chance = new Chance();
+var mandrill = require('mandrill-api/mandrill');
 var mandrill_client = new mandrill.Mandrill('pTw4E8DYFKb696f5YzXmzg');
-var moment=require('moment');
+var moment = require('moment');
+
 module.exports={
     create:function(req,res){
         req.body.phoneNumber=req.body.phoneNumber.replace(/\D/g,'');
         req.body.postOfficeBox=req.body.postOfficeBox.replace(/\D/g,'');
         if(req.body.email.indexOf("@exeter.edu")===-1){
-            return res.send(500);
+            return res.send(400);
         }
         var token=chance.guid();
         if(!(req.body.password.length>=6&&req.body.password.length<=20)){
-            return res.send(500);
+            return res.send(400);
         }
         User.find().exec(function(err, users){
             for(var i=0; i<users.length;i++){
                 if(users[i].username.toLowerCase()===req.body.email.toLowerCase()){
-                    return res.send(500, {message:'Email already exists'});
+                    return res.send(400, {message:'Email already exists'});
                 }
             }
             process();
@@ -85,7 +86,7 @@ module.exports={
             }
         });
     },
-    profile:function(req,res){
+    getUser:function(req,res){
         User.findOne({id:req.user.id}).exec(function(err, user){
             res.json(user);
         });

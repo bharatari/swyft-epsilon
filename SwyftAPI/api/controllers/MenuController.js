@@ -7,7 +7,7 @@ module.exports={
         });
     },
     menuItems: function(req, res){
-        MenuItem.find({restaurant:req.params.restaurant_name}).exec(function(err, items){
+        MenuItem.find({restaurant:req.params.restaurant_name, unavailable:false}).exec(function(err, items){
             res.json(PriceService.processPricing(items));
         });
     },

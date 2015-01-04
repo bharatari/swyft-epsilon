@@ -18,22 +18,22 @@
 
 
 module.exports.policies = {
-  '*':"suppressSystem",
   AuthController:{ },
   MenuController:{ },
+  DeliveryController: {
+    "getAdminDeliveries":'isAdmin'
+  },
   OrderController:{
-    "*":"isAuthenticated",
-    "retrieveOrders":"isAdmin",
-    "deleteOrder":"isAdmin",
-    "pendingOrders":"isAdmin",
-    "recentOrders":"isAdmin",
-    "addDeliveryPeriod":"isAdmin",
-    "createFulfillment":"isAdmin"
+    "*":['isAuthenticated', 'suppressSystem'],
+    "retrieveOrders":['isAuthenticated', 'isAdmin'],
+    "deleteOrder":['isAuthenticated', 'isAdmin'],
+    "pendingOrders":['isAuthenticated', 'isAdmin'],
+    "recentOrders":['isAuthenticated', 'isAdmin'],
+    "addDeliveryPeriod":['isAuthenticated', 'isAdmin'],
+    "createFulfillment":['isAuthenticated', 'isAdmin']
   },   
   UserController:{
-    "create":true,
-    "createForgotPasswordToken":true,
-    "resetPassword":true
+    "getUser":"isAuthenticated"
   },
   ViewController:{
     "*":true

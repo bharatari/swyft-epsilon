@@ -1,0 +1,25 @@
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="top-bar"></div>
+        <a class="navbar-brand" href="/">SWYFT<span class="logo-light">ADMIN</span></a>
+    </div>
+</nav>
+
+<div class="img-background container-fluid"></div>
+
+<div class="container">
+    <ul class="breadcrumb">
+        <li><a>{{#link-to 'index'}}Home{{/link-to}}</a></li>
+        <li class="active">Admin</li>
+    </ul>
+    <h1>Swyft Administration</h1>
+    <div class="list-group">
+        <a class="grid-restaurant list-group-item">
+            {{#link-to 'admin-export-picker'}}<p>Export</p>{{/link-to}}
+            
+        </a>
+        <a class="grid-restaurant list-group-item">
+            {{#link-to 'admin-new-delivery'}}<p>New Delivery</p>{{/link-to}}
+        </a>
+    </div>   
+</div>

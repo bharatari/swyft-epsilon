@@ -12,6 +12,10 @@ module.exports={
         suppressSystem:{
             type:'boolean',
             defaultsTo:false
+        },
+        allowASAPorders:{
+            type:'boolean',
+            defaultsTo:false
         }
     },
 }

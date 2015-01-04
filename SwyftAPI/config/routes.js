@@ -32,53 +32,38 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/':'ViewController.publicAccess',
-  '/app/signup': 'ViewController.unauthenticated',
-  '/app/login':'ViewController.unauthenticated',
-  '/app/forgotPassword':'ViewController.unauthenticated',
-  '/app/:restaurant/item/*':'ViewController.userAccess',
-  '/app/:restaurant/*':'ViewController.userAccess',
-  '/app/checkout':'ViewController.userAccess',
-  '/app/profile':'ViewController.userAccess',  
-  '/admin':'ViewController.adminAccess',
-  '/admin/*':'ViewController.adminAccess',
-  '/delivery':'ViewController.delivererAccess',
-  '/delivery/order/*':'ViewController.delivererAccess',
-  '/app/verify':'ViewController.verify',
-  '/forgotPassword/:id':'ViewController.forgotPassword',
-  '/app/resetPassword/*':'UserController.resetPassword',
-    
-    //TEMP Routes
-  '/app/restaurants':'ViewController.publicAccess',
+  //SwyftOnline View Routes
+  '/':'ViewController.homepage',
+  '/app/*':'ViewController.homepage',
+  '/admin/*':'ViewController.homepage',
+  '/delivery/*':'ViewController.homepage',
+  '/system/*':'ViewController.homepage',    
    
-    //API Routes
-    
+  //API Routes
+  'post /api/login':'AuthController.login',
+  'post /api/logout':'AuthController.logout',
+  'get /api/isAuthenticated':'AuthController.isAuthenticated',
+  'get /api/isAdmin':'AuthController.isAdmin',
+  
+  //RESTful Routes
   'get /api/restaurants':'MenuController.restaurants',
   'get /api/menuItems/:restaurant_name':'MenuController.menuItems',
   'get /api/item/:item_id':'MenuController.item',
-    //OLD Routes    
-  'post /api/login':'AuthController.login',
-  'post /api/logout':'AuthController.logout', 
-  'get /api/isAuthenticated':'AuthController.isAuthenticated',
-  'get /api/user':'UserController.profile',
-  'post /api/processOrder':'OrderController.processOrder',
-  'get /api/deliveryPeriods':'OrderController.deliveryPeriods',
-  'get /api/adminDeliveryPeriods':'OrderController.adminDeliveryPeriods',
-  'post /api/orders':'OrderController.retrieveOrders',
-  'post /api/deleteOrder':'OrderController.deleteOrder',
-  'get /api/pendingOrders':'OrderController.pendingOrders',
-  'get /api/recentOrders':'OrderController.recentOrders',
-  'post /api/addDeliveryPeriod':'OrderController.addDeliveryPeriod',
-  'get /api/resendEmail':'UserController.resend',
-  'post /api/createUser':'UserController.create',
-  'post /api/verifyUser':'UserController.verify',
-  'post /api/createFulFillment':'OrderController.createFulfillment',
-  'get /api/fulfillments':'OrderController.getFulfillments',
-  'post /api/completeFulfillment':'OrderController.completeFulfillment',
-  'post /api/createForgotPasswordToken':'UserController.createForgotPasswordToken',
-  'post /api/resetPassword':'UserController.resetPassword',
-  'post /api/closeDeliveryPeriod':'OrderController.closeDeliveryPeriod'
-   
+  'post /api/user':'UserController.create',
+  'get /api/user':'UserController.getUser',
+  'put /api/user/verification/verify':'UserController.verify',
+  'put /api/user/verification/resend':'UserController.resend',
+  'put /api/user/password':'UserController.resetPassword',
+  'get /api/orders':'OrderController.getOrders',
+  'post /api/order':'OrderController.processOrder',
+  'delete /api/order':'OrderController.deleteOrder',
+  'get /api/orders/pending':'OrderController.pendingOrders',
+  'get /api/orders/recent':'OrderController.recentOrders',
+  'get /api/deliveries':'DeliveryController.getOpenDeliveries',
+  'post /api/forgotPasswordToken':'UserController.createForgotPasswordToken',
+  'get /api/delivery/:delivery_id':'DeliveryController.getDelivery',
+  'get /api/adminDeliveries':'DeliveryController.getAdminDeliveries'
+    
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *

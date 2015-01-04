@@ -1,15 +1,20 @@
 module.exports = function(req, res, next){
-  if(req.isAuthenticated()){
-    User.findOne({id:req.user.id}).exec(function(err, user){
-        if(user.isAdmin){
-            next();
+    var tokenId = (req.body) ? req. body.user.token.id : req.query.tokenId;
+    var token = (req.body) ? req. body.user.token.token : req.query.token;
+    AuthService.isAdmin(tokenId, function(response) {
+        if(response) {
+            var user = AuthService.getUser(token, function(user){
+                if(user) {
+                    req.user = user;
+                    next();
+                }   
+                else {
+                    return res.forbidden();
+                }
+            }); 
         }
-        else{
-            res.send(403, {message:'Not Authorized'});
+        else {
+            return res.forbidden();
         }
     });
-  }
-  else{
-    return res.send(403, {message:'Not Authorized'});
-  }
 }

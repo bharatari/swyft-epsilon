@@ -2,8 +2,8 @@ import Ember from "ember";
 
 export default Ember.Controller.extend({
     actions: {
-        toggleSidebar: function(){
-            Ember.$('#nav-menu').offcanvas('toggle');
+        order: function() {
+            this.transitionToRoute('restaurants');
         }
     }
 });

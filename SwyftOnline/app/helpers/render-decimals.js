@@ -1,6 +1,16 @@
 import Ember from "ember";
 
 export default Ember.Handlebars.makeBoundHelper(function(value, options) {
-    return value.toFixed(2);
+    if(value===0) {
+        return "FREE";
+    }
+    else {
+        if(value){
+            return "$" + value.toFixed(2);
+        }
+        else {
+            return "FREE";
+        }
+    }
 });
 

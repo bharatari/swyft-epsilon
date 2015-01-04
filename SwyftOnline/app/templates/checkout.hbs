@@ -1,0 +1,47 @@
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="top-bar"></div>
+        <div class="navbar-header"></div>
+        <a class="navbar-brand" href="/">ORDER<span class="logo-light">SWYFT</span></a>
+    </div>
+</nav>
+
+<div class="img-background container-fluid"></div>
+
+<div class="container">
+    <ul class="breadcrumb">
+        <li><a>{{#link-to 'index'}}Home{{/link-to}}</a></li>
+        <li><a>{{#link-to 'restaurants'}}Restaurants{{/link-to}}</a></li>
+        <li class="active">Checkout</li>
+    </ul>
+    <form>
+        <div class="info-well well">
+            <h1 class="item-title">Checkout</h1>
+            <h3 class="item-price">Total: {{render-decimals-simple totalPrice}}</h3>
+            <h3>Account Balance: {{render-decimals-simple user.balance}}</h3>
+            <h3>Payment Options</h3>
+            <div class="option-group">
+                <div class="list-group">
+                    {{#each paymentOption in paymentOptions}}
+                    <a class="list-group-item">{{radio-button name=paymentOptions.value class="option" value=paymentOption}}<span class="option-text">{{paymentOption.name}}</span></a>
+                    {{/each}}
+                </div>            
+            </div>
+            <h3>Options</h3>
+            {{input class="form-control" value=user.dormitory type="text" placeholder="Delivery Location"}}
+            {{input class="form-control" value=user.phoneNumber type="text" placeholder="Phone Number"}}
+            {{input class="form-control" value=additionalRequests type="text" placeholder="Additional Requests"}}
+            <h3>When do you want your food?</h3>
+            <div class="option-group">
+                <div class="list-group">
+                    {{#each delivery in deliveryList}}
+                    <a class="list-group-item">{{radio-button name=deliveryList.value class="option" value=delivery}}<span class="option-text">{{delivery.displayTime}}</span></a>
+                    {{/each}}
+                </div>            
+            </div>
+            {{#unless buttonPressed}}
+            <button class="btn btn-primary" type="submit" {{action 'checkout'}}>Checkout</button>       
+            {{/unless}}
+        </div>  
+    </form>
+</div>

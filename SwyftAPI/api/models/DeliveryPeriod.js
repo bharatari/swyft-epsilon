@@ -10,15 +10,12 @@ module.exports={
         orderCutoff: {
             type:'datetime'
         },
-        recurring: {
-            type:'boolean'
-        },
         disabledRestaurants: {
             type:'string'
         },
-        //Only for non-recurring
-        datetime: {
-            type:'datetime'
+        enabled: {
+            type:'boolean',
+            defaultsTo:true
         }
     },
 }

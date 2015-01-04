@@ -8,7 +8,7 @@
     </div>
 </nav>
 
-{{view 'sidebar'}}
+{{side-bar checkout="checkout" login="login" profile="profile" logout="logout" isAuthenticated=isAuthenticated}}
 
 <div class="img-background container-fluid"></div>
 
@@ -21,13 +21,15 @@
     <h1>Menu</h1>
     <div class="grid-products list-group">
         {{#each menuItem in menuItems}}
-        <li class="grid-product list-group-item">
+        <a class="grid-product list-group-item">
+            {{#link-to 'item' menuItem.id}}
             <div>
-                {{#link-to 'item' menuItem.id}}<h4 class="grid-product-title">{{menuItem.name}}</h4>{{/link-to}}
+                <h4 class="grid-product-title">{{menuItem.name}}</h4>
                 <br>
-                ${{render-decimals menuItem.baseprice}}
+                <span class="grid-product-price">{{render-decimals menuItem.baseprice}}</span>
             </div>
-        </li>
+            {{/link-to}}
+        </a>
         {{/each}}
     </div>   
 </div>

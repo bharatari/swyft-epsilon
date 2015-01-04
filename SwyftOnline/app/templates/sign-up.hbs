@@ -1,0 +1,32 @@
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="top-bar"></div>
+        <div class="navbar-header"></div>
+        <a class="navbar-brand" href="/">SWYFT</a>
+    </div>
+</nav>
+
+<div class="container">
+    <form class="login-form" {{action 'login' on='submit'}}>
+        <fieldset>
+            <h2 style="text-align:center;margin-bottom:30px;">Sign Up</h2>
+            {{#if error}}
+            <div class="alert alert-dismissable alert-danger">
+                <button class="close" type="button" data-dismiss="alert">×</button>
+                <strong>Oh snap!</strong> You forgot to fill out a required field.
+            </div>
+            {{/if}}
+            <div>
+                {{input class="form-control" value=firstName type="text" placeholder="First Name"}}
+                {{input class="form-control" value=lastName type="text" placeholder="Last Name"}}
+                {{input class="form-control" value=dormitory type="text" placeholder="Dormitory/Default Delivery Location"}}
+                {{input class="form-control" value=phoneNumber type="text" placeholder="Phone Number"}}
+                {{input class="form-control" value=poBox type="text" placeholder="P.O. Box"}}
+                {{input class="form-control" value=email type="text" placeholder="Exeter Email Address"}}
+                <input class="form-control" {{bindAttr placeholder=password}} type="password" placeholder="Password" {{action "validatePassword" on="change"}}/>
+                <input id="confirmPassword" class="form-control" {{bindAttr placeholder=confirmPassword}} type="password" placeholder="Confirm Password" {{action "validatePassword" on="change"}}/>
+            </div>
+            <button class="btn btn-default" style="float:right;margin-top:10px;" type="submit">Sign Up</button>
+        </fieldset>
+    </form>
+</div>

@@ -1,0 +1,21 @@
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="top-bar"></div>
+        <a class="navbar-brand" href="/">SWYFT<span class="logo-light">ADMIN</span></a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="list-group">
+        {{#if deliveryList}}
+        {{#each delivery in deliveryList}}
+            <a class="grid-restaurant list-group-item">
+                {{#link-to 'admin-export' delivery.id}}<p>{{delivery.displayTime}}</p>{{/link-to}}
+            </a>
+        {{/each}}
+        {{else}}
+            <h1>Nope. Nothing to see here.</h1>
+            <h5>There are no deliveries to show here.</h5>
+        {{/if}}
+    </div>       
+</div>

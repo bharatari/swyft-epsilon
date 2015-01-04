@@ -35,7 +35,7 @@ module.exports.connections = {
     port: 27017,
     user: 'swyftdb',
     password: 'Xv56magj',
-    database: 'y7Gojyxy'
+    database: 'igEjo9pe'
   },
   MongoDev:{
     adapter:'sails-mongo',
@@ -43,6 +43,6 @@ module.exports.connections = {
     port:27017,
     user: 'swyftdb',
     password: 'Xv56magj',
-    database: 'aJo2pise'
+    database: 'igEjo9pe'
   }
 };

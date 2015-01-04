@@ -10,6 +10,9 @@ module.exports={
         },
         userId:{
             type:'string'   
+        },        
+        contactPhone:{
+            type:'string'
         },
         userComments:{
             type:'string'
@@ -25,29 +28,22 @@ module.exports={
         },
         paymentType:{
             type:'string',
-            enum:["creditcard", "swyftdebit", "lioncard", "cash"]
+            enum:["creditcard", "swyftdebit", "cash"]
         },
         isDelivered:{
             type:'boolean',
             defaultsTo:false
         },
-        hasFulfillment:{
-            type:'boolean',
-            defaultsTo:false
-        },
-        fulfillmentId:{
-            type:'string'
-        },
-        deliveryDate:{
+        deliveredAt:{
             type:'datetime'
         },
-        deliveryPeriod:{
+        deliveryTime:{
+            type:'datetime'
+        },
+        deliveryId:{
             type:'string'
         },
         deliveryLocation:{
-            type:'string'
-        },
-        contactPhone:{
             type:'string'
         },
         couponId:{
@@ -56,8 +52,7 @@ module.exports={
         tokenId:{
             type:'string'
         },
-        //Normally simply delete orders, however, if the information must be kept, simply change this flag to true.
-        isDeleted:{
+        disabled:{
             type:'boolean',
             defaultsTo:false
         }

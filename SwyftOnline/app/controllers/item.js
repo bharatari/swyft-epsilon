@@ -1,64 +1,36 @@
 import Ember from "ember";
+import config from 'swyft-online/config/environment';
+import itemUtils from 'swyft-online/utils/item-utils';
+import StandardActionsMixin from 'swyft-online/mixins/standard-actions';
 
-export default Ember.Controller.extend({
+export default Ember.Controller.extend(StandardActionsMixin, {
     item: function(){
-        var data = this.get('model')[0];
-        if(data.itemoptions){
-            for(var i = 0; i < data.itemoptions.length; i++){
-                if(data.itemoptions[i].name === "Options"){
-                    data.standardOptions = splitArray(data.itemoptions[i].options);
-                    data.itemoptions[i]=null;
-                }
-            }
-        }
-        if(data.extras){
-            data.extras = setUp(data.extras);
-        }
-        if(data.itemoptions){
-            for(var i = 0; i < data.itemoptions.length; i++){
-                if(data.itemoptions[i].name !== "Options"){
-                    data.itemoptions[i].value = "";
-                }
-            }
-        }
-        function splitArray(csv){
-            if(csv.length>0){
-                var array=csv.split(", ");
-                var objectArray=new Array();
-                for(var i=0; i<array.length;i++){
-                    //Add conditional to check for 'default' or other options
-                    var obj ={
-                        name:array[i],
-                        isSelected:false
-                    }
-                    objectArray.push(obj);
-                }
-                return objectArray;
-            }
-            else{
-                return null;
-            }
-        }
-        function setUp(extras){
-            for(var i=0; i < extras.length; i++){
-                extras[i].isSelected=false;
-            }
-        }
-        return data;
+        return itemUtils.processItemView(this.get('model')[0]);
     }.property('model'),
     actions: {
-        toggleSidebar: function() {
-            $('#nav-menu').offcanvas('toggle');
-        },
         addToCart: function() {
-            var data = this.item;
-            var cartData = {
-                name: data.name,
-                id: data.id,
-                restaurant: data.restaurant
+            if(itemUtils.validate(this.get('item'))){
+                var cartData = itemUtils.processItem(this.get('item'));
+                try {
+                    if(localStorage.getItem("cart")){
+                        var cart = JSON.parse(localStorage.getItem("cart"));
+                        cart.push(cartData);
+                        localStorage.setItem("cart", JSON.stringify(cart));
+                    }
+                    else{
+                        var cart = [];
+                        cart.push(cartData);
+                        localStorage.setItem("cart", JSON.stringify(cart));
+                        localStorage.setItem("cartVersion", config.cartVersion);
+                    }
+                }
+                catch (exec) {
+                    alert("It seems that your browser doesn't support modern local storage features. A common reason for this on iOS devices is being in Private Mode on Safari. Please use Chrome or disable Private Mode on Safari in order to continue.");
+                }
+                this.transitionToRoute('restaurants');
             }
-            for(var i = 0; i < data.itemoptions.length; i++){
-                
+            else{
+                alert("You've haven't selected an option for all of the required fields for this item.");
             }
         }
     }

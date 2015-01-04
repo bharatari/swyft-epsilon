@@ -1,7 +1,18 @@
 import Ember from "ember";
+import config from 'swyft-online/config/environment';
+import loginUtils from 'swyft-online/utils/login-utils';
+import SessionRouteMixin from 'swyft-online/mixins/session-route';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(SessionRouteMixin, {
     model: function() {
-        return Ember.$.getJSON("http://localhost:1337/api/restaurants");
+        return Ember.RSVP.hash({
+            csrfToken: Ember.$.getJSON(config.routeLocation + "/csrfToken"),
+            restaurants: Ember.$.getJSON(config.routeLocation + "/api/restaurants")
+        })
+    },
+    setupController: function(controller, model) {
+        controller.set('csrfToken', model.csrfToken._csrf);
+        controller.set('restaurants', model.restaurants);
+        controller.set('isAuthenticated', this.get('isAuthenticated'));
     }
 });

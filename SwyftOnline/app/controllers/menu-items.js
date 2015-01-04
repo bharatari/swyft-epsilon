@@ -1,12 +1,4 @@
 import Ember from "ember";
+import StandardActionsMixin from 'swyft-online/mixins/standard-actions';
 
-export default Ember.Controller.extend({
-    menuItems: function(){
-        return this.get('model');
-    }.property('model'),
-    actions: {
-        toggleSidebar: function(){
-            $('#nav-menu').offcanvas('toggle');
-        }
-    }
-});
+export default Ember.Controller.extend(StandardActionsMixin, {});

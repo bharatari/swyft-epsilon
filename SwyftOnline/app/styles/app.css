@@ -2,6 +2,35 @@ body {
     overflow-x: hidden;
 }
 
+#nav-menu {
+    box-shadow:  0px 5px 70px -10px black;
+}
+
+.nav-menu-content {
+    margin-left: 10px; 
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.cart-header {
+    font-weight: 500;
+    font-size: 20px;
+    text-align: center;
+    letter-spacing: 5px;
+}
+
+.btn-sidemenu {
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: 3px;
+    border: none;
+    transition: background-color 0.2s ease-in;
+}
+
+.btn-sidemenu:hover {
+    background-color: #5d5d5d;
+}
+
 .navbar-toggle {
     display: block;
     position: absolute;
@@ -38,6 +67,11 @@ body {
     letter-spacing: 2px;
     font-size: 16px;
     color: black;
+    transition: transform 0.5s ease-in;
+}
+
+.navbar-brand:hover {
+    transform: scale(0.95);
 }
 
 .logo-light {
@@ -58,15 +92,20 @@ body {
 }
 
 .row-one-text {
-    margin-top: 260px;
+    margin-top: 35vh;
 }
 
 .welcome-text {
     font-family: 'Source Sans Pro';
     font-weight: 300;
-    color: #a0a0a0;
+    color: #3b3b3b;
     text-align: center;
-    font-size:40px;
+    font-size:50px;
+    transition: transform 0.5s ease-out;
+}
+
+.welcome-text:hover {
+    transform: scale(0.9);
 }
 
 .sub-text {
@@ -76,6 +115,11 @@ body {
     margin-top:-7px;
     font-size:14px;
     text-align: center;
+    transition: transform 0.5s ease-in, color 0.2s ease-out;
+}
+
+.sub-text:hover {
+    color: black;
 }
 
 #nav-menu {
@@ -86,18 +130,29 @@ body {
 .login-button {
     display: block;
     position: absolute;
-    right: 10px;
-    background-color: #01fa87;
+    right: 20px;
+    background-color: #101010;
     height:30px;
-    width: 70px;
-    border-radius: 6%;
-    color: white;
+    width: 90px;
     border-color: transparent;
-    font-weight: 600;
-    font-size: 14px;
+    color: white !important;
     top: 15px;
     padding-top:5px;
-    padding-left:15px;
+    padding-left:19px;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    transition: background-color 0.2s ease-in;
+}
+
+.login-button:hover {
+    background-color: #6d6d6d;
+}
+
+.login-form {
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .row-two {
@@ -149,31 +204,189 @@ body {
     margin-left: 3px;   
 }
 
+.list-group {
+    margin-left: -10px;
+}
+
 .grid-product {
     display: inline-block;
     width: 200px;
     margin-bottom: 20px;
     height: 230px;
     float: left;
+    margin-left: 10px;
+    background-color: #2780e3;
+    transition: transform 0.2s ease-in;
+    border: none;
 }
 
-.grid-restaurant {
-    display: inline-block;
-    width: 200px;
-    margin-bottom: 20px;
-    float: left;
+.grid-product:hover {
+    transform: scale(0.95);
+    text-decoration: none;
+}
+
+a.list-group-item:hover, a.list-group-item:focus {
+    background-color: #2780e3;
+    text-decoration: none;
+    color:white;
+}
+
+.list-group-item {
+    margin-left: 10px;
 }
 
 .grid-product-title {
-    font-size: 32px;
+    font-size: 24px;
+    color: white;
+    text-decoration: none;
+}
+
+.grid-products:hover {
+    text-decoration: none;
+}
+
+.grid-product-price {
+    color: white;
+    text-decoration: none;
+}
+
+.grid-product-price:hover {
+    text-decoration: none;
 }
 
 .grid-products {
     margin-bottom: 50px;
 }
 
+.grid-restaurant {
+    display: inline-block;
+    width: 200px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    background-color: #2780e3;
+    float: left;
+    border: none;
+    transition: transform 0.2s ease-in;
+}
+
+.grid-restaurant:hover {
+    background-color: #0080ff;
+    transform: scale(0.95);
+}
+
+.grid-restaurant p {
+    color:white;
+    text-decoration: none;
+}
+
+.grid-restaurant p:hover {
+    color:white;
+    text-decoration: none;
+}
+
+.total-text {
+    text-align: center;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 4px;
+}
+
+.price-light {
+    font-weight: 100;
+}
+
+.cart-list {
+    margin-left: -40px;
+    margin-bottom: 30px;
+}
+
+.cart-item {
+    list-style-type: none;
+}
+
+.cart-item-name {
+    font-weight: 300;
+    font-size: 30px;
+}
+
+.cart-item-itemoptions {
+    font-size: 16px;
+}
+
+.cart-item-price {
+    font-size: 18px;
+}
+
+.remove-button {
+    border: 1px solid black;
+    background-color: black;
+    color: white;
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: 3px;
+    transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    height: 30px;
+    width: 100px;
+    padding: 0px 0px 0px 0px;
+}
+
+.remove-button:hover {
+    background-color: white;
+    color: black;
+}
+
+.text-button {
+    font-weight: 500;
+    font-size: 24px;
+    letter-spacing: 10px;
+    background-color: white;
+    color: black;
+    transition: transform 0.2s ease-in;
+    margin-left: auto;
+    margin-right: auto;
+    border: none;
+    box-shadow: none;
+    display: block;
+}
+
+.text-button:hover {
+    transform: scale(0.95);
+}
+
+.required-header {
+    color: darkgray;
+    font-size: 20px;
+}
+
 @media only screen and (max-device-width: 768px) {
     .img-background {
-        display: none;
+        height: 150px;
+        margin-bottom: 20px;
+    }
+    
+    .grid-product {
+        display: list-item;
+        height: auto;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        margin-bottom: 20px;
+        float: left;
+        list-style-type: none;
+    }
+    
+    .grid-restaurant {
+        display: list-item;
+        height: auto;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        margin-bottom: 20px;
+        float: left;
+        list-style-type: none;
+    }
+    
+    .grid-product-title {
+        font-size: 18px;
     }
 }
