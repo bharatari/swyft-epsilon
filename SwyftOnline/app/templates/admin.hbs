@@ -14,12 +14,14 @@
     </ul>
     <h1>Swyft Administration</h1>
     <div class="list-group">
-        <a class="grid-restaurant list-group-item">
-            {{#link-to 'admin-export-picker'}}<p>Export</p>{{/link-to}}
-            
-        </a>
-        <a class="grid-restaurant list-group-item">
-            {{#link-to 'admin-new-delivery'}}<p>New Delivery</p>{{/link-to}}
-        </a>
+        <button class="grid-restaurant list-group-item" {{action 'goToExport'}}>
+            <p class="click-through justify-left">Export</p>
+        </button>
+        <button class="grid-restaurant list-group-item" {{action 'goToNewDelivery'}}>
+            <p class="click-through justify-left">New Delivery</p>
+        </button>
+        <button class="grid-restaurant list-group-item" {{action 'goToCompleteDelivery'}}>
+            <p class="click-through justify-left">Complete Delivery</p>
+        </button>
     </div>   
 </div>

@@ -9,6 +9,6 @@ export default Ember.Route.extend(AdminRouteMixin, {
         }
     },
     model: function(params) {
-        return Ember.$.getJSON(config.routeLocation + "/api/deliveries/" + params.delivery_id)
+        return Ember.$.getJSON(config.routeLocation + "/api/delivery/" + params.delivery_id + "/orders")
     }
 });

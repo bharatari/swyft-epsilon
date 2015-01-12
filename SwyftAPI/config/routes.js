@@ -35,6 +35,7 @@ module.exports.routes = {
   //SwyftOnline View Routes
   '/':'ViewController.homepage',
   '/app/*':'ViewController.homepage',
+  '/admin':'ViewController.homepage',
   '/admin/*':'ViewController.homepage',
   '/delivery/*':'ViewController.homepage',
   '/system/*':'ViewController.homepage',    
@@ -51,9 +52,9 @@ module.exports.routes = {
   'get /api/item/:item_id':'MenuController.item',
   'post /api/user':'UserController.create',
   'get /api/user':'UserController.getUser',
-  'put /api/user/verification/verify':'UserController.verify',
-  'put /api/user/verification/resend':'UserController.resend',
-  'put /api/user/password':'UserController.resetPassword',
+  'post /api/user/verification/verify':'UserController.verify',
+  'post /api/user/verification/resend':'UserController.resend',
+  'post /api/user/password':'UserController.resetPassword',
   'get /api/orders':'OrderController.getOrders',
   'post /api/order':'OrderController.processOrder',
   'delete /api/order':'OrderController.deleteOrder',
@@ -61,7 +62,7 @@ module.exports.routes = {
   'get /api/orders/recent':'OrderController.recentOrders',
   'get /api/deliveries':'DeliveryController.getOpenDeliveries',
   'post /api/forgotPasswordToken':'UserController.createForgotPasswordToken',
-  'get /api/delivery/:delivery_id':'DeliveryController.getDelivery',
+  'get /api/delivery/:delivery_id/orders':'DeliveryController.getDeliveryOrders',
   'get /api/adminDeliveries':'DeliveryController.getAdminDeliveries'
     
   /***************************************************************************

@@ -2,6 +2,7 @@
     <div class="container-fluid">
         <div class="top-bar"></div>
         <div class="navbar-header">
+            {{!--<i class="glyphicon glyphicon-earphone"></i>823-231-SWYFT--}}
             {{view 'navbar-toggle'}}
         </div>
         <a class="navbar-brand" href="/">ORDER<span class="logo-light">SWYFT</span></a>
@@ -10,19 +11,20 @@
 
 {{side-bar checkout="checkout" login="login" profile="profile" logout="logout" isAuthenticated=isAuthenticated}}
 
-<div class="img-background container-fluid"></div>
+<div class="img-background container-fluid">
+    <h1 class="background-title">Restaurants.</h1>
+</div>
 
 <div class="container">
     <ul class="breadcrumb">
         <li><a>{{#link-to 'index'}}Home{{/link-to}}</a></li>
         <li class="active"></li>Restaurants</li>
     </ul>
-    <h1>Restaurants</h1>
     <div class="list-group">
         {{#each restaurant in restaurants}}
-        <a class="grid-restaurant list-group-item">
-            {{#link-to 'menu-items' restaurant.name}}<p>{{restaurant.title}}</p>{{/link-to}}
-        </a>
+        <button class="grid-restaurant list-group-item" {{action 'transition' restaurant.name}}>
+            <p class="click-through justify-left">{{restaurant.title}}</p>
+        </button>
         {{/each}}
     </div>   
 </div>

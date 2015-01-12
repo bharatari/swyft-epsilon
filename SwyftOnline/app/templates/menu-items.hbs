@@ -10,7 +10,9 @@
 
 {{side-bar checkout="checkout" login="login" profile="profile" logout="logout" isAuthenticated=isAuthenticated}}
 
-<div class="img-background container-fluid"></div>
+<div class="img-background container-fluid">
+    <h1 class="background-title">Menu.</h1>
+</div>
 
 <div class="container">
     <ul class="breadcrumb">
@@ -18,18 +20,16 @@
         <li><a>{{#link-to 'restaurants'}}Restaurants{{/link-to}}</a></li>
         <li class="active">Menu</li>
     </ul>
-    <h1>Menu</h1>
+    {{input class="form-control search" value=search type="text" placeholder="Search"}}
     <div class="grid-products list-group">
-        {{#each menuItem in menuItems}}
-        <a class="grid-product list-group-item">
-            {{#link-to 'item' menuItem.id}}
-            <div>
+        {{#each menuItem in filtered}}
+        <button class="grid-product list-group-item" {{action 'transition' menuItem.id}}>
+            <div class="click-through">
                 <h4 class="grid-product-title">{{menuItem.name}}</h4>
                 <br>
                 <span class="grid-product-price">{{render-decimals menuItem.baseprice}}</span>
             </div>
-            {{/link-to}}
-        </a>
+        </button>
         {{/each}}
     </div>   
 </div>

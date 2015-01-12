@@ -5,6 +5,10 @@ import constants from 'swyft-online/utils/constants-utils';
 
 export default Ember.Controller.extend({
     buttonPressed: false,
+    reset: function() {
+        //Find an event that will trigger every time this page is navigated to and reset
+        this.set('buttonPressed', false);
+    }.on('init'),
     totalPrice: function() {
         var cart = this.get("cart");
         if(cart){
@@ -56,10 +60,11 @@ export default Ember.Controller.extend({
                     type: "POST",
                     success: function(response) {
                         alert("Thanks for your order!");
+                        localStorage.removeItem('cart');
                         self.transitionToRoute("restaurants");
                     },
                     error: function(xhr, textStatus, error) {
-                        alert("Something went wrong there. If you're using Swyft Debit, ensure you have enough balance in your account to proceed");
+                        alert("Something went wrong there. If you're using Swyft Debit, ensure you have enough balance in your account to proceed. You might also want to try emptying your cart and starting over.");
                         self.set('buttonPressed', false);
                     }
                 });

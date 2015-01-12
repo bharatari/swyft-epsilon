@@ -14,6 +14,10 @@ export default Ember.Mixin.create({
             this.transitionToRoute("login");
         },
         logout: function() {
+            var self = this;
+            loginUtils.logout(this.get('csrfToken')).then(function(response){
+                self.transitionToRoute("index");
+            }, function(reason){ });
         },
         profile: function() {
             this.transitionToRoute("profile");

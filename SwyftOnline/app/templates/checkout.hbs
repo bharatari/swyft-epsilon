@@ -6,7 +6,9 @@
     </div>
 </nav>
 
-<div class="img-background container-fluid"></div>
+<div class="img-background container-fluid">
+    <h1 class="background-title">Checkout.</h1>
+</div>
 
 <div class="container">
     <ul class="breadcrumb">
@@ -16,14 +18,13 @@
     </ul>
     <form>
         <div class="info-well well">
-            <h1 class="item-title">Checkout</h1>
             <h3 class="item-price">Total: {{render-decimals-simple totalPrice}}</h3>
             <h3>Account Balance: {{render-decimals-simple user.balance}}</h3>
             <h3>Payment Options</h3>
             <div class="option-group">
                 <div class="list-group">
                     {{#each paymentOption in paymentOptions}}
-                    <a class="list-group-item">{{radio-button name=paymentOptions.value class="option" value=paymentOption}}<span class="option-text">{{paymentOption.name}}</span></a>
+                    <a class="list-group-item">{{radio-button name=paymentOptions.value class="option" value=paymentOption.id}}<span class="option-text">{{paymentOption.name}}</span></a>
                     {{/each}}
                 </div>            
             </div>
@@ -31,16 +32,17 @@
             {{input class="form-control" value=user.dormitory type="text" placeholder="Delivery Location"}}
             {{input class="form-control" value=user.phoneNumber type="text" placeholder="Phone Number"}}
             {{input class="form-control" value=additionalRequests type="text" placeholder="Additional Requests"}}
+            <p class="sub-heading">If you ordered a McDonalds meal, you may specify your drink here.</p>
             <h3>When do you want your food?</h3>
             <div class="option-group">
                 <div class="list-group">
                     {{#each delivery in deliveryList}}
-                    <a class="list-group-item">{{radio-button name=deliveryList.value class="option" value=delivery}}<span class="option-text">{{delivery.displayTime}}</span></a>
+                    <a class="list-group-item">{{radio-button name=deliveryList.value class="option" value=delivery.id}}<span class="option-text">{{delivery.displayTime}}</span></a>
                     {{/each}}
                 </div>            
             </div>
             {{#unless buttonPressed}}
-            <button class="btn btn-primary" type="submit" {{action 'checkout'}}>Checkout</button>       
+            <button class="btn btn-default" type="submit" {{action 'checkout'}}>Checkout</button>       
             {{/unless}}
         </div>  
     </form>

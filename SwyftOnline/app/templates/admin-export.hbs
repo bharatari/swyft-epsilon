@@ -6,23 +6,23 @@
 </nav>
 
 <div class="container">
-    <table>
+    <table class="table table-hover">
         <tr>
             <th>First Name</th>
             <th>Last Name</th>
-            <th>User Comments</th>
+            <th>Comments</th>
             <th>Total</th>
-            <th>Delivery Location</th>
-            <th>Contact Phone</th>
-            <th>Payment Type</th>
+            <th>Location</th>
+            <th>Phone</th>
+            <th>Payment</th>
             <th>Items</th>
         </tr>
-        {{#each order in orders}}
+        {{#each order in deliveryItems}}
         <tr>
             <td>{{order.user.firstName}}</td>
             <td>{{order.user.lastName}}</td>
             <td>{{order.userComments}}</td>
-            <td>{{order.actualAmount}}</td>
+            <td>{{render-decimals order.actualAmount}}</td>
             <td>{{order.deliveryLocation}}</td>
             <td>{{order.contactPhone}}</td>
             <td>{{order.paymentType}}</td>

@@ -26,16 +26,15 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     ENV.APP.LOG_VIEW_LOOKUPS = true;
       
-    //Added to allow localhost development
     ENV.contentSecurityPolicy = {
         'default-src': "'none'",
-        'font-src': "'self' http://fonts.gstatic.com", // Allow fonts to be loaded from http://fonts.gstatic.com
-        'connect-src': "'self' https://api.mixpanel.com http://custom-api.local http://localhost:1337", // Allow data (ajax/websocket) from api.mixpanel.com and custom-api.local
+        'script-src': "'self'",
+        'font-src': "'self' http://fonts.gstatic.com",
+        'connect-src': "'self' http://localhost:1337",
         'img-src': "'self'",
-        'style-src': "'self' 'unsafe-inline' http://fonts.googleapis.com", // Allow inline styles and loaded CSS from http://fonts.googleapis.com 
+        'style-src': "'self' 'unsafe-inline' http://fonts.googleapis.com", 
         'media-src': "'self'"
-    }    
-    //Added to dynamically change API calls depending on environment
+    }
     ENV.routeLocation = "http://localhost:1337";
   }
 
@@ -52,11 +51,9 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    //Added to dynamically change API calls depending on environment
     ENV.routeLocation = "";
   }   
     
-  //Added to be able to control cart updates
   ENV.cartVersion = 1.0;
    
   return ENV;

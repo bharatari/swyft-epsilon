@@ -10,7 +10,7 @@ module.exports={
         orderCutoff: {
             type:'datetime'
         },
-        disabledRestaurants: {
+        restaurants: {
             type:'string'
         },
         enabled: {

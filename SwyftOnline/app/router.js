@@ -6,9 +6,10 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+    this.route("learn-more", { path:"/app/learn-more" });
     this.route("login", { path: "/app/login" });
     this.route("sign-up", { path:"/app/sign-up" });
-    this.route("verify-user", { path:"/app/verify-user" });
+    this.route("verify", { path:"/app/verify" });
     this.route("restaurants", { path: "/app/restaurants"});
     this.route("menu-items", { path:"/app/menu-items/:restaurant_name"});
     this.route("item", { path:"/app/item/:item_id"});
@@ -18,6 +19,7 @@ Router.map(function() {
     this.route("admin-export", { path:"/admin/export/:delivery_id"});
     this.route("admin-unauthorized", { path:"/admin/unauthorized"});
     this.route("admin-new-delivery", { path:"/admin/new-delivery" });
+    this.route("admin-complete-delivery", { path:"/admin/complete-delivery" });
 });
 
 export default Router;

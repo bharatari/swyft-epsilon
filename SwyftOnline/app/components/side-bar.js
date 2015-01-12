@@ -73,6 +73,9 @@ export default Ember.Component.extend(Ember.TargetActionSupport, {
         },
         checkout: function() {
             this.sendAction('checkout');
-        }    
+        },
+        toggle: function() {
+            $('#nav-menu').offcanvas('toggle');
+        }
     }
 });

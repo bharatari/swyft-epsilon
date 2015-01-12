@@ -9,4 +9,9 @@ export default Ember.Controller.extend({
         }
         return array;
     }.property('model'),
+    actions: {
+        goToExport: function(deliveryId) {
+            this.transitionToRoute('admin-export', deliveryId);
+        }
+    }
 });

@@ -6,16 +6,24 @@ export default Ember.Controller.extend({
     loginError: false,
     actions: {
         login: function() {
-            var _this = this;
+            var self = this;
             Ember.$.ajax({type:"POST", url: config.routeLocation + "/api/login", dataType:'json', data:{username: this.get("username"), password: this.get("password"), _csrf: this.get("model")._csrf}, success: function(data, textStatus, jqXHR){
                 if(data.token) {
                     localStorage.setItem(loginUtils.localStorageKey, JSON.stringify(data));
-                    _this.transitionToRoute('restaurants');
+                    self.transitionToRoute('restaurants');
                 }
                 else {
-                    _this.set('loginError', true);
+                    self.set('loginError', true);
                 }
+            }, error: function(jqXHR){
+                self.set('loginError', true);
             }});
+        },
+        close: function() {
+            this.set('loginError', false);
+        },
+        signUp: function() {
+            this.transitionToRoute('sign-up');
         }
     }
 });

@@ -23,7 +23,7 @@ module.exports = {
                         }
                     }
                     else {
-                        cb(true);
+                        cb(token);
                     }
                 }
             });

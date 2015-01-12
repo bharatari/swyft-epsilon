@@ -67,12 +67,12 @@ module.exports.session = {
   *                                                                          *
   ***************************************************************************/
 
-  // adapter: 'mongo',
-  // host: 'localhost',
-  // port: 27017,
-  // db: 'sails',
-  // collection: 'sessions',
-
+  adapter: 'mongo',
+  host: 'proximus.modulusmongo.net',
+  port: 27017,
+  db: 'igEjo9pe',
+  collection: 'sessions',
+    
   /***************************************************************************
   *                                                                          *
   * Optional Values:                                                         *
@@ -82,8 +82,8 @@ module.exports.session = {
   *                                                                          *
   ***************************************************************************/
 
-  // username: '',
-  // password: '',
+  username: 'swyftdb',
+  password: 'Xv56magj',
   // auto_reconnect: false,
   // ssl: false,
   // stringify: true

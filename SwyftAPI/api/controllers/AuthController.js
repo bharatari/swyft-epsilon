@@ -4,7 +4,7 @@ var jwt = require('jwt-simple');
 
 module.exports={
     login: function(req, res) {
-        User.findOne({ username: req.body.username }, function(err, user) {
+        User.findOne({ username: req.body.username.toLowerCase() }, function(err, user) {
             if (err) {
                 return res.serverError(err);
             }
@@ -21,7 +21,7 @@ module.exports={
                     res.serverError(err);
                 }
                 else if(!user.verified) {
-                    res.badRequest("Account not verified");
+                    res.badRequest("NOT_VERIFIED");
                 }
                 else {
                     var expires = moment().add(2, 'days').toDate();
@@ -52,7 +52,7 @@ module.exports={
         });
     },
     logout:function(req,res){
-        LoginToken.destroy({userId: req.body.user.user.id}).exec(function(err){
+        LoginToken.destroy({userId: req.body.userId}).exec(function(err){
             if(err) {
                 res.serverError(err);
             }
@@ -64,6 +64,19 @@ module.exports={
     isAuthenticated:function(req,res){
         AuthService.authenticated(req.query.tokenId, function(response) {
             if(response) {
+                AuthService.getUser(response.token, function(user){
+                    if(user) {
+                        if(user.verified) {
+                            res.ok();
+                        }
+                        else {
+                            res.send("NOT_VERIFIED");
+                        }
+                    }
+                    else {
+                        return res.forbidden();
+                    }
+                });
                 return res.ok();
             }
             else {

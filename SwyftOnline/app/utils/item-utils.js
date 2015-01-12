@@ -62,6 +62,15 @@ export default {
                 }
             }
         }
+        if(data.itemOptions){
+            for(var i = 0; i < data.itemOptions.length; i++){
+                if(data.itemOptions[i].name !== "Options"){
+                    for(var e = 0; e < data.itemOptions[i].options.length; e++) {
+                        data.itemOptions[i].options[e].category = data.itemOptions[i].name;
+                    }
+                }
+            }
+        }
         var standardOptionsIndex = -1;
         if(data.itemOptions){
             for(var i = 0; i < data.itemOptions.length; i++){

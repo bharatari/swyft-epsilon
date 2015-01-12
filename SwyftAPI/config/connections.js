@@ -43,6 +43,6 @@ module.exports.connections = {
     port:27017,
     user: 'swyftdb',
     password: 'Xv56magj',
-    database: 'igEjo9pe'
+    database: 'yju6Wajy'
   }
 };

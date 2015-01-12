@@ -1,0 +1,31 @@
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="top-bar"></div>
+        <div class="navbar-header"></div>
+        <a class="navbar-brand" href="/">SWYFT</a>
+    </div>
+</nav>
+
+<div class="container">
+    <form class="login-form" {{action 'verify' on='submit'}}>
+        <fieldset>
+            <h2 class="centered-text">Verify your Swyft Account</h2>
+            {{#if verifyError}}
+            <div class="alert alert-dismissable alert-danger">
+                <button class="close" type="button" {{action 'close'}}>×</button>
+                <strong>Oh snap!</strong> Your token doesn't seem to be valid for the given email address.
+            </div>
+            {{/if}}
+            {{#if verifySuccess}}
+                <div class="alert alert-success">
+                    <strong>Great!</strong> Your account has been verified.
+                </div>
+            {{/if}}
+            <div>
+                {{input class="form-control" value=username type="text" placeholder="Email"}}
+                {{input class="form-control" value=token type="text" placeholder="Token"}}
+            </div>
+            <button class="btn btn-default" style="float:right;margin-top:10px;" type="submit">SUBMIT</button>
+        </fieldset>
+    </form>
+</div>

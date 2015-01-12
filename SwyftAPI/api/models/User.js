@@ -66,9 +66,8 @@ module.exports={
     
     toJSON: function() {
       var obj = this.toObject();
-      // Remove the password object value
       delete obj.password;
-      // return the new object without password
+      delete obj.token;
       return obj;
     },
     
@@ -87,6 +86,8 @@ module.exports={
         });
     },
     
+    //Do this manually
+    /*
     beforeUpdate: function(user, cb){
         bcrypt.genSalt(10, function(err, salt) {
             bcrypt.hash(user.password, salt, function(err, hash) {
@@ -101,4 +102,5 @@ module.exports={
             });
         });
     }
+    */
 }

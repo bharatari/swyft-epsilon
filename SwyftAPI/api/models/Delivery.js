@@ -14,15 +14,8 @@ module.exports={
         deliveryPeriod:{
             type:'string'
         },
-        disabledRestaurants:{
+        restaurants:{
             type:'string'
-        },
-        isDelivered:{
-            type:'boolean',
-            defaultsTo:false
-        },
-        deliveredAt:{
-            type:'datetime'
         },
         //In the future, we will be able to create multiple deliveries for a delivery period
         mainDelivery:{

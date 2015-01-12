@@ -4,29 +4,32 @@ module.exports={
     processOrder:function(req,res){
         var order=req.body;
         delete order._csrf;
+        delete order.user;
         order.contactPhone=order.contactPhone.replace(/\D/g,'');
-        if(order.items.length<1){
+        if(order.items.length < 1){
             return res.serverError();
         }
         if(req.user.testUser){
             return res.send(200);
         }
         MenuItem.find().exec(function(err, items){
+            items = PriceService.processPricing(items);
             var processedOrder = OrderService.process(items, order);
             if(processedOrder) {
-                if(OrderService.submit(processedOrder)) {
-                    res.send(200);
-                }
-                else {
-                    res.serverError();
-                }
+                processedOrder.type = "scheduled";
+                OrderService.submit(processedOrder, req.user, function(response){
+                    if(response) {
+                        res.ok();
+                    }
+                    else {
+                        res.serverError();
+                    }
+                });
             }
             else {
                 res.serverError();
             }
-        }); 
-        
-        
+        });    
     },
    getOrders:function(req,res){
        //I sloppily recreated a for loop to circumvent the issues with async code
