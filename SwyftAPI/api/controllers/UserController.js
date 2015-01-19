@@ -16,7 +16,7 @@ module.exports={
         User.find().exec(function(err, users){
             for(var i = 0; i < users.length; i++){
                 if(users[i].username.toLowerCase() === req.body.email.toLowerCase()){
-                    return res.badRequest("EMAIL_IN_USE");
+                    return res.badRequest('EMAIL_IN_USE');
                 }
             }
             process();
@@ -53,7 +53,31 @@ module.exports={
         
     },
     resend:function(req,res){
-        User.findOne({id:req.body.id}).exec(function(err, user){
+        User.findOne({ username: req.body.username.toLowerCase() }, function(err, user) {
+            if (err) {
+                return res.serverError(err);
+            }
+
+            if (!user) {
+                return res.badRequest();
+            }
+
+            bcrypt.compare(req.body.password, user.password, function(err, result) {
+                if (!result) {
+                    res.badRequest();
+                }
+                else if(err) {
+                    res.serverError(err);
+                }
+                else if(!user.verified) {
+                    res.badRequest("NOT_VERIFIED");
+                }
+                else {
+                    res.badRequest("ALREADY_VERIFIED");
+                }
+            });
+        });
+        User.findOne({email: req.body.email}).exec(function(err, user){
             EmailService.sendSignupEmail(user.firstName, user.lastName, user.username, function(){
                 res.send(200);
             });
@@ -86,26 +110,28 @@ module.exports={
             res.json(user);
         });
     },
-    remove:function(req,res){
-        //User.destroy
-    },
     getUsers:function(req,res){
         User.find().exec(function(err, users){
+            for(var i = 0; i < users.length; i++) {
+                UserService.deleteSensitive(users[i]);
+            }
             res.json(users);
         });
     },
-    createForgotPasswordToken:function(req, res){
+    forgotPasswordToken:function(req, res){
         var date=moment().add(1, 'days').toDate();
-        //Check for other tokens from the same user, and delete them
         User.findOne({username:req.body.email}).exec(function(err, user){
-            if(err||!user){
-                return res.send(500);
+            if(err || !user) {
+                return res.serverError();
+            }
+            else if(user.token !== req.body.token) {
+                return res.badRequest();
             }
             ForgotPasswordToken.find({id:user.id}).exec(function(err, tokens){
                 if(err){
                     res.send(500);
                 }
-                else if(token){
+                else if(tokens){
                     ForgotPasswordToken.destroy({username:req.body.email}).exec(function(err){
                         if(err){
                             res.send(500);
@@ -136,7 +162,7 @@ module.exports={
             
         });
     },
-    resetPassword:function(req,res){
+    resetPassword: function(req,res) {
         ForgotPasswordToken.find({token:req.body.token}).exec(function(err, token){
             if(new Date(token.expiryDate)<new Date()){
                 ForgotPasswordToken.destroy({token:req.body.token}).exec(function(err){
@@ -155,6 +181,58 @@ module.exports={
                         ForgotPasswordToken.destroy({id:token[0].id}).exec(function(err){
                             res.send("OK");
                         });
+                    }
+                });
+            }
+        });
+    },
+    preliminaryBalanceRequest: function(req, res) {
+        User.findOne({id: req.body.userId}).exec(function(err, user){
+            if(err) {
+                return res.badRequest();
+            }
+            else {
+                var transactionAmount = Math.round(parseFloat(req.body.transactionAmount*100))/100;
+                var balance = user.balance;
+                user.balance += transactionAmount;
+                res.send({
+                    userId: req.body.userId,
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    previousBalance: balance,
+                    balance: user.balance,
+                    transactionAmount: transactionAmount,
+                    comments: req.body.comments
+                });
+            }
+        });        
+    },
+    balanceRequest: function(req, res) {
+        var transactionType;
+        if(req.body.transactionAmount < 0) {
+            transactionType = "deduction";
+        }
+        else {
+            transactionType = "deposit";
+        }
+        User.update({id: req.body.userId}, {balance: req.body.balance}).exec(function(err, user){
+            if(err) {
+                return res.badRequest();
+            }
+            else {
+                var object = {
+                    userId: req.body.userId, 
+                    type:transactionType, 
+                    amount: req.body.transactionAmount, 
+                    comments: req.body.comments,
+                    transactionCreator: req.user.id
+                }
+                UserTransaction.create(object).exec(function(err){
+                    if(err){
+                        return res.badRequest();
+                    }
+                    else {
+                        res.ok();
                     }
                 });
             }

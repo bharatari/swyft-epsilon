@@ -1,5 +1,3 @@
-var settings=sails.config.settings;
-
 module.exports={
     restaurants: function(req, res){
         Restaurant.find({unavailable:false}).exec(function(err, restaurants){

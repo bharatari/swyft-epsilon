@@ -1,4 +1,5 @@
 import Ember from "ember";
+import loginUtils from 'swyft-online/utils/login-utils';
 import config from 'swyft-online/config/environment';
 import itemUtils from 'swyft-online/utils/item-utils';
 import StandardActionsMixin from 'swyft-online/mixins/standard-actions';
@@ -12,12 +13,12 @@ export default Ember.Controller.extend(StandardActionsMixin, {
             if(itemUtils.validate(this.get('item'))){
                 var cartData = itemUtils.processItem(this.get('item'));
                 try {
-                    if(localStorage.getItem("cart")){
+                    if(localStorage.getItem("cart")) {
                         var cart = JSON.parse(localStorage.getItem("cart"));
                         cart.push(cartData);
                         localStorage.setItem("cart", JSON.stringify(cart));
                     }
-                    else{
+                    else {
                         var cart = [];
                         cart.push(cartData);
                         localStorage.setItem("cart", JSON.stringify(cart));
@@ -25,7 +26,7 @@ export default Ember.Controller.extend(StandardActionsMixin, {
                     }
                 }
                 catch (exec) {
-                    alert("It seems that your browser doesn't support modern local storage features. A common reason for this on iOS devices is being in Private Mode on Safari. Please use Chrome or disable Private Mode on Safari in order to continue.");
+                    alert(loginUtils.localStorageAlert);
                 }
                 this.transitionToRoute('restaurants');
             }

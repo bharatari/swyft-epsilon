@@ -1,0 +1,54 @@
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="top-bar"></div>
+        <a class="navbar-brand" href="/">SWYFT<span class="logo-light">ADMIN</span></a>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <ul class="breadcrumb">
+        <li><a>{{#link-to 'index'}}Home{{/link-to}}</a></li>
+        <li><a>{{#link-to 'admin'}}Admin{{/link-to}}</a></li>
+        <li class="active">Users</li>
+    </ul>
+    <table class="table table-hover overflow">
+        <tr>
+            <th>ID</th>
+            <th>Email</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Dormitory</th>
+            <th>PO Box</th>
+            <th>Phone</th>
+            <th>Verified</th>
+            <th>Token</th>
+            <th>Balance</th>
+            <th>Admin</th>
+            <th>Driver</th>
+            <th>Employee</th>
+            <th>Deliverer</th>
+            <th>Enabled</th>
+            <th>Test</th>
+        </tr>
+        {{#each user in model}}
+        <tr>
+            <td>{{user.id}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.firstName}}</td>
+            <td>{{user.lastName}}</td>
+            <td>{{user.dormitory}}</td>
+            <td>{{user.postOfficeBox}}</td>
+            <td>{{user.phoneNumber}}</td>
+            <td>{{user.verified}}</td>
+            <td>{{user.token}}</td>
+            <td>{{render-decimals-simple user.balance}}</td>
+            <td>{{user.isAdmin}}</td>
+            <td>{{user.isDriver}}</td>
+            <td>{{user.isEmployee}}</td>
+            <td>{{user.isDeliverer}}</td>
+            <td>{{user.isEnabled}}</td>
+            <td>{{user.testUser}}</td>
+        </tr>
+        {{/each}}
+    </table>
+</div>

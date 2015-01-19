@@ -21,19 +21,22 @@ module.exports.policies = {
   AuthController:{ },
   MenuController:{ },
   DeliveryController: {
-    "getAdminDeliveries":'isAdmin'
+    "getAdminDeliveries":['isAdmin', 'userDisabled'],
+    "completeDelivery":['isAdmin', 'userDisabled']
   },
   OrderController:{
-    "*":['isAuthenticated', 'suppressSystem'],
-    "retrieveOrders":['isAuthenticated', 'isAdmin'],
-    "deleteOrder":['isAuthenticated', 'isAdmin'],
-    "pendingOrders":['isAuthenticated', 'isAdmin'],
-    "recentOrders":['isAuthenticated', 'isAdmin'],
-    "addDeliveryPeriod":['isAuthenticated', 'isAdmin'],
-    "createFulfillment":['isAuthenticated', 'isAdmin']
+    "*":['isAuthenticated', 'userDisabled', 'suppressSystem'],
+    "retrieveOrders":['isAdmin', 'userDisabled'],
+    "deleteOrder":['isAdmin', 'userDisabled'],
+    "pendingOrders":['isAdmin', 'userDisabled'],
+    "recentOrders":['isAdmin', 'userDisabled'],
+    "addDeliveryPeriod":['isAdmin', 'userDisabled'],
+    "createFulfillment":['isAdmin', 'userDisabled']
   },   
   UserController:{
-    "getUser":"isAuthenticated"
+    "getUser":['isAuthenticated', 'userDisabled'],
+    "preliminaryBalanceRequest":['isAdmin', 'userDisabled'],
+    "balanceRequest":['isAdmin', 'userDisabled']
   },
   ViewController:{
     "*":true

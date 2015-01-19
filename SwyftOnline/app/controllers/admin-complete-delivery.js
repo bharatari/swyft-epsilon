@@ -1,4 +1,5 @@
 import Ember from "ember";
+import loginUtils from 'swyft-online/utils/login-utils';
 import config from 'swyft-online/config/environment';
 
 export default Ember.Controller.extend({
@@ -17,19 +18,16 @@ export default Ember.Controller.extend({
                     _csrf:this.get('csrfToken')._csrf,
                     user: {token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token}
                 };
-                var url = config.routeLocation + "/api/order";
+                var url = config.routeLocation + "/api/delivery/complete";
                 Ember.$.ajax({
                     url: url,
                     data: data,
                     type: "POST",
                     success: function(response) {
-                        alert("Thanks for your order!");
-                        localStorage.removeItem('cart');
-                        self.transitionToRoute("restaurants");
+                        alert("Success");
                     },
                     error: function(xhr, textStatus, error) {
-                        alert("Something went wrong there. If you're using Swyft Debit, ensure you have enough balance in your account to proceed. You might also want to try emptying your cart and starting over.");
-                        self.set('buttonPressed', false);
+                        alert("Error");
                     }
                 });
             }

@@ -16,6 +16,9 @@ module.exports={
         },
         orderId:{
             type:'string'
+        },
+        transactionCreator:{
+            type:'string'
         }
     },
 }

@@ -2,33 +2,37 @@
     <div class="container-fluid">
         <div class="top-bar"></div>
         <div class="navbar-header">
-            <a class="btn login-button" {{action 'order'}}>ORDER</a>
+            <button class="btn btn-shadow login-button" {{action 'order'}}>ORDER</button>
         </div>
         <a class="navbar-brand" href="/">SWYFT</a>
     </div>
 </nav>
 
 <div class="row row-one">
-    <div class="row-one-text">
-        <h1 class="welcome-text">MEET SWYFT.</h2>
-        <h2 class="sub-text">A STUDENT-RUN NON-PROFIT AT PHILLIPS EXETER ACADEMY.</h3>
-        <div class="promo-group list-group">
-            {{#unless isAuthenticated}}
-            <button class="btn list-group-item promo-button" {{action 'signUp'}}>SIGN UP</button>
-            {{/unless}}
-            <button class="btn list-group-item promo-button" {{action 'learnMore'}}>LEARN MORE</button>
-        </div>        
+    <div class="container-fluid">
+        <div class="row-one-text">
+            <h1 class="welcome-text">MEET SWYFT.</h2>
+            <div class="promo-group list-group">
+                {{#unless isAuthenticated}}
+                <button class="btn list-group-item promo-button" {{action 'signUp'}}>SIGN UP</button>
+                {{/unless}}
+                <button class="btn list-group-item promo-button" {{action 'learnMore'}}>LEARN MORE</button>
+            </div>        
+        </div>
     </div>
 </div>
 
-<hr class="divider">
+<div class="row row-small">
+    <div class="container-fluid">
+        <h3 class="row-quote">A STUDENT-RUN BUSINESS AT PHILLIPS EXETER ACADEMY.</h3>
+    </div>
+</div>
 
 <div class="container">
-    <div class="row">
+    <div class="row row-two">
         <div class="col-xs-12 col-md-4">
             <h4 class="section-header">NEWS</h4>
-            <h2>We're planning something big for MLK Day. Stay tuned.</p>
-            <h4 class="tag">-SWYFT TEAM</h4>
+            <h2>{{news}}</p>
         </div>
         <div class="col-xs-12 col-md-4">
             <h4 class="section-header">WHEN CAN I ORDER?</h4>
@@ -55,12 +59,21 @@
             </table>
         </div>
         <div class="col-xs-12 col-md-4">
+            <h4 class="section-header">QUICK LINKS</h4>
+            {{#unless isAuthenticated}}
+            <button class="btn-quick-link" {{action 'login'}}>LOGIN</button>
+            {{/unless}}
+            <button class="btn-quick-link" {{action 'faq'}}>FAQ</button>
+            {{!--
+            <button class="btn-quick-link" {{action 'learnMore'}}>LEARN MORE</button>    
             <h4 class="section-header">JOIN US</h4>
             <p>We're a talented team always looking for students that can take our business to the next level. Please contact us on our Facebook page for open positions. We look forward to hearing from you.</p>
+            --}}
         </div>
     </div>
 </div>
 
-<div class="container-fluid swyft-footer">
-    {{!--<a class="footer-item right" {{action 'terms'}}>TERMS & CONDITIONS</a>--}}
+<div class="container swyft-footer">
+    <p class="footer-item">DESIGNED BY BHARAT ARIMILLI</p>
+    <a class="footer-item" {{action 'terms'}}>TERMS & CONDITIONS</a>
 </div>

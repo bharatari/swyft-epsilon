@@ -92,5 +92,15 @@ export default {
                 reject(false);
             }
         });
-    }
+    },
+    checkLocalStorage: function() {
+        try {
+            localStorage.setItem('localStorageTest-E9FJSNWN209DS0AM2', 'E9FJSNWN209DS0AM2');
+            localStorage.removeItem('localStorageTest-E9FJSNWN209DS0AM2');
+            return true;
+        } catch(e) {
+            return false;
+        }
+    },
+    localStorageAlert: "We're having trouble processing your request. You're either using Safari in Private Mode or an older, unsupported browser. Please disable Private Mode on Safari or use a modern browser, in order to continue."
 }

@@ -4,7 +4,7 @@ import AdminRouteMixin from 'swyft-online/mixins/admin-route';
 
 export default Ember.Route.extend(AdminRouteMixin, {
     queryParams: {
-        category: {
+        delivery_id: {
             refreshModel: true
         }
     },

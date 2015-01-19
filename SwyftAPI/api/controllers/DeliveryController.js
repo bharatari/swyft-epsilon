@@ -56,18 +56,20 @@ module.exports = {
         });        
     },
     createDelivery:function(req,res){
-        var deliveryTime=moment(req.body.deliveryTime, "dddd, MMMM Do YYYY, h:mm:ss a").toDate();
-        Delivery.create({deliverer:req.body.deliverer, deliveryTime:deliveryTime,deliveryPeriod:req.body.deliveryPeriod}).exec(function(err, fulfillment){
-            Order.update({deliveryPeriod:req.body.deliveryPeriod},{hasFulfillment:true, fulfillmentId:fulfillment.id}).exec(function(err){
-                res.send(200);
-            });
+        var deliveryTime = new Date(req.body.deliveryTime);
+        var orderCutoff = new Date(req.body.orderCutoff)
+        Delivery.create({deliverers:req.body.deliverers, deliveryDate:deliveryTime, comments:req.body.comments, restaurants:"All", mainDelivery:true, orderCutoff:orderCutoff}).exec(function(err, fulfillment){
+            if(err) {
+                res.badRequest();
+            }
+            else {
+                res.ok();
+            }
         });
     },
     completeDelivery: function(req,res){
-        Delivery.update({id:req.body.fulfillmentId}, {isDelivered:true}).exec(function(err, fulfillment){
-            Order.update({fulfillmentId:req.body.fulfillmentId},{isDelivered:true}).exec(function(err){
-                res.send(200);
-            });
+        Order.update({deliveryId: req.body.deliveryId},{isDelivered:true, deliveredAt: new Date()}).exec(function(err){
+            res.send(200);
         });
     },
     closeDeliveryPeriod:function(req,res){

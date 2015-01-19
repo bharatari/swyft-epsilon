@@ -89,41 +89,49 @@ module.exports = {
         order.actualAmount = order.totalAmount;
         return order;
     },
-    submit: function(order, user, cb) {
-        User.find({id:user.id}).exec(function(err,user){
-            Order.create(order).exec(function(err){
-                if(!err){
-                    if(order.paymentType=="swyftdebit"){
-                        if(order.actualAmount<=user[0].balance){
-                            UserTransaction.create({userId:user.id, type:"deduction", amount:order.actualAmount, orderId:order.id}).exec(function(err){
-                                if(!err){
-                                    User.update({id:user.id}, {balance:user[0].balance-order.actualAmount}).exec(function(err){
-                                        if(err){
-                                            cb(false);
-                                        }
-                                        else{
-                                            cb(true);
-                                        }
-                                    });
-
-                                }
-                                else{
-                                    cb(false);
-                                }
-                            });
-                        }
-                        else{
-                            cb(false);
-                        }
-                    }
-                    else {   
-                        cb(true);
-                    }
+    submitCash: function(order, userId, cb) {
+        User.findOne({id: userId}).exec(function(err, user){
+            Order.create(order).exec(function(err, result){
+                if(!err){  
+                    cb(true);
                 }
                 else{
                     cb(false);
                 }
             });
         });
-    }
+    },
+    submitSwyftDebit: function(order, userId, cb) {
+        User.findOne({id: userId}).exec(function(err, user){
+            if(order.actualAmount <= user.balance){
+                Order.create(order).exec(function(err, result){
+                    if(!err){                        
+                        UserTransaction.create({userId: user.id, type: "deduction", amount: result.actualAmount, orderId: result.id}).exec(function(err){
+                            if(!err){
+                                var newBalance = user.balance - result.actualAmount;
+                                User.update({id: user.id}, {balance: newBalance}).exec(function(err){
+                                    if(err){
+                                        cb(false);
+                                    }
+                                    else{
+                                        cb(true);
+                                    }
+                                });
+
+                            }
+                            else{
+                                cb(false);
+                            }
+                        });                        
+                    }
+                    else{
+                        cb(false);
+                    }
+                });
+            }
+            else {
+                cb(false);
+            }
+        });
+    },
 }

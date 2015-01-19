@@ -33,7 +33,7 @@ export default Ember.Controller.extend({
     }.property('deliveries'),
     paymentOptions: function() {
         return [
-            /*{ id: "swyftdebit", name: "Swyft Debit" },*/
+            { id: "swyftdebit", name: "Swyft Debit" },
             { id: "cash", name: "Cash" }
         ];
     }.property(),

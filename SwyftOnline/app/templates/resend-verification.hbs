@@ -1,0 +1,32 @@
+<nav class="navbar navbar-default navbar-no-shadow" role="navigation">
+    <div class="container-fluid">
+        <div class="top-bar"></div>
+        <div class="navbar-header"></div>
+        <a class="navbar-brand" href="/">SWYFT</a>
+    </div>
+</nav>
+
+<div class="container">
+    <form class="login-form" {{action 'sendVerification' on='submit'}}>
+        <fieldset>
+            <h2 class="centered-text">Resend Verification Email</h2>
+            <h5 class="centered-text">This feature only works for users that have not been verified.</h5>
+            {{#if verifyError}}
+            <div class="alert alert-dismissable alert-danger">
+                <button class="close" type="button" {{action 'close'}}>×</button>
+                <strong>Oh snap!</strong> Something went wrong with your request. Check that you entered the correct username and password. Otherwise, you might already be verified (try logging in to see if this is the case).
+            </div>
+            {{/if}}
+            {{#if verifySuccess}}
+                <div class="alert alert-success">
+                    <strong>Great!</strong> We just sent you another verification email.
+                </div>
+            {{/if}}
+            <div>
+                {{input class="form-control" value=username type="text" placeholder="Exeter Email"}}
+                {{input class="form-control" value=password type="text" placeholder="Password"}}
+            </div>
+            <button class="btn btn-default" style="float:right;margin-top:10px;" type="submit">SUBMIT</button>
+        </fieldset>
+    </form>
+</div>

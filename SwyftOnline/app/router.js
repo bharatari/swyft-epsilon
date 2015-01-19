@@ -10,6 +10,9 @@ Router.map(function() {
     this.route("login", { path: "/app/login" });
     this.route("sign-up", { path:"/app/sign-up" });
     this.route("verify", { path:"/app/verify" });
+    this.route("resend-verification", { path:"/app/resend-verification" });
+    this.route("forgot-password", { path:"/app/forgot-password" });
+    this.route("reset-password", { path:"/app/reset-password/:token" });
     this.route("restaurants", { path: "/app/restaurants"});
     this.route("menu-items", { path:"/app/menu-items/:restaurant_name"});
     this.route("item", { path:"/app/item/:item_id"});
@@ -20,6 +23,11 @@ Router.map(function() {
     this.route("admin-unauthorized", { path:"/admin/unauthorized"});
     this.route("admin-new-delivery", { path:"/admin/new-delivery" });
     this.route("admin-complete-delivery", { path:"/admin/complete-delivery" });
+    this.route("admin-users", { path:"/admin/users" });
+    this.route("admin-edit-balance", { path:"/admin/balance" });
+    this.route("terms", { path:"/app/terms" });
+    this.route("faq", { path:"/app/faq" });
+    this.route("profile", { path:"/app/profile" });
 });
 
 export default Router;

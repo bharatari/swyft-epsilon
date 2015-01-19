@@ -12,7 +12,13 @@ export default Ember.Controller.extend({
             this.transitionToRoute('learn-more');
         },
         terms: function() {
-            
+            this.transitionToRoute('terms');
+        },
+        login: function() {
+            this.transitionToRoute('login');
+        },
+        faq: function() {
+            this.transitionToRoute('faq');
         }
     }
 });

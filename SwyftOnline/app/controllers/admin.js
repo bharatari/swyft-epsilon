@@ -11,6 +11,12 @@ export default Ember.Controller.extend({
         },
         goToCompleteDelivery: function() {
             this.transitionToRoute('admin-complete-delivery');
+        },
+        goToUsers: function() {
+            this.transitionToRoute('admin-users');
+        },
+        goToEditBalance: function() {
+            this.transitionToRoute('admin-edit-balance');
         }
     }
 });

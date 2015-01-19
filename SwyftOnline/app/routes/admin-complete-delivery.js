@@ -6,7 +6,7 @@ export default Ember.Route.extend(AdminRouteMixin, {
     model: function(params) {
         return Ember.RSVP.hash({
             csrfToken: Ember.$.getJSON(config.routeLocation + "/csrfToken"),
-            deliveries: Ember.$.getJSON(config.routeLocation + "/api/deliveries")
+            deliveries: Ember.$.getJSON(config.routeLocation + "/api/adminDeliveries")
         })
     },
     setupController: function(controller, model) {

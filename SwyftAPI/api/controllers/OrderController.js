@@ -17,14 +17,26 @@ module.exports={
             var processedOrder = OrderService.process(items, order);
             if(processedOrder) {
                 processedOrder.type = "scheduled";
-                OrderService.submit(processedOrder, req.user, function(response){
-                    if(response) {
-                        res.ok();
-                    }
-                    else {
-                        res.serverError();
-                    }
-                });
+                if(processedOrder.paymentType === "cash") {
+                    OrderService.submitCash(processedOrder, req.user.id, function(response){
+                        if(response) {
+                            res.ok();
+                        }
+                        else {
+                            res.serverError();
+                        }
+                    });
+                }
+                else if(processedOrder.paymentType === "swyftdebit") {
+                    OrderService.submitSwyftDebit(processedOrder, req.user.id, function(response){
+                        if(response) {
+                            res.ok();
+                        }
+                        else {
+                            res.serverError();
+                        }
+                    });
+                }
             }
             else {
                 res.serverError();
