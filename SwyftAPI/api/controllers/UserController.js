@@ -1,6 +1,8 @@
 var Chance = require('chance');
 var chance = new Chance();
 var moment = require('moment');
+var bcrypt = require('bcrypt');
+
 
 module.exports={
     create:function(req,res){
@@ -163,25 +165,40 @@ module.exports={
         });
     },
     resetPassword: function(req,res) {
-        ForgotPasswordToken.find({token:req.body.token}).exec(function(err, token){
-            if(new Date(token.expiryDate)<new Date()){
+        if(!(req.body.password.length >=6 && req.body.password.length <= 20)){
+            return res.badRequest();
+        }
+        ForgotPasswordToken.findOne({ token: req.body.token }).exec(function(err, token){
+            if(!token || err) {
+                return res.badRequest();
+            }
+            else if(new Date(token.expiryDate) < new Date()){
                 ForgotPasswordToken.destroy({token:req.body.token}).exec(function(err){
-                    res.send(500);
+                    return res.badRequest();
                 });
             }
-            else if(token[0].username != req.body.email){
-                res.send(500);
+            else if(token.username != req.body.username){
+                return res.badRequest();
             }
-            else{
-                User.update({id:token[0].userId},{password:req.body.password}).exec(function(err, user){
-                    if(err){
-                        res.send(500);
-                    }
-                    else{
-                        ForgotPasswordToken.destroy({id:token[0].id}).exec(function(err){
-                            res.send("OK");
-                        });
-                    }
+            else {
+                bcrypt.genSalt(10, function(err, salt) {
+                    bcrypt.hash(req.body.password, salt, function(err, hash) {
+                        if (err) {
+                            return res.serverError();
+                        }
+                        else {
+                            User.update({ id: token.userId },{ password: hash }).exec(function(err, user) {
+                                if(err) {
+                                    return res.serverError();
+                                }
+                                else{
+                                    ForgotPasswordToken.destroy({ id: token.id }).exec(function(err){
+                                        return res.ok();
+                                    });
+                                }
+                            });
+                        }
+                    });
                 });
             }
         });
@@ -235,6 +252,26 @@ module.exports={
                         res.ok();
                     }
                 });
+            }
+        });
+    },
+    validForgotPasswordToken: function(req, res) {
+        ForgotPasswordToken.findOne({ token: req.params.token }).exec(function(err, token){
+            if(err) {
+                return res.badRequest();   
+            }
+            else if(!token) {
+                return res.badRequest();
+            }
+            else {
+                if(new Date(token.expiryDate) < new Date()){
+                    ForgotPasswordToken.destroy({ token: req.params.token}).exec(function(err){
+                        return res.badRequest();
+                    });
+                }
+                else {
+                    return res.ok();
+                }
             }
         });
     }

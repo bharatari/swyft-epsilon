@@ -4,6 +4,12 @@ import AuthenticatedRouteMixin from 'swyft-online/mixins/authenticated-route';
 import loginUtils from 'swyft-online/utils/login-utils';
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
+    beforeModel: function() {
+        this._super();
+        if(JSON.parse(localStorage.getItem("cart")) == false) {
+            this.transitionTo('restaurants');
+        }
+    },
     model: function() {
         return Ember.RSVP.hash({
             csrfToken: Ember.$.getJSON(config.routeLocation + "/csrfToken"),

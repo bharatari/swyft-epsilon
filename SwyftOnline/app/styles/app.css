@@ -182,10 +182,12 @@ body {
     background-color: white;
     height: 35px;
     color: black;
+    font-size: 14px;
     padding: 0;
     width: 130px;
     margin-top: 10px;
     font-weight: 400;
+    padding-top: 3px;
     border: 1px solid darkgray;
     transition: background-color 0.2s ease-in, color 0.2s ease-out;
 }
@@ -193,6 +195,16 @@ body {
 .btn-quick-link:hover {
     background-color: black;
     color: white;
+}
+
+.quick-link-container {
+    list-style-type: none;
+    margin-left: -35px;
+    margin-top: 7px;
+}
+
+.quick-link {
+   
 }
 
 .login-button {
@@ -503,7 +515,7 @@ a.list-group-item:hover, a.list-group-item:focus {
 }
 
 .btn-float-fix {
-    margin-top: -35px;
+    margin-top: -50px;
     float: right;
 }
 

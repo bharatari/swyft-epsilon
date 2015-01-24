@@ -28,6 +28,9 @@ export default Ember.Controller.extend({
         },
         signUp: function() {
             this.transitionToRoute('sign-up');
+        },
+        forgotPassword: function() {
+            this.transitionToRoute('forgot-password');
         }
     }
 });

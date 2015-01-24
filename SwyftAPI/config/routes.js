@@ -70,7 +70,8 @@ module.exports.routes = {
   'get /api/delivery/:delivery_id/orders':'DeliveryController.getDeliveryOrders',
   'get /api/adminDeliveries':'DeliveryController.getAdminDeliveries',
   'post /api/delivery':'DeliveryController.createDelivery',
-  'get /api/news':'GlobalController.getNews'
+  'get /api/news':'GlobalController.getNews',
+  'get /api/user/forgotPassword/verify/:token':'UserController.validForgotPasswordToken'
     
   /***************************************************************************
   *                                                                          *

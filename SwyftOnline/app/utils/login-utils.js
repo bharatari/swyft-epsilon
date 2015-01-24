@@ -102,5 +102,5 @@ export default {
             return false;
         }
     },
-    localStorageAlert: "We're having trouble processing your request. You're either using Safari in Private Mode or an older, unsupported browser. Please disable Private Mode on Safari or use a modern browser, in order to continue."
+    localStorageAlert: "We're having trouble processing your request. You're either using Safari in Private Mode or an older, unsupported browser. Please disable Private Mode on Safari or use another compatible browser, in order to continue."
 }

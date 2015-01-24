@@ -22,7 +22,11 @@
             </div>
             {{!--  
             <a>I forgot my password</a><br>--}}
-            <button class="btn-quick-link" {{action 'signUp'}}>SIGN UP</button>          
+            <ul class="quick-link-container">
+                <li><a class="quick-link" {{action 'signUp'}}>Sign Up</a></li>
+                <li><a class="quick-link" {{action 'forgotPassword'}}>Forgot Password</a></li>
+            </ul>
+             
             <button class="btn btn-default btn-float-fix" type="submit">LOGIN</button>
         </fieldset>
     </form>
