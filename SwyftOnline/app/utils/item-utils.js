@@ -132,5 +132,28 @@ export default {
         else {
             return true;
         }
+    },
+    getCategories: function(items) {
+        var categories = [];
+        for(var i = 0; i < items.length; i++) {
+            var result = $.grep(categories, function(element, index) {
+                return element.name === items[i].category;
+            });
+            if(!result) {
+                categories.push({name: items[i].category});
+            }
+        }
+        return categories;
+    },
+    sortCategories: function(categories, items) {
+        for(var i = 0; i < categories.length; i++) {
+            categories[i].items = [];
+            for(var e = 0; e < items.length; e++) {
+                if(items[e].category === categories[i].name) {
+                    categories[i].items.push(items[e]);
+                }
+            }
+        }
+        return categories;
     }
 }

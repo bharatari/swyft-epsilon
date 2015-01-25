@@ -550,6 +550,11 @@ a.list-group-item:hover, a.list-group-item:focus {
     margin-bottom: 50px;
 }
 
+.item-list {
+    list-style-type: none;
+    margin-left: -38px;
+}
+
 @media only screen and (max-width: 768px) {
     .promo {
         height: 30vh;
@@ -603,25 +608,56 @@ a.list-group-item:hover, a.list-group-item:focus {
     .grid-product {
         display: list-item;
         height: auto;
-        margin-left: 10px;
-        width: 95%;
-        margin-bottom: 20px;
-        float: left;
+        margin-left: -6px;
+        width: 104%;
+        padding-bottom: 20px;
         list-style-type: none;
+        border-left-color: transparent;
+        border-right-color: transparent;
+        border-bottom-color: transparent;
+        border-top-color: #e0e0e0;
+        margin-bottom: 0px;
+        transition: background-color 0.2s ease-in;
+    }
+    
+    .grid-product:active {
+        background-color: #efefef;
+        transform: none;
+
     }
     
     .grid-restaurant {
         display: list-item;
         height: auto;
-        margin-left: 10px;
-        width: 95%;
-        margin-bottom: 20px;
+        margin-left: -6px;
+        width: 104%;
         float: left;
+        padding-bottom: 20px;
         list-style-type: none;
+        border-left-color: transparent;
+        border-right-color: transparent;
+        border-bottom-color: transparent;
+        border-top-color: #e0e0e0;
+        margin-bottom: 0px;
+        transition: background-color 0.2s ease-in;
+    }
+    
+    .grid-restaurant:active {
+        background-color: #dbdbdb;
+        transform: none;
+
     }
     
     .grid-product-title {
+        font-family: 'Roboto';
+        font-weight: 300;
         font-size: 18px;
+        text-align: left;
+    }
+    
+    .grid-product-price {
+        text-align: left;
+        display: block;
     }
     
     .login-form {

@@ -62,6 +62,7 @@ module.exports.routes = {
   'post /api/user/forgotPassword':'UserController.forgotPasswordToken',
   'post /api/user/password':'UserController.resetPassword',
   'get /api/orders':'OrderController.getOrders',
+  'get /api/order':'OrderController.getOrder',
   'get /api/deliveryOrders':'OrderController.getDeliveryOrders',
   'post /api/order':'OrderController.processOrder',
   'delete /api/order':'OrderController.deleteOrder',

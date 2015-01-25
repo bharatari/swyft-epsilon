@@ -12,17 +12,27 @@
 <div class="container">
     <ul class="breadcrumb">
         <li><a>{{#link-to 'index'}}Home{{/link-to}}</a></li>
-        <li class="active">Delivery</li>
+        <li><a>{{#link-to 'delivery'}}Delivery{{/link-to}}</a></li>
+        <li class="active">Order</li>
     </ul>
-    <div class="grid-products list-group">
-        {{#each order in orders}}
-        <button class="grid-product list-group-item" {{action 'goToOrder' order.id}}>
-            <div class="click-through">
-                <h4 class="grid-product-title">{{order.name}}</h4>
-                <br>
-                <span class="grid-product-price">{{render-decimals order.baseprice}}</span>
-            </div>
-        </button>
-        {{/each}}
+    <div class="info-well well">
+        <h1>{{order.user.firstName}} {{order.user.lastName}}</h1>
+        <h3>{{order.deliveryLocation}}</h3>
+        <h3>{{order.contactPhone}}</h3>
+        <h3>{{order.userComments}}</h3>
+        <h3>{{render-decimals order.actualAmount}}</h3>
+        <h3>{{order.paymentType}}</h3>
+        <ul class="item-list">
+            {{#each item in order.items}}
+            <li>
+                <div>
+                    <p><strong>{{item.restaurant}}</strong></p>
+                    <p>Name: {{item.name}}</p>
+                    <p>Item Options: {{item.itemOptions}}</p>
+                    <p>{{render-decimals item.price}}</p>
+                </div>
+            </li>
+            {{/each}}
+        </ul>
     </div>
 </div>

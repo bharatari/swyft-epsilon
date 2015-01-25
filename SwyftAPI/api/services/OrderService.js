@@ -1,3 +1,5 @@
+var async = require('async');
+
 module.exports = {
     process: function(menuItems, order) {
         var menuItem={};
@@ -134,4 +136,105 @@ module.exports = {
             }
         });
     },
+    similarOrders: function(order1, order2) {
+        if(order1.deliveryLocation !== order2.deliveryLocation) {
+            return false;
+        }
+        else if(order1.contactPhone !== order2.contactPhone) {
+            return false;
+        }
+        else if(order1.paymentType !== order2.paymentType) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    },
+    combineOrders: function(order1, order2) {
+        var order = {};
+        order.id = order1.id;
+        order.paymentType = order1.paymentType;
+        //order.deliveryLocation = order1.deliveryLocation;
+        order.deliveryLocation = "HELLO";
+        order.contactPhone = order1.contactPhone;
+        order.actualAmount = order1.actualAmount;
+        order.actualAmountAmount += order2.actualAmount;
+        order.userId = order1.userId;
+        if(order1.userComments) {
+            order.userComments += order1.userComments;
+        }
+        if(order2.userComments) {
+            order.userComments += " " + order2.userComments;
+        }   
+        order.items = [];
+        for(var i = 0; i < order1.items.length; i++) {
+            order.items.push(order1.items[i]);
+        }
+        for(var i = 0; i < order2.items.length; i++) {
+            order.items.push(order2.items[i]);
+        } 
+        return order;
+    },
+    joinUser: function(order) {
+        User.findOne({ id:order.userId }).exec(function(err, user){  
+            order.user = UserService.deleteSensitive(user);
+            return order;
+        });
+    },
+    iterateJoinUsers: function(items, callback) {
+        //Transition to UtilityService.forLoop
+        function loop(i){
+            if(i<items.length){
+                function query(cb){
+                    User.find().where({id:items[i].userId}).exec(function(err, user){
+                        items[i].user=user[0];
+                        cb();
+                    });
+                }
+                query(function(){
+                    loop(i+1);
+                });
+            }
+            else{
+                callback(items);
+            }
+        }
+        loop(0);
+    },
+    joinOrders: function(items, callback) {
+        function process(final) {
+            async.each(items, function(item, cb) {
+                /*
+            async.each(items, function(_item, _callback) {
+                if(_item.userId) {
+                    if(item.userId === _item.userId) {
+                        if(this.similarOrders(item, _item)) {
+                            console.log('items same');
+                            item = this.combineOrders(item, _item);
+                            console.log(item);
+                            _item = null;
+                        }
+                    }
+                }
+                _callback();
+            });
+            */
+                for(var e = 0; e < items.length; e++) {
+                    if(items[e].userId) {
+                        if(item.userId === items[e].userId) {
+                            if(this.similarOrders(item, items[e])) {
+                                item = this.combineOrders(item, items[e]);
+                                items[e] = null;
+                            }
+                        }
+                    }
+                }   
+                cb();
+            });
+            final();
+        }
+        process(function() {
+            callback(items);
+        });
+    }
 }
