@@ -5,10 +5,6 @@ import constants from 'swyft-online/utils/constants-utils';
 
 export default Ember.Controller.extend({
     buttonPressed: false,
-    reset: function() {
-        //Find an event that will trigger every time this page is navigated to and reset
-        this.set('buttonPressed', false);
-    }.on('init'),
     totalPrice: function() {
         var cart = this.get("cart");
         if(cart){

@@ -28,6 +28,8 @@ Router.map(function() {
     this.route("terms", { path:"/app/terms" });
     this.route("faq", { path:"/app/faq" });
     this.route("profile", { path:"/app/profile" });
+    this.route("delivery", { path:"/delivery" });
+    this.route("delivery-order", { path:"/delivery/order/:order_id" });
 });
 
 export default Router;

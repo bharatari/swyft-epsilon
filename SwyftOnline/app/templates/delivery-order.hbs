@@ -1,0 +1,28 @@
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="top-bar"></div>
+        <a class="navbar-brand" href="/">SWYFT<span class="logo-light">DELIVERY</span></a>
+    </div>
+</nav>
+
+<div class="img-background container-fluid">
+    <h1 class="background-title">Delivery.</h1>
+</div>
+
+<div class="container">
+    <ul class="breadcrumb">
+        <li><a>{{#link-to 'index'}}Home{{/link-to}}</a></li>
+        <li class="active">Delivery</li>
+    </ul>
+    <div class="grid-products list-group">
+        {{#each order in orders}}
+        <button class="grid-product list-group-item" {{action 'goToOrder' order.id}}>
+            <div class="click-through">
+                <h4 class="grid-product-title">{{order.name}}</h4>
+                <br>
+                <span class="grid-product-price">{{render-decimals order.baseprice}}</span>
+            </div>
+        </button>
+        {{/each}}
+    </div>
+</div>

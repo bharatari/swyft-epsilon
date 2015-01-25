@@ -15,13 +15,13 @@ module.exports={
 
             bcrypt.compare(req.body.password, user.password, function(err, result) {
                 if (!result) {
-                    res.badRequest();
+                    return res.badRequest();
                 }
                 else if(err) {
-                    res.serverError(err);
+                    return res.serverError(err);
                 }
                 else if(!user.verified) {
-                    res.badRequest("NOT_VERIFIED");
+                    return res.badRequest("NOT_VERIFIED");
                 }
                 else {
                     var expires = moment().add(2, 'days').toDate();
@@ -32,7 +32,7 @@ module.exports={
 
                     LoginToken.create({token:authToken, expires: expires, userId: user.id}).exec(function(err, token){
                         if(err){
-                            res.serverError(err);
+                            return res.serverError(err);
                         }
                         else {
                             if(token){
@@ -43,7 +43,7 @@ module.exports={
                                 });                    
                             }
                             else {
-                                res.serverError();
+                                return res.serverError();
                             }
                         }
                     });
@@ -85,7 +85,17 @@ module.exports={
         });
     },
     isAdmin:function(req, res) {
-        AuthService.isAdmin(req.query.tokenId, function(response){
+        AuthService.isAdmin(req.query.tokenId, function(response) {
+            if(response) {
+                return res.ok();
+            }
+            else {
+                return res.forbidden();
+            }
+        });
+    },
+    isDelivery: function(req, res) {
+        AuthService.isDelivery(req.query.tokenId, function(response) {
             if(response) {
                 return res.ok();
             }

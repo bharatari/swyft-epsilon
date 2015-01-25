@@ -5,7 +5,7 @@ var mandrill_client = new mandrill.Mandrill('pTw4E8DYFKb696f5YzXmzg');
 
 module.exports = {
     processForgotPasswordToken: function(user, date, cb) {
-        ForgotPasswordToken.create({userId:user.id, token:chance.hash({length:25}), expiryDate:date, username:user.username}).exec(function(err, token) {
+        ForgotPasswordToken.create({userId:user.id, token:chance.hash({length:25}), expiryDate:date, username:user.username.toLowerCase() }).exec(function(err, token) {
             if(err) {
                 cb(false);
             }

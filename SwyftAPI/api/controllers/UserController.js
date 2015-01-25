@@ -59,11 +59,9 @@ module.exports={
             if (err) {
                 return res.serverError(err);
             }
-
             if (!user) {
                 return res.badRequest();
             }
-
             bcrypt.compare(req.body.password, user.password, function(err, result) {
                 if (!result) {
                     res.badRequest();
@@ -71,22 +69,20 @@ module.exports={
                 else if(err) {
                     res.serverError(err);
                 }
-                else if(!user.verified) {
-                    res.badRequest("NOT_VERIFIED");
-                }
-                else {
+                else if(user.verified) {
                     res.badRequest("ALREADY_VERIFIED");
                 }
+                else {
+                    EmailService.sendSignupEmail(user.firstName, user.lastName, user.username, user.token, function(){
+                        res.ok();
+                    });
+                }
             });
         });
-        User.findOne({email: req.body.email}).exec(function(err, user){
-            EmailService.sendSignupEmail(user.firstName, user.lastName, user.username, function(){
-                res.send(200);
-            });
-        });
+        
     },
     verify:function(req,res){
-        User.findOne({username: req.body.email}).exec(function(err, user){
+        User.findOne({ username: req.body.email.toLowerCase() }).exec(function(err, user){
             if(err) {
                 res.serverError();
             }
@@ -122,19 +118,19 @@ module.exports={
     },
     forgotPasswordToken:function(req, res){
         var date=moment().add(1, 'days').toDate();
-        User.findOne({username:req.body.email}).exec(function(err, user){
+        User.findOne({ username: req.body.email.toLowerCase() }).exec(function(err, user){
             if(err || !user) {
                 return res.serverError();
             }
             else if(user.token !== req.body.token) {
                 return res.badRequest();
             }
-            ForgotPasswordToken.find({id:user.id}).exec(function(err, tokens){
+            ForgotPasswordToken.find({ userId: user.id }).exec(function(err, tokens){
                 if(err){
                     res.send(500);
                 }
                 else if(tokens){
-                    ForgotPasswordToken.destroy({username:req.body.email}).exec(function(err){
+                    ForgotPasswordToken.destroy({ userId: user.id }).exec(function(err){
                         if(err){
                             res.send(500);
                         }
@@ -177,7 +173,7 @@ module.exports={
                     return res.badRequest();
                 });
             }
-            else if(token.username != req.body.username){
+            else if(token.username != req.body.username.toLowerCase() ){
                 return res.badRequest();
             }
             else {

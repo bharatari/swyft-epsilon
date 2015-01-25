@@ -84,6 +84,58 @@ module.exports = {
             cb(false);
         }
     },
+    isDelivery: function(tokenId, cb) {
+        if(tokenId) {
+            LoginToken.findOne({id: tokenId}).exec(function(err, token){
+                if(err) {
+                    cb(false);
+                }
+                else if(!token) {
+                    cb(false);
+                }                
+                else {
+                    if(token){
+                        if(token.expires <= Date.now()){
+                            try {
+                                LoginToken.destroy({id:token.id}).exec(function(err){
+                                    cb(false);
+                                });
+                            }
+                            catch (err) {
+                                cb(false);
+                            }
+                        }
+                        else {
+                            User.findOne({id:token.userId}).exec(function(err, user){
+                                if(err){
+                                    cb(false);
+                                }
+                                else if(!user){
+                                    cb(false);
+                                }
+                                else {
+                                    if(user){
+                                        if(user.isAdmin || user.isDeliverer){
+                                            cb(true);
+                                        }
+                                        else {
+                                            cb(false);
+                                        }
+                                    }   
+                                }
+                            });
+                        }
+                    }
+                    else {
+                        cb(false);
+                    }
+                }
+            });
+        }
+        else {
+            cb(false);
+        }
+    },
     getUser: function(token, cb) {
         if (token) {
             try {

@@ -46,6 +46,7 @@ module.exports.routes = {
   'post /api/logout':'AuthController.logout',
   'get /api/isAuthenticated':'AuthController.isAuthenticated',
   'get /api/isAdmin':'AuthController.isAdmin',
+  'get /api/isDelivery':'AuthController.isDelivery',
   
   //RESTful Routes
   'get /api/restaurants':'MenuController.restaurants',
@@ -61,6 +62,7 @@ module.exports.routes = {
   'post /api/user/forgotPassword':'UserController.forgotPasswordToken',
   'post /api/user/password':'UserController.resetPassword',
   'get /api/orders':'OrderController.getOrders',
+  'get /api/deliveryOrders':'OrderController.getDeliveryOrders',
   'post /api/order':'OrderController.processOrder',
   'delete /api/order':'OrderController.deleteOrder',
   'get /api/orders/pending':'OrderController.pendingOrders',

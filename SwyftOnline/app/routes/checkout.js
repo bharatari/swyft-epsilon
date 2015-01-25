@@ -23,5 +23,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         controller.set('cart', model.cart);
         controller.set('user', model.user);
         controller.set('deliveries', model.deliveries);
+        controller.set('buttonPressed', false);
     }
 });

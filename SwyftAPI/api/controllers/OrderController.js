@@ -88,5 +88,36 @@ module.exports={
         Order.find({userId:req.user.id.toString(), isDelivered:true}).limit(10).exec(function(err, orders){
             res.json(orders);
         });
+    },
+    getDeliveryOrders:function(req,res){
+        var orders=[];
+        function process(callback){
+            function loop(i){
+                if(i<orders.length){
+                    function query(callback){
+                        User.find().where({id:orders[i].userId}).exec(function(err, user){  
+                            var userObj = UserService.deleteSensitive(user[0]);
+                            orders[i].user=userObj;
+                            callback();
+                        });
+                    }
+                    query(function(){
+                        loop(i+1);
+                    });
+                }
+                else{
+                    callback();
+                }
+            }
+            loop(0);
+        }
+        Delivery.findOne({ closed: true, adminClosed: false }).exec(function(err, delivery){
+            Order.find({ deliveryId: delivery.id }).exec(function(err, items){
+                orders=items;
+                process(function(){
+                    res.json(orders);
+                });
+            });
+        });
     }
 }

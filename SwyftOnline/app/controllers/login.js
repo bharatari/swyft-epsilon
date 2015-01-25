@@ -31,6 +31,9 @@ export default Ember.Controller.extend({
         },
         forgotPassword: function() {
             this.transitionToRoute('forgot-password');
+        },
+        resend: function () {
+            this.transitionToRoute('resend-verification');
         }
     }
 });

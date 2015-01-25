@@ -1,5 +1,6 @@
 import Ember from "ember";
 import config from 'swyft-online/config/environment';
+import loginUtils from 'swyft-online/utils/login-utils';
 import AdminRouteMixin from 'swyft-online/mixins/admin-route';
 
 export default Ember.Route.extend(AdminRouteMixin, {
