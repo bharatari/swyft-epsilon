@@ -22,7 +22,8 @@ module.exports.policies = {
   MenuController:{ },
   DeliveryController: {
     "getAdminDeliveries":['isAdmin', 'userDisabled'],
-    "completeDelivery":['isAdmin', 'userDisabled']
+    "completeDelivery":['isAdmin', 'userDisabled'],
+    "getDeliveryOrders":['isAdmin', 'userDisabled']
   },
   OrderController:{
     "*":['isAuthenticated', 'userDisabled', 'suppressSystem'],
@@ -37,10 +38,14 @@ module.exports.policies = {
   UserController:{
     "getUser":['isAuthenticated', 'userDisabled'],
     "preliminaryBalanceRequest":['isAdmin', 'userDisabled'],
-    "balanceRequest":['isAdmin', 'userDisabled']
+    "balanceRequest":['isAdmin', 'userDisabled'],
+    "getUsers":['isAdmin', 'userDisabled']
   },
   ViewController:{
     "*":true
+  },
+  TransactionsController:{
+    "*":['isAdmin', 'userDisabled']
   }
   
   

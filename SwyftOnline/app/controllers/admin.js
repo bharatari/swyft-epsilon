@@ -17,6 +17,9 @@ export default Ember.Controller.extend({
         },
         goToEditBalance: function() {
             this.transitionToRoute('admin-edit-balance');
+        },
+        goToTransactions: function() {
+            this.transitionToRoute('admin-transactions');
         }
     }
 });

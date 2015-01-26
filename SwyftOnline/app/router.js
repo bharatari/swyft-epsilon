@@ -25,6 +25,7 @@ Router.map(function() {
     this.route("admin-complete-delivery", { path:"/admin/complete-delivery" });
     this.route("admin-users", { path:"/admin/users" });
     this.route("admin-edit-balance", { path:"/admin/balance" });
+    this.route("admin-transactions", { path:"/admin/transactions" });
     this.route("terms", { path:"/app/terms" });
     this.route("faq", { path:"/app/faq" });
     this.route("profile", { path:"/app/profile" });

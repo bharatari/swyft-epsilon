@@ -22,7 +22,6 @@ body {
 .nav-menu-content {
     margin-left: 10px; 
     margin-right: 10px;
-    margin-top: 10px;
 }
 
 .cart-header {
@@ -30,21 +29,37 @@ body {
     font-size: 20px;
     text-align: center;
     letter-spacing: 5px;
+    font-family: 'Roboto';
 }
 
 .btn-sidemenu {
-    font-weight: 400;
     font-size: 14px;
     letter-spacing: 3px;
     background-color: white;
     color: black;
-    font-weight: 400;
-    border: 1px solid darkgray;
+    font-family: 'Roboto';
+    font-weight: 500;
+    border-color: transparent;
+    margin-left: -12px;
+    margin-right: -10px;
+    width: 108%;
+    margin-top: 0px !important;
+    border-bottom-color: #e0e0e0;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
     transition: background-color 0.2s ease-in, color 0.2s ease-out;
 }
 
 .btn-sidemenu:hover {
-    background-color: #5d5d5d;
+    border-color: transparent;
+    background-color: #e2e2e2;
+    color: black;
+}
+
+.btn-checkout {
+    border-top-color: #e0e0e0;
+    border-top-style: solid;
+    border-top-width: 1px;
 }
 
 .navbar-toggle {
@@ -308,10 +323,12 @@ body {
 
 .item-title {
     text-align: center;
+    font-family: 'Roboto';
 }
 
 .item-price {
     text-align: center;
+    font-family: 'Roboto';
 }
 
 .option {
@@ -335,6 +352,8 @@ body {
     background-color: white;
     transition: transform 0.2s ease-in;
     border: 1px solid darkgray;
+    font-family: 'Roboto';
+    font-weight: 400;
 }
 
 .grid-product:active {
@@ -355,6 +374,8 @@ a.list-group-item:hover, a.list-group-item:focus {
 }
 
 .grid-product-title {
+    font-family: 'Roboto';
+    font-weight: 300;
     font-size: 24px;
     pointer-events: none;
     color: black;
@@ -376,6 +397,8 @@ a.list-group-item:hover, a.list-group-item:focus {
     margin-left: 10px;
     background-color: white;
     float: left;
+    font-family: 'Roboto';
+    font-weight: 400;
     border: 1px solid darkgray;
     transition: transform 0.2s ease-in;
 }
@@ -397,10 +420,11 @@ a.list-group-item:hover, a.list-group-item:focus {
     font-weight: 600;
     font-size: 14px;
     letter-spacing: 4px;
+    font-family: 'Roboto';
 }
 
 .price-light {
-    font-weight: 100;
+    font-weight: 300;
 }
 
 .cart-list {
@@ -414,7 +438,8 @@ a.list-group-item:hover, a.list-group-item:focus {
 
 .cart-item-name {
     font-weight: 300;
-    font-size: 30px;
+    font-size: 25px;
+    font-family: 'Roboto';
 }
 
 .cart-item-itemoptions {
@@ -423,6 +448,7 @@ a.list-group-item:hover, a.list-group-item:focus {
 
 .cart-item-price {
     font-size: 18px;
+    font-family: 'Roboto';
 }
 
 .remove-button {
@@ -432,6 +458,7 @@ a.list-group-item:hover, a.list-group-item:focus {
     background-color: white;
     color: black;
     font-weight: 400;
+    font-family: 'Roboto';
     border: 1px solid darkgray;
     transition: background-color 0.2s ease-in, color 0.2s ease-out;
     height: 30px;
@@ -621,7 +648,7 @@ a.list-group-item:hover, a.list-group-item:focus {
     }
     
     .grid-product:active {
-        background-color: #efefef;
+        background-color: #f5f5f5;
         transform: none;
 
     }
@@ -640,10 +667,13 @@ a.list-group-item:hover, a.list-group-item:focus {
         border-top-color: #e0e0e0;
         margin-bottom: 0px;
         transition: background-color 0.2s ease-in;
+        font-family: 'Roboto';
+        font-weight: 400;
+        font-size: 16px;
     }
     
     .grid-restaurant:active {
-        background-color: #dbdbdb;
+        background-color: #f2f2f2 !important;
         transform: none;
 
     }
@@ -651,11 +681,12 @@ a.list-group-item:hover, a.list-group-item:focus {
     .grid-product-title {
         font-family: 'Roboto';
         font-weight: 300;
-        font-size: 18px;
+        font-size: 22px;
         text-align: left;
     }
     
     .grid-product-price {
+        margin-top: -15px;
         text-align: left;
         display: block;
     }

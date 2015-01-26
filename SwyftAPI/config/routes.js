@@ -52,6 +52,8 @@ module.exports.routes = {
   'get /api/restaurants':'MenuController.restaurants',
   'get /api/menuItems/:restaurant_name':'MenuController.menuItems',
   'get /api/item/:item_id':'MenuController.item',
+  
+   //User Routes
   'post /api/user':'UserController.create',
   'post /api/user/balance/preliminary':'UserController.preliminaryBalanceRequest',
   'post /api/user/balance':'UserController.balanceRequest',
@@ -61,6 +63,9 @@ module.exports.routes = {
   'post /api/user/verification/resend':'UserController.resend',
   'post /api/user/forgotPassword':'UserController.forgotPasswordToken',
   'post /api/user/password':'UserController.resetPassword',
+  'get /api/user/forgotPassword/verify/:token':'UserController.validForgotPasswordToken',
+
+  //Order Routes
   'get /api/orders':'OrderController.getOrders',
   'get /api/order':'OrderController.getOrder',
   'get /api/deliveryOrders':'OrderController.getDeliveryOrders',
@@ -68,13 +73,19 @@ module.exports.routes = {
   'delete /api/order':'OrderController.deleteOrder',
   'get /api/orders/pending':'OrderController.pendingOrders',
   'get /api/orders/recent':'OrderController.recentOrders',
+
+  //Delivery Routes
   'get /api/deliveries':'DeliveryController.getOpenDeliveries',
   'post /api/delivery/complete':'DeliveryController.completeDelivery',
   'get /api/delivery/:delivery_id/orders':'DeliveryController.getDeliveryOrders',
   'get /api/adminDeliveries':'DeliveryController.getAdminDeliveries',
   'post /api/delivery':'DeliveryController.createDelivery',
+
+  //Global Routes
   'get /api/news':'GlobalController.getNews',
-  'get /api/user/forgotPassword/verify/:token':'UserController.validForgotPasswordToken'
+  
+  //Transaction Routes  
+  'get /api/transactions':'TransactionsController.getTransactions'
     
   /***************************************************************************
   *                                                                          *

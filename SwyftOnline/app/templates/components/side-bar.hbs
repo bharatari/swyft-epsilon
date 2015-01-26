@@ -23,7 +23,7 @@
         <h4 class="total-text">TAX <span class="price-light">{{render-decimals totalTax}}</span></h4>
         <h4 class="total-text">TOTAL <span class="price-light">{{render-decimals totalPrice}}</span></h2>
         {{#if cartArray}}
-        <button class="btn btn-default btn-lg btn-block btn-sidemenu" {{action 'checkout'}}>CHECKOUT</button>  
+        <button class="btn btn-default btn-lg btn-block btn-sidemenu btn-checkout" {{action 'checkout'}}>CHECKOUT</button>  
         {{/if}}
     </div>
 </nav>
