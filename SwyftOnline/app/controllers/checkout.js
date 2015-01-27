@@ -55,18 +55,23 @@ export default Ember.Controller.extend({
                     data: data,
                     type: "POST",
                     success: function(response) {
-                        alert("Thanks for your order!");
+                        self.set('modalTitle', 'Your order has been submitted.');
+                        self.set('modalBody', 'Thanks for ordering with Swyft. Your order will be delivered at the specified delivery time.');
+                        self.set('displayModal', true);
                         localStorage.removeItem('cart');
-                        self.transitionToRoute("restaurants");
                     },
                     error: function(xhr, textStatus, error) {
-                        alert("Something went wrong there. If you're using Swyft Debit, ensure you have enough balance in your account to proceed. You might also want to try emptying your cart and starting over.");
+                        self.set('modalTitle', 'Whoops.');
+                        self.set('modalBody', "Something went wrong with your request. Your order has not been submitted. If you're using Swyft Debit as your payment type, ensure you have enough balance in your account to proceed. If that doesn't seem to be the issue, try emptying your cart and starting over. Please contact us at development@orderswyft.com if you have any further questions.");
+                        self.set('displayModal', true);
                         self.set('buttonPressed', false);
                     }
                 });
             }
             else {
-                alert("You haven't selected a payment option and/or a delivery time.");
+                self.set('modalTitle', 'Woah there, not so fast.');
+                self.set('modalBody', "You haven't selected a payment option and/or a delivery time.");
+                self.set('displayModal', true);
             }
         }
     }

@@ -20,16 +20,21 @@
         <li><a>{{#link-to 'restaurants'}}Restaurants{{/link-to}}</a></li>
         <li class="active">Menu</li>
     </ul>
-    {{input class="form-control search" value=search type="text" placeholder="Search"}}
-    <div class="grid-products list-group">
-        {{#each menuItem in filtered}}
+    
+    {{#each category in sortedCategories}}
+    <div class="grid-products list-group row">
+        <div class="category-box">
+            <h3 class="category-name">{{category.name}}</h3>
+        </div>
+        {{#each item in category.items}}
         <button class="grid-product list-group-item" {{action 'transition' menuItem.id}}>
             <div class="click-through">
-                <h4 class="grid-product-title">{{menuItem.name}}</h4>
+                <h4 class="grid-product-title">{{item.name}}</h4>
                 <br>
-                <span class="grid-product-price">{{render-decimals menuItem.baseprice}}</span>
+                <span class="grid-product-price">{{render-decimals item.baseprice}}</span>
             </div>
         </button>
-        {{/each}}
-    </div>   
+        {{/each}}     
+    </div> 
+    {{/each}}
 </div>

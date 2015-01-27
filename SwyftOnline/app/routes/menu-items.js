@@ -1,5 +1,6 @@
 import Ember from "ember";
 import config from 'swyft-online/config/environment';
+import itemUtils from 'swyft-online/utils/item-utils';
 import SessionRouteMixin from 'swyft-online/mixins/session-route';
 
 export default Ember.Route.extend(SessionRouteMixin, {
@@ -16,7 +17,7 @@ export default Ember.Route.extend(SessionRouteMixin, {
     },
     setupController: function(controller, model) {
         controller.set('csrfToken', model.csrfToken._csrf);
-        controller.set('menuItems', model.menuItems);
+        controller.set('sortedCategories', itemUtils.sortCategories(itemUtils.getCategories(model.menuItems), model.menuItems));
         controller.set('isAuthenticated', this.get('isAuthenticated'));
     }
 });

@@ -386,8 +386,8 @@ a.list-group-item:hover, a.list-group-item:focus {
     pointer-events: none;
 }
 
-.grid-products {
-    margin-bottom: 50px;
+.grid-products { 
+    margin-left: -9px !important;
 }
 
 .grid-restaurant {
@@ -582,6 +582,14 @@ a.list-group-item:hover, a.list-group-item:focus {
     margin-left: -38px;
 }
 
+.category-name {
+    font-family: 'Roboto';
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 8px;
+    margin-left: 16px;
+}
+
 @media only screen and (max-width: 768px) {
     .promo {
         height: 30vh;
@@ -691,6 +699,16 @@ a.list-group-item:hover, a.list-group-item:focus {
         display: block;
     }
     
+    .category-box {
+        margin-left: -6px;
+        width: 104%;
+        border-top-style: solid;
+        border-top-width: 1px;
+        border-top-color: #e0e0e0;
+        border-bottom-style: none;
+        border-bottom-color: transparent;
+    }
+
     .login-form {
         width: 90%;
         margin-left: auto;

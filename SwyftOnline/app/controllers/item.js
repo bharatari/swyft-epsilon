@@ -10,6 +10,7 @@ export default Ember.Controller.extend(StandardActionsMixin, {
     }.property('model'),
     actions: {
         addToCart: function() {
+            var self = this;
             if(itemUtils.validate(this.get('item'))){
                 var cartData = itemUtils.processItem(this.get('item'));
                 try {
@@ -26,12 +27,16 @@ export default Ember.Controller.extend(StandardActionsMixin, {
                     }
                 }
                 catch (exec) {
-                    alert(loginUtils.localStorageAlert);
+                    self.set('modalTitle', 'Something went wrong there.');
+                    self.set('modalBody', loginUtils.localStorageAlert);
+                    self.set('displayModal', true);
                 }
                 this.transitionToRoute('restaurants');
             }
             else{
-                alert("You've haven't selected an option for all of the required fields for this item.");
+                self.set('modalTitle', 'Woah there, not so fast.');
+                self.set('modalBody', "You've left some required fields blank.");
+                self.set('displayModal', true);
             }
         }
     }

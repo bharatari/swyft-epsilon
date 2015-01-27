@@ -14,16 +14,25 @@ module.exports={
             type:'string'
         },
         itemOptions:{
-            type:'string'
+            type:'array'
         },
         extras:{
-            type:'string'
+            type:'array'
         },
         unavailable:{
             type:'boolean'
         },
         restaurant:{
             type:'string'
+        },
+        adminComments:{
+            type:'string'
+        },
+        seasonal:{
+            type:'boolean'
+        },
+        temporary:{
+            type:'boolean'
         }
     },
 }

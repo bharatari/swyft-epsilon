@@ -139,7 +139,7 @@ export default {
             var result = $.grep(categories, function(element, index) {
                 return element.name === items[i].category;
             });
-            if(!result) {
+            if(result.length < 1) {
                 categories.push({name: items[i].category});
             }
         }
