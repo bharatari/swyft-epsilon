@@ -46,6 +46,9 @@ module.exports.policies = {
   },
   TransactionsController:{
     "*":['isAdmin', 'userDisabled']
+  },
+  DeliveryNoteController:{
+    "*":['isDelivery', 'userDisabled']
   }
   
   

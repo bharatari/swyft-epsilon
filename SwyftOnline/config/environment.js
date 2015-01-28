@@ -29,10 +29,10 @@ module.exports = function(environment) {
     ENV.contentSecurityPolicy = {
         'default-src': "'none'",
         'script-src': "'self'",
-        'font-src': "'self' http://fonts.gstatic.com",
+        'font-src': "'self' http://fonts.gstatic.com https://fonts.gstatic.com",
         'connect-src': "'self' http://localhost:1337",
         'img-src': "'self'",
-        'style-src': "'self' 'unsafe-inline' http://fonts.googleapis.com", 
+        'style-src': "'self' 'unsafe-inline' http://fonts.googleapis.com https://fonts.googleapis.com", 
         'media-src': "'self'"
     }
     ENV.routeLocation = "http://localhost:1337";

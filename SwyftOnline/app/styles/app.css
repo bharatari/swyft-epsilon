@@ -647,6 +647,10 @@ a.list-group-item:hover, a.list-group-item:focus {
     margin-left: 2px;
 }
 
+.delivery-note {
+    margin-bottom: 16px;
+}
+
 @media only screen and (max-width: 768px) {
     .promo {
         height: 30vh;

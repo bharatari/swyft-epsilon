@@ -87,6 +87,10 @@ module.exports.routes = {
   //Transaction Routes  
   'get /api/transactions':'TransactionController.getTransactions',
     
+  //Delivery Note Routes
+  'get /api/deliveryNote/global':'DeliveryNoteController.getGlobalDeliveryNote',
+  'post /api/deliveryNote/global':'DeliveryNoteController.setGlobalDeliveryNote'
+    
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *

@@ -20,6 +20,9 @@ export default Ember.Controller.extend({
         },
         goToTransactions: function() {
             this.transitionToRoute('admin-transactions');
+        },
+        goToGlobalDeliveryNote: function() {
+            this.transitionToRoute('admin-global-delivery-note');
         }
     }
 });

@@ -14,6 +14,9 @@
         <li><a>{{#link-to 'index'}}Home{{/link-to}}</a></li>
         <li class="active">Delivery</li>
     </ul>
+    <div class="delivery-note">
+        {{deliveryNote.value}}
+    </div>
     <div class="grid-products list-group">
         {{#each order in orders}}
         <button class="grid-product list-group-item" {{action 'goToOrder' order}}>

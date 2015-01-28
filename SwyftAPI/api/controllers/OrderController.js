@@ -73,7 +73,7 @@ module.exports={
         });
     },
     getDeliveryOrders:function(req,res){
-        Delivery.findOne({ closed: true, adminClosed: false }).exec(function(err, delivery){
+        Delivery.findOne({ adminClosed: false }).exec(function(err, delivery){
             Order.find({ deliveryId: delivery.id }).exec(function(err, items){
                 /*
                 OrderService.joinOrders(items, function(results) {
