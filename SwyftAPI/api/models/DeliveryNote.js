@@ -1,0 +1,20 @@
+module.exports={
+    tableName:'deliveryNotes',
+    attributes:{
+        userId:{
+            type:'string'
+        },
+        orderId:{
+            type:'string'
+        },
+        delivererId:{
+            type:'string'
+        },
+        deliveryId:{
+            type:'string'
+        },
+        comments:{
+            type:'string'
+        }
+    },
+}

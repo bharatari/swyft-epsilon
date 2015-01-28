@@ -575,6 +575,9 @@ a.list-group-item:hover, a.list-group-item:focus {
 
 .img-fix {
     margin-bottom: 50px;
+    height: 300px;
+    width: 100%;
+    
 }
 
 .item-list {
@@ -588,6 +591,60 @@ a.list-group-item:hover, a.list-group-item:focus {
     font-weight: 500;
     margin-top: 8px;
     margin-left: 16px;
+}
+
+.image {
+    background-size: cover;
+}
+
+.spencer {
+    background-image: url('/images/Spencer.jpg');
+    background-position-y: 60%;
+}
+
+.bhargav {
+    background-image: url('/images/Bhargav.JPG');
+    background-position-y: 40%;
+}
+
+.pranay {
+    background-image: url('/images/Pranay.jpg');
+    background-position-y: 70%;
+}
+
+.bharat {
+    background-image: url('/images/Bharat.JPG');
+    background-position-y: 20%;
+}
+
+.lauren {
+    background-image: url('/images/Lauren.jpg');
+    background-position-y: 30%;
+}
+
+.steven {
+    background-image: url('/images/Steven.JPG');
+    background-position-y: 30%;
+}
+
+.moises {
+    background-image: url('/images/Building.JPG');
+    background-position-y: 30%;
+}
+
+.header-info {
+    position: absolute;
+    top: 20px;
+    right: 80px;
+}
+
+.header-item {
+    margin-right: 10px;
+    display: inline;
+}
+
+.header-item-text {
+    margin-left: 2px;
 }
 
 @media only screen and (max-width: 768px) {
@@ -714,6 +771,10 @@ a.list-group-item:hover, a.list-group-item:focus {
         margin-left: auto;
         margin-right: auto;
     }
+    
+    .header-info {
+        display: none;
+    }
 }
 
 /* Image Caption Reveal */
@@ -722,7 +783,7 @@ figure {
     margin: 0;
     position: relative;
 }
-figure img {
+figure section {
     display: block;
     position: relative;
     z-index: 10;
@@ -755,10 +816,10 @@ figure span {
     width: 100%;
     padding: 20px;
 }
-#effect-1 figure img {
+#effect-1 figure section {
     transition: all 0.3s;
 }
-#effect-1 figure:hover img,
-#effect-1 figure.hover img {
+#effect-1 figure:hover section,
+#effect-1 figure.hover section {
     transform: translateY(-90px);
 }

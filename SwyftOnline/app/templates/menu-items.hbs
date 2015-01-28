@@ -27,7 +27,7 @@
             <h3 class="category-name">{{category.name}}</h3>
         </div>
         {{#each item in category.items}}
-        <button class="grid-product list-group-item" {{action 'transition' menuItem.id}}>
+        <button class="grid-product list-group-item" {{action 'transition' item.id}}>
             <div class="click-through">
                 <h4 class="grid-product-title">{{item.name}}</h4>
                 <br>

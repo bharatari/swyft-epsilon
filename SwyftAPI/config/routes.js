@@ -85,7 +85,7 @@ module.exports.routes = {
   'get /api/news':'GlobalController.getNews',
   
   //Transaction Routes  
-  'get /api/transactions':'TransactionsController.getTransactions'
+  'get /api/transactions':'TransactionController.getTransactions',
     
   /***************************************************************************
   *                                                                          *
