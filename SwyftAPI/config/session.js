@@ -70,7 +70,14 @@ module.exports.session = {
   adapter: 'mongo',
   host: 'proximus.modulusmongo.net',
   port: 27017,
-  db: 'igEjo9pe',
+  db: (function() {
+    if(this.environment === 'production') {
+        return 'igEjo9pe';
+    }
+    else {
+        return 'yju6Wajy';
+    }
+  })(),
   collection: 'sessions',
     
   /***************************************************************************

@@ -1,7 +1,8 @@
 <nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
-        <div class="top-bar"></div>
-        <div class="navbar-header"></div>
+    <div class="container">
+        <div class="navbar-float">
+            {{view 'navbar-toggle'}}
+        </div>
         <a class="navbar-brand" href="/">ORDER<span class="logo-light">SWYFT</span></a>
     </div>
 </nav>
@@ -41,12 +42,16 @@
                 <div class="list-group">
                     {{#each delivery in deliveryList}}
                     <a class="list-group-item">{{radio-button name=deliveryList.value class="option" value=delivery.id}}<span class="option-text">{{delivery.displayTime}}</span></a>
+                    {{else}}
+                    <h3 class="error-text">Our deliveries are closed for the day. Check our homepage to see when we deliver.</h3>
                     {{/each}}
                 </div>            
             </div>
-            {{#unless buttonPressed}}
-            <button class="btn btn-default" type="submit" {{action 'checkout'}}>Checkout</button>       
-            {{/unless}}
+            {{#if deliveryList}}
+                {{#unless buttonPressed}}
+                    <button class="btn btn-default" type="submit" {{action 'checkout'}}>Checkout</button>       
+                {{/unless}}
+            {{/if}}
         </div>  
     </form>
 </div>

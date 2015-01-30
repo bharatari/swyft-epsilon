@@ -11,7 +11,12 @@ export default Ember.Controller.extend({
                 alert(loginUtils.localStorageAlert);
                 return;
             }
-            Ember.$.ajax({type:"POST", url: config.routeLocation + "/api/login", dataType:'json', data:{username: this.get("username"), password: this.get("password"), _csrf: this.get("model")._csrf}, success: function(data, textStatus, jqXHR){
+            var data = {username: this.get("username"), password: this.get("password"), _csrf: this.get("model")._csrf};
+            Ember.$.ajax({type:"POST", url: config.routeLocation + "/api/login", headers: { 
+                Accept : "application/json; charset=utf-8",
+                "Content-Type": "application/json; charset=utf-8"
+            },
+            data: JSON.stringify(data), success: function(data, textStatus, jqXHR){
                 if(data.token) {
                     localStorage.setItem(loginUtils.localStorageKey, JSON.stringify(data));
                     self.transitionToRoute('restaurants');

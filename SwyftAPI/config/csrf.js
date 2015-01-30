@@ -48,7 +48,7 @@
 *                                                                           *
 ****************************************************************************/
 
-module.exports.csrf = true;
+// module.exports.csrf = true;
 
 /****************************************************************************
 *                                                                           *
@@ -58,7 +58,7 @@ module.exports.csrf = true;
 *                                                                           *
 ****************************************************************************/
 
-module.exports.csrf = {
-    grantTokenViaAjax: true,
-    origin: 'https://orderswyft.com, http://localhost:1337, http://localhost:4200'
-}
+// module.exports.csrf = {
+    // grantTokenViaAjax: true,
+    // origin: 'https://orderswyft.com, http://localhost:1337, http://localhost:4200'
+// }

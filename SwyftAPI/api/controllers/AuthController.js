@@ -103,5 +103,10 @@ module.exports={
                 return res.forbidden();
             }
         });
+    },
+    csrfToken: function(req, res) {
+        res.json({
+            _csrf: 'ghwf9ckwl75rjfng32owdf9s44'
+        });
     }
 }

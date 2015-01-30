@@ -89,7 +89,10 @@ module.exports.routes = {
     
   //Delivery Note Routes
   'get /api/deliveryNote/global':'DeliveryNoteController.getGlobalDeliveryNote',
-  'post /api/deliveryNote/global':'DeliveryNoteController.setGlobalDeliveryNote'
+  'post /api/deliveryNote/global':'DeliveryNoteController.setGlobalDeliveryNote',
+
+  //Temporary Routes
+  'get /csrfToken':'AuthController.csrfToken'
     
   /***************************************************************************
   *                                                                          *
