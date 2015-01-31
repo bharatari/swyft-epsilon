@@ -8,7 +8,8 @@ export default {
             name: data.name,
             id: data.id,
             restaurant: data.restaurant,
-            standardOptions: []
+            standardOptions: [],
+            additionalRequests: data.additionalRequests
         }
 
         if(data.itemOptions){

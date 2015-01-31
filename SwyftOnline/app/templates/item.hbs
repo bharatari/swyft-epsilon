@@ -1,12 +1,24 @@
-<nav class="navbar navbar-default" role="navigation">
-    <div class="container">
+<nav class="navbar navbar-order navbar-default" role="navigation">
+    <div class="header-bar row">
+        <div class="header-info container">
+            <div class="header-item">
+                <i class="icon glyphicon glyphicon-earphone"></i>
+                <span class="header-item-text">646-84-SWYFT</span>
+
+            </div>
+            <div class="header-item">
+                <i class="icon glyphicon glyphicon-envelope"></i>
+                <span class="header-item-text">help@orderswyft.com</span>
+            </div>
+        </div>
+    </div>
+    <div class="navbar-container-order container">
         <div class="navbar-float">
             {{view 'navbar-toggle'}}
         </div>
         <a class="navbar-brand" href="/">ORDER<span class="logo-light">SWYFT</span></a>
     </div>
 </nav>
-
 
 {{side-bar checkout="checkout" login="login" profile="profile" logout="logout" isAuthenticated=isAuthenticated}}
 
@@ -24,6 +36,9 @@
     <form>
         <div class="info-well well">
             <h1 class="item-title">{{item.name}}</h1>
+            {{#if item.description}}
+                <h3 class="item-description">{{item.description}}</h3>
+            {{/if}}
             <h3 class="item-price">{{render-decimals item.baseprice}}</h3>
             <hr>
             {{#each optionGroup in item.itemOptions}}
@@ -55,7 +70,14 @@
                 {{/each}}
             </div>
             {{/if}}
-            <button class="btn btn-default" type="submit" {{action 'addToCart'}}>Add to Cart</button>        
+            
+            {{input class="form-control" value=item.additionalRequests type="text" placeholder="Additional Requests"}}
+            
+            {{#if item.note}}
+                <p class="sub-heading">{{item.note}}</p>
+            {{/if}}
+            
+            <button class="btn btn-default btn-standard" type="submit" {{action 'addToCart'}}>Add to Cart</button>        
         </div>  
     </form>
 </div>

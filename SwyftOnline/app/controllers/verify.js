@@ -7,7 +7,12 @@ export default Ember.Controller.extend({
     actions: {
         verify: function() {
             var self = this;
-            Ember.$.ajax({type:"POST", url: config.routeLocation + "/api/user/verification/verify", data:{email: this.get("username"), token: this.get("token"), _csrf: this.get("model")._csrf}, success: function(data, textStatus, jqXHR){
+            var data = {email: this.get("username"), token: this.get("token"), _csrf: this.get("model")._csrf};
+            Ember.$.ajax({type:"POST", headers: { 
+                Accept : "application/json; charset=utf-8",
+                "Content-Type": "application/json; charset=utf-8"
+            },
+            url: config.routeLocation + "/api/user/verification/verify", data: JSON.stringify(data), success: function(data, textStatus, jqXHR){
                 self.set('verifySuccess', true);
                 setTimeout(function(){
                     self.transitionToRoute('login');

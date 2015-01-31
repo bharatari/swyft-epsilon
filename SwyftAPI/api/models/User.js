@@ -37,6 +37,9 @@ module.exports={
         balance:{
             type:'float'
         },
+        contactConsent:{
+            type:'boolean'
+        },
         isAdmin:{
             type:'boolean',
             defaultsTo:false

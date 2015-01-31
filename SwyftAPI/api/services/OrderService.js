@@ -30,7 +30,6 @@ module.exports = {
                         }
                     }
                 }
-                
             }
             if(order.items[i].options) {
                 for(var e = 0; e < order.items[i].options.length; e++) {

@@ -4,6 +4,9 @@ import loginUtils from 'swyft-online/utils/login-utils';
 
 export default Ember.Controller.extend({
     error: false,
+    setup: function() {
+        this.set('contactConsent', false);
+    }.on('init'),
     actions: {
         closeError: function() {
             this.set('error', false);
@@ -35,12 +38,13 @@ export default Ember.Controller.extend({
                         postOfficeBox: this.get('poBox'),
                         phoneNumber: this.get('phoneNumber'),
                         email: this.get('email'),
+                        contactConsent: this.get('contactConsent'),
                         password: password1,
                         _csrf:this.get('model')._csrf
                     }
                     for (var property in data) {
                         if (data.hasOwnProperty(property)) {
-                            if(!data[property]){
+                            if(!data[property] && property != "contactConsent"){
                                 this.set('error', true);
                                 this.set('buttonPressed', false);
                                 return;
@@ -49,7 +53,11 @@ export default Ember.Controller.extend({
                     }
                     Ember.$.ajax({
                         url: config.routeLocation + "/api/user",
-                        data: data,
+                        data: JSON.stringify(data),
+                        headers: { 
+                            Accept : "application/json; charset=utf-8",
+                            "Content-Type": "application/json; charset=utf-8"
+                        },
                         type: "POST",
                         success: function(response) {
                             self.set('modalTitle', 'Email Verification');

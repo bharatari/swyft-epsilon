@@ -13,7 +13,11 @@ export default Ember.Controller.extend({
             var url = config.routeLocation + "/api/deliveryNote/global";
             Ember.$.ajax({
                 url: url,
-                data: data,
+                headers: { 
+                    Accept : "application/json; charset=utf-8",
+                    "Content-Type": "application/json; charset=utf-8"
+                },
+                data: JSON.stringify(data),
                 type: "POST",
                 success: function(response) {
                     alert("Success");

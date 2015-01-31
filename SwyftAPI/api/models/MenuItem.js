@@ -28,6 +28,9 @@ module.exports={
         adminComments:{
             type:'string'
         },
+        note:{
+            type:'string'
+        },
         seasonal:{
             type:'boolean'
         },

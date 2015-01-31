@@ -4,6 +4,7 @@ import config from 'swyft-online/config/environment';
 export default Ember.Controller.extend({ 
     order: function() {
         var data = this.get('model');        
+        data.phoneLink = "tel:" + data.contactPhone;
         for(var e = 0; e < data.items.length; e++){
             var options="";
             for (var property in data.items[e].options) {

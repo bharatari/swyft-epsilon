@@ -14,8 +14,12 @@ export default Ember.Controller.extend({
             };
             Ember.$.ajax({
                 type:"POST", 
+                headers: { 
+                    Accept : "application/json; charset=utf-8",
+                    "Content-Type": "application/json; charset=utf-8"
+                },
                 url: config.routeLocation + "/api/user/forgotPassword", 
-                data: data, 
+                data: JSON.stringify(data), 
                 success: function(data, textStatus, jqXHR){
                     self.set('success', true);
                 }, error: function(jqXHR){

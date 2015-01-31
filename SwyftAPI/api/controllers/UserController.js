@@ -35,6 +35,7 @@ module.exports={
                 verified:false,
                 token:token,
                 balance:0,
+                contactConsent: req.body.contactConsent,
                 isDriver:false,
                 isAdmin:false,
                 isEmployee:false,

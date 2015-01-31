@@ -116,16 +116,23 @@ body {
 }
 
 .navbar-float-margin {
-    margin-top: 9px;
+    margin-top: 12px;
 }
 
 .navbar-main {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 5px;
+    margin-bottom: 0px;
 }
 
 .navbar-top {
     height: 75px;
+}
+
+.navbar-home { }
+
+.navbar-container-order {
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .container-top {
@@ -133,7 +140,7 @@ body {
 }
 
 .header-info {
-    margin-top: 20px;
+    margin-top: 5px;
 }
 
 .logo-light {
@@ -148,7 +155,7 @@ body {
 
 .row-one {
     color:black !important;
-    height: 60vh;
+    height: 70vh;
     margin-top: -20px;
     background-image: url('/images/BuildingEdit.png');
     background-position: center;
@@ -160,7 +167,7 @@ body {
 }
 
 .row-one-text {
-    margin-top: 22vh;
+    margin-top: 24vh;
 }
 
 .welcome-text {
@@ -223,6 +230,11 @@ body {
     border-color: transparent;
 }
 
+.header-bar {
+    background-color: #f0f0f0;
+    padding-bottom: 8px;
+}
+
 .btn-quick-link {
     display: block;
     background-color: white;
@@ -233,8 +245,11 @@ body {
     width: 130px;
     margin-top: 10px;
     font-weight: 400;
-    padding-top: 3px;
+    padding-top: 0px;
+    font-family: 'Open Sans';
     border: 1px solid darkgray;
+    font-size: 11px;
+    letter-spacing: 2px;
     transition: background-color 0.2s ease-in, color 0.2s ease-out;
 }
 
@@ -256,14 +271,16 @@ body {
 .login-button {
     display: block;
     background-color: #fff;
-    height: 30px;
+    height: 25px;
     padding: 0;
     width: 90px;
     border: 1px solid black;
-    letter-spacing: 1.5px;
+    letter-spacing: 2px;
     color: black;
     font-weight: 400;
     transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    font-size: 11px;
+    font-family: 'Open Sans';
 }
 
 .login-button:hover {
@@ -272,7 +289,7 @@ body {
 }
 
 .row-two {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .row-small {
@@ -282,10 +299,11 @@ body {
 }
 
 .row-quote {
-    margin-top: 5vh;
+    margin-top: 5.5vh;
     color: #495f72;
     text-align: center;
     font-family: 'Roboto';
+    font-size: 20px;
 }
 
 .promo-group {
@@ -295,13 +313,16 @@ body {
 .promo-button {
     display: block;
     background-color: transparent;
-    height: 35px;
+    height: 31px;
     color: white !important;
     padding: 0;
     width: 130px;
     font-weight: 400;
     display: inline;
     transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    font-family: 'Open Sans';
+    font-size: 11px;
+    letter-spacing: 2px;
 }
 
 .promo-button:hover {
@@ -359,6 +380,11 @@ body {
 .item-price {
     text-align: center;
     font-family: 'Roboto';
+}
+
+.item-description {
+    text-align: center;
+    color: #555;
 }
 
 .option {
@@ -670,9 +696,11 @@ a.list-group-item:hover, a.list-group-item:focus {
 .header-item-text {
     margin-left: 2px;
     color: darkgray;
+    font-size: 10px;
 }
 
 .icon {
+    font-size: 10px;
     color: darkgray;
 }
 
@@ -693,7 +721,28 @@ a.list-group-item:hover, a.list-group-item:focus {
     font-family: 'Roboto';
 }
 
+.row-three {
+    background-color: #333;
+    height: 300px;
+}
+
+.section-header-three {
+    text-align: center;
+    font-family: 'Open Sans';
+    font-weight: 600;
+    color: white;
+}
+
+.checkbox-control {
+    margin-top: 15px !important;
+}
+
 @media only screen and (max-width: 768px) {
+    .navbar-main {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    
     .promo {
         height: 30vh;
         background-color: #2a2a2a;
@@ -824,6 +873,10 @@ a.list-group-item:hover, a.list-group-item:focus {
     
     .navbar-float-margin {
         margin-top: -41px;
+    }
+    
+    .header-bar {
+        display: none;
     }
 }
 
