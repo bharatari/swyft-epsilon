@@ -27,7 +27,7 @@ module.exports.policies = {
     "closeDelivery":['isAdmin', 'userDisabled']
   },
   OrderController:{
-    //"*":['isAuthenticated', 'userDisabled', 'suppressSystem'],
+    "*":['isAuthenticated', 'userDisabled', 'suppressSystem'],
     "retrieveOrders":['isAdmin', 'userDisabled'],
     "deleteOrder":['isAdmin', 'userDisabled'],
     "pendingOrders":['isAdmin', 'userDisabled'],

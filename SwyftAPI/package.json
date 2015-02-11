@@ -6,7 +6,7 @@
   "keywords": [],
   "dependencies": {
     "async": "^0.9.0",
-    "bcrypt": "^0.8.0",
+    "bcrypt": "^0.8.1",
     "chance": "^0.7.0",
     "connect-mongo": "^0.5.3",
     "ejs": "~0.8.4",

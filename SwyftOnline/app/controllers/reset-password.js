@@ -7,9 +7,9 @@ export default Ember.Controller.extend({
     actions: {
         submit: function() {
             var self = this;
-            var data = {username: this.get("username"), password: password1, token: this.get('token'), _csrf: this.get("model")._csrf}; 
             var password1 = $("#password").val();
             var password2 = $("#confirmPassword").val();
+            var data = {username: this.get("username"), password: password1, token: this.get('token')}; 
             if((password1 == password2) && this.get('username')) {
                 if(password1.length >= 6 && password1.length <= 20) {
                     Ember.$.ajax({
