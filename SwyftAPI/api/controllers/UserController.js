@@ -237,7 +237,7 @@ module.exports={
                 var object = {
                     userId: req.body.userId, 
                     type:transactionType, 
-                    amount: req.body.transactionAmount, 
+                    amount: Math.abs(req.body.transactionAmount), 
                     comments: req.body.comments,
                     transactionCreator: req.user.id
                 }

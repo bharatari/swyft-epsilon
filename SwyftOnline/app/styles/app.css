@@ -43,6 +43,10 @@ body {
     border-bottom-color: #e0e0e0;
     border-bottom-style: solid;
     border-bottom-width: 1px;
+    -webkit-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    -moz-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    -ms-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    -o-transition: background-color 0.2s ease-in, color 0.2s ease-out;
     transition: background-color 0.2s ease-in, color 0.2s ease-out;
 }
 
@@ -94,6 +98,10 @@ body {
     letter-spacing: 2px;
     font-size: 16px;
     color: black;
+    -webkit-transition: transform 0.5s ease-in;
+    -moz-transition: transform 0.5s ease-in;
+    -ms-transition: transform 0.5s ease-in;
+    -o-transition: transform 0.5s ease-in;
     transition: transform 0.5s ease-in;
 }
 
@@ -167,7 +175,7 @@ body {
 }
 
 .row-one-text {
-    margin-top: 24vh;
+    margin-top: 26vh;
 }
 
 .welcome-text {
@@ -176,10 +184,18 @@ body {
     color: white;
     text-align: center;
     font-size: 53px;
+    -webkit-transition: transform 0.5s ease-out;
+    -moz-transition: transform 0.5s ease-out;
+    -ms-transition: transform 0.5s ease-out;
+    -o-transition: transform 0.5s ease-out;
     transition: transform 0.5s ease-out;
 }
 
 .welcome-text:hover {
+    -webkit-transform: scale(0.97);
+    -moz-transform: scale(0.97);
+    -ms-transform: scale(0.97);
+    -o-transform: scale(0.97);
     transform: scale(0.97);
 }
 
@@ -189,10 +205,18 @@ body {
     color: black;
     text-align: center;
     font-size: 55px;
+    -webkit-transition: transform 0.5s ease-out;
+    -moz-transition: transform 0.5s ease-out;
+    -ms-transition: transform 0.5s ease-out;
+    -o-transition: transform 0.5s ease-out;
     transition: transform 0.5s ease-out;
 }
 
 .promo-text:hover {
+    -webkit-transform: scale(0.97);
+    -moz-transform: scale(0.97);
+    -ms-transform: scale(0.97);
+    -o-transform: scale(0.97);
     transform: scale(0.97);
 }
 
@@ -203,6 +227,10 @@ body {
     margin-top:-7px;
     font-size:15px;
     text-align: center;
+    -webkit-transition: transform 0.5s ease-in, color 0.2s ease-out;
+    -moz-transition: transform 0.5s ease-in, color 0.2s ease-out;
+    -ms-transition: transform 0.5s ease-in, color 0.2s ease-out;
+    -o-transition: transform 0.5s ease-in, color 0.2s ease-out;
     transition: transform 0.5s ease-in, color 0.2s ease-out;
 }
 
@@ -218,6 +246,10 @@ body {
     margin-top:-7px;
     font-size:15px;
     text-align: center;
+    -webkit-transition: transform 0.5s ease-in, color 0.2s ease-out;
+    -moz-transition: transform 0.5s ease-in, color 0.2s ease-out;
+    -ms-transition: transform 0.5s ease-in, color 0.2s ease-out;
+    -o-transition: transform 0.5s ease-in, color 0.2s ease-out;
     transition: transform 0.5s ease-in, color 0.2s ease-out;
 }
 
@@ -250,6 +282,10 @@ body {
     border: 1px solid darkgray;
     font-size: 11px;
     letter-spacing: 2px;
+    -webkit-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    -moz-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    -ms-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    -o-transition: background-color 0.2s ease-in, color 0.2s ease-out;
     transition: background-color 0.2s ease-in, color 0.2s ease-out;
 }
 
@@ -278,9 +314,13 @@ body {
     letter-spacing: 2px;
     color: black;
     font-weight: 400;
-    transition: background-color 0.2s ease-in, color 0.2s ease-out;
     font-size: 11px;
     font-family: 'Open Sans';
+    -webkit-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    -moz-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    -ms-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    -o-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    transition: background-color 0.2s ease-in, color 0.2s ease-out;
 }
 
 .login-button:hover {
@@ -319,10 +359,14 @@ body {
     width: 130px;
     font-weight: 400;
     display: inline;
-    transition: background-color 0.2s ease-in, color 0.2s ease-out;
     font-family: 'Open Sans';
     font-size: 11px;
     letter-spacing: 2px;
+    -webkit-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    -moz-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    -ms-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    -o-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    transition: background-color 0.2s ease-in, color 0.2s ease-out;
 }
 
 .promo-button:hover {
@@ -360,6 +404,13 @@ body {
     height:230px;
     margin-bottom: 50px;
     margin-top: -20px;
+}
+
+.solid-background {
+    height:230px;
+    margin-bottom: 50px;
+    margin-top: -20px;
+    background-color: #4690E6;
 }
 
 .background-title {
@@ -406,13 +457,21 @@ body {
     height: 230px;
     float: left;
     background-color: white;
-    transition: transform 0.2s ease-in;
     border: 1px solid darkgray;
     font-family: 'Roboto';
     font-weight: 400;
+    -webkit-transition: transform 0.2s ease-in;
+    -moz-transition: transform 0.2s ease-in;
+    -ms-transition: transform 0.2s ease-in;
+    -o-transition: transform 0.2s ease-in;
+    transition: transform 0.2s ease-in;
 }
 
 .grid-product:active {
+    -webkit-transform: scale(0.97);
+    -moz-transform: scale(0.97);
+    -ms-transform: scale(0.97);
+    -o-transform: scale(0.97);
     transform: scale(0.97);
 }
 
@@ -456,10 +515,18 @@ a.list-group-item:hover, a.list-group-item:focus {
     font-family: 'Roboto';
     font-weight: 400;
     border: 1px solid darkgray;
+    -webkit-transition: transform 0.2s ease-in;
+    -moz-transition: transform 0.2s ease-in;
+    -ms-transition: transform 0.2s ease-in;
+    -o-transition: transform 0.2s ease-in;
     transition: transform 0.2s ease-in;
 }
 
 .grid-restaurant:active {
+    -webkit-transform: scale(0.97);
+    -moz-transform: scale(0.97);
+    -ms-transform: scale(0.97);
+    -o-transform: scale(0.97);
     transform: scale(0.97);
 }
 
@@ -516,10 +583,14 @@ a.list-group-item:hover, a.list-group-item:focus {
     font-weight: 400;
     font-family: 'Roboto';
     border: 1px solid darkgray;
-    transition: background-color 0.2s ease-in, color 0.2s ease-out;
     height: 30px;
     width: 100px;
     padding: 0px 0px 0px 0px;
+    -webkit-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    -moz-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    -ms-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    -o-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    transition: background-color 0.2s ease-in, color 0.2s ease-out;
 }
 
 .remove-button:hover {
@@ -696,7 +767,7 @@ a.list-group-item:hover, a.list-group-item:focus {
 .header-item-text {
     margin-left: 2px;
     color: darkgray;
-    font-size: 10px;
+    font-size: 11px;
 }
 
 .icon {
@@ -780,6 +851,10 @@ a.list-group-item:hover, a.list-group-item:focus {
         color: white;
         text-align: center;
         font-size: 50px;
+        -webkit-transition: transform 0.5s ease-out;
+        -moz-transition: transform 0.5s ease-out;
+        -ms-transition: transform 0.5s ease-out;
+        -o-transition: transform 0.5s ease-out;
         transition: transform 0.5s ease-out;
     }
     
@@ -804,6 +879,10 @@ a.list-group-item:hover, a.list-group-item:focus {
         border-bottom-color: transparent;
         border-top-color: #e0e0e0;
         margin-bottom: 0px;
+        -webkit-transition: background-color 0.2s ease-in;
+        -moz-transition: background-color 0.2s ease-in;
+        -ms-transition: background-color 0.2s ease-in;
+        -o-transition: background-color 0.2s ease-in;
         transition: background-color 0.2s ease-in;
     }
     
@@ -826,16 +905,19 @@ a.list-group-item:hover, a.list-group-item:focus {
         border-bottom-color: transparent;
         border-top-color: #e0e0e0;
         margin-bottom: 0px;
-        transition: background-color 0.2s ease-in;
         font-family: 'Roboto';
         font-weight: 400;
         font-size: 16px;
+        -webkit-transition: background-color 0.2s ease-in;
+        -moz-transition: background-color 0.2s ease-in;
+        -ms-transition: background-color 0.2s ease-in;
+        -o-transition: background-color 0.2s ease-in;
+        transition: background-color 0.2s ease-in;
     }
     
     .grid-restaurant:active {
         background-color: #f2f2f2 !important;
         transform: none;
-
     }
     
     .grid-product-title {
@@ -924,5 +1006,13 @@ figure span {
 }
 #effect-1 figure:hover section,
 #effect-1 figure.hover section {
+    -webkit-transform: translateY(-90px);
+    -moz-transform: translateY(-90px);
+    -ms-transform: translateY(-90px);
+    -o-transform: translateY(-90px);
     transform: translateY(-90px);
 }
+
+/* Loading Spinner */
+
+#circleG{width:149.33333333333334px;}.circleG{background-color:#FFFFFF;float:left;height:32px;margin-left:17px;width:32px;-moz-animation-name:bounce_circleG;-moz-animation-duration:1.9500000000000001s;-moz-animation-iteration-count:infinite;-moz-animation-direction:linear;-moz-border-radius:21px;-webkit-animation-name:bounce_circleG;-webkit-animation-duration:1.9500000000000001s;-webkit-animation-iteration-count:infinite;-webkit-animation-direction:linear;-webkit-border-radius:21px;-ms-animation-name:bounce_circleG;-ms-animation-duration:1.9500000000000001s;-ms-animation-iteration-count:infinite;-ms-animation-direction:linear;-ms-border-radius:21px;-o-animation-name:bounce_circleG;-o-animation-duration:1.9500000000000001s;-o-animation-iteration-count:infinite;-o-animation-direction:linear;-o-border-radius:21px;animation-name:bounce_circleG;animation-duration:1.9500000000000001s;animation-iteration-count:infinite;animation-direction:linear;border-radius:21px;}#circleG_1{-moz-animation-delay:0.39s;-webkit-animation-delay:0.39s;-ms-animation-delay:0.39s;-o-animation-delay:0.39s;animation-delay:0.39s;}#circleG_2{-moz-animation-delay:0.9099999999999999s;-webkit-animation-delay:0.9099999999999999s;-ms-animation-delay:0.9099999999999999s;-o-animation-delay:0.9099999999999999s;animation-delay:0.9099999999999999s;}#circleG_3{-moz-animation-delay:1.1700000000000001s;-webkit-animation-delay:1.1700000000000001s;-ms-animation-delay:1.1700000000000001s;-o-animation-delay:1.1700000000000001s;animation-delay:1.1700000000000001s;}@-moz-keyframes bounce_circleG{0%{}50%{background-color:#000000}100%{}}@-webkit-keyframes bounce_circleG{0%{}50%{background-color:#000000}100%{}}@-ms-keyframes bounce_circleG{0%{}50%{background-color:#000000}100%{}}@-o-keyframes bounce_circleG{0%{}50%{background-color:#000000}100%{}}@keyframes bounce_circleG{0%{}50%{background-color:#000000}100%{}} - See more at: http://cssload.net/#sthash.mSF4iDkd.dpuf

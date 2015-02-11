@@ -72,9 +72,14 @@ module.exports = {
             res.send(200);
         });
     },
-    closeDeliveryPeriod:function(req,res){
-        DeliveryPeriod.update({id:req.body.id}, {isActive:false}).exec(function(err, fulfillment){
-            res.send(200);
+    closeDelivery:function(req,res){
+        Delivery.update({ id: req.body.id }, { closed: true }).exec(function(err, delivery){
+            if(err) {
+                return res.badRequest();
+            }
+            else {
+                res.ok();
+            }
         });
     }
 }

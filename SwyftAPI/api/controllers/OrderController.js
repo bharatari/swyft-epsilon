@@ -87,5 +87,23 @@ module.exports={
                 });
             });
         });
+    },
+    getAggregateOrders:function(req,res){
+        Delivery.findOne({ adminClosed: false }).exec(function(err, delivery){
+            Order.find({ deliveryId: delivery.id }).exec(function(err, orders){
+                OrderService.getAllItems(orders, function(aggregate) {
+                    res.json(aggregate);
+                });
+            });
+        });
+    },
+    getMasterList:function(req,res){
+        Delivery.findOne({ adminClosed: false }).exec(function(err, delivery){
+            Order.find({ deliveryId: delivery.id }).exec(function(err, items){
+                OrderService.getAllItems(items, function(aggregate) {
+                    res.json(aggregate);
+                });
+            });
+        });
     }
 }

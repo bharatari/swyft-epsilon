@@ -23,6 +23,9 @@ export default Ember.Controller.extend({
         },
         goToGlobalDeliveryNote: function() {
             this.transitionToRoute('admin-global-delivery-note');
+        },
+        goToCloseDelivery: function() {
+            this.transitionToRoute('admin-close-delivery');
         }
     }
 });

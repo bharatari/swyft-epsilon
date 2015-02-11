@@ -235,5 +235,149 @@ module.exports = {
         process(function() {
             callback(items);
         });
+    },
+    similarItem: function(item1, item2) {
+        if(!item1 || !item2) {
+            return false;
+        }
+        else if((item1.id === item2.id) && (item1.standardOptions === item2.standardOptions) && (item1.options === item2.options) && (item1.extras === item2.extras)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    },
+    combineItem: function(item1, item2) {
+        if(!item1.quantity) {
+            item1.quantity = 2;
+        }
+        else {
+            item1.quantity++;
+        }
+        item1.additionalRequests = "[ " + item1.additionalRequests + " ], " + "[ " + item2.additionalRequests + " ], ";
+        return item1;
+    },
+    getAllItems: function(orders, callback) {
+        var self = this;
+        Restaurant.find({ unavailable: false}).exec(function(err, restaurants) {
+            if(err | !restaurants) {
+                return res.badRequest();
+            }
+            else {
+                var aggregate = [];
+                for(var i = 0; i < restaurants.length; i++) {
+                    aggregate.push({ name: restaurants[i].name, items: []});
+                    if(i === restaurants.length - 1) {
+                        process(aggregate);
+                    }
+                }
+            }
+        });
+        function process(aggregate) {
+            var items = [];
+            /*
+            function innerLoop(i, order, callback) {
+                if(i < order.items.length){
+                    function query(cb){
+                        items.push(order.items[i]);
+                        cb();
+                    }
+                    query(function(){
+                        innerLoop(i+1, order, callback);
+                    });
+                }
+                else{
+                    callback();
+                }
+            }
+            
+            function loop(i){
+                if(i < orders.length){
+                    function query(cb){
+                        innerLoop(0, orders[i], function(){
+                            cb();
+                        });
+                    }
+                    query(function(){
+                        loop(i+1);
+                    });
+                }
+                else{
+                    sort(aggregate, items);
+                }
+            }
+            loop(0);
+            */
+            for(var i = 0; i < orders.length; i++) {
+                for(var e = 0; e < orders[i].items.length; e++) {
+                    items.push(orders[i].items[e]);
+                }
+                if(i === orders.length - 1) {
+                    sort(aggregate, items);
+                }
+            }
+        }
+        function sort(aggregate, items) {
+            for(var i = 0; i < aggregate.length; i++) {
+                for(var e = 0; e < items.length; e++) {
+                    if(items[e].restaurant === aggregate[i].name) {
+                        aggregate[i].items.push(items[e]);
+                    }
+                }
+                if(i === aggregate.length - 1) {
+                    join(aggregate);
+                }
+            }
+        }
+        function join(aggregate) {
+            for(var i = 0; i < aggregate.length; i++) {
+                /*
+                for(var e = 0; e < aggregate[i].items.length; e++) {
+                    for(var o = 0; o < aggregate[i].items.length; o++) {
+                        if(self.similarItem(aggregate[i].items[e], aggregate[i].items[o])) {
+                            aggregate[i].items[e] = self.combineItem(aggregate[i].items[e], aggregate[i].items[o]);
+                            aggregate[i].items[o] = null;
+                        }
+                    }
+                }
+                if(i === aggregate.length - 1) {
+                    callback(aggregate);
+                }
+                */
+                loop(0, aggregate[i], function(){});
+            }
+        }
+        function innerLoop(i, aggregate, currentItem, innerCallback) {
+            if(i < aggregate.items.length){
+                function query(cb){
+                    if(self.similarItem(currentItem, aggregate.items[i])) {
+                        currentItem = self.combineItem(currentItem, aggregate.items[i]);
+                        aggregate.items[i] = null;
+                    }
+                    cb();
+                }
+                query(function(){
+                    innerLoop(i+1, aggregate, currentItem, innerCallback);
+                });
+            }
+            else{
+                innerCallback();
+            }
+        }
+        function loop(i, aggregate, finalCallback){
+            if(i < aggregate.items.length){
+                function query(cb){
+                    innerLoop(0, aggregate, aggregate.items[i], function(){
+                        cb();
+                    });
+                }
+                query(function(){
+                    loop(i+1, aggregate, finalCallback);
+                });
+            }
+            else{
+                finalCallback();
+            }
+        }
     }
 }
