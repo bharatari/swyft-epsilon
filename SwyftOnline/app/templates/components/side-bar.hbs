@@ -2,7 +2,7 @@
     <div class="nav-menu-content">
         <button class="btn btn-default btn-lg btn-block btn-sidemenu" {{action 'toggle'}}>CLOSE</button>
         {{#if isAuthenticated}}
-        {{!--<button type="button" class="btn btn-default btn-lg btn-block btn-sidemenu">PROFILE</button>--}}
+        <button type="button" class="btn btn-default btn-lg btn-block btn-sidemenu" {{action 'profile'}}>PROFILE</button>
         <button type="button" class="btn btn-default btn-lg btn-block btn-sidemenu" {{action 'logout'}}>LOGOUT</button>
         {{else}}
         <button type="button" class="btn btn-default btn-lg btn-block btn-sidemenu" {{action 'login'}}>LOGIN</button>

@@ -27,6 +27,7 @@ Router.map(function() {
     this.route("admin-edit-balance", { path:"/admin/balance" });
     this.route("admin-transactions", { path:"/admin/transactions" });
     this.route("admin-global-delivery-note", { path:"/admin/global-delivery-note" });
+    this.route("admin-news", { path:"/admin/news" });
     this.route("admin-close-delivery", { path:"/admin/close-delivery" });
     this.route("terms", { path:"/app/terms" });
     this.route("faq", { path:"/app/faq" });

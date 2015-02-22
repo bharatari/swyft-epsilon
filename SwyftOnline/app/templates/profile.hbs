@@ -1,14 +1,42 @@
-<nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
-        <div class="top-bar"></div>
-        <div class="navbar-header"></div>
+<nav class="navbar navbar-order navbar-default" role="navigation">
+    <div class="header-bar row">
+        <div class="header-info container">
+            <div class="header-item">
+                <i class="icon glyphicon glyphicon-earphone"></i>
+                <span class="header-item-text">646-84-SWYFT</span>
+
+            </div>
+            <div class="header-item">
+                <i class="icon glyphicon glyphicon-envelope"></i>
+                <span class="header-item-text">help@orderswyft.com</span>
+            </div>
+        </div>
+    </div>
+    <div class="navbar-container-order container">
         <a class="navbar-brand" href="/">ORDER<span class="logo-light">SWYFT</span></a>
     </div>
 </nav>
 
+
 <div class="img-background container-fluid">
     <h1 class="background-title">Profile.</h1>
 </div>
+
+{{#modal-dialog-dynamic title=modalTitle displayModal=displayModal}}
+    <ul>
+        {{#each item in processedOrder.items}}
+        <li>
+            <div>
+                <p><strong>{{item.restaurant}}</strong></p>
+                <p>Name: {{item.name}}</p>
+                <p>Item Options: {{item.itemOptions}}</p>
+                <p>Requests: {{item.additionalRequests}}</p>
+                <p>{{render-decimals item.price}}</p>
+            </div>
+        </li>
+        {{/each}}
+    </ul>
+{{/modal-dialog-dynamic}}
 
 <div class="container">
     <ul class="breadcrumb">
@@ -18,7 +46,25 @@
     </ul>
     <form>
         <div class="info-well well">
-
+            <h2 class="name-header">{{user.firstName}} {{user.lastName}}</h2>
+            {{#if pending}}
+            <div class="option-group">
+                <h2 class="small-header">Pending Orders</h2>
+                <div class="list-group">
+                    {{#each order in pending}}
+                    <a class="list-group-item" href="#" {{action 'openModal' order}}><span class="option-text">{{order.displayTime}}</span><span class="badge">{{#if order.actualAmount}}{{render-decimals order.actualAmount}}{{/if}}</span></a>
+                    {{/each}}
+                </div>            
+            </div>
+            {{/if}}
+            <div class="option-group">
+                <h2 class="small-header">Recent Orders</h2>
+                <div class="list-group">
+                    {{#each order in orders}}
+                        <a class="list-group-item" href="#" {{action 'openModal' order}}><span class="option-text">{{order.displayTime}}</span><span class="badge">{{#if order.actualAmount}}{{render-decimals order.actualAmount}}{{/if}}</span></a>
+                    {{/each}}
+                </div>            
+            </div>
         </div>  
     </form>
 </div>

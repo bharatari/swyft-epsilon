@@ -31,11 +31,10 @@ module.exports.policies = {
     "retrieveOrders":['isAdmin', 'userDisabled'],
     "deleteOrder":['isAdmin', 'userDisabled'],
     "pendingOrders":['isAdmin', 'userDisabled'],
-    "recentOrders":['isAdmin', 'userDisabled'],
     "addDeliveryPeriod":['isAdmin', 'userDisabled'],
     "createFulfillment":['isAdmin', 'userDisabled'],
-    "getDeliveryOrders":['isDelivery', 'userDisabled']
-    //"getAggregateOrders":['isAdmin', 'userDisabled'],
+    "getDeliveryOrders":['isDelivery', 'userDisabled'],
+    "getAggregateOrders":[],
   },   
   UserController:{
     "getUser":['isAuthenticated', 'userDisabled'],
@@ -51,8 +50,10 @@ module.exports.policies = {
   },
   DeliveryNoteController:{
     "*":['isDelivery', 'userDisabled']
+  },
+  GlobalController:{
+    "setNews":['isAdmin', 'userDisabled']
   }
-  
   
   /***************************************************************************
   *                                                                          *

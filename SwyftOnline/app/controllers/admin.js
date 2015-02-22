@@ -26,6 +26,9 @@ export default Ember.Controller.extend({
         },
         goToCloseDelivery: function() {
             this.transitionToRoute('admin-close-delivery');
+        },
+        goToNews: function() {
+            this.transitionToRoute('admin-news');
         }
     }
 });

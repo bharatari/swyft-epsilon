@@ -12,36 +12,43 @@ module.exports={
         if(req.user.testUser){
             return res.send(200);
         }
-        MenuItem.find().exec(function(err, items){
-            items = PriceService.processPricing(items);
-            var processedOrder = OrderService.process(items, order);
-            if(processedOrder) {
-                processedOrder.type = "scheduled";
-                if(processedOrder.paymentType === "cash") {
-                    OrderService.submitCash(processedOrder, req.user.id, function(response){
-                        if(response) {
-                            res.ok();
+        OrderService.checkDelivery(order.deliveryId, function(response) {
+            if(response) {
+                MenuItem.find().exec(function(err, items){
+                    items = PriceService.processPricing(items);
+                    var processedOrder = OrderService.process(items, order);
+                    if(processedOrder) {
+                        processedOrder.type = "scheduled";
+                        if(processedOrder.paymentType === "cash") {
+                            OrderService.submitCash(processedOrder, req.user.id, function(response){
+                                if(response) {
+                                    res.ok();
+                                }
+                                else {
+                                    res.serverError();
+                                }
+                            });
                         }
-                        else {
-                            res.serverError();
+                        else if(processedOrder.paymentType === "swyftdebit") {
+                            OrderService.submitSwyftDebit(processedOrder, req.user.id, function(response){
+                                if(response) {
+                                    res.ok();
+                                }
+                                else {
+                                    res.serverError();
+                                }
+                            });
                         }
-                    });
-                }
-                else if(processedOrder.paymentType === "swyftdebit") {
-                    OrderService.submitSwyftDebit(processedOrder, req.user.id, function(response){
-                        if(response) {
-                            res.ok();
-                        }
-                        else {
-                            res.serverError();
-                        }
-                    });
-                }
+                    }
+                    else {
+                        res.serverError();
+                    }
+                });    
             }
             else {
-                res.serverError();
+                return res.badRequest("INVALID_DELIVERY");
             }
-        });    
+        });
     },
    getOrders:function(req,res){
         Order.find().where({deliveryPeriod:req.body.deliveryPeriod, isDeleted:false, hasFulfillment:false}).exec(function(err, items){

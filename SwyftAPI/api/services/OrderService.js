@@ -379,5 +379,15 @@ module.exports = {
                 finalCallback();
             }
         }
+    },
+    checkDelivery: function(deliveryId, cb) {
+        Delivery.findOne({ id: deliveryId }).exec(function(err, delivery) {
+            if(delivery.closed) {
+                cb(false);
+            }
+            else {
+                cb(true);
+            }
+        });
     }
 }

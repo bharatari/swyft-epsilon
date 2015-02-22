@@ -24,6 +24,7 @@ export default Ember.Controller.extend({
         var array = this.get('deliveries');
         for(var i = 0; i < array.length; i++) {
             array[i].displayTime = moment(array[i].deliveryDate).format("dddd, MMMM Do YYYY, h:mm:ss a");
+            array[i].displayCutoff = moment(array[i].orderCutoff).format("hh:mm");
         }
         return array;
     }.property('deliveries'),
