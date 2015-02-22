@@ -1,9 +1,10 @@
 import Ember from "ember";
 import config from 'swyft-online/config/environment';
-import AuthenticatedRouteMixin from 'swyft-online/mixins/authenticated-route';
 import loginUtils from 'swyft-online/utils/login-utils';
+import SidebarRouteMixin from 'swyft-online/mixins/sidebar-route';
+import AuthenticatedRouteMixin from 'swyft-online/mixins/authenticated-route';
 
-export default Ember.Route.extend(AuthenticatedRouteMixin, {
+export default Ember.Route.extend(AuthenticatedRouteMixin, SidebarRouteMixin, {
     beforeModel: function() {
         this._super();
         if(JSON.parse(localStorage.getItem("cart")) == false) {
@@ -19,6 +20,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         })
     },
     setupController: function(controller, model) {
+        this._super();
         controller.set('csrfToken', model.csrfToken);
         controller.set('cart', model.cart);
         controller.set('user', model.user);

@@ -1,9 +1,10 @@
 import Ember from "ember";
 import config from 'swyft-online/config/environment';
-import AuthenticatedRouteMixin from 'swyft-online/mixins/authenticated-route';
 import loginUtils from 'swyft-online/utils/login-utils';
+import SidebarRouteMixin from 'swyft-online/mixins/sidebar-route';
+import AuthenticatedRouteMixin from 'swyft-online/mixins/authenticated-route';
 
-export default Ember.Route.extend(AuthenticatedRouteMixin, {
+export default Ember.Route.extend(AuthenticatedRouteMixin, SidebarRouteMixin, {
     model: function() {
         return Ember.RSVP.hash({
             user: Ember.$.getJSON(config.routeLocation + "/api/user", {
@@ -21,6 +22,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         });
     },
     setupController: function(controller, model) {
+        this._super();
         controller.set('user', model.user);
         controller.set('recentOrders', model.recentOrders);
         controller.set('pendingOrders', model.pendingOrders);

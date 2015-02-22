@@ -11,7 +11,7 @@ export default Ember.Controller.extend({
                 alert(loginUtils.localStorageAlert);
                 return;
             }
-            var data = {username: this.get("username"), password: this.get("password"), _csrf: this.get("model")._csrf};
+            var data = {username: this.get("username"), password: this.get("password")};
             Ember.$.ajax({type:"POST", url: config.routeLocation + "/api/login", headers: { 
                 Accept : "application/json; charset=utf-8",
                 "Content-Type": "application/json; charset=utf-8"
