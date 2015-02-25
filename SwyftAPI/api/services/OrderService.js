@@ -74,21 +74,29 @@ module.exports = {
             order.totalAmount += order.items[f].price;
         }
         if(order.deliveryId) {
-            Delivery.findOne({id:order.deliveryId}).exec(function(err, delivery){
+            Delivery.findOne({ id: order.deliveryId }).exec(function(err, delivery){
                 if(err) {
-                    return false;
+                    return final(false);
                 }
                 else {
                     order.deliveryTime=delivery.deliveryDate;
+                    return final(order);
                 }
             });
         }
         else {
-            return false;
+            return final(false);
         }        
-        order = PriceService.processTax(order);
-        order.actualAmount = order.totalAmount;
-        return order;
+        function final(order) {
+            if(!order) {
+                return false;
+            }
+            else {
+                order = PriceService.processTax(order);
+                order.actualAmount = order.totalAmount;
+                return order;
+            }
+        }
     },
     submitCash: function(order, userId, cb) {
         User.findOne({id: userId}).exec(function(err, user){

@@ -171,7 +171,7 @@ body {
 }
 
 .learn-more {
-    height: 60vh;
+    height: 70vh;
 }
 
 .row-one-text {
@@ -823,6 +823,26 @@ a.list-group-item:hover, a.list-group-item:focus {
     color: darkgray;
 }
 
+.animate {
+    -webkit-transition: opacity 0.3s ease-in;
+    -moz-transition: opacity 0.3s ease-in;
+    -ms-transition: opacity 0.3s ease-in;
+    -o-transition: opacity 0.3s ease-in;
+    transition: opacity 0.3s ease-in;
+}
+
+.fadeOut {
+    opacity: 0;
+}
+
+.fadeIn {
+    opacity: 1;
+}
+
+.invisible {
+    opacity: 0;
+}
+
 @media only screen and (max-width: 768px) {
     .navbar-main {
         margin-top: 10px;
@@ -1003,12 +1023,12 @@ figure h3 {
     margin-bottom: 10px;
 }
 figure span {
-    color: #ff9595;
+    color: #d8d8d8;
     display: block;
     line-height: 1.2;
 }
 #effect-1 figure {
-    background-color: #ed3e49;
+    background-color: #626262;
 }
 #effect-1 figcaption {
     bottom: 0;
@@ -1027,7 +1047,3 @@ figure span {
     -o-transform: translateY(-90px);
     transform: translateY(-90px);
 }
-
-/* Loading Spinner */
-
-#circleG{width:149.33333333333334px;}.circleG{background-color:#FFFFFF;float:left;height:32px;margin-left:17px;width:32px;-moz-animation-name:bounce_circleG;-moz-animation-duration:1.9500000000000001s;-moz-animation-iteration-count:infinite;-moz-animation-direction:linear;-moz-border-radius:21px;-webkit-animation-name:bounce_circleG;-webkit-animation-duration:1.9500000000000001s;-webkit-animation-iteration-count:infinite;-webkit-animation-direction:linear;-webkit-border-radius:21px;-ms-animation-name:bounce_circleG;-ms-animation-duration:1.9500000000000001s;-ms-animation-iteration-count:infinite;-ms-animation-direction:linear;-ms-border-radius:21px;-o-animation-name:bounce_circleG;-o-animation-duration:1.9500000000000001s;-o-animation-iteration-count:infinite;-o-animation-direction:linear;-o-border-radius:21px;animation-name:bounce_circleG;animation-duration:1.9500000000000001s;animation-iteration-count:infinite;animation-direction:linear;border-radius:21px;}#circleG_1{-moz-animation-delay:0.39s;-webkit-animation-delay:0.39s;-ms-animation-delay:0.39s;-o-animation-delay:0.39s;animation-delay:0.39s;}#circleG_2{-moz-animation-delay:0.9099999999999999s;-webkit-animation-delay:0.9099999999999999s;-ms-animation-delay:0.9099999999999999s;-o-animation-delay:0.9099999999999999s;animation-delay:0.9099999999999999s;}#circleG_3{-moz-animation-delay:1.1700000000000001s;-webkit-animation-delay:1.1700000000000001s;-ms-animation-delay:1.1700000000000001s;-o-animation-delay:1.1700000000000001s;animation-delay:1.1700000000000001s;}@-moz-keyframes bounce_circleG{0%{}50%{background-color:#000000}100%{}}@-webkit-keyframes bounce_circleG{0%{}50%{background-color:#000000}100%{}}@-ms-keyframes bounce_circleG{0%{}50%{background-color:#000000}100%{}}@-o-keyframes bounce_circleG{0%{}50%{background-color:#000000}100%{}}@keyframes bounce_circleG{0%{}50%{background-color:#000000}100%{}} - See more at: http://cssload.net/#sthash.mSF4iDkd.dpuf

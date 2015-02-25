@@ -2,8 +2,9 @@ import Ember from "ember";
 import config from 'swyft-online/config/environment';
 import loginUtils from 'swyft-online/utils/login-utils';
 import SessionRouteMixin from 'swyft-online/mixins/session-route';
+import AnimateOutRouteMixin from 'swyft-online/mixins/animate-out-route';
 
-export default Ember.Route.extend(SessionRouteMixin, {
+export default Ember.Route.extend(SessionRouteMixin, AnimateOutRouteMixin, {
     model: function() {
         return Ember.RSVP.hash({
             csrfToken: Ember.$.getJSON(config.routeLocation + "/csrfToken"),

@@ -1,8 +1,8 @@
 {
   "name": "SwyftAPI",
   "private": true,
-  "version": "0.0.0",
-  "description": "a Sails application",
+  "version": "2.5.0",
+  "description": "SwyftAPI is the server-side implementation of Swyft's web infrastructure. It is designed to be used as a client-agnostic server for Swyft data and authentication, though it currently serves as a server for the SwyftOnline project.",
   "keywords": [],
   "dependencies": {
     "async": "^0.9.0",
@@ -41,7 +41,7 @@
     "type": "git",
     "url": "git://github.com/anonymous node/sails user/Swyft.git"
   },
-  "author": "anonymous node/sails user",
+  "author": "Swyft Web Services",
   "license": "",
   "devDependencies": {
     "ember-template-compiler": "^1.9.0-alpha",

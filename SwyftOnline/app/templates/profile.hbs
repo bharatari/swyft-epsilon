@@ -17,26 +17,27 @@
     </div>
 </nav>
 
+{{#modal-dialog-dynamic title=modalTitle displayModal=displayModal}}
+<ul>
+    {{#each item in processedOrder.items}}
+    <li>
+        <div>
+            <p><strong>{{item.restaurant}}</strong></p>
+            <p>Name: {{item.name}}</p>
+            <p>Item Options: {{item.itemOptions}}</p>
+            <p>Requests: {{item.additionalRequests}}</p>
+            <p>{{render-decimals item.price}}</p>
+        </div>
+    </li>
+    {{/each}}
+</ul>
+{{/modal-dialog-dynamic}}
 
+{{#animate-body}}
 <div class="img-background container-fluid">
     <h1 class="background-title">Profile.</h1>
 </div>
 
-{{#modal-dialog-dynamic title=modalTitle displayModal=displayModal}}
-    <ul>
-        {{#each item in processedOrder.items}}
-        <li>
-            <div>
-                <p><strong>{{item.restaurant}}</strong></p>
-                <p>Name: {{item.name}}</p>
-                <p>Item Options: {{item.itemOptions}}</p>
-                <p>Requests: {{item.additionalRequests}}</p>
-                <p>{{render-decimals item.price}}</p>
-            </div>
-        </li>
-        {{/each}}
-    </ul>
-{{/modal-dialog-dynamic}}
 
 <div class="container">
     <ul class="breadcrumb">
@@ -68,3 +69,4 @@
         </div>  
     </form>
 </div>
+{{/animate-body}}
