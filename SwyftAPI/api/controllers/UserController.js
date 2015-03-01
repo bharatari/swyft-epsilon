@@ -70,9 +70,11 @@ module.exports={
                 else if(err) {
                     res.serverError(err);
                 }
+                /*
                 else if(user.verified) {
                     res.badRequest("ALREADY_VERIFIED");
                 }
+                */
                 else {
                     EmailService.sendSignupEmail(user.firstName, user.lastName, user.username, user.token, function(){
                         res.ok();
