@@ -5,16 +5,18 @@ import constants from 'swyft-online/utils/constants-utils';
 
 export default Ember.Controller.extend({ 
     orders: function() {
+        moment.tz.add(constants.timeZones.zones);
         var array = this.get('recentOrders');
         for(var i = 0; i < array.length; i++) {
-            array[i].displayTime = moment(array[i].deliveryTime).format("dddd, MMMM Do YYYY, h:mm:ss a");
+            array[i].displayTime = moment(array[i].deliveryTime).tz("America/New_York").format("dddd, MMMM Do YYYY, h:mm:ss a");
         }
         return array;
     }.property('recentOrders'),
     pending: function() {
+        moment.tz.add(constants.timeZones.zones);
         var array = this.get('pendingOrders');
         for(var i = 0; i < array.length; i++) {
-            array[i].displayTime = moment(array[i].deliveryTime).format("dddd, MMMM Do YYYY, h:mm:ss a");
+            array[i].displayTime = moment(array[i].deliveryTime).tz("America/New_York").format("dddd, MMMM Do YYYY, h:mm:ss a");
         }
         return array;
     }.property('pendingOrders'),

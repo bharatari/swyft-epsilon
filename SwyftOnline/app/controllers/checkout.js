@@ -11,7 +11,7 @@ export default Ember.Controller.extend({
             var totalPrice=0;
             if(cart) {
                 for(var i = 0; i < cart.length; i++) {
-                    totalPrice += cart[i].price;
+                    totalPrice += cart[i].price * cart[i].quantity;
                 }
                 var tax = Math.round((totalPrice*constants.tax)*10)/10;
                 totalPrice=totalPrice+tax;
@@ -21,10 +21,11 @@ export default Ember.Controller.extend({
         }
     }.property('cart'),
     deliveryList: function() {
+        moment.tz.add(constants.timeZones.zones);
         var array = this.get('deliveries');
         for(var i = 0; i < array.length; i++) {
-            array[i].displayTime = moment(array[i].deliveryDate).format("dddd, MMMM Do YYYY, h:mm:ss a");
-            array[i].displayCutoff = moment(array[i].orderCutoff).format("hh:mm");
+            array[i].displayTime = moment(array[i].deliveryDate).tz("America/New_York").format("dddd, MMMM Do YYYY, h:mm:ss a");
+            array[i].displayCutoff = moment(array[i].orderCutoff).tz("America/New_York").format("hh:mm");
         }
         return array;
     }.property('deliveries'),

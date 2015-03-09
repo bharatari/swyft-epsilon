@@ -10,6 +10,10 @@ module.exports={
         unavailable:{
             type:'boolean',
             defaultsTo:true
+        },
+        aggregateStyle:{
+            type:'string',
+            enum:['full', 'simple']
         }
     },
 }

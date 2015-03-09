@@ -29,6 +29,8 @@ Router.map(function() {
     this.route("admin-global-delivery-note", { path:"/admin/global-delivery-note" });
     this.route("admin-news", { path:"/admin/news" });
     this.route("admin-close-delivery", { path:"/admin/close-delivery" });
+    this.route("admin-aggregate", { path:"/admin/aggregate/:delivery_id" });
+    this.route("admin-master", { path:"/admin/master/:delivery_id" });
     this.route("terms", { path:"/app/terms" });
     this.route("faq", { path:"/app/faq" });
     this.route("profile", { path:"/app/profile" });

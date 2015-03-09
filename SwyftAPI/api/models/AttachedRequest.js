@@ -1,0 +1,24 @@
+module.exports={
+    tableName:'attachedRequests',
+    attributes:{
+        name:{
+            type:'string'  
+        },
+        options:{
+            type:'array'
+        },
+        available:{
+            type:'string',
+            enum:['all', 'onTrue', 'onFalse']
+        },
+        watches:{
+            type:'string'
+        },
+        on:{
+            type:'string'
+        },
+        required:{
+            type:'boolean'
+        }
+    }
+}

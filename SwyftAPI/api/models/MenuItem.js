@@ -19,6 +19,9 @@ module.exports={
         extras:{
             type:'array'
         },
+        attachedRequests:{
+            type:'array'
+        },
         unavailable:{
             type:'boolean'
         },

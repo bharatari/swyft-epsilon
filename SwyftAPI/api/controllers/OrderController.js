@@ -80,36 +80,34 @@ module.exports={
         });
     },
     getDeliveryOrders:function(req,res){
-        Delivery.findOne({ adminClosed: false }).exec(function(err, delivery){
-            Order.find({ deliveryId: delivery.id }).exec(function(err, items){
-                /*
-                OrderService.joinOrders(items, function(results) {
+        Delivery.find({ adminClosed: false }).exec(function(err, deliveries){
+            DeliveryService.findLatest(deliveries, function(delivery) {
+                Order.find({ deliveryId: delivery.id }).exec(function(err, items){
+                    /*
+                OrderService.joinOrdersSameUser(items, function(results) {
                     OrderService.iterateJoinUsers(results, function(orders) {
                         res.json(orders);
                     });
                 });
                 */
-                OrderService.iterateJoinUsers(items, function(orders) {
-                    res.json(orders);
+                    OrderService.iterateJoinUsers(items, function(orders) {
+                        res.json(orders);
+                    });
                 });
             });
         });
     },
     getAggregateOrders:function(req,res){
-        Delivery.findOne({ adminClosed: false }).exec(function(err, delivery){
-            Order.find({ deliveryId: delivery.id }).exec(function(err, orders){
-                OrderService.getAllItems(orders, function(aggregate) {
-                    res.json(aggregate);
-                });
+        Order.find({ deliveryId: req.params.delivery_id }).exec(function(err, orders){
+            OrderService.getAllItems(orders, function(aggregate) {
+                res.json(aggregate);
             });
         });
     },
     getMasterList:function(req,res){
-        Delivery.findOne({ adminClosed: false }).exec(function(err, delivery){
-            Order.find({ deliveryId: delivery.id }).exec(function(err, items){
-                OrderService.getAllItems(items, function(aggregate) {
-                    res.json(aggregate);
-                });
+        Order.find({ deliveryId: req.params.delivery_id }).exec(function(err, items){
+            OrderService.getMasterList(items, function(result) {
+                res.json(result);
             });
         });
     }

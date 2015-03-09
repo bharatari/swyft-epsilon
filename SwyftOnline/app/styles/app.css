@@ -843,6 +843,76 @@ a.list-group-item:hover, a.list-group-item:focus {
     opacity: 0;
 }
 
+.header-margin {
+    margin-left: 13px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-family: 'Roboto';
+}
+
+.master-sheet {
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+.master-sheet ul {
+    list-style-type: none;
+}
+
+.aggregate ul {
+    list-style-type: none;
+}
+
+.indent-text {
+    margin-left: 20px;
+}
+
+.quantity-container {
+    float: right;
+    list-style-type: none;
+}
+
+.quantity-container li {
+    float: left;
+}
+
+.mini-button {
+    display: inline;
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: 3px;
+    background-color: white;
+    color: black;
+    font-weight: 400;
+    font-family: 'Roboto';
+    border: 1px solid darkgray;
+    height: 30px;
+    width: 30px;
+    padding: 0px 0px 0px 0px;
+    -webkit-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    -moz-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    -ms-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    -o-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    transition: background-color 0.2s ease-in, color 0.2s ease-out;
+}
+
+.mini-button:hover {
+    background-color: black;
+    color: white;
+}
+
+.quantity-label {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 4px;
+    font-size: 16px;
+}
+
+.no-list {
+    list-style-type: none;
+}
+
 @media only screen and (max-width: 768px) {
     .navbar-main {
         margin-top: 10px;
@@ -898,6 +968,11 @@ a.list-group-item:hover, a.list-group-item:focus {
         margin-bottom: 20px;
     }
     
+    .solid-background {
+        height: 150px;
+        margin-bottom: 20px;
+    }
+
     .background-title {
         margin-top: 50px;
     }

@@ -34,7 +34,7 @@ module.exports.policies = {
     "addDeliveryPeriod":['isAdmin', 'userDisabled'],
     "createFulfillment":['isAdmin', 'userDisabled'],
     "getDeliveryOrders":['isDelivery', 'userDisabled'],
-    "getAggregateOrders":[],
+    "getAggregateOrders":[]
   },   
   UserController:{
     "getUser":['isAuthenticated', 'userDisabled'],

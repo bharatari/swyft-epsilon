@@ -19,44 +19,33 @@
 </nav>
 
 <div class="container">
-    <table class="table table-hover">
+    <table class="table table-hover master-sheet">
         <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Comments</th>
+            <th>Name</th>
+            <th>Items</th>
             <th>Total</th>
             <th>Location</th>
             <th>Phone</th>
             <th>Payment</th>
-            <th>Items</th>
+            <th>Charge</th>
         </tr>
-        {{#each order in deliveryItems}}
+        {{#each masterItem in model.items}}
         <tr>
-            <td>{{order.user.firstName}}</td>
-            <td>{{order.user.lastName}}</td>
-            <td>{{order.userComments}}</td>
-            <td>{{render-decimals order.actualAmount}}</td>
-            <td>{{order.deliveryLocation}}</td>
-            <td>{{order.contactPhone}}</td>
-            <td>{{order.paymentType}}</td>
+            <td>{{masterItem.name}}</td>
             <td>
                 <ul>
-                    {{#each item in order.items}}
+                    {{#each item in masterItem.items}}
                     <li>
-                        <div>
-                            <p><strong>{{item.restaurant}}</strong></p>
-                            <p>Name: {{item.name}}</p>
-                            <p>Item Options: {{item.itemOptions}}</p>
-                            <p>Requests: {{item.additionalRequests}}</p>
-                            {{#if item.quantity}}
-                                <p><strong>Quantity: {{item.quantity}}</strong></p>
-                            {{/if}}
-                            <p>{{render-decimals item.price}}</p>
-                        </div>
+                        <p><strong>{{item.name}}</strong> {{item.itemComments}}</p>
                     </li>
                     {{/each}}
                 </ul>
             </td>
+            <td>{{render-decimals masterItem.total}}</td>
+            <td>{{masterItem.deliveryLocation}}</td>
+            <td>{{masterItem.phoneNumber}}</td>
+            <td>{{masterItem.paymentType}}</td>
+            <td>{{masterItem.charge}}</td>
         </tr>
         {{/each}}
     </table>

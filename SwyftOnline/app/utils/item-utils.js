@@ -7,6 +7,7 @@ export default {
         var cartData = {
             name: data.name,
             id: data.id,
+            quantity: 1,
             restaurant: data.restaurant,
             standardOptions: [],
             additionalRequests: data.additionalRequests

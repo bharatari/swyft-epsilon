@@ -1,0 +1,19 @@
+<li class="cart-item">
+    <h3 class="cart-item-name">{{item.name}}</h3>
+    {{#if item.itemOptions}}
+    <h4 class="cart-item-itemoptions">{{item.itemOptions}}</h4>
+    {{/if}}
+    <h4 class="cart-item-price">{{render-decimals item.price}}</h4>
+    <button class="btn remove-button" {{action 'removeItem' item}}>REMOVE</button>
+    <ul class="quantity-container">
+        <li>
+            <button class="btn mini-button" {{action 'increaseQuantity' item}}>+</button>
+        </li>
+        <li>
+            <p class="quantity-label">{{item.quantity}}</p>
+        </li>
+        <li>
+            <button class="btn mini-button" {{action 'decreaseQuantity' item}}>-</button>
+        </li>
+    </ul>
+</li>

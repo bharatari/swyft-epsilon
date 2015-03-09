@@ -22,6 +22,9 @@ You will need the following things properly installed on your computer.
 * `sails lift`
 * Visit your app at [http://localhost:4200](http://localhost:4200).`
 
+### Notes
+The `/** HARDCODE **/` flag is used to label a function that does not work in a modular or data-agnostic fashion. 
+  
 ### Deploying
 
 SwyftAPI and SwyftOnline, the server-side and client-side implementations of Swyft's web infrastructure, respectively, are developed separately in order to promote modularity and stability. 

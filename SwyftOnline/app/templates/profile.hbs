@@ -18,7 +18,7 @@
 </nav>
 
 {{#modal-dialog-dynamic title=modalTitle displayModal=displayModal}}
-<ul>
+<ul class="no-list">
     {{#each item in processedOrder.items}}
     <li>
         <div>
@@ -26,6 +26,9 @@
             <p>Name: {{item.name}}</p>
             <p>Item Options: {{item.itemOptions}}</p>
             <p>Requests: {{item.additionalRequests}}</p>
+            {{#if item.quantity}}
+                <p>Quantity: {{item.quantity}}</p>
+            {{/if}}
             <p>{{render-decimals item.price}}</p>
         </div>
     </li>
@@ -48,6 +51,7 @@
     <form>
         <div class="info-well well">
             <h2 class="name-header">{{user.firstName}} {{user.lastName}}</h2>
+            <h4>Balance: {{render-decimals-simple user.balance}}</h4>
             {{#if pending}}
             <div class="option-group">
                 <h2 class="small-header">Pending Orders</h2>

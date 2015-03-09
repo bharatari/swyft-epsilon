@@ -73,7 +73,10 @@ module.exports.routes = {
   'delete /api/order':'OrderController.deleteOrder',
   'get /api/orders/pending':'OrderController.pendingOrders',
   'get /api/orders/recent':'OrderController.recentOrders',
-  'get /api/orders/aggregate':'OrderController.getAggregateOrders',
+    
+  //Order Management Routes
+  'get /api/orders/aggregate/:delivery_id':'OrderController.getAggregateOrders',
+  'get /api/orders/master/:delivery_id':'OrderController.getMasterList',
 
   //Delivery Routes
   'get /api/deliveries':'DeliveryController.getOpenDeliveries',

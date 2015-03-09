@@ -47,7 +47,7 @@
                 <h2>{{optionGroup.name}} <span class="required-header">Required</span></h2>
                 <div class="list-group">
                     {{#each option in optionGroup.options}}
-                    <!--Using label instead of anchor to increase target space-->
+                    <!--Use label instead of anchor to increase target space-->
                     <a class="list-group-item">{{radio-button name=optionGroup.value class="option" value=option}}<span class="option-text">{{option.name}}</span><span class="badge">{{#if option.price}}{{render-decimals option.price}}{{/if}}</span></a>
                     {{/each}}
                 </div>            

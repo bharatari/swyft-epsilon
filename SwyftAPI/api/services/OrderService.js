@@ -1,4 +1,5 @@
 var async = require('async');
+var _ = require('lodash');
 
 module.exports = {
     process: function(menuItems, order) {
@@ -71,7 +72,7 @@ module.exports = {
         }
         order.totalAmount = 0;
         for (var f = 0; f < order.items.length; f++) {
-            order.totalAmount += order.items[f].price;
+            order.totalAmount += order.items[f].price * order.items[f].quantity;
         }
         if(order.deliveryId) {
             Delivery.findOne({ id: order.deliveryId }).exec(function(err, delivery){
@@ -208,7 +209,7 @@ module.exports = {
         }
         loop(0);
     },
-    joinOrders: function(items, callback) {
+    joinOrdersSameUser: function(items, callback) {
         function process(final) {
             async.each(items, function(item, cb) {
                 /*
@@ -248,7 +249,10 @@ module.exports = {
         if(!item1 || !item2) {
             return false;
         }
-        else if((item1.id === item2.id) && (item1.standardOptions === item2.standardOptions) && (item1.options === item2.options) && (item1.extras === item2.extras)) {
+        else if(item1 === item2) {
+            return false;
+        }
+        else if((item1.id === item2.id) && _.isEqual(item1.standardOptions, item2.standardOptions) && _.isEqual(item1.options, item2.options) && _.isEqual(item1.extras, item2.extras)) {
             return true;
         }
         else {
@@ -262,130 +266,134 @@ module.exports = {
         else {
             item1.quantity++;
         }
-        item1.additionalRequests = "[ " + item1.additionalRequests + " ], " + "[ " + item2.additionalRequests + " ], ";
+        if(item1.additionalRequests && item2.additionalRequests) {
+            item1.additionalRequests = "[ " + item1.additionalRequests + " ], " + "[ " + item2.additionalRequests + " ], ";
+        }
+        else if(item1.additionalRequests) {
+            item1.additionalRequests = "[ " + item1.additionalRequests + " ]";
+        }
+        else if(item2.additionalRequests) {
+            item1.additionalRequests = "[ " + item2.additionalRequests + " ]";
+        }
         return item1;
     },
-    getAllItems: function(orders, callback) {
+    getOrderItems: function(data, cb) {
+        var items = [];
+        OrderService.iterateJoinUsers(data, function(orders) {
+            for(var i = 0; i < orders.length; i++) {
+                for(var e = 0; e < orders[i].items.length; e++) {
+                    if(!orders[i].items[e].quantity) {
+                        orders[i].items[e].quantity = 1;
+                    }
+                    orders[i].items[e].customerName = orders[i].user.firstName + " " + orders[i].user.lastName;
+                    items.push(orders[i].items[e]);
+                }
+            }
+            cb(items);
+        });  
+    },
+    getAllItems: function(orders, cb) {
         var self = this;
-        Restaurant.find({ unavailable: false}).exec(function(err, restaurants) {
+        var aggregate = [];
+        var items = [];
+        Restaurant.find({ unavailable: false }).exec(function(err, restaurants) {
             if(err | !restaurants) {
                 return res.badRequest();
             }
             else {
-                var aggregate = [];
-                for(var i = 0; i < restaurants.length; i++) {
-                    aggregate.push({ name: restaurants[i].name, items: []});
-                    if(i === restaurants.length - 1) {
-                        process(aggregate);
+                async.each(restaurants, function(restaurant, callback) {
+                    var fullRender;
+                    if(restaurant.aggregateStyle === "full") {
+                        fullRender = true;
                     }
-                }
-            }
-        });
-        function process(aggregate) {
-            var items = [];
-            /*
-            function innerLoop(i, order, callback) {
-                if(i < order.items.length){
-                    function query(cb){
-                        items.push(order.items[i]);
-                        cb();
+                    else {
+                        fullRender = false;
                     }
-                    query(function(){
-                        innerLoop(i+1, order, callback);
-                    });
-                }
-                else{
+                    aggregate.push({ name: restaurant.name, fullRender: fullRender, items: []});
                     callback();
-                }
-            }
-            
-            function loop(i){
-                if(i < orders.length){
-                    function query(cb){
-                        innerLoop(0, orders[i], function(){
-                            cb();
+                }, function(err) {
+                    if(err) {
+                        return false;
+                    }
+                    else {
+                        OrderService.getOrderItems(orders, function(result) {
+                            items = result;
+                            sort();
                         });
                     }
-                    query(function(){
-                        loop(i+1);
-                    });
-                }
-                else{
-                    sort(aggregate, items);
-                }
+                });
             }
-            loop(0);
-            */
-            for(var i = 0; i < orders.length; i++) {
-                for(var e = 0; e < orders[i].items.length; e++) {
-                    items.push(orders[i].items[e]);
-                }
-                if(i === orders.length - 1) {
-                    sort(aggregate, items);
-                }
-            }
-        }
-        function sort(aggregate, items) {
-            for(var i = 0; i < aggregate.length; i++) {
-                for(var e = 0; e < items.length; e++) {
-                    if(items[e].restaurant === aggregate[i].name) {
-                        aggregate[i].items.push(items[e]);
+        });
+        function sort() {
+            async.each(aggregate, function(aggregateItem, callback) {
+                async.each(items, function(item, callback2) {
+                    if(item.restaurant === aggregateItem.name) {
+                        aggregateItem.items.push(item);
                     }
-                }
-                if(i === aggregate.length - 1) {
-                    join(aggregate);
-                }
-            }
+                    callback2();
+                }, function(err) { 
+                    callback();
+                });
+            }, function(err) {
+                join();
+            });
         }
-        function join(aggregate) {
-            for(var i = 0; i < aggregate.length; i++) {
-                /*
-                for(var e = 0; e < aggregate[i].items.length; e++) {
-                    for(var o = 0; o < aggregate[i].items.length; o++) {
-                        if(self.similarItem(aggregate[i].items[e], aggregate[i].items[o])) {
-                            aggregate[i].items[e] = self.combineItem(aggregate[i].items[e], aggregate[i].items[o]);
-                            aggregate[i].items[o] = null;
+        function join() {
+            async.each(aggregate, function(aggregateItem, callback) {
+                async.each(aggregateItem.items, function(item1, callback1) {
+                    async.each(aggregateItem.items, function(item2, callback2) {
+                        if(self.similarItem(item1, item2) && !aggregateItem.fullRender) {
+                            item1 = self.combineItem(item1, item2);
+                            aggregateItem.items.splice(aggregateItem.items.indexOf(item2), 1);
                         }
-                    }
-                }
-                if(i === aggregate.length - 1) {
-                    callback(aggregate);
-                }
-                */
-                loop(0, aggregate[i], function(){});
-            }
-        }
-        function innerLoop(i, aggregate, currentItem, innerCallback) {
-            if(i < aggregate.items.length){
-                function query(cb){
-                    if(self.similarItem(currentItem, aggregate.items[i])) {
-                        currentItem = self.combineItem(currentItem, aggregate.items[i]);
-                        aggregate.items[i] = null;
-                    }
-                    cb();
-                }
-                query(function(){
-                    innerLoop(i+1, aggregate, currentItem, innerCallback);
-                });
-            }
-            else{
-                innerCallback();
-            }
-        }
-        function loop(i, aggregate, finalCallback){
-            if(i < aggregate.items.length){
-                function query(cb){
-                    innerLoop(0, aggregate, aggregate.items[i], function(){
-                        cb();
+                        callback2();
+                    }, function(err) {
+                        callback1();
                     });
-                }
-                query(function(){
-                    loop(i+1, aggregate, finalCallback);
+                }, function(err) {
+                    callback();
                 });
-            }
-            else{
-                finalCallback();
-            }
+            }, function(err) {
+                async.each(aggregate, function(aggregateItem, callback) {
+                    MenuItemService.processItemCommentsFull(aggregateItem, function(result) {
+                        aggregateItem = result;
+                        callback();
+                    });
+                }, function(err) {
+                    cb(aggregate);
+                });                
+            });            
+        }
+    },
+    getMasterList: function(orders, cb) {
+        var self = this;
+        var masterList = {
+            items: [],
+            deliveryTotal: 0,
+            deliveryDate: orders[0].deliveryTime
+        };
+        self.iterateJoinUsers(orders, function(result) {
+            orders = result;
+            async.each(orders, function(order, callback) {
+                masterList.deliveryTotal += order.actualAmount;
+                var item = new ModelService.MasterListItem(order.user.firstName, order.user.lastName, order.items, order.deliveryLocation, order.actualAmount, order.contactPhone, order.paymentType, false);
+                processItems(item, function(result) {
+                    masterList.items.push(result);
+                    callback();
+                });
+            }, function(err) {
+                cb(masterList);
+            });
+        });
+        function processItems(masterListItem, final) {
+            async.each(masterListItem.items, function(item, callback) {
+                MenuItemService.processItemComments(item, function(result) {
+                    item = result;
+                    callback();
+                });
+            }, function(err) {
+                final(masterListItem);
+            });
         }
     },
     checkDelivery: function(deliveryId, cb) {

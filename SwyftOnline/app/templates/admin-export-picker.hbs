@@ -26,9 +26,18 @@
     </ul>
     <div class="list-group">
         {{#each delivery in deliveryList}}
-            <button class="grid-restaurant list-group-item" {{action 'goToExport' delivery.id}}>
-                <p class="click-through justify-left">{{delivery.displayTime}}</p>
-            </button>
+            <div class="row">
+                <h3 class="header-margin">{{delivery.displayTime}}</h2>
+                <button class="grid-restaurant list-group-item" {{action 'goToExport' delivery.id}}>
+                    <p class="click-through justify-left">Export</p>
+                </button>
+                <button class="grid-restaurant list-group-item" {{action 'goToAggregate' delivery.id}}>
+                    <p class="click-through justify-left">Aggregate</p>
+                </button>
+                <button class="grid-restaurant list-group-item" {{action 'goToMaster' delivery.id}}>
+                    <p class="click-through justify-left">Master</p>
+                </button>
+            </div>
         {{else}}
             <h1>Nope. Nothing to see here.</h1>
             <h5>There are no deliveries to show.</h5>

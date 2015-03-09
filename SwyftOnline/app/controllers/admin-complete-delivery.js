@@ -1,12 +1,14 @@
 import Ember from "ember";
 import loginUtils from 'swyft-online/utils/login-utils';
 import config from 'swyft-online/config/environment';
+import constants from 'swyft-online/utils/constants-utils';
 
 export default Ember.Controller.extend({
     deliveryList: function() {
+        moment.tz.add(constants.timeZones.zones);
         var array = this.get('deliveries');
         for(var i = 0; i < array.length; i++) {
-            array[i].displayTime = moment(array[i].deliveryDate).format("dddd, MMMM Do YYYY, h:mm:ss a");
+            array[i].displayTime = moment(array[i].deliveryDate).tz("America/New_York").format("dddd, MMMM Do YYYY, h:mm:ss a");
         }
         return array;
     }.property('deliveries'),
