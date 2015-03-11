@@ -6,7 +6,7 @@ export default Ember.Mixin.create({
     beforeModel: function() {
         var self = this;
         return loginUtils.isDelivery().then(function(value){ }, function(reason){
-            self.transitionTo('admin-unauthorized');
+            self.transitionTo('login');
         });
     }
 });

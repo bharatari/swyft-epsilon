@@ -45,6 +45,11 @@ Lastly, using any text editor with a Find and Replace function, you must replace
 
 Following these steps, use the SwyftAPI deployment guide to deploy the project.
 
+A Grunt task is available that automatically runs the above steps:
+
+* `ember build --environment production`
+* `grunt default` in the root Swyft directory
+
 ## Further Reading / Useful Links
 
 * [ember.js](http://emberjs.com/)
