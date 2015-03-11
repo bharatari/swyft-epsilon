@@ -1,7 +1,15 @@
 module.exports = {
+    deleteSensitiveSingle: function(item) {
+        if(item.adminComments) {
+            delete item.adminComments;
+        }
+        return item;
+    },
     deleteSensitive: function(items) {
         for(var i = 0; i < items.length; i++) {
-            delete items[i].adminComments;
+            if(items[i].adminComments) {
+                delete items[i].adminComments;;
+            }
         }
         return items;
     },

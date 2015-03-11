@@ -72,6 +72,12 @@
             </div>
             {{/if}}
             
+            {{#if item.attachedRequests}}
+                {{#each request in item.attachedRequests}}
+                    {{attached-request request=request item=item}}
+                {{/each}}
+            {{/if}}
+            
             {{input class="form-control" value=item.additionalRequests type="text" placeholder="Additional Requests"}}
             
             {{#if item.note}}

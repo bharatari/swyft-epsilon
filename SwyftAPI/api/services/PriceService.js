@@ -1,6 +1,11 @@
 module.exports = {
     productMarkup: 1.2,
     tax: 1.09,
+    processPricingSingle: function(item) {
+        item.baseprice = item.baseprice * this.productMarkup;
+        item.baseprice = Math.round(10 * item.baseprice)/10;
+        return item;
+    },
     processPricing: function(items) {
         for(var i = 0; i < items.length; i++){
             items[i].baseprice = items[i].baseprice*this.productMarkup;

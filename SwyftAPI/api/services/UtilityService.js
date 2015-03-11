@@ -28,5 +28,8 @@ module.exports = {
             if (myArray[i] === searchTerm) return i;
         }
         return -1;
+    },
+    splitCSV: function(csv) {
+        return csv.split(", ");
     }
 }

@@ -25,26 +25,31 @@ export default Ember.Controller.extend({
         if(!order) {
             return null;
         }
-        for(var e = 0; e < order.items.length; e++){
+        for(var e = 0; e < order.items.length; e++) {
             var options="";
             for (var property in order.items[e].options) {
                 if (order.items[e].options.hasOwnProperty(property)) {
-                    options += order.items[e].options[property].name +", ";
+                    options += order.items[e].options[property].name + ", ";
                 }
             }
             if(order.items[e].standardOptions) {
                 for(var z = 0; z < order.items[e].standardOptions.length; z++){
                     if(order.items[e].standardOptions[z].isSelected){
-                        options += order.items[e].standardOptions[z].name +", ";
+                        options += order.items[e].standardOptions[z].name + ", ";
                     }
                 }
             }
             if(order.items[e].extras) {
                 for(var property in order.items[e].extras){
                     if(order.items[e].extras.hasOwnProperty(property)){
-                        options += order.items[e].extras[property].name +", ";
+                        options += order.items[e].extras[property].name + ", ";
                     }
                 }
+            }
+            if(order.items[e].attachedRequests) {
+                for(var e = 0; e <  order.items[e].attachedRequests.length; e++) {
+                    options += order.items[e].attachedRequests.name + ", ";
+                }                   
             }
             options=options.substring(0, options.length-2);
             order.items[e].itemOptions=options;

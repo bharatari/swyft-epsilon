@@ -4,12 +4,15 @@ module.exports={
         name:{
             type:'string'  
         },
+        label:{
+            type:'string'
+        },
         options:{
             type:'array'
         },
         available:{
             type:'string',
-            enum:['all', 'onTrue', 'onFalse']
+            enum:['onTrue', 'onFalse']
         },
         watches:{
             type:'string'

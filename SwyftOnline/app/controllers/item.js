@@ -7,13 +7,13 @@ import SidebarRouteMixin from 'swyft-online/mixins/sidebar-route';
 import StandardActionsMixin from 'swyft-online/mixins/standard-actions';
 
 export default Ember.Controller.extend(StandardActionsMixin, SidebarRouteMixin, {
-    item: function(){
-        return itemUtils.processItemView(this.get('model')[0]);
+    item: function() {
+        return itemUtils.processItemView(this.get('model'));
     }.property('model'),
     actions: {
         addToCart: function() {
             var self = this;
-            if(itemUtils.validate(this.get('item'))){
+            if(itemUtils.validate(this.get('item'))) {
                 var cartData = itemUtils.processItem(this.get('item'));
                 try {
                     if(localStorage.getItem("cart")) {
@@ -33,7 +33,7 @@ export default Ember.Controller.extend(StandardActionsMixin, SidebarRouteMixin, 
                 }
                 this.transitionToRoute('restaurants');
             }
-            else{
+            else {
                 self.set('modalTitle', 'Woah there, not so fast.');
                 self.set('modalBody', "You've left some required fields blank.");
                 self.set('displayModal', true);

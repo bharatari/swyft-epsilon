@@ -4,6 +4,7 @@ export default {
     processItem: function(data) {
         var options = [];
         var extras = [];
+        var attachedRequests = [];
         var cartData = {
             name: data.name,
             id: data.id,
@@ -13,29 +14,35 @@ export default {
             additionalRequests: data.additionalRequests
         }
 
-        if(data.itemOptions){
-            for(var i = 0; i < data.itemOptions.length; i++){
+        if(data.itemOptions) {
+            for(var i = 0; i < data.itemOptions.length; i++) {
                 options.push(data.itemOptions[i].value);
             }
         }
 
-        if(data.extras){
-            for(var i = 0; i < data.extras.length; i++){
+        if(data.extras) {
+            for(var i = 0; i < data.extras.length; i++) {
                 if(data.extras[i].isSelected === true) {
                     extras.push(data.extras[i]);
                 }
             }
         }
 
-        if(data.standardOptions){
-            for(var i = 0; i < data.standardOptions.length; i++){
-                if(data.standardOptions[i].isSelected === true){
+        if(data.standardOptions) {
+            for(var i = 0; i < data.standardOptions.length; i++) {
+                if(data.standardOptions[i].isSelected === true) {
                     cartData.standardOptions.push(data.standardOptions[i]);
                 }
             }
         }
+        
+        if(data.attachedRequests) {
+            attachedRequests = this.processAttachedProperty(data);
+        }
+        
         cartData.options = options;
         cartData.extras = extras;
+        cartData.attachedRequests = attachedRequests;
 
         cartData.price = data.baseprice;
         for (var property in cartData.options) {
@@ -129,7 +136,9 @@ export default {
                     return false;
                 }
             }
-            return true;
+        }
+        if(this.verifyAttachedProperty(data) === false) {
+            return false;
         }
         else {
             return true;
@@ -157,5 +166,76 @@ export default {
             }
         }
         return categories;
+    },
+    checkAttachedProperty: function(attachedRequest, item) {
+        for(var e = 0; e < item.itemOptions.length; e++) {
+            if(item.itemOptions[e].name === attachedRequest.watches) {
+                if(attachedRequest.available === "onTrue") {
+                    if(item.itemOptions[e].value.name === attachedRequest.on) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                }
+                else if(attachedRequest.available === "onFalse") {
+                    if(item.itemOptions[e].value.name !== attachedRequest.on) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                }
+            }
+        }
+    },
+    verifyAttachedProperty: function(item) {
+        if(item.attachedRequests) {
+            for(var i = 0; i < item.attachedRequests.length; i++) {
+                for(var e = 0; e < item.itemOptions.length; e++) {
+                    if(item.itemOptions[e].name === item.attachedRequests[i].watches) {
+                        if(item.attachedRequests[i].available === "onTrue") {
+                            if(item.itemOptions[e].value.name === item.attachedRequests[i].on) {
+                                if(!item.attachedRequests[i].value || item.attachedRequests[i].value === "") {
+                                    return false;
+                                }
+                            }
+                        }
+                        else if(item.attachedRequests[i].available === "onFalse") {
+                            if(item.itemOptions[e].value.name !== item.attachedRequests[i].on) {
+                                if(!item.attachedRequests[i].value || item.attachedRequests[i].value === "") {
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        else {
+            return true;
+        }
+    },
+    processAttachedProperty: function(item) {
+        var attachedRequests = [];
+        if(item.attachedRequests) {
+            for(var i = 0; i < item.attachedRequests.length; i++) {
+                for(var e = 0; e < item.itemOptions.length; e++) {
+                    if(item.itemOptions[e].name === item.attachedRequests[i].watches) {
+                        if(item.attachedRequests[i].available === "onTrue") {
+                            if(item.itemOptions[e].value.name === item.attachedRequests[i].on) {
+                                attachedRequests.push(item.attachedRequests[i].value);
+                            }
+                        }
+                        else if(item.attachedRequests[i].available === "onFalse") {
+                            if(item.itemOptions[e].value.name !== item.attachedRequests[i].on) {
+                                attachedRequests.push(item.attachedRequests[i].value);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return attachedRequests;
     }
 }

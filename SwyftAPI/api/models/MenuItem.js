@@ -20,7 +20,7 @@ module.exports={
             type:'array'
         },
         attachedRequests:{
-            type:'array'
+            type:'string'
         },
         unavailable:{
             type:'boolean'

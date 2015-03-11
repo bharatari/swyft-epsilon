@@ -3,6 +3,9 @@
     {{#if item.itemOptions}}
     <h4 class="cart-item-itemoptions">{{item.itemOptions}}</h4>
     {{/if}}
+    {{#if item.additionalRequests}}
+    <h4 class="cart-item-itemoptions">{{item.additionalRequests}}</h4>
+    {{/if}}
     <h4 class="cart-item-price">{{render-decimals item.price}}</h4>
     <button class="btn remove-button" {{action 'removeItem' item}}>REMOVE</button>
     <ul class="quantity-container">

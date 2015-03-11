@@ -72,6 +72,9 @@ module.exports = {
         }
         order.totalAmount = 0;
         for (var f = 0; f < order.items.length; f++) {
+            if(!order.items[f].quantity) {
+                order.items[f].quantity = 1;
+            }
             order.totalAmount += order.items[f].price * order.items[f].quantity;
         }
         if(order.deliveryId) {
@@ -252,7 +255,7 @@ module.exports = {
         else if(item1 === item2) {
             return false;
         }
-        else if((item1.id === item2.id) && _.isEqual(item1.standardOptions, item2.standardOptions) && _.isEqual(item1.options, item2.options) && _.isEqual(item1.extras, item2.extras)) {
+        else if((item1.id === item2.id) && _.isEqual(item1.standardOptions, item2.standardOptions) && _.isEqual(item1.options, item2.options) && _.isEqual(item1.extras, item2.extras) && _.isEqual(item1.attachedRequests, item2.attachedRequests)) {
             return true;
         }
         else {
