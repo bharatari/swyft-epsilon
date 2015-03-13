@@ -47,61 +47,67 @@
     </div>
 </div>
 
-<div class="container">
-    <div class="row row-two">
-        <div class="col-xs-12 col-md-4">
-            <h4 class="section-header">NEWS</h4>
-            <h2 class="news-text">{{news}}</p>
-        </div>
-        <div class="col-xs-12 col-md-4">
-            <h4 class="section-header">WHEN CAN I ORDER?</h4>
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Day</th>
-                        <th>Order Cutoff</th>
-                        <th>Delivery Time</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Wednesday</td>
-                        <td>6:15 pm</td>
-                        <td>7:30 pm</td>
-                    </tr>
-                    <tr>
-                        <td>Saturday</td>
-                        <td>7:15 pm</td>
-                        <td>8:30 pm</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="col-xs-12 col-md-4">
-            <h4 class="section-header">QUICK LINKS</h4>
-            {{#unless isAuthenticated}}
-            <button class="btn-quick-link" {{action 'login'}}>LOGIN</button>
-            {{/unless}}
-            <button class="btn-quick-link" {{action 'faq'}}>FAQ</button>
-            {{!--
-            <button class="btn-quick-link" {{action 'learnMore'}}>LEARN MORE</button>    
-            <h4 class="section-header">JOIN US</h4>
-            <p>We're a talented team always looking for students that can take our business to the next level. Please contact us on our Facebook page for open positions. We look forward to hearing from you.</p>
-            --}}
+<div class="container-two">
+    <div class="container">
+        <div class="row row-two">
+            <div class="col-xs-12 col-md-4">
+                <h4 class="section-header">News.</h4>
+                <h2 class="news-text">{{news}}</p>
+            </div>
+            <div class="col-xs-12 col-md-4">
+                <h4 class="section-header">When Can I Order?</h4>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Day</th>
+                            <th>Order Cutoff</th>
+                            <th>Delivery Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Wednesday</td>
+                            <td>6:15 pm</td>
+                            <td>7:30 pm</td>
+                        </tr>
+                        <tr>
+                            <td>Saturday</td>
+                            <td>7:15 pm</td>
+                            <td>8:30 pm</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-xs-12 col-md-4">
+                <h4 class="section-header">Quick Links.</h4>
+                {{#unless isAuthenticated}}
+                <button class="btn-quick-link" {{action 'login'}}>LOGIN</button>
+                {{/unless}}
+                <button class="btn-quick-link" {{action 'faq'}}>FAQ</button>
+                {{!--
+                <button class="btn-quick-link" {{action 'learnMore'}}>LEARN MORE</button>    
+                <h4 class="section-header">JOIN US</h4>
+                <p>We're a talented team always looking for students that can take our business to the next level. Please contact us on our Facebook page for open positions. We look forward to hearing from you.</p>
+                --}}
+            </div>
         </div>
     </div>
 </div>
 
-{{!--
+<div class="image-scroller"></div>
+
 <div class="row row-three">
     <div class="container">
-        <h3 class="section-header-three">JOIN US</h3>
+        <h1 class="row-four-text">This is your opportunity to <span class="highlight">dream big.</span></h1>
+        <h2 class="row-three-text">JOIN US. WE PROVIDE STUDENTS A REAL-WORLD ENVIRONMENT TO REALIZE THEIR PASSIONS.</h2>
     </div>
 </div>
---}}
 
-<div class="container swyft-footer">
-    <p class="footer-item">DESIGNED BY BHARAT ARIMILLI</p>
-    <a class="footer-item" {{action 'terms'}}>TERMS & CONDITIONS</a>
+<div class="swyft-footer-container">
+    <div class="container swyft-footer">
+        <p class="footer-item">DESIGNED BY BHARAT ARIMILLI</p>
+        <a class="footer-item" {{action 'terms'}}>TERMS & CONDITIONS</a>
+    </div>
 </div>
+
 {{/animate-body}}

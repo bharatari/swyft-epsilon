@@ -21,7 +21,6 @@ export default Ember.Controller.extend({
         }
     }.property('cart'),
     deliveryList: function() {
-        moment.tz.add(constants.timeZones.zones);
         var array = this.get('deliveries');
         for(var i = 0; i < array.length; i++) {
             array[i].displayTime = moment(array[i].deliveryDate).tz("America/New_York").format("dddd, MMMM Do YYYY, h:mm:ss a");

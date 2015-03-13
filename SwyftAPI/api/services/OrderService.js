@@ -1,5 +1,6 @@
 var async = require('async');
 var _ = require('lodash');
+var Q = require('q');
 
 module.exports = {
     process: function(menuItems, order) {
@@ -15,7 +16,7 @@ module.exports = {
         for(var i = 0; i < order.items.length; i++){
             for(var e = 0; e < menuItems.length; e++){
                 if(menuItems[e].id==order.items[i].id){
-                    menuItem=menuItems[e];
+                    menuItem = menuItems[e];
                 }
             }
             order.items[i].price=menuItem.baseprice;
@@ -58,17 +59,25 @@ module.exports = {
                     order.items[i].price += order.items[i].extras[e].price;
                 }
             }
-            /*
             if(order.items[i].standardOptions){
-                var array=[];
-                for(var y = 0; y < order.items[i].standardOptions.length; y++){
-                    if(order.items[i].standardOptions[y].isSelected===true){
-                        array.push(order.items[i].standardOptions[y]);
+                var options;
+                async.each(menuItem.itemOptions, function(option, callback) {
+                    if(option.name === "Options") {
+                        options = option.split(", ");
                     }
+                    callback();
+                }, function(err) {
+                    processOptions();
+                });
+                function processOptions() {
+                    async.each(order.items[i].standardOptions, function(option, callback) {
+                        if(!_.contains(options, option.name)) {
+                           return false;
+                        }
+                        callback();
+                    }, function(err) { });
                 }
-                order.items[i].standardOptions=array;
             }
-            */
         }
         order.totalAmount = 0;
         for (var f = 0; f < order.items.length; f++) {

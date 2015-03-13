@@ -49,6 +49,7 @@ A Grunt task is available that automatically runs the above steps:
 
 * `ember build --environment production`
 * `grunt default` in the root Swyft directory
+* Follow SwyftAPI deployment guide
 
 ## Further Reading / Useful Links
 

@@ -165,7 +165,7 @@ body {
     color:black !important;
     height: 70vh;
     margin-top: -20px;
-    background-image: url('/images/BuildingEdit.png');
+    /*background-image: url('/images/BuildingEdit.png');*/
     background-position: center;
     background-size: cover;
 }
@@ -329,18 +329,26 @@ body {
 }
 
 .row-two {
-    margin-bottom: 20px;
+    margin-top: 100px;
+    margin-bottom: 150px;
+    background-color: white;
+}
+
+.container-two {
+    background-color: white;
+    margin-top: -20px;
 }
 
 .row-small {
-    background-color: #d4d4d4;
-    height: 14vh;
+    background-color: #4272A9;
+    height: auto;
     margin-bottom: 20px;
 }
 
 .row-quote {
     margin-top: 5.5vh;
-    color: #495f72;
+    margin-bottom: 5.5vh;
+    color: white;
     text-align: center;
     font-family: 'Open Sans';
     font-size: 20px;
@@ -397,9 +405,7 @@ body {
 }
 
 .img-background {
-    background-image: url('/images/Lake.jpg');
-    background-position-x: 0%;
-    background-position-y: 58%;    
+    background-image: url('/images/SkyEdit.png');
     background-size: cover;
     height:230px;
     margin-bottom: 50px;
@@ -414,7 +420,7 @@ body {
 }
 
 .background-title {
-    color:white;
+    color: white;
     text-align: center;
     margin-top: 90px;
 }
@@ -608,9 +614,10 @@ a.list-group-item:hover, a.list-group-item:focus {
 }
 
 .section-header {
-    font-weight: 600;
+    font-weight: 300;
     color:#727272;
-    font-size:14px;
+    font-size: 24px;
+    font-family: 'Roboto';
 }
 
 .centered-text {
@@ -628,10 +635,13 @@ a.list-group-item:hover, a.list-group-item:focus {
     font-size:16px;
 }
 
-.swyft-footer {
-    margin-bottom: 7px;
-    margin-top: 30px;
+.swyft-footer-container {
+    background-color: white;
+    padding-top: 30px;
+    padding-bottom: 7px;
 }
+
+.swyft-footer { }
 
 .right {
     float: right;
@@ -642,6 +652,7 @@ a.list-group-item:hover, a.list-group-item:focus {
     font-size: 12px;
     color: black;
     margin-left: 15px;
+    font-family: 'Roboto';
 }
 
 .footer-item:hover {
@@ -793,14 +804,23 @@ a.list-group-item:hover, a.list-group-item:focus {
 }
 
 .row-three {
-    background-color: #333;
-    height: 300px;
+    background-color: #434343;
+}
+
+.row-three-text {
+    text-align: center;
+    font-family: 'Open Sans';
+    font-weight: 100;
+    color: white;
+    font-size: 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 .section-header-three {
     text-align: center;
     font-family: 'Open Sans';
-    font-weight: 600;
+    font-weight: 100;
     color: white;
 }
 
@@ -913,6 +933,33 @@ a.list-group-item:hover, a.list-group-item:focus {
     list-style-type: none;
 }
 
+.image-scroller {
+    position: fixed; 
+    right: 0; 
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+    width: auto; 
+    height: auto; 
+    z-index: -100;
+    background-size: cover;
+    background-image: url('/images/BuildingEdit.png');
+    background-position: center;'
+    opacity: inherit;
+}
+
+.row-four-text {
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+    text-align: center;
+    color: white;
+    font-family: 'Roboto';
+}
+
+.highlight {
+    color: rgba(39, 128, 227, 1);
+}
+
 @media only screen and (max-width: 768px) {
     .navbar-main {
         margin-top: 10px;
@@ -936,14 +983,11 @@ a.list-group-item:hover, a.list-group-item:focus {
         height: 38vh;
         margin-top: -32px;
     }
-    
-    .row-small {
-        height: 10vh
-    }
-    
+
     .row-quote {
         font-size: 20px;
-        margin-top: 16px;
+        margin-top: 15px;
+        margin-bottom: 15px;
     }
     
     .row-one-text {

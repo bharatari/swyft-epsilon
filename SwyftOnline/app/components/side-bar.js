@@ -15,7 +15,7 @@ export default Ember.Component.extend({
     renderCart: function() {
         if(localStorage.getItem("cart")){
             if(localStorage.getItem("cartVersion")){
-                if(localStorage.getItem("cartVersion")<config.cartVersion){
+                if(localStorage.getItem("cartVersion") < config.cartVersion){
                     localStorage.removeItem("cart");
                     localStorage.removeItem("cartVersion");
                 }

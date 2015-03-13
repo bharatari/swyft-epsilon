@@ -15,6 +15,9 @@ module.exports = function(grunt) {
                 replacements: [{
                     from: 'href="assets/',                   
                     to: 'href="/SwyftOnline/assets/'
+                }, {
+                    from: 'src="assets/',                   
+                    to: 'src="/SwyftOnline/assets/'
                 }]
             },
             css: {

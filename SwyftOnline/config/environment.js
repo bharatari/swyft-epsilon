@@ -54,7 +54,7 @@ module.exports = function(environment) {
     ENV.routeLocation = "";
   }   
     
-  ENV.cartVersion = 1.0;
+  ENV.cartVersion = 2.0;
    
   return ENV;
 };

@@ -1,11 +1,9 @@
 import Ember from "ember";
 import config from 'swyft-online/config/environment';
 import loginUtils from 'swyft-online/utils/login-utils';
-import constants from 'swyft-online/utils/constants-utils';
 
 export default Ember.Controller.extend({ 
     orders: function() {
-        moment.tz.add(constants.timeZones.zones);
         var array = this.get('recentOrders');
         for(var i = 0; i < array.length; i++) {
             array[i].displayTime = moment(array[i].deliveryTime).tz("America/New_York").format("dddd, MMMM Do YYYY, h:mm:ss a");
@@ -13,7 +11,6 @@ export default Ember.Controller.extend({
         return array;
     }.property('recentOrders'),
     pending: function() {
-        moment.tz.add(constants.timeZones.zones);
         var array = this.get('pendingOrders');
         for(var i = 0; i < array.length; i++) {
             array[i].displayTime = moment(array[i].deliveryTime).tz("America/New_York").format("dddd, MMMM Do YYYY, h:mm:ss a");
