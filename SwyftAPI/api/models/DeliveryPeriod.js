@@ -1,16 +1,34 @@
 module.exports={
     tableName:'deliveryPeriods',
     attributes:{
-        dayOfWeek:{
+        deliveryDay:{
             type:'string'
         },
-        deliveryTime: {
-            type:'datetime'
+        deliveryHour: {
+            type:'float'
         },
-        orderCutoff: {
-            type:'datetime'
+        deliveryMinute: {
+            type:'float'
+        },
+        deliverySecond: {
+            type:'float'
+        },
+        cutoffDay: {
+            type:'string'
+        },
+        cutoffHour: {
+            type:'float'
+        },
+        cutoffMinute: {
+            type:'float'
+        },
+        cutoffSecond: {
+            type:'float'
         },
         restaurants: {
+            type:'string'
+        },
+        deliverers: {
             type:'string'
         },
         enabled: {

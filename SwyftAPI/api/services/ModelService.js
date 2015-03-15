@@ -12,5 +12,15 @@ module.exports = {
             this.charge = "STANDARD CHARGE";
         }
         this.items = items;
+    },
+    Delivery: function(date, id, restaurants, cutoff, deliverers) {
+        this.deliveryPeriod = id;
+        this.deliveryDate = date;
+        this.restaurants = restaurants;
+        this.orderCutoff = cutoff;
+        this.deliverers = deliverers;
+        this.closed = false;
+        this.adminClosed = false;
+        this.autoDelivery = true;
     }
 }

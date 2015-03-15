@@ -4,6 +4,15 @@ module.exports={
         token:{
             type:'string'  
         },
+        isCoupon:{
+            type:'boolean'
+        },
+        couponId:{
+            type:'string'
+        },
+        discount:{
+            type:'float'
+        },
         comments:{
             type:'string'
         },
@@ -14,9 +23,6 @@ module.exports={
             type:'string'
         },
         orderId:{
-            type:'string'
-        },
-        couponCode:{
             type:'string'
         }
     }    

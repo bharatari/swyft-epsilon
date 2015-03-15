@@ -24,6 +24,7 @@ You will need the following things properly installed on your computer.
 
 ### Notes
 The `/** HARDCODE **/` flag is used to label a function that does not work in a modular or data-agnostic fashion. 
+The `/** FUTURE **/` flag is used to label properties or functions that exist to accomodate future expansion, but are not used currently.
   
 ### Deploying
 

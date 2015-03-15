@@ -168,6 +168,8 @@ body {
     /*background-image: url('/images/BuildingEdit.png');*/
     background-position: center;
     background-size: cover;
+    min-height: 170px;
+    position: relative;
 }
 
 .learn-more {
@@ -944,7 +946,7 @@ a.list-group-item:hover, a.list-group-item:focus {
     z-index: -100;
     background-size: cover;
     background-image: url('/images/BuildingEdit.png');
-    background-position: center;'
+    background-position: center;
     opacity: inherit;
 }
 
@@ -1019,6 +1021,12 @@ a.list-group-item:hover, a.list-group-item:focus {
 
     .background-title {
         margin-top: 50px;
+    }
+    
+    .row-two {
+        margin-top: 50px;
+        margin-bottom: 75px;
+        background-color: white;
     }
     
     .grid-product {

@@ -17,12 +17,15 @@ module.exports={
         restaurants:{
             type:'string'
         },
-        //In the future, we will be able to create multiple deliveries for a delivery period
-        mainDelivery:{
+        autoDelivery:{
             type:'boolean'
         },
         orderCutoff:{
             type:'datetime'
+        },
+        /** FUTURE **/
+        fulfillment:{
+            type:'array'
         },
         closed:{
             type:'boolean',
