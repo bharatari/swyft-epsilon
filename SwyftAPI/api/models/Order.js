@@ -19,7 +19,7 @@ module.exports={
         },
         adminComments:{
             type:'string'
-        },        
+        }, 
         totalAmount:{
             type:'float'
         },
@@ -29,13 +29,6 @@ module.exports={
         paymentType:{
             type:'string',
             enum:["creditcard", "swyftdebit", "cash"]
-        },
-        isDelivered:{
-            type:'boolean',
-            defaultsTo:false
-        },
-        deliveredAt:{
-            type:'datetime'
         },
         deliveryTime:{
             type:'datetime'
@@ -51,6 +44,9 @@ module.exports={
         },
         tokenId:{
             type:'string'
+        },
+        deliveryNote:{
+            type:'json'
         },
         disabled:{
             type:'boolean',

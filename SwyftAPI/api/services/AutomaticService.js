@@ -21,6 +21,7 @@ module.exports = {
         var newDelivery = new ModelService.Delivery(delivery.toDate(), period.id, "All", cutoff.toDate(), period.deliverers);
         console.log('Creating Delivery');
         Delivery.create(newDelivery).exec(function(err) {
+            console.log('Created New Delivery');
             cb();
         });
 

@@ -10,55 +10,21 @@ module.exports = {
         });
     },
     getDeliveryOrders: function(req, res) {
-        /*
-        var orders=[];
-        function process(callback){
-            for(var i = 0; i < orders.length; i++) {
-                User.findOne({id: orders[i].userId}).exec(function(err, user){
-                    orders[i].user = user;
+        Order.find({ deliveryId: req.params.delivery_id }).exec(function(err, items) {
+            async.each(items, function(order, callback) {
+                User.findOne({ id: order.userId }).exec(function(err, user) {
+                    order.user = user;
+                    callback();
                 });
-            }
-            callback();
-        }        
-        Order.find({deliveryId:req.params.delivery_id}).exec(function(err, items){
-            orders = items;
-            process(function() {
-                res.json(orders);
+            }, function(err) {
+                res.json(items);
             });
         });
-        */
-        var orders=[];
-        function process(callback){
-            function loop(i){
-                if(i<orders.length){
-                    function query(callback){
-                        User.find().where({id:orders[i].userId}).exec(function(err, user){  
-                            var userObj = UserService.deleteSensitive(user[0]);
-                            orders[i].user=userObj;
-                            callback();
-                        });
-                    }
-                    query(function(){
-                        loop(i+1);
-                    });
-                }
-                else{
-                    callback();
-                }
-            }
-            loop(0);
-        }
-        Order.find({deliveryId:req.params.delivery_id}).exec(function(err, items){
-            orders=items;
-            process(function(){
-                res.json(orders);
-            });
-        });        
     },
     createDelivery:function(req,res){
         var deliveryTime = new Date(req.body.deliveryTime);
         var orderCutoff = new Date(req.body.orderCutoff)
-        Delivery.create({deliverers:req.body.deliverers, deliveryDate:deliveryTime, comments:req.body.comments, restaurants:"All", mainDelivery:true, orderCutoff:orderCutoff}).exec(function(err, fulfillment){
+        Delivery.create({ deliverers:req.body.deliverers, deliveryDate:deliveryTime, comments:req.body.comments, restaurants:"All", autoDelivery:true , orderCutoff:orderCutoff }).exec(function(err, fulfillment){
             if(err) {
                 res.badRequest();
             }
@@ -67,9 +33,10 @@ module.exports = {
             }
         });
     },
+    /** BUG **/
     completeDelivery: function(req,res){
-        Order.update({deliveryId: req.body.deliveryId},{isDelivered:true, deliveredAt: new Date()}).exec(function(err){
-            res.send(200);
+        DeliveryNoteService.setOrdersToDelivered(req.body.deliveryId, function() {
+            res.ok();
         });
     },
     closeDelivery:function(req,res){

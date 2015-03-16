@@ -1,48 +1,57 @@
 var moment=require('moment');
 
 module.exports={
-    processOrder:function(req,res){
-        var order=req.body;
-        delete order._csrf;
+    processOrder: function(req,res) {
+        var order = req.body;
         delete order.user;
-        order.contactPhone=order.contactPhone.replace(/\D/g,'');
-        if(order.items.length < 1){
-            return res.serverError();
+        order.contactPhone = order.contactPhone.replace(/\D/g,'');
+        if(order.items.length < 1) {
+            return res.badRequest();
         }
-        if(req.user.testUser){
-            return res.send(200);
+        if(req.user.testUser) {
+            return res.ok();
         }
         OrderService.checkDelivery(order.deliveryId, function(response) {
             if(response) {
-                MenuItem.find().exec(function(err, items){
+                MenuItem.find().exec(function(err, items) {
                     items = PriceService.processPricing(items);
-                    var processedOrder = OrderService.process(items, order);
-                    if(processedOrder) {
-                        processedOrder.type = "scheduled";
-                        if(processedOrder.paymentType === "cash") {
-                            OrderService.submitCash(processedOrder, req.user.id, function(response){
-                                if(response) {
-                                    res.ok();
+                    OrderService.processAsync(items, order, function(result) {
+                        if(!result) {
+                            return res.badRequest(); 
+                        }
+                        else {
+                            order = result;
+                            OrderService.processOrder(order, function(result2) {
+                                if(!result2) {
+                                    return res.badRequest();
                                 }
                                 else {
-                                    res.serverError();
+                                    order = result2;
+                                    order.type = "scheduled";
+                                    if(order.paymentType === "cash") {
+                                        OrderService.submitCash(order, req.user.id, function(response){
+                                            if(response) {
+                                                res.ok();
+                                            }
+                                            else {
+                                                res.serverError();
+                                            }
+                                        });
+                                    }
+                                    else if(order.paymentType === "swyftdebit") {
+                                        OrderService.submitSwyftDebit(order, req.user.id, function(response){
+                                            if(response) {
+                                                res.ok();
+                                            }
+                                            else {
+                                                res.serverError();
+                                            }
+                                        });
+                                    }
                                 }
                             });
                         }
-                        else if(processedOrder.paymentType === "swyftdebit") {
-                            OrderService.submitSwyftDebit(processedOrder, req.user.id, function(response){
-                                if(response) {
-                                    res.ok();
-                                }
-                                else {
-                                    res.serverError();
-                                }
-                            });
-                        }
-                    }
-                    else {
-                        res.serverError();
-                    }
+                    });
                 });    
             }
             else {
@@ -70,12 +79,12 @@ module.exports={
         });
     },
     pendingOrders:function(req,res){
-        Order.find({userId:req.user.id.toString(), isDelivered:false}).exec(function(err, orders){
+        DeliveryNoteService.getPendingOrders(req.user.id, function(orders) {
             res.json(orders);
         });
     },
     recentOrders:function(req,res){
-        Order.find({userId:req.user.id.toString(), isDelivered:true}).limit(10).exec(function(err, orders){
+        DeliveryNoteService.getRecentOrders(req.user.id, function(orders) {
             res.json(orders);
         });
     },

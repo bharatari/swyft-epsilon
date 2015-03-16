@@ -22,5 +22,12 @@ module.exports = {
         this.closed = false;
         this.adminClosed = false;
         this.autoDelivery = true;
+    },
+    DeliveryNote: function(commentedBy, delivererId, comments, isDelivered, deliveredAt) {
+        this.commentedBy = commentedBy;
+        this.deliveredBy = delivererId;
+        this.comments = comments;
+        this.isDelivered = isDelivered;
+        this.deliveredAt = new Date();
     }
 }

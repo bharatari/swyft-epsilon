@@ -46,8 +46,8 @@ export default Ember.Controller.extend({
                     contactPhone:this.get('user').phoneNumber,
                     userComments:this.get('additionalRequests'),
                     userId:this.get('user').id,
+                    token:this.get('token'),
                     deliveryId: this.get('deliveryList').value,
-                    _csrf:this.get('csrfToken')._csrf,
                     user: {token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token}
                 };
                 var url = config.routeLocation + "/api/order";
@@ -67,7 +67,7 @@ export default Ember.Controller.extend({
                     },
                     error: function(xhr, textStatus, error) {
                         self.set('modalTitle', 'Whoops.');
-                        self.set('modalBody', "Something went wrong with your request. Your order has not been submitted. If you're using Swyft Debit as your payment type, ensure you have enough balance in your account to proceed. If that doesn't seem to be the issue, try emptying your cart and starting over. Please contact us at development@orderswyft.com if you have any further questions.");
+                        self.set('modalBody', "Something went wrong with your request. Your order has not been submitted. If you're using Swyft Debit as your payment type, ensure you have enough balance in your account to proceed. If you attempted to use a one-time coupon, it's either invalid or it has already been used. Otherwise, try emptying your cart and starting over. Please contact us at development@orderswyft.com if you have any further questions.");
                         self.set('displayModal', true);
                         self.set('buttonPressed', false);
                     }

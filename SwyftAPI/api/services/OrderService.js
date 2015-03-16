@@ -3,8 +3,32 @@ var _ = require('lodash');
 var Q = require('q');
 
 module.exports = {
-    process: function(menuItems, order) {
-        var menuItem={};
+    processAsync: function(menuItems, order, cb) {
+        var self = this;
+        async.each(order.items, function(orderItem, callback) {
+            async.each(menuItems, function(item, callback2) {
+                if(orderItem.id === item.id) {
+                    self.processItem(item, orderItem, function(result) {
+                        if(!result) {
+                            return cb(false);
+                        }
+                        else {
+                            orderItem = result;
+                            callback2();
+                        }
+                    });
+                }
+                else {
+                    callback2();
+                }
+            }, function(err) {
+                callback();
+            });
+        }, function(err) {
+            cb(order);
+        });
+    },
+    processItem: function(menuItem, item, cb) {
         Array.prototype.where = function(props) {
             return this.filter(function(e) {
                 for (var p in props)
@@ -13,72 +37,105 @@ module.exports = {
                 return true;
             });
         }
-        for(var i = 0; i < order.items.length; i++){
-            for(var e = 0; e < menuItems.length; e++){
-                if(menuItems[e].id==order.items[i].id){
-                    menuItem = menuItems[e];
-                }
+        item.price = menuItem.baseprice;
+        var allOptions = new Array();
+        async.each(menuItem.itemOptions, function(itemOption, callback) {
+            if(itemOption.name !== "Options") {
+                async.each(itemOption.options, function(option, callback2) {
+                    if(option.price) {
+                        allOptions.push({ name: option.name, price: option.price, category: itemOption.name });
+                    }
+                    else {
+                        allOptions.push({ name: option.name, category: itemOption.name });
+                    }
+                    callback2();
+                }, function(err) {   
+                    callback();
+                });
             }
-            order.items[i].price=menuItem.baseprice;
-            var allOptions = new Array();
-            for(var e = 0; e < menuItem.itemOptions.length; e++) {
-                if(menuItem.itemOptions[e].name !== "Options") {
-                    for(var a = 0; a < menuItem.itemOptions[e].options.length; a++) {
-                        if(menuItem.itemOptions[e].options[a].price) {
-                            allOptions.push({name: menuItem.itemOptions[e].options[a].name, price: menuItem.itemOptions[e].options[a].price, category: menuItem.itemOptions[e].name});
+            else {
+                callback();
+            }
+        }, function(err) {
+            options();
+        });
+        
+        function options() {
+            if(item.options) {
+                async.each(item.options, function(option, callback) {
+                    if(option.price) {
+                        option.price = parseFloat(option.price);
+                    }
+                    if(!allOptions.where(option)) {
+                        return cb(false);  
+                    }
+                    callback();
+                }, function(err) {
+                    async.each(item.options, function(option, callback2) {
+                        if(option.price) {
+                            item.price += option.price;
                         }
-                        else {
-                            allOptions.push({name: menuItem.itemOptions[e].options[a].name, category:menuItem.itemOptions[e].name});
-                        }
-                    }
-                }
+                        callback2();
+                    }, function(err) {
+                        extras();
+                    });
+                });
             }
-            if(order.items[i].options) {
-                for(var e = 0; e < order.items[i].options.length; e++) {
-                    if(order.items[i].options[e].price) {
-                        order.items[i].options[e].price = parseFloat(order.items[i].options[e].price);
-                    }
-                    if(!allOptions.where(order.items[i].options[e])) {
-                        return false;   
-                    }
-                }
-                for(var e = 0; e < order.items[i].options.length; e++) {
-                    if(order.items[i].options[e].price) {
-                        order.items[i].price += order.items[i].options[e].price;
-                    }
-                }
+            else {
+                extras();
             }
-            if(order.items[i].extras){
-                for(var e = 0; e < order.items[i].extras.length; e++) {
-                    order.items[i].extras[e].price = parseFloat(order.items[i].extras[e].price);
-                    if(!menuItem.extras.where(order.items[i].extras[e])) {
-                        return false;
+        }
+        
+        function extras() {
+            if(item.extras) {
+                async.each(item.extras, function(extra, callback) {
+                    extra.price = parseFloat(extra.price);
+                    if(!menuItem.extras.where(extra)) {
+                        return cb(false);
                     }
-                }
-                for(var e = 0; e < order.items[i].extras.length; e++) {
-                    order.items[i].price += order.items[i].extras[e].price;
-                }
+                    callback();
+                }, function(err) {
+                    async.each(item.extras, function(extra, callback2) {
+                        item.price += extra.price;
+                        callback2();
+                    }, function(err) {
+                        standardOptions();
+                    });
+                });
             }
-            if(order.items[i].standardOptions){
+            else {
+                standardOptions();
+            }
+        }
+        
+        function standardOptions() {
+            if(item.standardOptions){
                 var options;
                 async.each(menuItem.itemOptions, function(option, callback) {
                     if(option.name === "Options") {
-                        options = option.split(", ");
+                        options = option.options.split(", ");
                     }
                     callback();
                 }, function(err) {
                     processOptions();
                 });
                 function processOptions() {
-                    async.each(order.items[i].standardOptions, function(option, callback) {
+                    async.each(item.standardOptions, function(option, callback) {
                         if(!_.contains(options, option.name)) {
-                           return false;
+                            return cb(false);
                         }
                         callback();
-                    }, function(err) { });
+                    }, function(err) { 
+                        cb(item);
+                    });
                 }
             }
+            else {
+                cb(item);
+            }
         }
+    },
+    processOrder: function(order, cb) {
         order.totalAmount = 0;
         for (var f = 0; f < order.items.length; f++) {
             if(!order.items[f].quantity) {
@@ -89,64 +146,71 @@ module.exports = {
         if(order.deliveryId) {
             Delivery.findOne({ id: order.deliveryId }).exec(function(err, delivery){
                 if(err) {
-                    return final(false);
+                    final(false);
                 }
                 else {
                     order.deliveryTime=delivery.deliveryDate;
-                    return final(order);
+                    final(order);
                 }
             });
         }
         else {
-            return final(false);
+            final(false);
         }        
         function final(order) {
             if(!order) {
-                return false;
+                return cb(false);
             }
             else {
                 order = PriceService.processTax(order);
                 order.actualAmount = order.totalAmount;
-                return order;
+                CouponService.processToken(order, function(result) {
+                    if(!result) {
+                        return cb(false);
+                    }
+                    else {
+                        cb(order);
+                    }
+                });
             }
         }
     },
     submitCash: function(order, userId, cb) {
-        User.findOne({id: userId}).exec(function(err, user){
-            Order.create(order).exec(function(err, result){
-                if(!err){  
+        User.findOne({ id: userId }).exec(function(err, user) {
+            Order.create(order).exec(function(err, result) {
+                if(!err) {  
                     cb(true);
                 }
-                else{
+                else {
                     cb(false);
                 }
             });
         });
     },
     submitSwyftDebit: function(order, userId, cb) {
-        User.findOne({id: userId}).exec(function(err, user){
+        User.findOne({ id: userId }).exec(function(err, user) {
             if(order.actualAmount <= user.balance){
-                Order.create(order).exec(function(err, result){
-                    if(!err){                        
-                        UserTransaction.create({userId: user.id, type: "deduction", amount: result.actualAmount, orderId: result.id}).exec(function(err){
-                            if(!err){
+                Order.create(order).exec(function(err, result) {
+                    if(!err) {                        
+                        UserTransaction.create({ userId: user.id, type: "deduction", amount: result.actualAmount, orderId: result.id }).exec(function(err) {
+                            if(!err) {
                                 var newBalance = user.balance - result.actualAmount;
-                                User.update({id: user.id}, {balance: newBalance}).exec(function(err){
-                                    if(err){
+                                User.update({ id: user.id }, { balance: newBalance }).exec(function(err) {
+                                    if(err) {
                                         cb(false);
                                     }
-                                    else{
+                                    else {
                                         cb(true);
                                     }
                                 });
 
                             }
-                            else{
+                            else {
                                 cb(false);
                             }
                         });                        
                     }
-                    else{
+                    else {
                         cb(false);
                     }
                 });
