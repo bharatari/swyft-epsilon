@@ -14,6 +14,9 @@ module.exports={
         aggregateStyle:{
             type:'string',
             enum:['full', 'simple']
+        },
+        notice:{
+            type:'string'
         }
     },
 }

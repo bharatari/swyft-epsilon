@@ -38,6 +38,7 @@ export default Ember.Controller.extend({
         checkout: function() {
             var self = this;
             this.set('buttonPressed', true);
+            this.set('displayLoading', true);
             if(this.get('deliveryList').value && this.get('paymentOptions').value) {
                 var data={
                     items:this.get('cart'),
@@ -60,12 +61,14 @@ export default Ember.Controller.extend({
                     data: JSON.stringify(data),
                     type: "POST",
                     success: function(response) {
+                        self.set('displayLoading', false);
                         self.set('modalTitle', 'Your order has been submitted.');
                         self.set('modalBody', 'Thanks for ordering with Swyft. Your order will be delivered at the specified delivery time.');
                         self.set('displayModal', true);
                         localStorage.removeItem('cart');
                     },
                     error: function(xhr, textStatus, error) {
+                        self.set('displayLoading', false);
                         self.set('modalTitle', 'Whoops.');
                         self.set('modalBody', "Something went wrong with your request. Your order has not been submitted. If you're using Swyft Debit as your payment type, ensure you have enough balance in your account to proceed. If you attempted to use a one-time coupon, it's either invalid or it has already been used. Otherwise, try emptying your cart and starting over. Please contact us at development@orderswyft.com if you have any further questions.");
                         self.set('displayModal', true);

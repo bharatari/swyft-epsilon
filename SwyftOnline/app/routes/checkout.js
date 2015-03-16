@@ -8,7 +8,10 @@ import AuthenticatedRouteMixin from 'swyft-online/mixins/authenticated-route';
 export default Ember.Route.extend(AuthenticatedRouteMixin, SidebarRouteMixin, AnimateOutRouteMixin, {
     beforeModel: function() {
         this._super();
-        if(JSON.parse(localStorage.getItem("cart")) == false) {
+        if(!JSON.parse(localStorage.getItem("cart"))) {
+            this.transitionTo('restaurants');
+        }
+        else if(JSON.parse(localStorage.getItem("cart")).length < 1) {
             this.transitionTo('restaurants');
         }
     },

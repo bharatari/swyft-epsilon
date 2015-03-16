@@ -4,6 +4,11 @@ module.exports={
             res.json(restaurants);
         });
     },
+    getRestaurant: function(req, res) {
+        Restaurant.findOne({ name: req.params.restaurant_name }).exec(function(err, restaurant) {
+            res.json(restaurant);
+        });
+    },
     menuItems: function(req, res){
         MenuItem.find({ restaurant: req.params.restaurant_name, unavailable: false }).exec(function(err, items){
             res.json(PriceService.processPricing(items));

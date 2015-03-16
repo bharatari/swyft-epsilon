@@ -13,14 +13,14 @@ export default Ember.Route.extend(SessionRouteMixin, AnimateOutRouteMixin, Sideb
     },
     model: function(params) {
         return Ember.RSVP.hash({
-            csrfToken: Ember.$.getJSON(config.routeLocation + "/csrfToken"),
-            menuItems: Ember.$.getJSON(config.routeLocation + "/api/menuItems/" + params.restaurant_name)
+            menuItems: Ember.$.getJSON(config.routeLocation + "/api/menuItems/" + params.restaurant_name),
+            restaurant: Ember.$.getJSON(config.routeLocation + "/api/restaurant/" + params.restaurant_name)
         })
     },
     setupController: function(controller, model) {
         this._super();
-        controller.set('csrfToken', model.csrfToken._csrf);
         controller.set('sortedCategories', itemUtils.sortCategories(itemUtils.getCategories(model.menuItems), model.menuItems));
+        controller.set('restaurant', model.restaurant);
         controller.set('isAuthenticated', this.get('isAuthenticated'));
     }
 });

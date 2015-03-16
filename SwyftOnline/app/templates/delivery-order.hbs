@@ -28,8 +28,8 @@
         <li><a>{{#link-to 'delivery'}}Delivery{{/link-to}}</a></li>
         <li class="active">Order</li>
     </ul>
-    <h4>Need Assistance? Call Bhargav at <a href="tel:603-793-7333">603-793-7333</a></h4>
     <div class="info-well well">
+        <h4>Need Assistance? Call Bhargav at <a href="tel:603-793-7333">603-793-7333</a></h4>
         <h1>{{order.user.firstName}} {{order.user.lastName}}</h1>
         <h3>{{order.deliveryLocation}}</h3>
         <h3><a {{bind-attr href=order.phoneLink}}>{{order.contactPhone}}</a></h3>
@@ -49,5 +49,13 @@
             </li>
             {{/each}}
         </ul>
+        <h2>Deliverer Comments:</h2>
+        {{textarea class="form-control text-area" value=order.deliveryNote.comments}}
+        <button class="btn btn-primary btn-standard" {{action 'submitComments'}}>Submit Comments</button>
+        {{#if order.deliveryNote.isDelivered}} 
+            <button class="btn btn-primary btn-standard" {{action 'submitNotDelivered'}}>Set To Not Delivered</button>
+        {{else}}
+            <button class="btn btn-primary btn-standard" {{action 'submitDelivered'}}>Set To Delivered</button>
+        {{/if}}
     </div>
 </div>

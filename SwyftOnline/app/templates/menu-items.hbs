@@ -34,6 +34,12 @@
         <li class="active">Menu</li>
     </ul>
     
+    {{#if restaurant.notice}}
+        <p class="notice-header">NOTICE</p>
+        <p class="restaurant-notice">{{restaurant.notice}}</p>
+        <hr class="notice-divider">
+    {{/if}}
+    
     {{#each category in sortedCategories}}
     <div class="grid-products list-group row">
         <div class="category-box">

@@ -15,7 +15,6 @@ module.exports.bootstrap = function(cb) {
     var agenda = new Agenda();
     agenda.database('swyftdb:Xv56magj@proximus.modulusmongo.net:27017/yju6Wajy');
     agenda.define('deliveryProcessor', function(job, done) {
-        console.log('Delivery Processor Running');
         AutomaticService.processDeliveryPeriods(function() {
             AutomaticService.closeDeliveryPeriods(function() { 
                 done();

@@ -1,5 +1,6 @@
 import Ember from "ember";
 import config from 'swyft-online/config/environment';
+import loginUtils from 'swyft-online/utils/login-utils';
 
 export default Ember.Controller.extend({ 
     order: function() {
@@ -36,6 +37,86 @@ export default Ember.Controller.extend({
                 data[i].items[e].itemOptions=options;
             }
         }
+        if(!data.deliveryNote) {
+            data.deliveryNote = {
+                commentedBy: null,
+                deliveredBy: null,
+                comments: "",
+                isDelivered: false,
+                deliveredAt: null
+            }   
+        }
         return data;
-    }.property('model')
+    }.property('model'),
+    actions: {
+        submitComments: function() {
+            var data = {
+                orderId: this.get('order').id,
+                comments: this.get('order').deliveryNote.comments,
+                user: { token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token }
+            }
+            var url = config.routeLocation + "/api/deliveryNote/comment";
+            Ember.$.ajax({
+                url: url,
+                headers: { 
+                    Accept : "application/json; charset=utf-8",
+                    "Content-Type": "application/json; charset=utf-8"
+                },
+                data: JSON.stringify(data),
+                type: "POST",
+                success: function(response) {
+                    alert("Comment changed.");
+                },
+                error: function(xhr, textStatus, error) {
+                    alert("Error");
+                }
+            });
+        },
+        submitDelivered: function() {
+            var data = {
+                orderId: this.get('order').id,
+                isDelivered: true,
+                user: { token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token }
+            }
+            var url = config.routeLocation + "/api/deliveryNote/delivered";
+            Ember.$.ajax({
+                url: url,
+                headers: { 
+                    Accept : "application/json; charset=utf-8",
+                    "Content-Type": "application/json; charset=utf-8"
+                },
+                data: JSON.stringify(data),
+                type: "POST",
+                success: function(response) {
+                    alert("Status changed.");
+                },
+                error: function(xhr, textStatus, error) {
+                    alert("Error");
+                }
+            });
+        },
+        submitNotDelivered: function() {
+            var data = {
+                orderId: this.get('order').id,
+                isDelivered: false,
+                user: { token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token }
+            }
+            var url = config.routeLocation + "/api/deliveryNote/delivered";
+            Ember.$.ajax({
+                url: url,
+                headers: { 
+                    Accept : "application/json; charset=utf-8",
+                    "Content-Type": "application/json; charset=utf-8"
+                },
+                data: JSON.stringify(data),
+                type: "POST",
+                success: function(response) {
+                    alert("Status changed.");
+                },
+                error: function(xhr, textStatus, error) {
+                    alert("Error");
+                }
+            });
+        }    
+    }
 });

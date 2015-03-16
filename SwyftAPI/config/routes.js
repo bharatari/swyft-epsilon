@@ -41,15 +41,16 @@ module.exports.routes = {
   '/delivery/*':'ViewController.homepage',
   '/system/*':'ViewController.homepage',    
    
-  //API Routes
+  //Authentication Routes
   'post /api/login':'AuthController.login',
   'post /api/logout':'AuthController.logout',
   'get /api/isAuthenticated':'AuthController.isAuthenticated',
   'get /api/isAdmin':'AuthController.isAdmin',
   'get /api/isDelivery':'AuthController.isDelivery',
   
-  //RESTful Routes
+  //Menu Routes
   'get /api/restaurants':'MenuController.restaurants',
+  'get /api/restaurant/:restaurant_name':'MenuController.getRestaurant',
   'get /api/menuItems/:restaurant_name':'MenuController.menuItems',
   'get /api/item/:item_id':'MenuController.item',
   
@@ -96,6 +97,8 @@ module.exports.routes = {
   //Delivery Note Routes
   'get /api/deliveryNote/global':'DeliveryNoteController.getGlobalDeliveryNote',
   'post /api/deliveryNote/global':'DeliveryNoteController.setGlobalDeliveryNote',
+  'post /api/deliveryNote/comment':'DeliveryNoteController.setDeliveryNoteComment',
+  'post /api/deliveryNote/delivered':'DeliveryNoteController.setDelivered',
 
   //Temporary Routes
   'get /csrfToken':'AuthController.csrfToken'

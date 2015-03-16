@@ -2,7 +2,7 @@ var moment = require('moment');
 
 module.exports = {
     getDeliveryPeriods: function(cb) {
-        DeliveryPeriod.find().exec(function(err, deliveryPeriods) {
+        DeliveryPeriod.find({ enabled: true }).exec(function(err, deliveryPeriods) {
             cb(deliveryPeriods);
         });
     },
@@ -19,6 +19,7 @@ module.exports = {
         var delivery = moment().day(period.deliveryDay).set({ hour: period.deliveryHour, minute: period.deliveryMinute, second: period.deliverySecond });
         var cutoff = moment().day(period.cutoffDay).set({ hour: period.cutoffHour, minute: period.cutoffMinute, second: period.cutoffSecond });
         var newDelivery = new ModelService.Delivery(delivery.toDate(), period.id, "All", cutoff.toDate(), period.deliverers);
+        console.log('Delivery Processor Running');
         console.log('Creating Delivery');
         Delivery.create(newDelivery).exec(function(err) {
             console.log('Created New Delivery');
@@ -61,6 +62,7 @@ module.exports = {
                 var today = moment();
                 var cutoff = moment(delivery.orderCutoff);
                 if(today.isAfter(cutoff)) {
+                    console.log('Delivery Processor Running');
                     console.log('Closing Delivery');
                     Delivery.update({ id: delivery.id }, { closed: true }).exec(function(err) {
                         callback();
