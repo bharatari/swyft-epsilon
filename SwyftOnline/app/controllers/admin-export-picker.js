@@ -18,6 +18,9 @@ export default Ember.Controller.extend({
         },
         goToMaster: function(deliveryId) {
             this.transitionToRoute('admin-master', deliveryId);
+        },
+        goToDelivery: function(deliveryId) {
+            this.transitionToRoute('admin-export-delivery', deliveryId);
         }
     }
 });

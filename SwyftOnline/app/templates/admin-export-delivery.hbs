@@ -1,0 +1,88 @@
+<nav class="navbar-home navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="header-info row">
+            <div class="header-item">
+                <i class="icon glyphicon glyphicon-envelope"></i>
+                <span class="header-item-text">development@orderswyft.com</span>
+            </div>
+            <div class="navbar-float">
+                <a href="https://www.facebook.com/orderswyft"><img src="images/facebook.png" height="20" width="20"></a>
+                <img src="images/twitter.png" height="20" width="20">
+            </div>
+        </div>
+        <div class="navbar-main row">
+            <div class="navbar-header">
+                <a class="navbar-brand-home navbar-brand" href="/">SWYFT<span class="logo-light">ADMIN</span></a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <h3>Not Delivered</h3>
+    <table class="table table-hover master-sheet">
+        <tr>
+            <th>Name</th>
+            <th>Items</th>
+            <th>Total</th>
+            <th>Location</th>
+            <th>Phone</th>
+            <th>Payment</th>
+            <th>Comments</th>
+            <th>Charge</th>
+        </tr>
+        {{#each order in notDelivered}}
+        <tr>
+            <td>{{order.name}}</td>
+            <td>
+                <ul>
+                    {{#each item in order.items}}
+                    <li>
+                        <strong>{{item.name}}</strong>
+                    </li>
+                    {{/each}}
+                </ul>
+            </td>
+            <td>{{render-decimals order.total}}</td>
+            <td>{{order.deliveryLocation}}</td>
+            <td>{{order.phoneNumber}}</td>
+            <td>{{order.paymentType}}</td>
+            <td>{{order.deliveryNote.comments}}</td>
+            <td>{{order.charge}}</td>
+        </tr>
+        {{/each}}
+    </table>
+    <h3>Delivered</h3>
+    <table class="table table-hover master-sheet">
+        <tr>
+            <th>Name</th>
+            <th>Items</th>
+            <th>Total</th>
+            <th>Location</th>
+            <th>Phone</th>
+            <th>Payment</th>
+            <th>Comments</th>
+            <th>Charge</th>
+        </tr>
+        {{#each order in delivered}}
+        <tr>
+            <td>{{order.name}}</td>
+            <td>
+                <ul>
+                    {{#each item in order.items}}
+                    <li>
+                        <strong>{{item.name}}</strong>
+                    </li>
+                    {{/each}}
+                </ul>
+            </td>
+            <td>{{render-decimals order.total}}</td>
+            <td>{{order.deliveryLocation}}</td>
+            <td>{{order.phoneNumber}}</td>
+            <td>{{order.paymentType}}</td>
+            <td>{{order.deliveryNote.comments}}</td>
+            <td>{{order.charge}}</td>
+        </tr>
+        {{/each}}
+    </table>
+</div>

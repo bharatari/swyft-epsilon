@@ -5,6 +5,7 @@
   "description": "SwyftAPI is the server-side implementation of Swyft's web infrastructure. It is designed to be used as a client-agnostic server for Swyft data and authentication, though it currently serves as a server for the SwyftOnline project.",
   "keywords": [],
   "dependencies": {
+    "agenda": "^0.6.28",
     "async": "^0.9.0",
     "bcrypt": "^0.8.1",
     "chance": "^0.7.0",
@@ -28,6 +29,7 @@
     "lodash": "^3.4.0",
     "mandrill-api": "^1.0.41",
     "moment": "^2.8.4",
+    "moment-timezone": "^0.3.1",
     "q": "^1.2.0",
     "rc": "~0.5.0",
     "sails": "~0.10.5",

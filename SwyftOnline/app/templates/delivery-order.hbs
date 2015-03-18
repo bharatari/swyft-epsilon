@@ -35,6 +35,9 @@
         <h3><a {{bind-attr href=order.phoneLink}}>{{order.contactPhone}}</a></h3>
         <h3>{{order.userComments}}</h3>
         <h3>{{render-decimals order.actualAmount}}</h3>
+        {{#if order.deliveryNote.cashPayment}}
+            <h3><strong>{{render-decimals order.deliveryNote.cashPayment}}</strong> needs to be paid for this mixed transaction.</h3>
+        {{/if}}
         <h3>{{order.paymentType}}</h3>
         <ul class="item-list">
             {{#each item in order.items}}

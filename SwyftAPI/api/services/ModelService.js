@@ -1,5 +1,5 @@
 module.exports = {
-    MasterListItem: function(firstName, lastName, items, deliveryLocation, total, phoneNumber, paymentType, chargeLater) {
+    MasterListItem: function(firstName, lastName, items, deliveryLocation, total, phoneNumber, paymentType, chargeLater, deliveryNote) {
         this.name = firstName.toUpperCase() + " " + lastName.toUpperCase();
         this.deliveryLocation = deliveryLocation.toUpperCase();
         this.total = total;
@@ -12,6 +12,7 @@ module.exports = {
             this.charge = "STANDARD CHARGE";
         }
         this.items = items;
+        this.deliveryNote = deliveryNote;
     },
     Delivery: function(date, id, restaurants, cutoff, deliverers) {
         this.deliveryPeriod = id;
@@ -23,11 +24,17 @@ module.exports = {
         this.adminClosed = false;
         this.autoDelivery = true;
     },
-    DeliveryNote: function(commentedBy, delivererId, comments, isDelivered, deliveredAt) {
+    DeliveryNote: function(commentedBy, delivererId, comments, isDelivered, deliveredAt, cashPayment) {
         this.commentedBy = commentedBy;
         this.deliveredBy = delivererId;
         this.comments = comments;
         this.isDelivered = isDelivered;
         this.deliveredAt = new Date();
+        if (typeof cashPayment === 'undefined') { 
+            this.cashPayment = null; 
+        }
+        else {
+            this.cashPayment = cashPayment;
+        }
     }
 }

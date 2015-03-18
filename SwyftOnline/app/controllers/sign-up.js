@@ -39,8 +39,7 @@ export default Ember.Controller.extend({
                         phoneNumber: this.get('phoneNumber'),
                         email: this.get('email'),
                         contactConsent: this.get('contactConsent'),
-                        password: password1,
-                        _csrf:this.get('model')._csrf
+                        password: password1
                     }
                     for (var property in data) {
                         if (data.hasOwnProperty(property)) {

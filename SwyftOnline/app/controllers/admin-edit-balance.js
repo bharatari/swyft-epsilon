@@ -10,7 +10,6 @@ export default Ember.Controller.extend({
                 userId:this.get('userId'),
                 transactionAmount:this.get('transactionAmount'),
                 comments:this.get('comments'),
-                _csrf:this.get('model')._csrf,
                 user: {token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token}
             };
             var url = config.routeLocation + "/api/user/balance/preliminary";
@@ -35,7 +34,6 @@ export default Ember.Controller.extend({
             var self = this;
             if(this.get('responseData')){
                 var data = this.get('responseData');
-                data._csrf = this.get('model')._csrf;
                 data.user = {token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token};
                 var url = config.routeLocation + "/api/user/balance";
                 Ember.$.ajax({

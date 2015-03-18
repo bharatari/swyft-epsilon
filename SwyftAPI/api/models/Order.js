@@ -28,7 +28,7 @@ module.exports={
         },
         paymentType:{
             type:'string',
-            enum:["creditcard", "swyftdebit", "cash"]
+            enum:["creditcard", "swyftdebit", "cash", "cash+swyftdebit"]
         },
         deliveryTime:{
             type:'datetime'

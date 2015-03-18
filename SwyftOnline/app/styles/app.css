@@ -772,6 +772,10 @@ a.list-group-item:hover, a.list-group-item:focus {
     background-position-y: 30%;
 }
 
+.joon {
+    background-image: url('/images/Joon.jpg');
+}
+
 .header-item {
     margin-right: 10px;
     display: inline;
@@ -970,6 +974,43 @@ a.list-group-item:hover, a.list-group-item:focus {
     font-family: 'Roboto';
     font-size: 14px;
     font-weight: 600;
+}
+
+.invalid-message {
+    margin-top: 5px;
+    color: red;
+}
+
+.remaining-total {
+    font-weight: 400;
+    margin-top: 5px;
+    font-size: 16px;
+    font-family: 'Roboto';
+}
+
+.text-light {
+    font-weight: 300;
+    font-family: 'Roboto';
+}
+
+.transparent-box {
+    font-family: 'Roboto';
+    border: none;   
+    font-size: 16px;
+}
+
+.transparent-box-label {
+    font-family: 'Roboto';
+    font-size: 16px;
+}
+
+.inline {
+    display: inline;
+}
+
+.text-subtitle {
+    font-size: 14px;
+    margin-top: 5px;
 }
 
 @media only screen and (max-width: 768px) {

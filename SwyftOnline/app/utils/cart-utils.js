@@ -70,7 +70,10 @@ export default {
         }
     },
     processCart: function() {
-        var array=JSON.parse(localStorage.getItem("cart"));
+        var array = JSON.parse(localStorage.getItem("cart"));
+        if(!array) {
+            return;
+        }
         for(var i = 0; i < array.length; i++){
             var options = "";
             for (var property in array[i].options) {

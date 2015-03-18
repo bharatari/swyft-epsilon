@@ -48,6 +48,16 @@ module.exports={
                                             }
                                         });
                                     }
+                                    else if(order.paymentType === "cash+swyftdebit") {
+                                        OrderService.submitCashSwyftDebit(order, req.user.id, function(response){
+                                            if(response) {
+                                                res.ok();
+                                            }
+                                            else {
+                                                res.serverError();
+                                            }
+                                        });
+                                    }
                                 }
                             });
                         }

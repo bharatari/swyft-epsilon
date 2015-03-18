@@ -27,7 +27,7 @@ export default Ember.Controller.extend({
                         }
                     }
                 }
-                if(array[i].attachedRequests) {
+                if(data[i].attachedRequests) {
                     for(var e = 0; e < array[i].attachedRequests.length; e++) {
                         options += array[i].attachedRequests[e].name + ", ";
                     }                   

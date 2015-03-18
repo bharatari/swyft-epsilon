@@ -11,7 +11,6 @@ export default Ember.Controller.extend({
                 orderCutoff: this.get('orderCutoff'),
                 deliverers: this.get('deliverers'),
                 comments: this.get('comments'),
-                _csrf:this.get('model')._csrf,
                 user: {token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token}
             };
             var url = config.routeLocation + "/api/delivery";

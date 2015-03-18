@@ -8,19 +8,10 @@ module.exports = {
                 if(token.hasBeenUsed) {
                     return cb(false);
                 }
-                if(token.isCoupon) {
-                    Coupon.find({ id: token.couponId }).exec(function(err, coupon) {
-                        order.actualAmount *= coupon.discount;
-                        Token.update({ id: token.id }, { hasBeenUsed: true }).exec(function(err) {
-                            delete order.token;
-                            order.tokenId = token.id;
-                            cb(order);
-                        }); 
-                    });
-                }
                 else {
                     order.actualAmount *= token.discount;
-                    Token.update({ id: token.id }, { hasBeenUsed: true }).exec(function(err) {
+                    order.actualAmount = Math.round(order.actualAmount * 100) / 100;
+                    Token.update({ id: token.id }, { hasBeenUsed: true, orderId: order.id, usedBy: order.userId }).exec(function(err) {
                         delete order.token;
                         order.tokenId = token.id;
                         cb(order);

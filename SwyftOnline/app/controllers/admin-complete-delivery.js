@@ -15,7 +15,6 @@ export default Ember.Controller.extend({
             if(this.get('deliveryList').value) {
                 var data={
                     deliveryId: this.get('deliveryList').value,
-                    _csrf:this.get('csrfToken')._csrf,
                     user: {token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token}
                 };
                 var url = config.routeLocation + "/api/delivery/complete";

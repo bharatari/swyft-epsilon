@@ -29,28 +29,55 @@ export default Ember.Controller.extend({
         return array;
     }.property('deliveries'),
     paymentOptions: function() {
-        return [
-            { id: "swyftdebit", name: "Swyft Debit" },
-            { id: "cash", name: "Cash" }
-        ];
+        if(this.get('user').balance > 0) {
+            return [
+                { id: "swyftdebit", name: "Swyft Debit" },
+                { id: "cash", name: "Cash" },
+                { id: "cash+swyftdebit", name:"Cash + Swyft Debit" } 
+            ];
+        }
+        else {
+            return [
+                { id: "swyftdebit", name: "Swyft Debit", disabled: true },
+                { id: "cash", name: "Cash" },
+                { id: "cash+swyftdebit", name:"Cash + Swyft Debit", disabled: true } 
+            ];
+        }
     }.property(),
+    showSlider: function() {
+        if(this.get('paymentOptions').value === "cash+swyftdebit") {
+            this.set('sliderMax', Math.min(Math.round((this.get('totalPrice') - 0.01) * 100) / 100, this.get('user').balance));
+            this.set('sliderValue', 0.01);
+            this.set('displaySlider', true);
+        }
+        else {
+            this.set('displaySlider', false);
+        }
+    }.observes('paymentOptions.value'),
+    remainingTotal: function() {
+        return Math.round((this.get('totalPrice') - this.get('sliderValue')) * 100) / 100;
+    }.property('sliderValue'),
     actions: {
         checkout: function() {
             var self = this;
             this.set('buttonPressed', true);
-            this.set('displayLoading', true);
             if(this.get('deliveryList').value && this.get('paymentOptions').value) {
-                var data={
-                    items:this.get('cart'),
+                this.set('displayLoading', true);
+                var data = {
+                    items: this.get('cart'),
                     paymentType: this.get('paymentOptions').value,
-                    deliveryLocation:this.get('user').dormitory,
-                    contactPhone:this.get('user').phoneNumber,
-                    userComments:this.get('additionalRequests'),
-                    userId:this.get('user').id,
-                    token:this.get('token'),
+                    deliveryLocation: this.get('user').dormitory,
+                    contactPhone: this.get('user').phoneNumber,
+                    userComments: this.get('additionalRequests'),
+                    userId: this.get('user').id,
+                    token: this.get('token'),
                     deliveryId: this.get('deliveryList').value,
-                    user: {token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token}
+                    user: { token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token }
                 };
+                if(this.get('paymentOptions').value === "cash+swyftdebit") {
+                    data.cashPayment = this.get('remainingTotal');
+                    data.debitPayment = this.get('sliderValue');
+                }
                 var url = config.routeLocation + "/api/order";
                 Ember.$.ajax({
                     url: url,
@@ -80,6 +107,7 @@ export default Ember.Controller.extend({
                 self.set('modalTitle', 'Woah there, not so fast.');
                 self.set('modalBody', "You haven't selected a payment option and/or a delivery time.");
                 self.set('displayModal', true);
+                self.set('buttonPressed', false);
             }
         }
     }

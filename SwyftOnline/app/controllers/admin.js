@@ -29,6 +29,12 @@ export default Ember.Controller.extend({
         },
         goToNews: function() {
             this.transitionToRoute('admin-news');
+        },
+        goToTokens: function() {
+            this.transitionToRoute('admin-tokens');
+        },
+        goToNewToken: function() {
+            this.transitionToRoute('admin-new-token');
         }
     }
 });

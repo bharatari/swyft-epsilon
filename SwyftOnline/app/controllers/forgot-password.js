@@ -9,8 +9,7 @@ export default Ember.Controller.extend({
             var self = this;
             var data = {
                 email: this.get("username"), 
-                token: this.get("token"), 
-                _csrf: this.get("model")._csrf
+                token: this.get("token")
             };
             Ember.$.ajax({
                 type:"POST", 

@@ -11,15 +11,11 @@ export default Ember.Route.extend(SessionRouteMixin, AnimateOutRouteMixin, Sideb
         }
     },
     model: function(params) {
-        return Ember.RSVP.hash({
-            csrfToken: Ember.$.getJSON(config.routeLocation + "/csrfToken"),
-            item: Ember.$.getJSON(config.routeLocation + "/api/item/" + params.item_id)
-        })
+        return Ember.$.getJSON(config.routeLocation + "/api/item/" + params.item_id)
     },
     setupController: function(controller, model) {
         this._super();
-        controller.set('csrfToken', model.csrfToken._csrf);
-        controller.set('model', model.item);
+        controller.set('model', model);
         controller.set('isAuthenticated', this.get('isAuthenticated'));
     }
 });

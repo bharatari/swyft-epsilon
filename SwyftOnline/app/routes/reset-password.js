@@ -6,7 +6,6 @@ import UnauthenticatedRouteMixin from 'swyft-online/mixins/unauthenticated-route
 export default Ember.Route.extend(UnauthenticatedRouteMixin, AnimateOutRouteMixin, {
     model: function(params) {
         this.set('token', params.token);
-        return Ember.$.getJSON(config.routeLocation + "/csrfToken");
     },
     afterModel: function() {
         var self = this;

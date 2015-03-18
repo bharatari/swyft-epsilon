@@ -51,6 +51,10 @@ module.exports.policies = {
   DeliveryNoteController:{
     "*":['isDelivery', 'userDisabled']
   },
+  CouponController:{
+    "*":['isAdmin', 'userDisabled'],
+    "checkToken":[]
+  },
   GlobalController:{
     "setNews":['isAdmin', 'userDisabled']
   }

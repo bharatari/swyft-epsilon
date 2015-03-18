@@ -7,7 +7,7 @@ export default Ember.Controller.extend({
     actions: {
         verify: function() {
             var self = this;
-            var data = {email: this.get("username"), token: this.get("token"), _csrf: this.get("model")._csrf};
+            var data = { email: this.get("username"), token: this.get("token") };
             Ember.$.ajax({type:"POST", headers: { 
                 Accept : "application/json; charset=utf-8",
                 "Content-Type": "application/json; charset=utf-8"

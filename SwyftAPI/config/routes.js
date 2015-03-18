@@ -100,6 +100,12 @@ module.exports.routes = {
   'post /api/deliveryNote/comment':'DeliveryNoteController.setDeliveryNoteComment',
   'post /api/deliveryNote/delivered':'DeliveryNoteController.setDelivered',
 
+  //Coupon Routes
+  'get /api/coupon/checkCoupon/:token':'CouponController.checkToken',
+  'get /api/coupon/tokens':'CouponController.getOpenTokens',
+  'post /api/coupon/token':'CouponController.createIndependentToken',
+  'get /api/coupon/token/:token':'CouponController.getToken',
+    
   //Temporary Routes
   'get /csrfToken':'AuthController.csrfToken'
     

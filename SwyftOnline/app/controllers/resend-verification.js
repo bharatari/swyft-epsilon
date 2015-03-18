@@ -7,7 +7,7 @@ export default Ember.Controller.extend({
     actions: {
         sendVerification: function() {
             var self = this;
-            var data = {username: this.get("username"), password: this.get("password"), _csrf: this.get("model")._csrf};
+            var data = { username: this.get("username"), password: this.get("password") };
             Ember.$.ajax({
                 type:"POST", 
                 url: config.routeLocation + "/api/user/verification/resend", 

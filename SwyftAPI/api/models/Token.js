@@ -4,12 +4,6 @@ module.exports={
         token:{
             type:'string'  
         },
-        isCoupon:{
-            type:'boolean'
-        },
-        couponId:{
-            type:'string'
-        },
         discount:{
             type:'float'
         },

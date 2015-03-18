@@ -220,6 +220,45 @@ module.exports = {
             }
         });
     },
+    submitCashSwyftDebit: function(order, userId, cb) {
+        var referenceOrder = _.cloneDeep(order);
+        delete order.cashPayment;
+        delete order.debitPayment;
+        order.deliveryNote = new ModelService.DeliveryNote(null, null, null, null, null, referenceOrder.cashPayment);
+        if(referenceOrder.actualAmount < (Math.round((referenceOrder.cashPayment + referenceOrder.debitPayment) * 100) / 100)) {
+            cb(false);
+        }
+        User.findOne({ id: userId }).exec(function(err, user) {
+            if(referenceOrder.debitPayment <= user.balance) {
+                Order.create(order).exec(function(err, result) {
+                    if(!err) {                        
+                        UserTransaction.create({ userId: user.id, type: "deduction", amount: referenceOrder.debitPayment, orderId: result.id }).exec(function(err) {
+                            if(!err) {
+                                var newBalance = user.balance - referenceOrder.debitPayment;
+                                User.update({ id: user.id }, { balance: newBalance }).exec(function(err) {
+                                    if(err) {
+                                        cb(false);
+                                    }
+                                    else {
+                                        cb(true);
+                                    }
+                                });
+                            }
+                            else {
+                                cb(false);
+                            }
+                        });                        
+                    }
+                    else {
+                        cb(false);
+                    }
+                });
+            }
+            else {
+                cb(false);
+            }
+        });
+    },
     similarOrders: function(order1, order2) {
         if(order1.deliveryLocation !== order2.deliveryLocation) {
             return false;
@@ -452,7 +491,7 @@ module.exports = {
             orders = result;
             async.each(orders, function(order, callback) {
                 masterList.deliveryTotal += order.actualAmount;
-                var item = new ModelService.MasterListItem(order.user.firstName, order.user.lastName, order.items, order.deliveryLocation, order.actualAmount, order.contactPhone, order.paymentType, false);
+                var item = new ModelService.MasterListItem(order.user.firstName, order.user.lastName, order.items, order.deliveryLocation, order.actualAmount, order.contactPhone, order.paymentType, false, order.deliveryNote);
                 processItems(item, function(result) {
                     masterList.items.push(result);
                     callback();

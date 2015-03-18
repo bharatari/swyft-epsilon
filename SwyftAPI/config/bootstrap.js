@@ -1,4 +1,5 @@
 var Agenda = require('agenda');
+var moment = require('moment-timezone');
 
 /**
  * Bootstrap
@@ -23,6 +24,8 @@ module.exports.bootstrap = function(cb) {
     });
     agenda.every('1 minute', 'deliveryProcessor');
     agenda.start();
+    
+    moment.tz.add(TimeZoneService.timeZones.zones);
     
     // It's very important to trigger this callback method when you are finished
     // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
