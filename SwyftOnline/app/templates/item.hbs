@@ -44,7 +44,7 @@
             <hr>
             {{#each optionGroup in item.itemOptions}}
             <div class="option-group">
-                <h2>{{optionGroup.name}} <span class="required-header">Required</span></h2>
+                <h2 class="option-group-header">{{optionGroup.name}} <span class="required-header">Required</span></h2>
                 <div class="list-group">
                     {{#each option in optionGroup.options}}
                     <!--Use label instead of anchor to increase target space-->
@@ -55,7 +55,7 @@
             {{/each}}
 
             {{#if item.standardOptions}}
-            <h2>Options</h2>
+            <h2 class="option-group-header">Options</h2>
             <div class="list-group">
                 {{#each option in item.standardOptions}}
                 <a class="list-group-item">{{input checked=option.isSelected class="option" type="checkbox"}}<span class="option-text">{{option.name}}</span><span class="badge">{{#if option.price}}{{render-decimals option.price}}{{/if}}</span></a>
@@ -64,7 +64,7 @@
             {{/if}}
 
             {{#if item.extras}}
-            <h1>Extras</h1>
+            <h2 class="option-group-header">Extras</h2>
             <div class="list-group">
                 {{#each extra in item.extras}}
                 <a class="list-group-item">{{input class="option" type="checkbox" checked=extra.isSelected}}<span class="option-text">{{extra.name}}</span><span class="badge">{{render-decimals extra.price}}</span></a>

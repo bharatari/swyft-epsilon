@@ -125,6 +125,9 @@ module.exports={
     },
     getMasterList:function(req,res){
         Order.find({ deliveryId: req.params.delivery_id }).exec(function(err, items){
+            if(err || !items) {
+                res.serverError();
+            }
             OrderService.getMasterList(items, function(result) {
                 res.json(result);
             });

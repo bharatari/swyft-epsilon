@@ -33,12 +33,13 @@
     </ul>
     <form>
         <div class="info-well well">
-            <h3 class="item-price">Total: {{dynamic-price dynamic=tokenValid price=totalPrice value=token}}</h3>
-            <h3>Account Balance: {{render-decimals-simple user.balance}}</h3>
+            <h3 class="item-price">Total: {{dynamic-price dynamic=tokenValid price=totalPrice value=token finalAmount=finalAmount}}</h3>
+            <hr>
+            <h3 class="option-group-header">Account Balance: {{render-decimals-simple user.balance}}</h3>
             {{#unless user.balance}}
                 <p class="sub-heading">You can add change to your Swyft Debit account on delivery. You can now also use your LionCard to add balance to Swyft Debit by visiting us in Agora during Meetings (on specific days).</p>
             {{/unless}}
-            <h3>Payment Options</h3>
+            <h3 class="option-group-header">Payment Options</h3>
             <div class="option-group">
                 <div class="list-group">
                     {{#each paymentOption in paymentOptions}}
@@ -58,13 +59,13 @@
             <div class="slider-box">
                 {{input class="slider" value=sliderValue max=sliderMax type="range" min="0.01" step="0.01"}}
                 <div class="slider-text">
-                    {{limit-textbox textClass="transparent-box-label" class="transparent-box" value=sliderValue max=sliderMax min="0.01" prepend-label="DEBIT " prepend="$"}}
+                    <p class="remaining-total"><span class="text-light">DEBIT </span>${{sliderValue}}</p>
                     <p class="remaining-total"><span class="text-light">CASH </span>${{remainingTotal}}</p>
                 </div>
             </div>
             {{/if}}
         
-            <h3>Options</h3>
+            <h3 class="option-group-header">Options</h3>
             
             {{input class="form-control" value=user.dormitory type="text" placeholder="Delivery Location"}}
             {{input class="form-control" value=user.phoneNumber type="text" placeholder="Phone Number"}}
@@ -72,7 +73,7 @@
             {{input class="form-control" value=additionalRequests type="text" placeholder="Additional Requests"}}
             
             <p class="sub-heading">If you're paying with a 50 or 100 dollar bill, let us know so that we can get you the right amount of change. Please do not place any specific item customization requests here, as we cannot guarantee they will be fullfilled.</p>
-            <h3>When do you want your food?</h3>
+            <h3 class="option-group-header">When do you want your food?</h3>
             <div class="option-group">
                 <div class="list-group">
                     {{#each delivery in deliveryList}}

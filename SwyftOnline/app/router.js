@@ -36,6 +36,7 @@ Router.map(function() {
     this.route("admin-export-delivery", { path:"/admin/export-delivery/:delivery_id" }); 
     this.route("terms", { path:"/app/terms" });
     this.route("faq", { path:"/app/faq" });
+    this.route("contact-us", { path:"/app/contact-us" });
     this.route("profile", { path:"/app/profile" });
     this.route("delivery", { path:"/delivery" });
     this.route("delivery-order", { path:"/delivery/order/:order_id" });

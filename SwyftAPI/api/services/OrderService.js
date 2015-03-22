@@ -497,6 +497,7 @@ module.exports = {
                     callback();
                 });
             }, function(err) {
+                masterList.deliveryTotal = Math.round(masterList.deliveryTotal * 100) / 100;
                 cb(masterList);
             });
         });
@@ -512,6 +513,9 @@ module.exports = {
         }
     },
     checkDelivery: function(deliveryId, cb) {
+        if(!deliveryId) {
+            cb(false);
+        }
         Delivery.findOne({ id: deliveryId }).exec(function(err, delivery) {
             if(delivery.closed) {
                 cb(false);

@@ -304,6 +304,7 @@ body {
 
 .quick-link {
    color: black !important;
+   font-family: 'Roboto';
 }
 
 .login-button {
@@ -407,7 +408,7 @@ body {
 }
 
 .img-background {
-    background-image: url('/images/SkyEdit.png');
+    background-image: url('/images/SkyEdit.jpg');
     background-size: cover;
     height:230px;
     margin-bottom: 50px;
@@ -443,6 +444,7 @@ body {
 
 .item-description {
     text-align: center;
+    font-family: 'Roboto';
     color: #555;
 }
 
@@ -452,6 +454,7 @@ body {
 
 .option-text {
     margin-left: 3px;   
+    font-family: 'Roboto';
 }
 
 .list-group {
@@ -575,6 +578,7 @@ a.list-group-item:hover, a.list-group-item:focus {
 
 .cart-item-itemoptions {
     font-size: 16px;
+    font-family: 'Roboto';
 }
 
 .cart-item-price {
@@ -623,8 +627,9 @@ a.list-group-item:hover, a.list-group-item:focus {
 }
 
 .centered-text {
-    text-align:center;
-    margin-bottom:30px;
+    text-align: center;
+    margin-bottom: 30px;
+    font-family: 'Roboto';
 }
 
 .sub-link {
@@ -933,6 +938,7 @@ a.list-group-item:hover, a.list-group-item:focus {
     margin-right: 10px;
     margin-top: 4px;
     font-size: 16px;
+    font-family: 'Roboto';
 }
 
 .no-list {
@@ -949,7 +955,7 @@ a.list-group-item:hover, a.list-group-item:focus {
     height: auto; 
     z-index: -100;
     background-size: cover;
-    background-image: url('/images/BuildingEdit.png');
+    background-image: url('/images/BuildingEdit.jpg');
     background-position: center;
     opacity: inherit;
 }
@@ -1011,6 +1017,19 @@ a.list-group-item:hover, a.list-group-item:focus {
 .text-subtitle {
     font-size: 14px;
     margin-top: 5px;
+}
+
+.option-group-header {
+    font-family: 'Roboto';
+}
+
+.form-control {
+    font-family: 'Roboto';
+}
+
+.master-sheet-total {
+    font-size: 16px;
+    font-weight: 600;
 }
 
 @media only screen and (max-width: 768px) {

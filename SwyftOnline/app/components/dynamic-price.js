@@ -5,13 +5,15 @@ import loginUtils from 'swyft-online/utils/login-utils';
 export default Ember.Component.extend({  
     classNames: ['inline'],
     discountedAmount: function() {
-        return Math.round((this.get('price') - this.get('computedPrice')) * 100) / 100
+        return Math.round((this.get('price') - this.get('computedPrice')) * 100) / 100;
     }.property('price', 'computedPrice'),
     computedPrice: function() {
         if(this.get('discount')) {
+            this.set('finalAmount', this.get('price') * this.get('discount'));
             return this.get('price') * this.get('discount');
         }
         else {
+            this.set('finalAmount', this.get('price'));
             return this.get('price');
         }
     }.property('price', 'discount'),
@@ -22,8 +24,13 @@ export default Ember.Component.extend({
                 token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.token, 
                 tokenId: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.id
             }).done(function(data) {
-                self.set('discount', data.discount);
-                self.get('computedPrice');
+                if(data.hasBeenUsed) {
+                    self.set('discount', null);
+                }
+                else {
+                    self.set('discount', data.discount);
+                    self.get('computedPrice');
+                } 
             });
         }
         else {

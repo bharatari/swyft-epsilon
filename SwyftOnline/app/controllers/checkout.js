@@ -29,24 +29,37 @@ export default Ember.Controller.extend({
         return array;
     }.property('deliveries'),
     paymentOptions: function() {
-        if(this.get('user').balance > 0) {
-            return [
-                { id: "swyftdebit", name: "Swyft Debit" },
-                { id: "cash", name: "Cash" },
-                { id: "cash+swyftdebit", name:"Cash + Swyft Debit" } 
-            ];
-        }
-        else {
+        if(this.get('user').balance < 0) {
             return [
                 { id: "swyftdebit", name: "Swyft Debit", disabled: true },
                 { id: "cash", name: "Cash" },
                 { id: "cash+swyftdebit", name:"Cash + Swyft Debit", disabled: true } 
             ];
         }
-    }.property(),
+        else if(this.get('finalAmount') > this.get('user').balance) {
+            return [
+                { id: "swyftdebit", name: "Swyft Debit", disabled: true },
+                { id: "cash", name: "Cash" },
+                { id: "cash+swyftdebit", name:"Cash + Swyft Debit" } 
+            ];
+        }
+        else {
+            return [
+                { id: "swyftdebit", name: "Swyft Debit" },
+                { id: "cash", name: "Cash" },
+                { id: "cash+swyftdebit", name:"Cash + Swyft Debit" } 
+            ];
+        }
+        
+    }.property('finalAmount'),
     showSlider: function() {
         if(this.get('paymentOptions').value === "cash+swyftdebit") {
-            this.set('sliderMax', Math.min(Math.round((this.get('totalPrice') - 0.01) * 100) / 100, this.get('user').balance));
+            if(this.get('user').balance < this.get('finalAmount')) {
+                this.set('sliderMax', this.get('user').balance);
+            }
+            else {
+                this.set('sliderMax', Math.round((this.get('finalAmount') - 0.01) * 100) / 100);
+            }            
             this.set('sliderValue', 0.01);
             this.set('displaySlider', true);
         }
@@ -55,7 +68,7 @@ export default Ember.Controller.extend({
         }
     }.observes('paymentOptions.value'),
     remainingTotal: function() {
-        return Math.round((this.get('totalPrice') - this.get('sliderValue')) * 100) / 100;
+        return Math.round((this.get('finalAmount') - this.get('sliderValue')) * 100) / 100;
     }.property('sliderValue'),
     actions: {
         checkout: function() {
