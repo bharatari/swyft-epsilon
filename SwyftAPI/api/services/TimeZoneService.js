@@ -1,6 +1,9 @@
 var moment = require('moment-timezone');
 
 module.exports = {
+    processDelivery: function(time) {
+        return time.subtract(this.getESTOffset(time), 'minutes');
+    },
     prepareForDB: function(time) {
         return time.add(getESTOffset(), 'minutes').subtract(getLocalOffset(), 'minutes');
     },

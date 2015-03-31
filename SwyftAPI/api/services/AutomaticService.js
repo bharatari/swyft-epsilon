@@ -17,6 +17,7 @@ module.exports = {
     },
     createNewDelivery: function(period, cb) {
         var delivery = moment().day(period.deliveryDay).set({ hour: period.deliveryHour, minute: period.deliveryMinute, second: period.deliverySecond });
+        //delivery = TimeZoneService.processDelivery(delivery);
         var cutoff = moment().day(period.cutoffDay).set({ hour: period.cutoffHour, minute: period.cutoffMinute, second: period.cutoffSecond });
         var newDelivery = new ModelService.Delivery(delivery.toDate(), period.id, "All", cutoff.toDate(), period.deliverers);
         console.log('Delivery Processor Running');

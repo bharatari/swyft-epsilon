@@ -482,6 +482,13 @@ module.exports = {
     },
     getMasterList: function(orders, cb) {
         var self = this;
+        if(orders.length < 1) {
+            cb({
+                items: [],
+                deliveryTotal: 0,
+                deliveryDate: null
+            });
+        }
         var masterList = {
             items: [],
             deliveryTotal: 0,

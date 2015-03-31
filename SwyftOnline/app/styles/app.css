@@ -105,6 +105,28 @@ body {
     transition: transform 0.5s ease-in;
 }
 
+.navbar-brand-transparent {
+    display: block;
+    margin-top: 10px;
+    color: white !important;
+    font-family: 'Source Sans Pro';
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-size: 16px;
+    color: black;
+    text-decoration: none;
+    -webkit-transition: transform 0.5s ease-in;
+    -moz-transition: transform 0.5s ease-in;
+    -ms-transition: transform 0.5s ease-in;
+    -o-transition: transform 0.5s ease-in;
+    transition: transform 0.5s ease-in;
+}
+
+.navbar-brand-transparent:hover {
+    text-decoration: none;
+    transform: scale(0.95);
+}
+
 .navbar-brand:hover {
     transform: scale(0.95);
 }
@@ -112,6 +134,11 @@ body {
 .navbar-home {
     background-color: white !important;
     margin-bottom: 20px;
+}
+
+.navbar-transparent {
+    background-color: transparent !important;
+    box-shadow: none !important;
 }
 
 .navbar-brand-home {
@@ -129,6 +156,11 @@ body {
 
 .navbar-main {
     margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+.navbar-main-transparent {
+    margin-top: 15px;
     margin-bottom: 0px;
 }
 
@@ -163,7 +195,7 @@ body {
 
 .row-one {
     color:black !important;
-    height: 70vh;
+    height: 82vh;
     margin-top: -20px;
     /*background-image: url('/images/BuildingEdit.png');*/
     background-position: center;
@@ -177,7 +209,7 @@ body {
 }
 
 .row-one-text {
-    margin-top: 26vh;
+    margin-top: 31vh;
 }
 
 .welcome-text {
@@ -329,6 +361,30 @@ body {
 .login-button:hover {
     background-color: black;
     color: white !important;
+}
+
+.order-button {
+    display: block;
+    background-color: transparent;
+    height: 25px;
+    padding: 0;
+    width: 90px;
+    border: 1px solid white;
+    letter-spacing: 2px;
+    color: white;
+    font-weight: 400;
+    font-size: 11px;
+    font-family: 'Open Sans';
+    -webkit-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    -moz-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    -ms-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    -o-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    transition: background-color 0.2s ease-in, color 0.2s ease-out;
+}
+
+.order-button:hover {
+    background-color: white;
+    color: black !important;
 }
 
 .row-two {
@@ -773,7 +829,12 @@ a.list-group-item:hover, a.list-group-item:focus {
 }
 
 .moises {
-    background-image: url('/images/Building.JPG');
+    background-image: url('/images/Moises.jpg');
+    background-position-y: 30%;
+}
+
+.daniel {
+    background-image: url('/images/BuildingEdit.jpg');
     background-position-y: 30%;
 }
 
@@ -955,7 +1016,7 @@ a.list-group-item:hover, a.list-group-item:focus {
     height: auto; 
     z-index: -100;
     background-size: cover;
-    background-image: url('/images/BuildingEdit.jpg');
+    background-image: url('/images/Shanghai.jpg');
     background-position: center;
     opacity: inherit;
 }
@@ -1032,10 +1093,21 @@ a.list-group-item:hover, a.list-group-item:focus {
     font-weight: 600;
 }
 
+.balance {
+    font-family: 'Roboto';
+}
+
 @media only screen and (max-width: 768px) {
     .navbar-main {
         margin-top: 10px;
         margin-bottom: 10px;
+    }
+    
+    .navbar-main-transparent {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-left: 11px !important;
+        margin-right: 10px !important;
     }
     
     .promo {
@@ -1186,7 +1258,7 @@ a.list-group-item:hover, a.list-group-item:focus {
     }
     
     .navbar-float-margin {
-        margin-top: -41px;
+        margin-top: -27px;
     }
     
     .header-bar {

@@ -51,7 +51,7 @@
     <form>
         <div class="info-well well">
             <h2 class="name-header">{{user.firstName}} {{user.lastName}}</h2>
-            <h4>Balance: {{render-decimals-simple user.balance}}</h4>
+            <h4 class="balance">Balance: {{render-decimals-simple user.balance}}</h4>
             {{#if pending}}
             <div class="option-group">
                 <h2 class="small-header">Pending Orders</h2>

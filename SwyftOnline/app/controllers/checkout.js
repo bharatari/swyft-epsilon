@@ -29,7 +29,7 @@ export default Ember.Controller.extend({
         return array;
     }.property('deliveries'),
     paymentOptions: function() {
-        if(this.get('user').balance < 0) {
+        if(this.get('user').balance <= 0) {
             return [
                 { id: "swyftdebit", name: "Swyft Debit", disabled: true },
                 { id: "cash", name: "Cash" },
