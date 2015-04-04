@@ -1,6 +1,7 @@
 var async = require('async');
 var _ = require('lodash');
 var Q = require('q');
+var math = require('mathjs');
 
 module.exports = {
     processAsync: function(menuItems, order, cb) {
@@ -66,9 +67,11 @@ module.exports = {
                     if(option.price) {
                         option.price = parseFloat(option.price);
                     }
+                    /*
                     if(!allOptions.where(option)) {
                         return cb(false);  
                     }
+                    */
                     callback();
                 }, function(err) {
                     async.each(item.options, function(option, callback2) {
@@ -90,9 +93,11 @@ module.exports = {
             if(item.extras) {
                 async.each(item.extras, function(extra, callback) {
                     extra.price = parseFloat(extra.price);
+                    /*
                     if(!menuItem.extras.where(extra)) {
                         return cb(false);
                     }
+                    */
                     callback();
                 }, function(err) {
                     async.each(item.extras, function(extra, callback2) {
@@ -109,6 +114,8 @@ module.exports = {
         }
         
         function standardOptions() {
+            //I don't think we're account for "No " as in default: true
+            /*
             if(item.standardOptions){
                 var options;
                 async.each(menuItem.itemOptions, function(option, callback) {
@@ -133,6 +140,8 @@ module.exports = {
             else {
                 cb(item);
             }
+            */
+            cb(item);
         }
     },
     processOrder: function(order, cb) {
@@ -194,7 +203,7 @@ module.exports = {
                     if(!err) {                        
                         UserTransaction.create({ userId: user.id, type: "deduction", amount: result.actualAmount, orderId: result.id }).exec(function(err) {
                             if(!err) {
-                                var newBalance = user.balance - result.actualAmount;
+                                var newBalance = MathService.subtract(user.balance, result.actualAmount);
                                 User.update({ id: user.id }, { balance: newBalance }).exec(function(err) {
                                     if(err) {
                                         cb(false);
@@ -225,7 +234,7 @@ module.exports = {
         delete order.cashPayment;
         delete order.debitPayment;
         order.deliveryNote = new ModelService.DeliveryNote(null, null, null, null, null, referenceOrder.cashPayment);
-        if(referenceOrder.actualAmount < (Math.round((referenceOrder.cashPayment + referenceOrder.debitPayment) * 100) / 100)) {
+        if(referenceOrder.actualAmount < MathService.add(referenceOrder.cashPayment, referenceOrder.debitPayment)) {
             cb(false);
         }
         User.findOne({ id: userId }).exec(function(err, user) {
@@ -234,7 +243,7 @@ module.exports = {
                     if(!err) {                        
                         UserTransaction.create({ userId: user.id, type: "deduction", amount: referenceOrder.debitPayment, orderId: result.id }).exec(function(err) {
                             if(!err) {
-                                var newBalance = user.balance - referenceOrder.debitPayment;
+                                var newBalance = MathService.subtract(user.balance, referenceOrder.debitPayment);
                                 User.update({ id: user.id }, { balance: newBalance }).exec(function(err) {
                                     if(err) {
                                         cb(false);
@@ -305,7 +314,6 @@ module.exports = {
         });
     },
     iterateJoinUsers: function(items, callback) {
-        //Transition to UtilityService.forLoop
         function loop(i){
             if(i<items.length){
                 function query(cb){

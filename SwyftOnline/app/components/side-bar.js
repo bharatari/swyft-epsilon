@@ -33,16 +33,18 @@ export default Ember.Component.extend({
         }
     }.on('didInsertElement'),
     calculateTotal: function() {
-        var cart=JSON.parse(localStorage.getItem("cart"));
-        var totalPrice=0;
-        if(cart){
-            for(var i = 0; i < cart.length; i++){
+        var cart = JSON.parse(localStorage.getItem("cart"));
+        var totalPrice = 0;
+        if(cart) {
+            for(var i = 0; i < cart.length; i++) {
                 totalPrice += cart[i].price * cart[i].quantity;
             }
-            var tax=Math.round((totalPrice*constants.tax)*10)/10;
+            var tax = Math.round((totalPrice * constants.tax) * 10) / 10;
+            totalPrice = totalPrice + tax;
+            var beforeRoundTotal = totalPrice;
+            totalPrice = Math.round(totalPrice * 10) / 10;
+            tax += totalPrice - beforeRoundTotal;
             this.set('totalTax', tax);
-            totalPrice=totalPrice+tax;
-            totalPrice=Math.round(totalPrice*10)/10;
             this.set('totalPrice', totalPrice);
         }
     },

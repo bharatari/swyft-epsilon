@@ -7,15 +7,15 @@ export default Ember.Controller.extend({
     buttonPressed: false,
     totalPrice: function() {
         var cart = this.get("cart");
-        if(cart){
-            var totalPrice=0;
+        if(cart) {
+            var totalPrice = 0;
             if(cart) {
                 for(var i = 0; i < cart.length; i++) {
                     totalPrice += cart[i].price * cart[i].quantity;
                 }
-                var tax = Math.round((totalPrice*constants.tax)*10)/10;
-                totalPrice=totalPrice+tax;
-                totalPrice=Math.round(totalPrice*10)/10;
+                var tax = Math.round((totalPrice * constants.tax) * 10) / 10;
+                totalPrice = totalPrice + tax;
+                totalPrice = Math.round(totalPrice * 10) / 10;
                 return totalPrice;
             }
         }

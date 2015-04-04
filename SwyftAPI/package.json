@@ -28,6 +28,7 @@
     "jwt-simple": "^0.2.0",
     "lodash": "^3.4.0",
     "mandrill-api": "^1.0.41",
+    "mathjs": "^1.5.0",
     "moment": "^2.9.0",
     "moment-timezone": "^0.3.1",
     "q": "^1.2.0",
