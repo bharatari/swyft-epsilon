@@ -237,5 +237,37 @@ export default {
             }
         }
         return attachedRequests;
+    },
+    processItems: function(items) {
+        for(var e = 0; e < items.length; e++) {
+            var options = "";
+            for (var property in items[e].options) {
+                if (items[e].options.hasOwnProperty(property)) {
+                    options += items[e].options[property].name + ", ";
+                }
+            }
+            if(items[e].standardOptions) {
+                for(var z = 0; z < items[e].standardOptions.length; z++) {
+                    if(items[e].standardOptions[z].isSelected) {
+                        options += items[e].standardOptions[z].name + ", ";
+                    }
+                }
+            }
+            if(items[e].extras) {
+                for(var property in items[e].extras) {
+                    if(items[e].extras.hasOwnProperty(property)) {
+                        options += items[e].extras[property].name + ", ";
+                    }
+                }
+            }
+            if(items[e].attachedRequests) {
+                for(var i = 0; i < items[e].attachedRequests.length; i++) {
+                    options += items[e].attachedRequests[i].name + ", ";
+                }                   
+            }
+            options = options.substring(0, options.length - 2);
+            items[e].itemOptions = options;
+        }
+        return items;
     }
 }

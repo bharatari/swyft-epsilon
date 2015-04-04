@@ -24,8 +24,12 @@
         <div>
             <p><strong>{{item.restaurant}}</strong></p>
             <p>Name: {{item.name}}</p>
-            <p>Item Options: {{item.itemOptions}}</p>
-            <p>Requests: {{item.additionalRequests}}</p>
+            {{#if item.itemOptions}}
+                <p>Item Options: {{item.itemOptions}}</p>
+            {{/if}}
+            {{#if item.additionalRequests}}
+                <p>Requests: {{item.additionalRequests}}</p>
+            {{/if}}
             {{#if item.quantity}}
                 <p>Quantity: {{item.quantity}}</p>
             {{/if}}

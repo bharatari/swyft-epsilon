@@ -1,7 +1,7 @@
 import Ember from "ember";
 
 export default Ember.Handlebars.makeBoundHelper(function(value, options) {
-    if(value===0) {
+    if(value === 0) {
         return "$0.00";
     }
     else {

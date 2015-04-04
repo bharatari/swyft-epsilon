@@ -1,3 +1,5 @@
+import itemUtils from 'swyft-online/utils/item-utils';
+
 export default {
     /** This is used to find items **/
     cartItemsEqual: function(cartItem, arrayItem){
@@ -74,31 +76,7 @@ export default {
         if(!array) {
             return;
         }
-        for(var i = 0; i < array.length; i++){
-            var options = "";
-            for (var property in array[i].options) {
-                if (array[i].options.hasOwnProperty(property)) {
-                    options += array[i].options[property].name + ", ";
-                }
-            }
-            for(var e = 0; e < array[i].standardOptions.length; e++) {
-                if(array[i].standardOptions[e].isSelected){
-                    options += array[i].standardOptions[e].name + ", ";
-                }
-            }
-            for(var property in array[i].extras) {
-                if(array[i].extras.hasOwnProperty(property)) {
-                    options += array[i].extras[property].name + ", ";
-                }
-            }
-            if(array[i].attachedRequests) {
-                for(var e = 0; e < array[i].attachedRequests.length; e++) {
-                    options += array[i].attachedRequests[e].name + ", ";
-                }                   
-            }
-            options = options.substring(0, options.length-2);
-            array[i].itemOptions=options;
-        }
+        array = itemUtils.processItems(array);
         return array;
     },
     /** This check is used to combine duplicates **/

@@ -41,10 +41,21 @@
                     {{/each}}
                 </ul>
             </td>
-            <td>{{render-decimals masterItem.total}}</td>
+            {{#if masterItem.deliveryNote.cashPayment}}
+                <td>
+                    <div>
+                        <p>Cash: {{render-decimals masterItem.deliveryNote.cashPayment}}</p>
+                        <p>Debit: {{render-subtract-numbers masterItem.deliveryNote.cashPayment masterItem.total}}</p>
+                        <p>Total: {{render-decimals masterItem.total}}</p>
+                    </div>
+                </td>
+            {{else}}
+                <td>{{render-decimals masterItem.total}}</td>
+            {{/if}}
             <td>{{masterItem.deliveryLocation}}</td>
             <td>{{masterItem.phoneNumber}}</td>
             <td>{{masterItem.paymentType}}</td>
+            
             <td>{{masterItem.charge}}</td>
         </tr>
         {{/each}}
