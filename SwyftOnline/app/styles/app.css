@@ -838,6 +838,10 @@ a.list-group-item:hover, a.list-group-item:focus {
     background-position-y: 30%;
 }
 
+.antonio {
+    background-image: url('/images/Antonio.jpg');
+}
+
 .joon {
     background-image: url('/images/Joon.jpg');
 }
