@@ -15,10 +15,12 @@ module.exports={
         if(!(req.body.password.length>=6&&req.body.password.length<=20)){
             return res.send(400);
         }
-        User.find().exec(function(err, users){
+        User.find().exec(function(err, users) {
             for(var i = 0; i < users.length; i++){
-                if(users[i].username.toLowerCase() === req.body.email.toLowerCase()){
-                    return res.badRequest('EMAIL_IN_USE');
+                if(users[i].verified) {
+                    if(users[i].username.toLowerCase() === req.body.email.toLowerCase()){
+                        return res.badRequest('EMAIL_IN_USE');
+                    }
                 }
             }
             process();

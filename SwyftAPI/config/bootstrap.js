@@ -1,5 +1,6 @@
 var Agenda = require('agenda');
 var moment = require('moment-timezone');
+var math = require('mathjs');
 
 /**
  * Bootstrap
@@ -26,6 +27,11 @@ module.exports.bootstrap = function(cb) {
     agenda.start();
     
     moment.tz.add(TimeZoneService.timeZones.zones);
+    
+    math.config({
+        number: 'bignumber',
+        precision: 64       
+    });
     
     // It's very important to trigger this callback method when you are finished
     // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)

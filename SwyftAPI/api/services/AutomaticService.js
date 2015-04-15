@@ -9,14 +9,20 @@ module.exports = {
     deliveryInRange: function(period) {
         var today = moment();
         var delivery = moment().day(period.deliveryDay).set({ hour: period.deliveryHour, minute: period.deliveryMinute, second: period.deliverySecond });
+        if(period.deliveryDay === "Sunday") {
+            delivery = delivery.add(7, 'days');
+        }
         var dayBefore = delivery.subtract(1, 'days');
-        if(today.isAfter(dayBefore) && today.isBefore(delivery)) {
+        if(today.isAfter(dayBefore) && !today.isAfter(delivery)) {
             return true;
         }
         return false;
     },
     createNewDelivery: function(period, cb) {
         var delivery = moment().day(period.deliveryDay).set({ hour: period.deliveryHour, minute: period.deliveryMinute, second: period.deliverySecond });
+        if(period.deliveryDay === "Sunday") {
+            delivery = delivery.add(7, 'days');
+        }
         var cutoff = moment().day(period.cutoffDay).set({ hour: period.cutoffHour, minute: period.cutoffMinute, second: period.cutoffSecond });
         var newDelivery = new ModelService.Delivery(delivery.toDate(), period.id, "All", cutoff.toDate(), period.deliverers);
         console.log('Delivery Processor Running');

@@ -69,12 +69,12 @@ export default Ember.Controller.extend({
                         error: function(xhr, textStatus, error) {
                             if(xhr.response === "EMAIL_IN_USE"){
                                 self.set('modalTitle', 'Email already in use');
-                                self.set('modalBody', 'That email seems to be already in use. Make sure your email is spelled correctly. If you forgot your password and are trying to gain access to your account, please contact us at developer@orderswyft.com.');
+                                self.set('modalBody', 'That email seems to be already in use. Make sure your email is spelled correctly. If you forgot your password and are trying to gain access to your account, please contact us at development@orderswyft.com.');
                                 self.set('displayModal', true);
                             }
                             else{
                                 self.set('modalTitle', 'Whoops.');
-                                self.set('modalBody', "Something went wrong with your sign up request. You might have already signed up for a Swyft account with that email address. If you forgot your password and are trying to gain access to your account, please contact us at swyftdeveloper@outlook.com. Check that you've filled out all fields and followed our password requirements. Otherwise, please try again in a few minutes, and if the error persists, please let us know and we'll be happy to help you out.");
+                                self.set('modalBody', "Something went wrong with your sign up request. You might have already signed up for a Swyft account with that email address. If you forgot your password and are trying to gain access to your account, please contact us at development@orderswyft.com. Check that you've filled out all fields and followed our password requirements. Otherwise, please try again in a few minutes, and if the error persists, please let us know and we'll be happy to help you out.");
                                 self.set('displayModal', true);
                             }
                             self.set('buttonPressed', false);
