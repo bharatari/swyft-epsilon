@@ -19,6 +19,9 @@ module.exports={
         },
         transactionCreator:{
             type:'string'
+        },
+        finalBalance:{
+            type:'float'
         }
     },
 }

@@ -201,7 +201,7 @@ module.exports = {
             if(order.actualAmount <= user.balance){
                 Order.create(order).exec(function(err, result) {
                     if(!err) {                        
-                        UserTransaction.create({ userId: user.id, type: "deduction", amount: result.actualAmount, orderId: result.id }).exec(function(err) {
+                        UserTransaction.create({ userId: user.id, type: "deduction", amount: result.actualAmount, orderId: result.id, finalBalance: MathService.subtract(user.balance, result.actualAmount) }).exec(function(err) {
                             if(!err) {
                                 var newBalance = MathService.subtract(user.balance, result.actualAmount);
                                 User.update({ id: user.id }, { balance: newBalance }).exec(function(err) {
@@ -241,7 +241,7 @@ module.exports = {
             if(referenceOrder.debitPayment <= user.balance) {
                 Order.create(order).exec(function(err, result) {
                     if(!err) {                        
-                        UserTransaction.create({ userId: user.id, type: "deduction", amount: referenceOrder.debitPayment, orderId: result.id }).exec(function(err) {
+                        UserTransaction.create({ userId: user.id, type: "deduction", amount: referenceOrder.debitPayment, orderId: result.id, finalBalance: MathService.subtract(user.balance, referenceOrder.debitPayment) }).exec(function(err) {
                             if(!err) {
                                 var newBalance = MathService.subtract(user.balance, referenceOrder.debitPayment);
                                 User.update({ id: user.id }, { balance: newBalance }).exec(function(err) {

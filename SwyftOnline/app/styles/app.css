@@ -464,7 +464,8 @@ body {
 }
 
 .img-background {
-    background-image: url('/images/SkyEdit.jpg');
+    /*background-image: url('/images/BurritoEditCompress.jpg');*/
+    background-color: #4690E6;
     background-size: cover;
     height:230px;
     margin-bottom: 50px;
@@ -773,6 +774,7 @@ a.list-group-item:hover, a.list-group-item:focus {
 
 .terms-container h3 {
     font-weight: 600;
+    font-size: 18px;
 }
 
 .img-fix {
@@ -1102,6 +1104,124 @@ a.list-group-item:hover, a.list-group-item:focus {
     font-family: 'Roboto';
 }
 
+.box-dark {
+    background-color: #343434;
+    height: 200px;
+    padding-top: 20px;
+}
+
+.box-light {
+    background-color: #606060;
+    height: 200px;
+    padding-top: 20px;
+}
+
+.box-header {
+    font-size: 32px;
+    text-align: center;
+    color: white;
+    padding-bottom: 11px;
+}
+
+.center-fix {
+    margin-bottom: 20px;
+}
+
+.box-content {
+    font-family: 'Open Sans';
+    text-align: center;
+    color: white;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.row-learn-one {
+    background-color: rgba(42, 42, 42, 1);
+    color: white;
+    padding-top: 55px;
+    padding-bottom: 55px;
+}
+
+.row-learn-one h1 {
+    font-size: 32px;
+}
+
+.row-learn-two {
+    padding-top: 150px;
+    padding-bottom: 160px;
+}
+
+.learn-row-header {
+    font-size: 17px;
+    text-align: center;
+    font-family: 'Open Sans';
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.learn-two-text {
+    font-size: 32px;
+    text-align: center;
+    font-family: 'Roboto';
+    font-weight: 300;
+}
+
+.row-learn-three {
+    background-color: rgba(42, 42, 42, 1);
+    color: white;
+    height: 400px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.learn-three-header {
+    font-family: 'Roboto';
+    text-align: center;
+    padding-bottom: 15px;
+}
+
+.learn-three-text {
+    font-family: 'Roboto';
+    font-size: 32px;
+    font-weight: 300;
+    text-align: center;
+    color: #2588ff;
+}
+
+.row-learn-four {
+    padding-top: 100px;
+    padding-bottom: 110px;
+    background-color: rgba(42, 42, 42, 1);
+    color: white;
+}
+
+.learn-four-text {
+    font-size: 32px;
+    font-family: 'Roboto';
+    font-weight: 300;
+}
+
+.row-learn-five {
+    padding-top: 50px;
+    padding-bottom: 60px;
+}
+
+.learn-five-text {
+    font-size: 32px;
+    font-family: 'Roboto';
+    font-weight: 300;
+}
+
+.team-header {
+    font-size: 17px;
+    text-align: center;
+    font-family: 'Open Sans';
+    font-weight: 600;
+    margin-top: 110px;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+}
+
 @media only screen and (max-width: 768px) {
     .navbar-main {
         margin-top: 10px;
@@ -1129,7 +1249,7 @@ a.list-group-item:hover, a.list-group-item:focus {
     
     .row-one {
         color:black !important;
-        height: 38vh;
+        height: 50vh;
         margin-top: -32px;
     }
 

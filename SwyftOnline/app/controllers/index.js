@@ -19,6 +19,9 @@ export default Ember.Controller.extend({
         },
         faq: function() {
             this.transitionToRoute('faq');
+        },
+        contactUs: function() {
+            this.transitionToRoute('contact-us');
         }
     }
 });
