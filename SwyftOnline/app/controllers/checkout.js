@@ -4,6 +4,21 @@ import loginUtils from 'swyft-online/utils/login-utils';
 import constants from 'swyft-online/utils/constants-utils';
 
 export default Ember.Controller.extend({
+    conversionTracking: function() {
+        (function() {
+            var _fbq = window._fbq || (window._fbq = []);
+            if (!_fbq.loaded) {
+                var fbds = document.createElement('script');
+                fbds.async = true;
+                fbds.src = '//connect.facebook.net/en_US/fbds.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(fbds, s);
+                _fbq.loaded = true;
+            }
+        })();
+        window._fbq = window._fbq || [];
+        window._fbq.push(['track', '6021240611293', {'value':'0.00','currency':'USD'}]);
+    }.on('init'),
     buttonPressed: false,
     totalPrice: function() {
         var cart = this.get("cart");

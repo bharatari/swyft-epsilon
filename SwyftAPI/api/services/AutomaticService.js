@@ -9,11 +9,12 @@ module.exports = {
     deliveryInRange: function(period) {
         var today = moment();
         var delivery = moment().day(period.deliveryDay).set({ hour: period.deliveryHour, minute: period.deliveryMinute, second: period.deliverySecond });
+        var cutoff = moment().day(period.cutoffDay).set({ hour: period.cutoffHour, minute: period.cutoffMinute, second: period.cutoffSecond });
         if(period.deliveryDay === "Sunday") {
             delivery = delivery.add(7, 'days');
         }
         var dayBefore = delivery.subtract(1, 'days');
-        if(today.isAfter(dayBefore) && !today.isAfter(delivery)) {
+        if(today.isAfter(dayBefore) && today.isBefore(cutoff)) {
             return true;
         }
         return false;
@@ -63,22 +64,27 @@ module.exports = {
     },
     closeDeliveryPeriods: function(cb) {
         Delivery.find({ closed: false, autoDelivery: true }).exec(function(err, deliveries) {
-            async.each(deliveries, function(delivery, callback) {
-                var today = moment();
-                var cutoff = moment(delivery.orderCutoff);
-                if(today.isAfter(cutoff)) {
-                    console.log('Delivery Processor Running');
-                    console.log('Closing Delivery');
-                    Delivery.update({ id: delivery.id }, { closed: true }).exec(function(err) {
+            if(deliveries) {
+                async.each(deliveries, function(delivery, callback) {
+                    var today = moment();
+                    var cutoff = moment(delivery.orderCutoff);
+                    if(today.isAfter(cutoff)) {
+                        console.log('Delivery Processor Running');
+                        console.log('Closing Delivery');
+                        Delivery.update({ id: delivery.id }, { closed: true }).exec(function(err) {
+                            callback();
+                        });
+                    }
+                    else {
                         callback();
-                    });
-                }
-                else {
-                    callback();
-                }
-            }, function(error) {
+                    }
+                }, function(error) {
+                    cb();
+                });
+            }
+            else {
                 cb();
-            });
+            }
         });
     }
 }

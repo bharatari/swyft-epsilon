@@ -86,27 +86,32 @@ module.exports={
         });
         
     },
-    verify:function(req,res){
-        User.findOne({ username: req.body.email.toLowerCase() }).exec(function(err, user){
-            if(err) {
-                res.serverError();
-            }
-            else if(user){
-                if(user.token === req.body.token){
-                    User.update({id:user.id}, {verified:true}).exec(function(err, user){
-                        if(!err){
-                            res.ok();
-                        }
-                        else {
-                            res.serverError();
-                        }
-                    });
+    verify:function(req,res) {
+        if(req.body.email) {
+            User.findOne({ username: req.body.email.toLowerCase() }).exec(function(err, user){
+                if(err) {
+                    res.serverError();
                 }
-            }
-            else{
-                res.badRequest();
-            }
-        });
+                else if(user){
+                    if(user.token === req.body.token){
+                        User.update({id:user.id}, {verified:true}).exec(function(err, user){
+                            if(!err){
+                                res.ok();
+                            }
+                            else {
+                                res.serverError();
+                            }
+                        });
+                    }
+                }
+                else{
+                    res.badRequest();
+                }
+            });
+        }
+        else {
+            res.badRequest();
+        }
     },
     getUser:function(req,res){
         User.findOne({id:req.user.id}).exec(function(err, user){

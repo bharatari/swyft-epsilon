@@ -31,5 +31,10 @@ module.exports = {
     },
     splitCSV: function(csv) {
         return csv.split(", ");
+    },
+    protect: function (run, onError) {
+        var domain = require('domain').create();
+        domain.on('error', onError);
+        domain.run(run);
     }
 }

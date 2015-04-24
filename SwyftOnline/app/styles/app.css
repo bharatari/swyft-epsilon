@@ -1105,13 +1105,13 @@ a.list-group-item:hover, a.list-group-item:focus {
 }
 
 .box-dark {
-    background-color: #343434;
+    background-color: #4690E6;
     height: 200px;
     padding-top: 20px;
 }
 
 .box-light {
-    background-color: #606060;
+    background-color: #6bb2ff;
     height: 200px;
     padding-top: 20px;
 }
@@ -1132,7 +1132,7 @@ a.list-group-item:hover, a.list-group-item:focus {
     text-align: center;
     color: white;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 21px;
 }
 
 .row-learn-one {
@@ -1169,7 +1169,6 @@ a.list-group-item:hover, a.list-group-item:focus {
 .row-learn-three {
     background-color: rgba(42, 42, 42, 1);
     color: white;
-    height: 400px;
     padding-top: 100px;
     padding-bottom: 100px;
 }
@@ -1244,7 +1243,7 @@ a.list-group-item:hover, a.list-group-item:focus {
     }
     
     .learn-more {
-        height: 40vh;
+        height: 50vh;
     }
     
     .row-one {
@@ -1287,7 +1286,7 @@ a.list-group-item:hover, a.list-group-item:focus {
     }
 
     .background-title {
-        margin-top: 50px;
+        margin-top: 44px;
     }
     
     .row-two {
@@ -1396,6 +1395,22 @@ a.list-group-item:hover, a.list-group-item:focus {
     
     .restaurant-notice {
         margin-bottom: 10px;
+    }
+    
+    .learn-four-text {
+        font-size: 22px;
+    }
+    
+    .learn-five-text {
+        font-size: 22px;
+    }
+    
+    .learn-image-fix {
+        height: 200px;
+    }
+
+    .promo-text {
+        font-size: 41px;
     }
 }
 

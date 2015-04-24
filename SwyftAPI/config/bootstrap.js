@@ -14,17 +14,21 @@ var math = require('mathjs');
  */
 
 module.exports.bootstrap = function(cb) {
-    var agenda = new Agenda();
-    agenda.database('swyftdb:Xv56magj@proximus.modulusmongo.net:27017/yju6Wajy');
-    agenda.define('deliveryProcessor', function(job, done) {
-        AutomaticService.processDeliveryPeriods(function() {
-            AutomaticService.closeDeliveryPeriods(function() { 
-                done();
+    UtilityService.protect(function() {
+        var agenda = new Agenda();
+        agenda.database('swyftdb:Xv56magj@proximus.modulusmongo.net:27017/yju6Wajy');
+        agenda.define('deliveryProcessorDev', function(job, done) {
+            AutomaticService.processDeliveryPeriods(function() {
+                AutomaticService.closeDeliveryPeriods(function() { 
+                    done();
+                });
             });
         });
-    });
-    agenda.every('1 minute', 'deliveryProcessor');
-    agenda.start();
+        agenda.every('1 minute', 'deliveryProcessorDev');
+        agenda.start();
+    }, function(err) {
+       console.log('Delivery Processor Error'); 
+    });    
     
     moment.tz.add(TimeZoneService.timeZones.zones);
     

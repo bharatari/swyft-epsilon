@@ -384,10 +384,15 @@ module.exports = {
     },
     combineItem: function(item1, item2) {
         if(!item1.quantity) {
-            item1.quantity = 2;
+            if(!item2.quantity) {
+                item1.quantity = 2;
+            }
+            else {
+                item1.quantity = 1 + item2.quantity;
+            }
         }
         else {
-            item1.quantity++;
+            item1.quantity = item1.quantity + item2.quantity;
         }
         if(item1.additionalRequests && item2.additionalRequests) {
             item1.additionalRequests = "[ " + item1.additionalRequests + " ], " + "[ " + item2.additionalRequests + " ], ";
@@ -491,31 +496,33 @@ module.exports = {
     getMasterList: function(orders, cb) {
         var self = this;
         if(orders.length < 1) {
-            cb({
+            return cb({
                 items: [],
                 deliveryTotal: 0,
                 deliveryDate: null
             });
         }
-        var masterList = {
-            items: [],
-            deliveryTotal: 0,
-            deliveryDate: orders[0].deliveryTime
-        };
-        self.iterateJoinUsers(orders, function(result) {
-            orders = result;
-            async.each(orders, function(order, callback) {
-                masterList.deliveryTotal += order.actualAmount;
-                var item = new ModelService.MasterListItem(order.user.firstName, order.user.lastName, order.items, order.deliveryLocation, order.actualAmount, order.contactPhone, order.paymentType, false, order.deliveryNote);
-                processItems(item, function(result) {
-                    masterList.items.push(result);
-                    callback();
+        else {
+            var masterList = {
+                items: [],
+                deliveryTotal: 0,
+                deliveryDate: orders[0].deliveryTime
+            };
+            self.iterateJoinUsers(orders, function(result) {
+                orders = result;
+                async.each(orders, function(order, callback) {
+                    masterList.deliveryTotal += order.actualAmount;
+                    var item = new ModelService.MasterListItem(order.user.firstName, order.user.lastName, order.items, order.deliveryLocation, order.actualAmount, order.contactPhone, order.paymentType, false, order.deliveryNote);
+                    processItems(item, function(result) {
+                        masterList.items.push(result);
+                        callback();
+                    });
+                }, function(err) {
+                    masterList.deliveryTotal = Math.round(masterList.deliveryTotal * 100) / 100;
+                    cb(masterList);
                 });
-            }, function(err) {
-                masterList.deliveryTotal = Math.round(masterList.deliveryTotal * 100) / 100;
-                cb(masterList);
             });
-        });
+        }
         function processItems(masterListItem, final) {
             async.each(masterListItem.items, function(item, callback) {
                 MenuItemService.processItemComments(item, function(result) {
