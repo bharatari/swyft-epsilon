@@ -48,7 +48,7 @@ module.exports={
         deliveryNote:{
             type:'json'
         },
-        disabled:{
+        isDeleted:{
             type:'boolean',
             defaultsTo:false
         }

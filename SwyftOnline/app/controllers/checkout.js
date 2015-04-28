@@ -1,5 +1,6 @@
 import Ember from "ember";
 import config from 'swyft-online/config/environment';
+import cartUtils from 'swyft-online/utils/cart-utils';
 import loginUtils from 'swyft-online/utils/login-utils';
 import constants from 'swyft-online/utils/constants-utils';
 
@@ -20,6 +21,11 @@ export default Ember.Controller.extend({
         window._fbq.push(['track', '6021240611293', {'value':'0.00','currency':'USD'}]);
     }.on('init'),
     buttonPressed: false,
+    cartArray: function() {
+        if(localStorage.getItem("cart")){
+            return cartUtils.processCart();
+        }
+    }.property(),
     totalPrice: function() {
         var cart = this.get("cart");
         if(cart) {

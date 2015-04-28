@@ -10,7 +10,7 @@
         <h2 class="cart-header">CART</h2>
         <ul class="cart-list">
             {{#each item in cartArray}}
-                {{sidebar-item item=item removeItem="removeItem" decreaseQuantity="decreaseQuantity" increaseQuantity="increaseQuantity"}}
+                {{sidebar-item item=item removeItem="removeItem" decreaseQuantity="decreaseQuantity" increaseQuantity="increaseQuantity" cart=true}}
             {{/each}}
         </ul>
         <h4 class="total-text">TAX <span class="price-light">{{render-decimals totalTax}}</span></h4>

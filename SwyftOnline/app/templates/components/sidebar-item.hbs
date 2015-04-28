@@ -7,6 +7,7 @@
     <h4 class="cart-item-itemoptions">{{item.additionalRequests}}</h4>
     {{/if}}
     <h4 class="cart-item-price">{{render-decimals item.price}}</h4>
+    {{#if cart}}
     <button class="btn remove-button" {{action 'removeItem' item}}>REMOVE</button>
     <ul class="quantity-container">
         <li>
@@ -19,4 +20,8 @@
             <button class="btn mini-button" {{action 'decreaseQuantity' item}}>-</button>
         </li>
     </ul>
+    {{else}}
+    <p class="quantity-label-summary">Quantity: {{item.quantity}}</p>
+    {{/if}}
+    
 </li>

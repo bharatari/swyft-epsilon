@@ -40,6 +40,9 @@
                 <button class="grid-restaurant list-group-item" {{action 'goToDelivery' delivery.id}}>
                     <p class="click-through justify-left">Delivery</p>
                 </button>
+                <button class="grid-restaurant list-group-item" {{action 'goToManage' delivery.id}}>
+                    <p class="click-through justify-left">Manage</p>
+                </button>
             </div>
         {{else}}
             <h1>Nope. Nothing to see here.</h1>

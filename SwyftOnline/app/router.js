@@ -34,6 +34,7 @@ Router.map(function() {
     this.route("admin-tokens", { path:"/admin/tokens" });
     this.route("admin-new-token", { path:"/admin/new-token" });
     this.route("admin-export-delivery", { path:"/admin/export-delivery/:delivery_id" }); 
+    this.route("admin-export-manage", { path:"/admin/export-manage/:delivery_id" });
     this.route("terms", { path:"/app/terms" });
     this.route("faq", { path:"/app/faq" });
     this.route("contact-us", { path:"/app/contact-us" });

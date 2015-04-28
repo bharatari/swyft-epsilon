@@ -31,10 +31,17 @@
         <li><a>{{#link-to 'restaurants'}}Restaurants{{/link-to}}</a></li>
         <li class="active">Checkout</li>
     </ul>
+    <div class="summary-well well col-md-3">
+        <h1 class="centered-text">Summary</h1>
+        <ul class="cart-list">
+            {{#each item in cartArray}}
+                {{sidebar-item item=item}}
+            {{/each}}
+        </ul>
+        <p class="summary-total">Total (including tax): {{dynamic-price dynamic=tokenValid price=totalPrice value=token finalAmount=finalAmount}}</p>
+    </div>
     <form>
-        <div class="info-well well">
-            <h3 class="item-price">Total: {{dynamic-price dynamic=tokenValid price=totalPrice value=token finalAmount=finalAmount}}</h3>
-            <hr>
+        <div class="info-well well col-md-8">
             <h3 class="option-group-header">Account Balance: {{render-decimals-simple user.balance}}</h3>
             {{#unless user.balance}}
                 <p class="sub-heading">You can add change to your Swyft Debit account on delivery. You can now also use your LionCard to add balance to Swyft Debit by visiting us in Agora during Meetings (on specific days).</p>

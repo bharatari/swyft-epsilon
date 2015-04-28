@@ -37,7 +37,7 @@ module.exports = {
         });
     },
     getRecentOrders: function(userId, cb) {
-        Order.find({ userId: userId.toString() }).limit(10).exec(function(err, items) {
+        Order.find({ userId: userId.toString() }).limit(10).sort({ createdAt: "desc" }).exec(function(err, items) {
             var orders = [];
             async.each(items, function(order, callback) {
                 if(order.deliveryNote) {

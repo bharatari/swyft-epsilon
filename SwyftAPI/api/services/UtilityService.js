@@ -36,5 +36,10 @@ module.exports = {
         var domain = require('domain').create();
         domain.on('error', onError);
         domain.run(run);
+    },
+    sort: function(array, propertyString) {
+        return array.sort(function(a,b) { 
+            return new Date(a[propertyString]).getTime() - new Date(b[propertyString]).getTime() 
+        });
     }
 }
