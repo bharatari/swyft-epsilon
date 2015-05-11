@@ -514,8 +514,10 @@ module.exports = {
                     masterList.deliveryTotal += order.actualAmount;
                     var item = new ModelService.MasterListItem(order.user.firstName, order.user.lastName, order.items, order.deliveryLocation, order.actualAmount, order.contactPhone, order.paymentType, false, order.deliveryNote);
                     processItems(item, function(result) {
-                        masterList.items.push(result);
-                        callback();
+                        processRegion(result, function(finalResult) {
+                            masterList.items.push(finalResult);
+                            callback();
+                        });  
                     });
                 }, function(err) {
                     masterList.deliveryTotal = Math.round(masterList.deliveryTotal * 100) / 100;
@@ -531,6 +533,24 @@ module.exports = {
                 });
             }, function(err) {
                 final(masterListItem);
+            });
+        }
+        function processRegion(masterListItem, final) {
+            DeliveryLocation.findOne({ name: masterListItem.deliveryLocation }).exec(function(err, location) {
+                if(err || !location) {
+                    masterListItem.region = "REGION_ERR";
+                    final(masterListItem);
+                }
+                else {
+                    /** HARDCODE **/
+                    if(location.group === "South Side") {
+                        masterListItem.region = "Bravo";
+                    }
+                    else {
+                        masterListItem.region = "Alpha";
+                    }
+                    final(masterListItem);
+                }
             });
         }
     },

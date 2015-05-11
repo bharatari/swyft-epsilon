@@ -19,7 +19,7 @@ export default Ember.Controller.extend({
         })();
         window._fbq = window._fbq || [];
         window._fbq.push(['track', '6021240611293', {'value':'0.00','currency':'USD'}]);
-    }.on('init'),
+    },
     buttonPressed: false,
     cartArray: function() {
         if(localStorage.getItem("cart")){
@@ -108,6 +108,14 @@ export default Ember.Controller.extend({
                     deliveryId: this.get('deliveryList').value,
                     user: { token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token }
                 };
+                if(!this.get('user').dormitory) {
+                    self.set('modalTitle', 'Woah there, not so fast.');
+                    self.set('modalBody', "You haven't selected a delivery location.");
+                    self.set('displayModal', true);
+                    self.set('buttonPressed', false);
+                    self.set('displayLoading', false);
+                    return;
+                }
                 if(this.get('paymentOptions').value === "cash+swyftdebit") {
                     data.cashPayment = this.get('remainingTotal');
                     data.debitPayment = this.get('sliderValue');
@@ -127,6 +135,7 @@ export default Ember.Controller.extend({
                         self.set('modalBody', 'Thanks for ordering with Swyft. Your order will be delivered at the specified delivery time.');
                         self.set('displayModal', true);
                         localStorage.removeItem('cart');
+                        this.conversionTracking();
                     },
                     error: function(xhr, textStatus, error) {
                         self.set('displayLoading', false);

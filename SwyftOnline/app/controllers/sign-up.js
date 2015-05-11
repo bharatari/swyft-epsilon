@@ -35,7 +35,6 @@ export default Ember.Controller.extend({
                         firstName: this.get('firstName'),
                         lastName: this.get('lastName'),
                         dormitory: this.get('dormitory'),
-                        postOfficeBox: this.get('poBox'),
                         phoneNumber: this.get('phoneNumber'),
                         email: this.get('email'),
                         contactConsent: this.get('contactConsent'),

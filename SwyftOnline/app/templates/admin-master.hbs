@@ -1,24 +1,7 @@
-<nav class="navbar-home navbar navbar-default" role="navigation">
-    <div class="container">
-        <div class="header-info row">
-            <div class="header-item">
-                <i class="icon glyphicon glyphicon-envelope"></i>
-                <span class="header-item-text">development@orderswyft.com</span>
-            </div>
-            <div class="navbar-float">
-                <a href="https://www.facebook.com/orderswyft"><img src="images/facebook.png" height="20" width="20"></a>
-                <img src="images/twitter.png" height="20" width="20">
-            </div>
-        </div>
-        <div class="navbar-main row">
-            <div class="navbar-header">
-                <a class="navbar-brand-home navbar-brand" href="/">SWYFT<span class="logo-light">ADMIN</span></a>
-            </div>
-        </div>
-    </div>
-</nav>
+{{partial "navbar-admin-page"}}
 
 <div class="container">
+    {{filter-box filters=filters}}
     <table class="table table-hover master-sheet">
         <tr>
             <th>Name</th>
@@ -28,8 +11,9 @@
             <th>Phone</th>
             <th>Payment</th>
             <th>Charge</th>
+            <th>Region</th>
         </tr>
-        {{#each masterItem in model.items}}
+        {{#each masterItem in data.items}}
         <tr>
             <td>{{masterItem.name}}</td>
             <td>
@@ -55,10 +39,12 @@
             <td>{{masterItem.deliveryLocation}}</td>
             <td>{{masterItem.phoneNumber}}</td>
             <td>{{masterItem.paymentType}}</td>
-            
             <td>{{masterItem.charge}}</td>
+            <td>{{masterItem.region}}</td>
         </tr>
         {{/each}}
     </table>
-    <h3 class="master-sheet master-sheet-total">Total ${{model.deliveryTotal}}</h3>
+    {{#unless filters}}
+        <h3 class="master-sheet master-sheet-total">Total ${{data.deliveryTotal}}</h3>
+    {{/unless}}
 </div>

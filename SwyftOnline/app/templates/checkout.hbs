@@ -1,21 +1,4 @@
-<nav class="navbar navbar-order navbar-default" role="navigation">
-    <div class="header-bar row">
-        <div class="header-info container">
-            <div class="header-item">
-                <i class="icon glyphicon glyphicon-earphone"></i>
-                <span class="header-item-text">646-84-SWYFT</span>
-
-            </div>
-            <div class="header-item">
-                <i class="icon glyphicon glyphicon-envelope"></i>
-                <span class="header-item-text">help@orderswyft.com</span>
-            </div>
-        </div>
-    </div>
-    <div class="navbar-container-order container">
-        <a class="navbar-brand" href="/">ORDER<span class="logo-light">SWYFT</span></a>
-    </div>
-</nav>
+{{partial "navbar-standard"}}
 
 {{modal-dialog body=modalBody title=modalTitle displayModal=displayModal}}
 {{loading-bar display=displayLoading}}
@@ -74,7 +57,7 @@
         
             <h3 class="option-group-header">Options</h3>
             
-            {{input class="form-control" value=user.dormitory type="text" placeholder="Delivery Location"}}
+            {{view "select" content=deliveryLocations value=user.dormitory class="form-control" prompt="Select a Delivery Location"}}
             {{input class="form-control" value=user.phoneNumber type="text" placeholder="Phone Number"}}
             {{validation-box value=token placeholder="One Time Coupon" isValid=tokenValid invalidMessage="The token you entered is invalid."}}
             {{input class="form-control" value=additionalRequests type="text" placeholder="Additional Requests"}}

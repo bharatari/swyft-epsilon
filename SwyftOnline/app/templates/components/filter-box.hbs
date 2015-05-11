@@ -1,0 +1,10 @@
+<div class="filter-box">
+    {{input class="form-control filter-property" value=filterProperty type="text" placeholder="Filter Property"}}
+    {{view "select" content=filterTypes value=filterType class="form-control filter-type"}}
+    {{input class="form-control filter-value" type="text" placeholder="Filter Value" value=filterValue}}
+    <button class="btn btn-standard filter-add" {{action 'add'}}>ADD</button>
+    <button class="btn btn-standard filter-reset" {{action 'reset'}}>RESET</button>
+    {{#each filter in filters}}
+    <h4 class="filter-text">{{filter.filterProperty}} <strong>{{filter.filterType}}</strong> {{filter.filterValue}} <button class="filter-remove" {{action 'remove' filter}}><i class="glyphicon glyphicon-trash"></i></button></h4>
+    {{/each}}
+</div>

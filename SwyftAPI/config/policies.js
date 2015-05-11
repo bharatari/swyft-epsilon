@@ -30,7 +30,6 @@ module.exports.policies = {
     "*":['isAuthenticated', 'userDisabled', 'suppressSystem'],
     "retrieveOrders":['isAdmin', 'userDisabled'],
     "deleteOrder":['isAdmin', 'userDisabled'],
-    "pendingOrders":['isAdmin', 'userDisabled'],
     "addDeliveryPeriod":['isAdmin', 'userDisabled'],
     "createFulfillment":['isAdmin', 'userDisabled'],
     "getDeliveryOrders":['isDelivery', 'userDisabled'],

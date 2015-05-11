@@ -17,14 +17,14 @@ module.exports.bootstrap = function(cb) {
     UtilityService.protect(function() {
         var agenda = new Agenda();
         agenda.database('swyftdb:Xv56magj@proximus.modulusmongo.net:27017/yju6Wajy');
-        agenda.define('deliveryProcessorDev', function(job, done) {
+        agenda.define('deliveryProcessor', function(job, done) {
             AutomaticService.processDeliveryPeriods(function() {
                 AutomaticService.closeDeliveryPeriods(function() { 
                     done();
                 });
             });
         });
-        agenda.every('1 minute', 'deliveryProcessorDev');
+        agenda.every('1 minute', 'deliveryProcessor');
         agenda.start();
     }, function(err) {
        console.log('Delivery Processor Error'); 

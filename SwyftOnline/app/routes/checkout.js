@@ -19,7 +19,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, SidebarRouteMixin, An
         return Ember.RSVP.hash({
             cart: JSON.parse(localStorage.getItem('cart')),
             user: Ember.$.getJSON(config.routeLocation + "/api/user", {token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.token, tokenId: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.id}),
-            deliveries: Ember.$.getJSON(config.routeLocation + "/api/deliveries")
+            deliveries: Ember.$.getJSON(config.routeLocation + "/api/deliveries"),
+            deliveryLocations: Ember.$.getJSON(config.routeLocation + "/api/deliveryLocations/simple")
         })
     },
     setupController: function(controller, model) {
@@ -28,5 +29,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, SidebarRouteMixin, An
         controller.set('user', model.user);
         controller.set('deliveries', model.deliveries);
         controller.set('buttonPressed', false);
+        controller.set('deliveryLocations', model.deliveryLocations);
     }
 });

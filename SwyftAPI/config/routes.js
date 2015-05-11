@@ -106,6 +106,11 @@ module.exports.routes = {
   'post /api/coupon/token':'CouponController.createIndependentToken',
   'get /api/coupon/token/:token':'CouponController.getToken',
     
+  //Delivery Location Routes
+  'get /api/deliveryLocations':'DeliveryLocationController.getLocations',
+  'get /api/deliveryLocations/simple':'DeliveryLocationController.getLocationsSimple',
+  'post /api/deliveryLocations/orders':'DeliveryLocationController.getLocationOrders',
+    
   //Temporary Routes
   'get /csrfToken':'AuthController.csrfToken'
     

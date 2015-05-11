@@ -6,13 +6,12 @@ var bcrypt = require('bcrypt');
 
 module.exports={
     create:function(req,res){
-        req.body.phoneNumber=req.body.phoneNumber.replace(/\D/g,'');
-        req.body.postOfficeBox=req.body.postOfficeBox.replace(/\D/g,'');
-        if(req.body.email.toLowerCase().indexOf("@exeter.edu")===-1){
+        req.body.phoneNumber = req.body.phoneNumber.replace(/\D/g,'');
+        if(req.body.email.toLowerCase().indexOf("@exeter.edu") === -1){
             return res.send(400);
         }
         var token=chance.guid();
-        if(!(req.body.password.length>=6&&req.body.password.length<=20)){
+        if(!(req.body.password.length >= 6 && req.body.password.length <= 20)){
             return res.send(400);
         }
         User.find().exec(function(err, users) {
@@ -33,7 +32,6 @@ module.exports={
                 lastName:req.body.lastName,
                 phoneNumber:req.body.phoneNumber,
                 dormitory:req.body.dormitory,
-                postOfficeBox:req.body.postOfficeBox,
                 verified:false,
                 token:token,
                 balance:0,

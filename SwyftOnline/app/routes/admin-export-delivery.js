@@ -10,6 +10,17 @@ export default Ember.Route.extend(AdminRouteMixin, {
         }
     },
     model: function(params) {
-        return Ember.$.getJSON(config.routeLocation + "/api/orders/master/" + params.delivery_id, {token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.token, tokenId: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.id});
+        this.set('delivery_id', params.delivery_id);
+        return Ember.RSVP.hash({
+            data: Ember.$.getJSON(config.routeLocation + "/api/orders/master/" + params.delivery_id, {token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.token, tokenId: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.id}),
+            deliveryLocations: Ember.$.getJSON(config.routeLocation + "/api/deliveryLocations/simple")
+        });
+    },
+    setupController: function(controller, model) {
+        this._super();
+        controller.set('delivery_id', this.get('delivery_id'));
+        controller.set('data', model.data);
+        controller.set('fullData', model.data);
+        controller.set('deliveryLocations', model.deliveryLocations);
     }
 });
