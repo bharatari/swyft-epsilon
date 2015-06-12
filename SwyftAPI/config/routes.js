@@ -68,6 +68,7 @@ module.exports.routes = {
 
   //Order Routes
   'get /api/orders':'OrderController.getOrders',
+  'get /api/orders/all':'OrderController.getAllOrders',
   'get /api/order':'OrderController.getOrder',
   'get /api/deliveryOrders':'OrderController.getDeliveryOrders',
   'post /api/order':'OrderController.processOrder',
@@ -90,9 +91,6 @@ module.exports.routes = {
   //Global Routes
   'get /api/news':'GlobalController.getNews',
   'post /api/news':'GlobalController.setNews',
-  
-  //Transaction Routes  
-  'get /api/transactions':'TransactionController.getTransactions',
     
   //Delivery Note Routes
   'get /api/deliveryNote/global':'DeliveryNoteController.getGlobalDeliveryNote',
@@ -111,8 +109,18 @@ module.exports.routes = {
   'get /api/deliveryLocations/simple':'DeliveryLocationController.getLocationsSimple',
   'post /api/deliveryLocations/orders':'DeliveryLocationController.getLocationOrders',
     
+  //Analytics Routes
+  'get /api/analytics/orders/chart':'AnalyticsController.getOrderChart',
+  'get /api/analytics/deliveries/data':'AnalyticsController.getActiveDeliveryData',
+  'get /api/analytics/dashboard/statistics':'AnalyticsController.getDashboardStats',
+  'get /api/analytics/revenue/chart':'AnalyticsController.getRevenueChart',
+    
   //Temporary Routes
-  'get /csrfToken':'AuthController.csrfToken'
+  'get /csrfToken':'AuthController.csrfToken',
+    
+  //Admin Routes  
+  'get /api/admin/transaction/metadata':'UserTransactionController.getTransactionMetadata',
+  'get /api/admin/user/metadata':'UserController.getUserMetadata'
     
   /***************************************************************************
   *                                                                          *

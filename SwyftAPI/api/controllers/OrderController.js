@@ -132,5 +132,19 @@ module.exports={
                 res.json(result);
             });
         });
+    },
+    getAllOrders: function(req, res) {
+        Order.find({ isDeleted: false }).exec(function(err, orders) {
+            OrderService.iterateJoinUsers(orders, function(result) {
+                res.json(result);
+            });
+        });
+    },
+    getChartData: function(req, res) {
+        Delivery.find().sort({ createdAt: 'desc' }).limit(10).exec(function(err, deliveries) {
+            OrderService.getChartData(deliveries, function(result) {
+                res.json(result);
+            });
+        });
     }
 }

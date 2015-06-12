@@ -213,7 +213,7 @@ module.exports={
                 return res.badRequest();
             }
             else {
-                var transactionAmount = Math.round(parseFloat(req.body.transactionAmount*100))/100;
+                var transactionAmount = Math.round(parseFloat(req.body.amount*100))/100;
                 var balance = user.balance;
                 user.balance += transactionAmount;
                 res.send({
@@ -222,7 +222,7 @@ module.exports={
                     lastName: user.lastName,
                     previousBalance: balance,
                     balance: user.balance,
-                    transactionAmount: transactionAmount,
+                    amount: transactionAmount,
                     comments: req.body.comments
                 });
             }
@@ -230,7 +230,7 @@ module.exports={
     },
     balanceRequest: function(req, res) {
         var transactionType;
-        if(req.body.transactionAmount < 0) {
+        if(req.body.amount < 0) {
             transactionType = "deduction";
         }
         else {
@@ -241,12 +241,16 @@ module.exports={
                 return res.badRequest();
             }
             else {
+                var transactionAmount = Math.round(parseFloat(req.body.amount*100))/100;
+                var balance = user.balance;
+                var final = user.balance + transactionAmount;
                 var object = {
                     userId: req.body.userId, 
                     type:transactionType, 
-                    amount: Math.abs(req.body.transactionAmount), 
+                    amount: Math.abs(req.body.amount), 
                     comments: req.body.comments,
-                    transactionCreator: req.user.id
+                    transactionCreator: req.user.id,
+                    finalBalance: final
                 }
                 UserTransaction.create(object).exec(function(err){
                     if(err){
@@ -277,6 +281,48 @@ module.exports={
                     return res.ok();
                 }
             }
+        });
+    },
+    /*
+    getUsersAdmin: function(req, res) {
+        UserService.getUsers(req.query, function(result) {
+            result = UserService.deleteSensitiveIterate(result);
+            res.json(result);
+        });
+    },
+    getUserAdmin: function(req, res) {
+        User.findOne({ id: req.params.id }).exec(function(err, user) {
+            if(!user && req.query.admin) {
+                res.json(new ModelService.User());
+            }
+            else if(!user) {
+                res.badRequest();
+            }
+            else {
+                user = UserService.deleteSensitive(user);
+                res.json(user);
+            }
+        });
+    },
+    updateUserAdmin: function(req, res) {
+        User.update({ id: req.params.id }, req.body).exec(function(err, transaction) {
+            res.ok();
+        });
+    },
+    newUserAdmin: function(req, res) {
+        User.create(req.body).exec(function(err, transaction) {
+            res.ok();
+        });
+    },
+    deleteUserAdmin: function(req, res) {
+        User.destroy({ id: req.params.id }).exec(function(err) {
+            res.ok();
+        });
+    },
+    */
+    getUserMetadata: function(req, res) {
+        MetaService.getUserMetadata(req.query.recordsPerPage, function(result) {
+            res.json(result);
         });
     }
 }

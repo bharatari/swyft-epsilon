@@ -28,11 +28,11 @@ module.exports = function(environment) {
       
     ENV.contentSecurityPolicy = {
         'default-src': "'none'",
-        'script-src': "'self' 'unsafe-eval'",
+        'script-src': "'self' 'unsafe-eval' 'https://cdnjs.cloudflare.com'",
         'font-src': "'self' http://fonts.gstatic.com https://fonts.gstatic.com",
         'connect-src': "'self' http://localhost:1337",
         'img-src': "'self'",
-        'style-src': "'self' 'unsafe-inline' http://fonts.googleapis.com https://fonts.googleapis.com", 
+        'style-src': "'self' 'unsafe-inline' http://fonts.googleapis.com https://fonts.googleapis.com http://maxcdn.bootstrapcdn.com", 
         'media-src': "'self'"
     }
     ENV.routeLocation = "http://localhost:1337";

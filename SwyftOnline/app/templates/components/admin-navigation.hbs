@@ -1,0 +1,8 @@
+<nav id="admin-menu" class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
+    <h5 class="admin-sidebar-header">Main Navigation</h5>
+    <ul class="nav nav-pills admin-sidebar-list nav-stacked">
+        {{#each nav in navigation}}
+        {{admin-nav label=nav.label route=nav.route icon=nav.icon currentRoute=currentRoute}}
+        {{/each}}
+    </ul>
+</nav>

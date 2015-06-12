@@ -27,9 +27,53 @@ module.exports = {
             }
         });
     },
+    deleteSensitiveIterate: function(users) {
+        for(var i = 0; i < users.length; i++) {
+            delete users[i].password;
+            delete users[i].token;
+        }  
+        return users;
+    },
     deleteSensitive: function(user) {
         delete user.password;
         delete user.token;
         return user;
-    }
+    },
+    /*
+    getUsers: function(query, cb) {
+        if(query.filters) {
+            User.find().exec(function(err, items) {
+                items = UtilityService.filterData(items, query.filters);
+                if(query.page && query.sort && query.sortType) {
+                    var data = UtilityService.sortData(items, query.sort, query.sortType);
+                    cb(UtilityService.pagination(data, query.recordsPerPage, 1));
+                }
+                else if(query.page) {
+                    cb(UtilityService.pagination(items, query.recordsPerPage, 1));
+                }
+                else if(query.sort) {
+                    cb(UtilityService.sortData(items, query.sort, query.sortType));
+                }
+            });
+        }
+        else {
+            if(query.page && query.sort && query.sortType) {
+                User.find().exec(function(err, users) {
+                    var data = UtilityService.sortData(users, query.sort, query.sortType);
+                    cb(UtilityService.pagination(data, query.recordsPerPage, 1));
+                });
+            }
+            else if(query.page) {
+                User.find().paginate({page: query.page, limit: query.recordsPerPage}).exec(function(err, users) {
+                    cb(users);
+                });
+            }
+            else if(query.sort) {
+                User.find().exec(function(err, users) {
+                    cb(UtilityService.sortData(users, query.sort, query.sortType));
+                });
+            }
+        }
+    }   
+    */
 }

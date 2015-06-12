@@ -1,0 +1,11 @@
+{{#if activeRoute}}
+    <a href="javascript:void(0)">
+        <i {{bind-attr class=":fa icon :admin-sidebar-icon"}}></i>
+        {{label}}
+    </a>
+{{else}}
+    {{#link-to route}}
+        <i {{bind-attr class=":fa icon :admin-sidebar-icon"}}></i>
+        {{label}}
+    {{/link-to}}
+{{/if}}

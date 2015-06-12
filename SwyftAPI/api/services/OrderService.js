@@ -2,6 +2,7 @@ var async = require('async');
 var _ = require('lodash');
 var Q = require('q');
 var math = require('mathjs');
+var moment = require('moment');
 
 module.exports = {
     processAsync: function(menuItems, order, cb) {
@@ -318,7 +319,8 @@ module.exports = {
             if(i<items.length){
                 function query(cb){
                     User.find().where({id:items[i].userId}).exec(function(err, user){
-                        items[i].user=user[0];
+                        user[0] = UserService.deleteSensitive(user[0]);
+                        items[i].user = user[0];
                         cb();
                     });
                 }

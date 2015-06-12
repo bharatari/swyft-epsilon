@@ -49,8 +49,8 @@
             <div class="slider-box">
                 {{input class="slider" value=sliderValue max=sliderMax type="range" min="0.01" step="0.01"}}
                 <div class="slider-text">
-                    <p class="remaining-total"><span class="text-light">DEBIT </span>${{sliderValue}}</p>
-                    <p class="remaining-total"><span class="text-light">CASH </span>${{remainingTotal}}</p>
+                    <p class="remaining-total"><span class="text-light">DEBIT </span>{{render-decimals-simple sliderValue}}</p>
+                    <p class="remaining-total"><span class="text-light">CASH </span>{{render-decimals-simple remainingTotal}}</p>
                 </div>
             </div>
             {{/if}}

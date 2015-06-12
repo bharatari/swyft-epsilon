@@ -80,6 +80,8 @@ There are three types of modals, the first is a standard `modal-dialog` with a d
 ##Authentication
 SwyftOnline is designed for token-based authentication. There are multiple mixins available to regulate routes by authentication status
 
+##Admin Utilities
+SwyftOnline provides components for building modular administrative interfaces. All administrative routes that use the admin-navigation component must have a currentRoute property within their controller.
 ##HTML Helpers
 ###Decimal Rendering
 The `render-decimal` and `render-decimal-simple` helpers aid in rendering decimal values properly. This is especilally useful when rendering prices, so that a value of 2.3 will appear as 2.30.

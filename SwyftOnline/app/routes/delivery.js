@@ -13,6 +13,5 @@ export default Ember.Route.extend(DeliveryRouteMixin, {
     setupController: function(controller, model) {
         controller.set('orders', model.orders);
         controller.set('deliveryNote', model.deliveryNote);
-        console.log(model.deliveryNote);
     }
 });

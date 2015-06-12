@@ -1,0 +1,45 @@
+{{partial "navbar-admin-modern"}}
+
+{{confirmation-dialog body=dialogBody title=dialogTitle displayDialog=displayDialog accept="accept" cancel="cancel"}}
+
+{{modal-dialog body=modalBody title=modalTitle displayModal=modalDisplay}}
+
+<div class="admin-container">
+    <nav class="admin-sidebar">
+        <h5 class="admin-sidebar-header">Main Navigation</h5>
+        {{admin-navigation currentRoute=currentRoute}}
+    </nav>
+
+    <div class="admin-content">
+        <div class="admin-content-container">
+            <div class="admin-header-bar">
+                {{#if isNew}}
+                    <h1 class="admin-header">New Transaction</h1>
+                    <h4 class="admin-subtitle">Add a new User Transaction. The user's balance will not be automatically updated.</h4>
+                    <h4 class="admin-help">You can look up User ID's from the Users page of Swyft Admin. To add balance to a user's account, enter a positive transaction amount, to deduct balance, enter a negative balance. Don't fill in the Final Balance, Admin ID, Order ID fields unless you really know what you're doing, these are normally automatically managed by the system.</h4>
+                {{else}}
+                    <h1 class="admin-header">Update Transaction</h1>
+                    <h4 class="admin-subtitle">Update a User Transaction. The user's balance will <strong>not</strong> be automatically updated.</h4>
+                    <h4 class="admin-help">You can look up User ID's from the Users page of Swyft Admin. To add balance to a user's account, enter a positive transaction amount, to deduct balance, enter a negative balance. Don't edit the Final Balance, Admin ID, Order ID fields unless you really know what you're doing, these are normally automatically managed by the system.</h4>
+                {{/if}}
+                
+            </div>
+            <div class="panel admin-panel">
+                <div class="admin-panel-header-area">
+                    <h1 class="admin-panel-header">Form</h1>
+                </div>
+                {{admin-ui properties=metadata.properties}}
+                {{#if isNew}}
+                <div class="row clearbox">
+                    <button class="btn btn-default btn-standard" {{action 'submit' 'new'}}>Submit</button>
+                </div>
+                
+                {{else}}
+                <div class="row clearbox">
+                    <button class="btn btn-default btn-standard" {{action 'submit' 'update'}}>Submit</button>
+                </div>
+                {{/if}}
+            </div>          
+        </div>
+    </div>
+</div>

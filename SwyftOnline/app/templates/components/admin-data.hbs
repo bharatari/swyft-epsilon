@@ -1,0 +1,19 @@
+<table class="table table-bordered table-striped table-hover admin-table">
+    <tr>
+        <th>Edit</th>
+        <th>Delete</th>
+        {{#each property in metadata.properties}}
+        <th {{bind-attr class="property.display:admin-show:admin-hide"}}>{{property.displayName}}</th>
+        {{/each}}
+    </tr>
+    {{#each item in data}}
+    <tr>
+        <td><button class="flat-icon-button" {{action 'edit' item.id}}><i class="fa fa-pencil-square-o admin-delete-icon"></i></button></td>
+        <td><button class="flat-icon-button" {{action 'delete' item.id}}><i class="fa fa-trash-o admin-delete-icon"></i></button></td>
+        {{#each property in metadata.properties}}
+        <td {{bind-attr class="property.display:admin-show:admin-hide"}}>{{dynamic-property item property.propertyName}}</td>
+        {{/each}}                      
+    </tr>
+    {{/each}}
+</table>
+{{pagination-control totalPages=metadata.totalPages currentPage=page}}

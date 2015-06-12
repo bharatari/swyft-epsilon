@@ -33,18 +33,27 @@ module.exports.policies = {
     "addDeliveryPeriod":['isAdmin', 'userDisabled'],
     "createFulfillment":['isAdmin', 'userDisabled'],
     "getDeliveryOrders":['isDelivery', 'userDisabled'],
-    "getAggregateOrders":[]
+    "getAggregateOrders":[],
+    "getAllOrders":['isAdmin', 'userDisabled']
   },   
   UserController:{
     "getUser":['isAuthenticated', 'userDisabled'],
     "preliminaryBalanceRequest":['isAdmin', 'userDisabled'],
     "balanceRequest":['isAdmin', 'userDisabled'],
-    "getUsers":['isAdmin', 'userDisabled']
+    "getUsers":['isAdmin', 'userDisabled'],
+    "find":['isAdmin', 'userDisabled'],
+    "findOne":['isAdmin', 'userDisabled'],
+    "create":['isAdmin', 'userDisabled'],
+    "update":['isAdmin', 'userDisabled'],
+    "destroy":['isAdmin', 'userDisabled'],
+    "populate":['isAdmin', 'userDisabled'],
+    "add":['isAdmin', 'userDisabled'],
+    "remove":['isAdmin', 'userDisabled'],
   },
   ViewController:{
     "*":true
   },
-  TransactionsController:{
+  UserTransactionController:{
     "*":['isAdmin', 'userDisabled']
   },
   DeliveryNoteController:{
@@ -56,6 +65,9 @@ module.exports.policies = {
   },
   GlobalController:{
     "setNews":['isAdmin', 'userDisabled']
+  },
+  AnalyticsController:{
+    "*":['isAdmin', 'userDisabled']
   }
   
   /***************************************************************************

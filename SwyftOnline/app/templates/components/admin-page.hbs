@@ -1,0 +1,33 @@
+{{partial "navbar-admin-modern"}}
+
+{{confirmation-dialog body=dialogBody title=dialogTitle displayDialog=displayDialog accept="accept" cancel="cancel"}}
+
+{{modal-dialog body=modalBody title=modalTitle displayModal=displayModal}}
+
+<div class="admin-container">
+    {{admin-navigation currentRoute=currentRoute}}    
+
+    <div class="admin-content">
+        <div class="admin-content-container">
+            <div class="admin-header-bar">
+                <h1 class="admin-header">{{modelName}}</h1>
+                <h4 class="admin-subtitle">{{description}}</h4>
+            </div>
+            <div class="panel admin-panel">
+                <div class="admin-panel-header-area">
+                    <h1 class="admin-panel-header">Controls</h1>
+                </div>
+
+                {{admin-controls modelName=modelName sort=sort sortType=sortType filters=filters metadata=metadata new="new"}}
+
+            </div>
+            <div class="panel admin-panel">
+                <div class="admin-panel-header-area">
+                    <h1 class="admin-panel-header">{{metadata.total}} {{modelName}}</h1>
+                </div>
+                {{admin-data edit="edit" delete="delete" metadata=metadata page=page data=data}}
+            </div>
+
+        </div>
+    </div>
+</div>

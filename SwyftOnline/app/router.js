@@ -18,14 +18,21 @@ Router.map(function() {
     this.route("item", { path:"/app/item/:item_id"});
     this.route("checkout", { path:"/app/checkout"});
     this.route("admin", { path:"/admin"});
+    this.route("terms", { path:"/app/terms" });
+    this.route("faq", { path:"/app/faq" });
+    this.route("contact-us", { path:"/app/contact-us" });
+    this.route("profile", { path:"/app/profile" });
+    this.route("delivery", { path:"/delivery" });
+    this.route("delivery-order", { path:"/delivery/order/:order_id" });
     this.route("admin-export-picker", { path:"/admin/export-picker"});
     this.route("admin-export", { path:"/admin/export/:delivery_id"});
     this.route("admin-unauthorized", { path:"/admin/unauthorized"});
     this.route("admin-new-delivery", { path:"/admin/new-delivery" });
     this.route("admin-complete-delivery", { path:"/admin/complete-delivery" });
     this.route("admin-users", { path:"/admin/users" });
-    this.route("admin-edit-balance", { path:"/admin/balance" });
     this.route("admin-transactions", { path:"/admin/transactions" });
+    this.route("admin-transaction", { path:"/admin/transaction/:id" });
+    this.route("admin-balance", { path:"/admin/balance" });
     this.route("admin-global-delivery-note", { path:"/admin/global-delivery-note" });
     this.route("admin-news", { path:"/admin/news" });
     this.route("admin-close-delivery", { path:"/admin/close-delivery" });
@@ -34,13 +41,7 @@ Router.map(function() {
     this.route("admin-tokens", { path:"/admin/tokens" });
     this.route("admin-new-token", { path:"/admin/new-token" });
     this.route("admin-export-delivery", { path:"/admin/export-delivery/:delivery_id" }); 
-    this.route("admin-export-manage", { path:"/admin/export-manage/:delivery_id" });
-    this.route("terms", { path:"/app/terms" });
-    this.route("faq", { path:"/app/faq" });
-    this.route("contact-us", { path:"/app/contact-us" });
-    this.route("profile", { path:"/app/profile" });
-    this.route("delivery", { path:"/delivery" });
-    this.route("delivery-order", { path:"/delivery/order/:order_id" });
+    this.route("admin-orders", { path:"/admin/orders" }); 
 });
 
 export default Router;

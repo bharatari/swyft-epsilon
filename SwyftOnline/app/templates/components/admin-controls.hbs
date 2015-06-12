@@ -1,0 +1,39 @@
+<form class="form-horizontal">
+    <p class="bg-primary admin-roboto col-sm-offset-2 col-sm-9">Content sorted with <strong>{{sort}}</strong> by <strong>{{sortType}}</strong></p>
+    <div class="form-group">
+        <label for="sort" class="col-sm-2 control-label">Sort By</label>
+        <div class="col-sm-9">
+
+            {{view "select" id='sort' content=metadata.properties value=sort optionValuePath="content.propertyName" optionLabelPath="content.displayName" class="form-control" prompt="Select a Property To Sort"}}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="sort-type" class="col-sm-2 control-label">Sort Type</label>
+        <div class="col-sm-9">
+            {{view "select" id="sort-type" content=metadata.sortTypes value=sortType optionValuePath="content.propertyName" optionLabelPath="content.displayName" class="form-control" prompt="Sort Type"}}
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Columns</label>
+        <div class="col-sm-9">
+            {{#each property in metadata.properties}}
+            <div class="checkbox-inline">
+                <label>
+                    {{input checked=property.display class="option" type="checkbox"}}
+                    {{property.displayName}}
+                </label>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</form>
+
+<h1 class="col-sm-offset-2 admin-roboto admin-control-header">Filter</h1>
+
+{{filter-box filters=filters properties=metadata.properties}}
+
+<h1 class="col-sm-offset-2 admin-roboto admin-control-header">Management</h1>
+<button class="btn btn-default col-sm-offset-2" {{action 'goToNew'}}>
+    <i class="fa fa-plus"></i>
+    Add {{modelName}}
+</button>

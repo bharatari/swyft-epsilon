@@ -36,5 +36,32 @@ module.exports = {
         else {
             this.cashPayment = cashPayment;
         }
+    },
+    Transaction: function() {
+        this.userId = "";
+        this.type = "";
+        this.amount = 0;
+        this.comments = "";
+        this.orderId = "";
+        this.transactionCreator = "";
+        this.finalBalance = 0;
+    },
+    User: function() {
+        this.username = "";
+        this.firstName = "";
+        this.lastName = "";
+        this.dormitory = "";
+        this.postOfficeBox = "";
+        this.phoneNumber = "";
+        this.verified = false;
+        this.token = "";
+        this.balance = 0;
+        this.contactConsent = true;
+        this.isAdmin = false;
+        this.isDriver = false;
+        this.isEmployee = false;
+        this.isDeliverer = false;
+        this.isEnabled = false;
+        this.testUser = false;
     }
 }
