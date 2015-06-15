@@ -9,7 +9,7 @@
     <div class="list-group">
         {{#each delivery in deliveryList}}
             <div class="row">
-                <h3 class="header-margin">{{delivery.displayTime}}</h2>
+                <h3 class="header-margin">{{delivery.displayTime}}</h3>
                 <button class="grid-restaurant list-group-item" {{action 'goToExport' delivery.id}}>
                     <p class="click-through justify-left">Export</p>
                 </button>

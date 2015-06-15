@@ -4,9 +4,6 @@ import loginUtils from 'swyft-online/utils/login-utils';
 
 export default Ember.Mixin.create({
     actions: {
-        toggleSidebar: function() {
-            $('#nav-menu').offcanvas('toggle');
-        },
         checkout: function() {
             this.transitionToRoute("checkout");
         },

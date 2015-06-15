@@ -11,6 +11,7 @@ app.import('bower_components/moment/moment.js');
 app.import('bower_components/moment-timezone/moment-timezone.js');
 app.import('bower_components/lodash/lodash.min.js');
 app.import('bower_components/mathjs/dist/math.min.js');
+app.import('bower_components/Chart.js/Chart.min.js');
 
 var mergeTrees = require('broccoli-merge-trees');
 var pickFiles = require('broccoli-static-compiler');
