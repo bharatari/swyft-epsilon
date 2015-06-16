@@ -14,7 +14,7 @@
         <pre>{{deliveryNote.value}}</pre>
     </div>
     <div class="grid-products list-group">
-        {{#each order in orders}}
+        {{#each orders as |order|}}
         <button class="grid-product list-group-item" {{action 'goToOrder' order}}>
             <div class="click-through">
                 <h4 class="grid-product-title">{{order.user.firstName}} {{order.user.lastName}}</h4>

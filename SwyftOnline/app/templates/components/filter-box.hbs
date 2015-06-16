@@ -26,8 +26,8 @@
         </div>
     </form>
     <div class="col-sm-offset-2 col-sm-9">
-        {{#each filter in filters}}
-        <h4 class="filter-text">{{filter.filterProperty}} <strong>{{filter.filterType}}</strong> {{filter.filterValue}} <button class="filter-remove" {{action 'remove' filter}}><i class="glyphicon glyphicon-trash"></i></button></h4>
+        {{#each filterArray as |filter|}}
+            <h4 class="filter-text">{{filter.filterProperty}} <strong>{{filter.filterType}}</strong> {{filter.filterValue}} <button class="filter-remove" {{action 'remove' filter}}><i class="glyphicon glyphicon-trash"></i></button></h4>
         {{/each}}
     </div>    
 </div>

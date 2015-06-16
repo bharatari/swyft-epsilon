@@ -3,11 +3,11 @@
         {{#unless onFirstPage}}
             <li><a href="#" {{action 'goToFirstPage'}}>...</a></li>
         {{/unless}}
-        {{#each page in previousFive}}
+        {{#each previousFive as |page|}}
             <li><a href="#" {{action 'goToPage' page}}>{{page}}</a></li>
         {{/each}}
         <li><a href="javascript:void(0)">{{currentPage}}</a></li>
-        {{#each page in nextFive}} 
+        {{#each nextFive as |page|}}
             <li><a href="#" {{action 'goToPage' page}}>{{page}}</a></li>
         {{/each}}
         {{#unless onLastPage}}

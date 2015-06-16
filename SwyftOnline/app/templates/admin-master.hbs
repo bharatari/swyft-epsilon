@@ -13,12 +13,12 @@
             <th>Charge</th>
             <th>Region</th>
         </tr>
-        {{#each masterItem in data.items}}
+        {{#each data.items as |masterItem|}}
         <tr>
             <td>{{masterItem.name}}</td>
             <td>
                 <ul>
-                    {{#each item in masterItem.items}}
+                    {{#each masterItem.items as |item|}}
                     <li>
                         <p>{{item.quantity}} <strong>{{item.name}}</strong> {{item.itemComments}}</p>
                     </li>

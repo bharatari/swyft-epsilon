@@ -16,7 +16,7 @@
     <div class="form-group">
         <label class="col-sm-2 control-label">Columns</label>
         <div class="col-sm-9">
-            {{#each property in metadata.properties}}
+            {{#each metadata.properties as |property|}}
             <div class="checkbox-inline">
                 <label>
                     {{input checked=property.display class="option" type="checkbox"}}

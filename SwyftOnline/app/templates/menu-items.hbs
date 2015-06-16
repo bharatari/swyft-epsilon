@@ -20,12 +20,12 @@
         <hr class="notice-divider">
     {{/if}}
     
-    {{#each category in sortedCategories}}
+    {{#each sortedCategories as |category|}}
     <div class="grid-products list-group row">
         <div class="category-box">
             <h3 class="category-name">{{category.name}}</h3>
         </div>
-        {{#each item in category.items}}
+        {{#each category.items as |item|}}
         <button class="grid-product list-group-item" {{action 'transition' item.id}}>
             <div class="click-through">
                 <h4 class="grid-product-title">{{item.name}}</h4>

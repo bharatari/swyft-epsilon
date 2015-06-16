@@ -11,8 +11,8 @@
     <div class="info-well well">
         <h1>Complete Delivery</h1>
         <div class="list-group">
-            {{#each delivery in deliveryList}}
-            <a class="list-group-item">{{radio-button name=deliveryList.value class="option" value=delivery.id}}<span class="option-text">{{delivery.displayTime}}</span></a>
+            {{#each deliveryList as |delivery|}}
+                <a class="list-group-item">{{radio-button name=deliveryList.value class="option" value=delivery.id}}<span class="option-text">{{delivery.displayTime}}</span></a>
             {{/each}}
         </div>   
         <button class="btn btn-primary" {{action 'submit'}}>Submit</button>

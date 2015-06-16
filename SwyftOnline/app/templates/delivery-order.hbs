@@ -14,7 +14,7 @@
         <h4>For assistance, please contact Operations at <a href="tel:603-793-7333">603-793-7333</a></h4>
         <h1>{{order.user.firstName}} {{order.user.lastName}}</h1>
         <h3>{{order.deliveryLocation}}</h3>
-        <h3><a {{bind-attr href=order.phoneLink}}>{{order.contactPhone}}</a></h3>
+        <h3><a href={{order.phoneLink}}>{{order.contactPhone}}</a></h3>
         <h3>{{order.userComments}}</h3>
         <h3>{{render-decimals order.actualAmount}}</h3>
         {{#if order.deliveryNote.cashPayment}}
@@ -22,7 +22,7 @@
         {{/if}}
         <h3>{{order.paymentType}}</h3>
         <ul class="item-list">
-            {{#each item in order.items}}
+            {{#each order.items as |item|}}
             <li>
                 <div>
                     <p><strong>{{item.restaurant}}</strong></p>

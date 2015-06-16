@@ -14,7 +14,7 @@
             <th>Token</th>
             <th>Discount</th>
         </tr>
-        {{#each token in model}}
+        {{#each model as |token|}}
         <tr>
             <td>{{token.token}}</td>
             <td>{{token.discount}}</td>

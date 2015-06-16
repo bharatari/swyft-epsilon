@@ -19,7 +19,7 @@
             <th>Payment</th>
             <th>Items</th>
         </tr>
-        {{#each order in model}}
+        {{#each model as |order|}}
         <tr>
             <td>{{order.user.firstName}}</td>
             <td>{{order.user.lastName}}</td>
@@ -30,7 +30,7 @@
             <td>{{order.paymentType}}</td>
             <td>
                 <ul>
-                    {{#each item in order.items}}
+                    {{#each order.items as |item|}}
                     <li>
                         <div>
                             <p><strong>{{item.restaurant}}</strong></p>

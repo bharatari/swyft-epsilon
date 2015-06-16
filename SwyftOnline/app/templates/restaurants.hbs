@@ -13,7 +13,7 @@
         <li class="active">Restaurants</li>
     </ul>
     <div class="list-group">
-        {{#each restaurant in restaurants}}
+        {{#each restaurants as |restaurant|}}
         <button class="grid-restaurant list-group-item" {{action 'transition' restaurant.name}}>
             <p class="click-through justify-left">{{restaurant.title}}</p>
         </button>

@@ -49,13 +49,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12">
-                <div class="admin-immersive-panel">
-                    {{chart-box data=ordersChart canvasId="orders-chart-2"}}
-                </div>
-            </div>
             <div class="col-md-6">
-                <div class="panel admin-panel">
+                <div class="panel admin-panel admin-panel-fixed-height">
                     <div class="admin-panel-header-area">
                         <h1 class="admin-panel-header">Active Deliveries</h1>
                     </div>
@@ -68,7 +63,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{#each delivery in activeDeliveries}}
+                            {{#each activeDeliveries as |delivery|}}
                             <tr>
                                 <td>{{delivery.deliveryDate}}</td>
                                 <td>{{delivery.orderCutoff}}</td>

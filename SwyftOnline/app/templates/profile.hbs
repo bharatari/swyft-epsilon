@@ -2,7 +2,7 @@
 
 {{#modal-dialog-dynamic title=modalTitle displayModal=displayModal}}
 <ul class="no-list">
-    {{#each item in processedOrder.items}}
+    {{#each processedOrder.items as |item|}}
     <li>
         <div>
             <p><strong>{{item.restaurant}}</strong></p>
@@ -43,7 +43,7 @@
             <div class="option-group">
                 <h2 class="small-header">Pending Orders</h2>
                 <div class="list-group">
-                    {{#each order in pending}}
+                    {{#each pending as |order|}}
                     <a class="list-group-item" href="#" {{action 'openModal' order}}><span class="option-text">{{order.displayTime}}</span><span class="badge">{{#if order.actualAmount}}{{render-decimals order.actualAmount}}{{/if}}</span></a>
                     {{/each}}
                 </div>            
@@ -52,7 +52,7 @@
             <div class="option-group">
                 <h2 class="small-header">Recent Orders</h2>
                 <div class="list-group">
-                    {{#each order in orders}}
+                    {{#each orders as |order|}}
                         <a class="list-group-item" href="#" {{action 'openModal' order}}><span class="option-text">{{order.displayTime}}</span><span class="badge">{{#if order.actualAmount}}{{render-decimals order.actualAmount}}{{/if}}</span></a>
                     {{/each}}
                 </div>            

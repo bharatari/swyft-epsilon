@@ -7,7 +7,7 @@
         <li class="active">Export</li>
     </ul>
     <div class="list-group">
-        {{#each delivery in deliveryList}}
+        {{#each deliveryList as |delivery|}}
             <div class="row">
                 <h3 class="header-margin">{{delivery.displayTime}}</h3>
                 <button class="grid-restaurant list-group-item" {{action 'goToExport' delivery.id}}>

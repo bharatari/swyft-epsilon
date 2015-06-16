@@ -14,12 +14,12 @@
             <th>Comments</th>
             <th>Charge</th>
         </tr>
-        {{#each order in notDelivered}}
+        {{#each notDelivered as |order|}}
         <tr>
             <td>{{order.name}}</td>
             <td>
                 <ul>
-                    {{#each item in order.items}}
+                    {{#each order.items as |item|}}
                     <li>
                         {{item.quantity}} <strong>{{item.name}}</strong>
                     </li>
@@ -47,12 +47,12 @@
             <th>Comments</th>
             <th>Charge</th>
         </tr>
-        {{#each order in delivered}}
+        {{#each delivered as |order|}}
         <tr>
             <td>{{order.name}}</td>
             <td>
                 <ul>
-                    {{#each item in order.items}}
+                    {{#each order.items as |item|}}
                     <li>
                         {{item.quantity}} <strong>{{item.name}}</strong>
                     </li>

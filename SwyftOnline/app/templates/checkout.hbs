@@ -17,7 +17,7 @@
     <div class="summary-well well col-md-3">
         <h1 class="centered-text">Summary</h1>
         <ul class="cart-list">
-            {{#each item in cartArray}}
+            {{#each cartArray as |item|}}
                 {{sidebar-item item=item}}
             {{/each}}
         </ul>
@@ -32,7 +32,7 @@
             <h3 class="option-group-header">Payment Options</h3>
             <div class="option-group">
                 <div class="list-group">
-                    {{#each paymentOption in paymentOptions}}
+                    {{#each paymentOptions as |paymentOption|}}
                     <a class="list-group-item">
                         {{#if paymentOption.disabled}}
                             {{radio-button name=paymentOptions.value class="option" value=paymentOption.id disabled="true"}}
@@ -66,10 +66,10 @@
             <h3 class="option-group-header">When do you want your food?</h3>
             <div class="option-group">
                 <div class="list-group">
-                    {{#each delivery in deliveryList}}
-                    <a class="list-group-item">{{radio-button name=deliveryList.value class="option" value=delivery.id}}<span class="option-text">{{delivery.displayTime}} &nbsp;|&nbsp; <span class="light-text">Order Cutoff: {{delivery.displayCutoff}}</span></span></a>
+                    {{#each deliveryList as |delivery|}}
+                        <a class="list-group-item">{{radio-button name=deliveryList.value class="option" value=delivery.id}}<span class="option-text">{{delivery.displayTime}} &nbsp;|&nbsp; <span class="light-text">Order Cutoff: {{delivery.displayCutoff}}</span></span></a>
                     {{else}}
-                    <h3 class="error-text">Our deliveries are closed for the day. Check our homepage to see when we deliver.</h3>
+                        <h3 class="error-text">Our deliveries are closed for the day. Check our homepage to see when we deliver.</h3>
                     {{/each}}
                 </div>            
             </div>

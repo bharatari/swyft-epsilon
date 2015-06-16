@@ -9,7 +9,7 @@
         {{/if}}
         <h2 class="cart-header">CART</h2>
         <ul class="cart-list">
-            {{#each item in cartArray}}
+            {{#each cartArray as |item|}}
                 {{sidebar-item item=item removeItem="removeItem" decreaseQuantity="decreaseQuantity" increaseQuantity="increaseQuantity" cart=true}}
             {{/each}}
         </ul>

@@ -22,11 +22,11 @@
             {{/if}}
             <h3 class="item-price">{{render-decimals item.baseprice}}</h3>
             <hr>
-            {{#each optionGroup in item.itemOptions}}
+            {{#each item.itemOptions as |optionGroup|}}
             <div class="option-group">
                 <h2 class="option-group-header">{{optionGroup.name}} <span class="required-header">Required</span></h2>
                 <div class="list-group">
-                    {{#each option in optionGroup.options}}
+                    {{#each optionGroup.options as |option|}}
                     <!--Use label instead of anchor to increase target space-->
                     <a class="list-group-item">{{radio-button name=optionGroup.value class="option" value=option}}<span class="option-text">{{option.name}}</span><span class="badge">{{#if option.price}}{{render-decimals option.price}}{{/if}}</span></a>
                     {{/each}}
@@ -37,7 +37,7 @@
             {{#if item.standardOptions}}
             <h2 class="option-group-header">Options</h2>
             <div class="list-group">
-                {{#each option in item.standardOptions}}
+                {{#each item.standardOptions as |option|}}
                 <a class="list-group-item">{{input checked=option.isSelected class="option" type="checkbox"}}<span class="option-text">{{option.name}}</span><span class="badge">{{#if option.price}}{{render-decimals option.price}}{{/if}}</span></a>
                 {{/each}}
             </div>
@@ -46,14 +46,14 @@
             {{#if item.extras}}
             <h2 class="option-group-header">Extras</h2>
             <div class="list-group">
-                {{#each extra in item.extras}}
+                {{#each item.extras as |extra|}}
                 <a class="list-group-item">{{input class="option" type="checkbox" checked=extra.isSelected}}<span class="option-text">{{extra.name}}</span><span class="badge">{{render-decimals extra.price}}</span></a>
                 {{/each}}
             </div>
             {{/if}}
             
             {{#if item.attachedRequests}}
-                {{#each request in item.attachedRequests}}
+                {{#each item.attachedRequests as |request|}}
                     {{attached-request request=request item=item}}
                 {{/each}}
             {{/if}}
