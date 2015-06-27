@@ -1,19 +1,24 @@
 body {
     overflow-x: hidden;
+    padding-left: 0px !important;
 }
 
 #nav-menu {
     box-shadow:0 5px 30px -10px #000;
+    background-color: white;
+    border-color: transparent;
 }
 
 .navbar-no-shadow {
     box-shadow: none !important;
 }
 
+/*
 .divider {
     width: 80%;
     height: 1.5px;
 }
+*/
 
 .nav-menu-content {
     margin-left: 10px; 
@@ -25,7 +30,7 @@ body {
     font-size: 20px;
     text-align: center;
     letter-spacing: 5px;
-    font-family: 'Roboto';
+    font-family: 'Open Sans';
 }
 
 .btn-sidemenu {
@@ -33,8 +38,8 @@ body {
     letter-spacing: 3px;
     background-color: white;
     color: black;
-    font-family: 'Roboto';
-    font-weight: 500;
+    font-family: 'Open Sans' !important;
+    font-weight: 600 !important;
     border-color: transparent;
     margin-left: -12px;
     margin-right: -10px;
@@ -74,6 +79,7 @@ body {
 
 .icon-bar {
     background-color: black !important;
+    height: 1.4px !important;
 }
 
 .top-bar {
@@ -91,7 +97,7 @@ body {
     border-color: transparent;
 }
 
-.navbar-brand {
+.navbar-brand a {
     color: black !important;
     font-family: 'Source Sans Pro';
     font-weight: 600;
@@ -141,7 +147,8 @@ body {
     transform: scale(0.95);
 }
 
-.navbar-brand:hover {
+.navbar-brand a:hover {
+    text-decoration: none;
     transform: scale(0.95);
 }
 
@@ -149,10 +156,54 @@ body {
     transform: scale(0.95);
 }
 
+.navbar-brand-order a {
+    color: black !important;
+    font-family: 'Open Sans';
+    font-weight: 600;
+    letter-spacing: 7px;
+    font-size: 18px;
+    color: black;
+    -webkit-transition: transform 0.5s ease-in;
+    -moz-transition: transform 0.5s ease-in;
+    -ms-transition: transform 0.5s ease-in;
+    -o-transition: transform 0.5s ease-in;
+    transition: transform 0.5s ease-in;
+}
+
+.navbar-brand-order a:hover {
+    text-decoration: none;
+    transform: scale(0.95);
+}
+
+.navbar-order-header {
+    margin-top: 25px;
+}
+
+.navbar-order-header .navbar-header {
+    float: left;
+    text-align: center;
+    width: 100%;
+}
+
+.navbar-order-header .navbar-header .navbar-brand-order a {
+    float: none;
+}
+
+.navbar-order .navbar-right {
+    margin-top: -33px !important;
+}
+
+.navbar-order {
+    height: 85px;
+    box-shadow: none !important;
+}
+
+/*
 .navbar-home {
     background-color: white !important;
     margin-bottom: 20px;
 }
+*/
 
 .navbar-transparent {
     background-color: transparent !important;
@@ -186,8 +237,6 @@ body {
     height: 75px;
 }
 
-.navbar-home { }
-
 .navbar-container-order {
     margin-top: 5px;
     margin-bottom: 5px;
@@ -195,10 +244,6 @@ body {
 
 .container-top {
     margin-top: 20px;
-}
-
-.header-info {
-    margin-top: 5px;
 }
 
 .logo-light {
@@ -292,7 +337,7 @@ body {
 
 .welcome-text-temporary {
     font-family: 'Open Sans';
-    font-weight: 600;
+    font-weight: 300;
     color: white;
     text-align: center;
     font-size: 53px;
@@ -346,16 +391,6 @@ body {
 
 .sub-text:hover {
     color: black;
-}
-
-#nav-menu {
-    background-color: white;
-    border-color: transparent;
-}
-
-.header-bar {
-    background-color: white;
-    padding-bottom: 8px;
 }
 
 .btn-quick-link {
@@ -522,9 +557,9 @@ body {
 
 .img-background {
     /*background-image: url('/images/BurritoEditCompress.jpg');*/
-    background-color: rgba(20, 80, 148, 1);
+    background-color: white;
     background-size: cover;
-    height:230px;
+    height: 310px;
     margin-bottom: 50px;
     margin-top: -20px;
 }
@@ -537,10 +572,11 @@ body {
 }
 
 .background-title {
-    color: white;
-    text-align: center;
+    color: #454545;
+    text-align: left;
     margin-top: 90px;
-    font-family: 'Roboto';
+    font-size: 64px;
+    font-family: 'Open Sans';
     font-weight: 300;
 }
 
@@ -576,6 +612,7 @@ body {
 .option-text {
     margin-left: 3px;   
     font-family: 'Roboto';
+    font-weight: 400;
 }
 
 .list-group {
@@ -589,14 +626,14 @@ body {
     height: 230px;
     float: left;
     background-color: white;
-    border: 1px solid darkgray;
+    border: 1px solid #ddd;
     font-family: 'Roboto';
     font-weight: 400;
-    -webkit-transition: transform 0.2s ease-in;
-    -moz-transition: transform 0.2s ease-in;
-    -ms-transition: transform 0.2s ease-in;
-    -o-transition: transform 0.2s ease-in;
-    transition: transform 0.2s ease-in;
+    -webkit-transition: transform 0.2s ease-in, box-shadow 0.2s ease-in;
+    -moz-transition: transform 0.2s ease-in, box-shadow 0.2s ease-in;
+    -ms-transition: transform 0.2s ease-in, box-shadow 0.2s ease-in;
+    -o-transition: transform 0.2s ease-in, box-shadow 0.2s ease-in;
+    transition: transform 0.2s ease-in, box-shadow 0.2s ease-in;
 }
 
 .grid-product:active {
@@ -605,6 +642,12 @@ body {
     -ms-transform: scale(0.97);
     -o-transform: scale(0.97);
     transform: scale(0.97);
+}
+
+.grid-product:hover {
+    transform: scale(1.03);
+    box-shadow: 0 5px 30px -10px #000;
+    margin-bottom: 20px;
 }
 
 a.list-group-item:hover, a.list-group-item:focus {
@@ -621,15 +664,16 @@ a.list-group-item:hover, a.list-group-item:focus {
 }
 
 .grid-product-title {
-    font-family: 'Roboto';
+    font-family: 'Open Sans';
     font-weight: 300;
-    font-size: 24px;
+    font-size: 26px;
     pointer-events: none;
-    color: black;
+    color: rgb(114, 114, 114);
 }
 
 .grid-product-price {
-    color: black;
+    color: #272727;
+    font-family: 'Open Sans';
     pointer-events: none;
 }
 
@@ -750,7 +794,7 @@ a.list-group-item:hover, a.list-group-item:focus {
 .centered-text {
     text-align: center;
     margin-bottom: 30px;
-    font-family: 'Roboto';
+    font-family: 'Open Sans';
 }
 
 .sub-link {
@@ -778,13 +822,18 @@ a.list-group-item:hover, a.list-group-item:focus {
 .footer-item {
     display: inline-block;
     font-size: 12px;
-    color: white;
+    color: #b5b5b5;
     margin-left: 15px;
     font-family: 'Roboto';
 }
 
 .footer-item:hover {
     color: gray;
+    text-decoration: none;
+}
+
+.footer-item a {
+    color: white;
     text-decoration: none;
 }
 
@@ -854,11 +903,12 @@ a.list-group-item:hover, a.list-group-item:focus {
 }
 
 .category-name {
-    font-family: 'Roboto';
-    font-size: 20px;
+    font-family: 'Open Sans';
+    font-size: 23px;
     font-weight: 500;
     margin-top: 8px;
     margin-left: 11px;
+    color: rgb(144, 144, 144);
 }
 
 .image {
@@ -913,21 +963,6 @@ a.list-group-item:hover, a.list-group-item:focus {
     background-image: url('/images/Joon.jpg');
 }
 
-.header-item {
-    margin-right: 10px;
-    display: inline;
-}
-
-.header-item-text {
-    margin-left: 2px;
-    color: darkgray;
-    font-size: 11px;
-}
-
-.icon {
-    font-size: 10px;
-    color: darkgray;
-}
 
 .delivery-note {
     margin-bottom: 16px;
@@ -1093,7 +1128,8 @@ a.list-group-item:hover, a.list-group-item:focus {
     height: auto; 
     z-index: -100;
     background-size: cover;
-    background-image: url('/images/Exeter.JPG');
+    /* background-image: url('/images/Exeter.JPG'); */
+    background-color: #f55;
     background-position: center;
     opacity: inherit;
 }
@@ -1103,11 +1139,11 @@ a.list-group-item:hover, a.list-group-item:focus {
     margin-bottom: 10vh;
     text-align: center;
     color: white;
-    font-family: 'Roboto';
+    font-family: 'Open Sans';
 }
 
 .highlight {
-    color: rgba(39, 128, 227, 1);
+    color: rgba(134, 191, 255, 1);
 }
 
 .restaurant-notice {
@@ -1477,16 +1513,8 @@ a.list-group-item:hover, a.list-group-item:focus {
         margin-right: auto;
     }
     
-    .header-info {
-        display: none;
-    }
-    
     .navbar-float-margin {
         margin-top: -27px;
-    }
-    
-    .header-bar {
-        display: none;
     }
     
     .notice-divider {
@@ -1604,6 +1632,7 @@ figure span {
     overflow-x: hidden;
     overflow-y: auto;
     font-family: 'Open Sans';
+    background-color: rgb(244, 244, 244);
 }
 
 .admin-navbar {
@@ -1656,7 +1685,7 @@ figure span {
 }
 
 .admin-sidebar-list li a {
-    color: #a5a5a5;
+    color: #363636;
     font-family: 'Open Sans';
     font-weight: 600;
     font-size: 13px;
@@ -1668,7 +1697,7 @@ figure span {
 }
 
 .admin-sidebar-list li a:hover {
-    background-color: black;
+    background-color: #d3d3d3;
 }
 
 .admin-sidebar-icon {
@@ -1723,15 +1752,8 @@ figure span {
     margin-right: 10px;
 }
 
-.admin-immersive-panel {
-    border-radius: 4px;
-    position: relative;
-    background-color: #eaeaea;
-    padding-bottom: 30px;
-    margin-left: -25px;
-    margin-right: -25px;
-    padding: 15px;
-    border: 1px solid rgb(231, 234, 236);
+.admin-panel-fixed-height {
+    height: 505px;
 }
 
 .chart-box {
@@ -1781,11 +1803,13 @@ figure span {
     background-color: #1abc9c;
 }
 
+/*
 .admin-divider {
     border-top: 1px solid #CBCBCB;
     margin-left: -25px;
     margin-right: -25px;
 }
+*/
 
 .admin-panel-header {
     font-family: 'Open Sans';
@@ -1807,7 +1831,7 @@ figure span {
 
 .icon-button {
     color: #fff;
-    background-color: #744DF7;
+    background-color: #31168E;
     font-size: 16px !important;
     border: none;
     outline: none;
@@ -1892,4 +1916,154 @@ figure span {
 
 .admin-toggle:hover , .admin-toggle:focus {
     background-color: transparent !important;
+}
+
+.error-message {
+    margin-top: 39vh;
+}
+
+.error-text {
+    font-family: 'Open Sans';
+    font-weight: 300;
+    text-align: center;
+}
+
+.error-subtitle {
+    font-family: 'Open Sans';
+    font-weight: 300;
+    text-align: center;    
+}
+
+.error-logo {
+    font-family: 'Source Sans Pro';
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #9f9f9f;
+    text-align: center;
+    margin-top: 30px;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.app-content {
+    background-color: #F0F0F0;
+    min-height: 67vh;
+    padding-top: 50px;
+}
+
+.restaurant-card {
+    padding: 0px !important;
+    height: 295px;
+    cursor: pointer;
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    -ms-transition: all 0.5s ease-out;
+    -o-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
+}
+
+.restaurant-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 5px 30px -10px #000;
+    margin-bottom: 20px;
+}
+
+.restaurant-card-image {
+    height: 200px;
+    background-position: center;
+    background-size: contain;
+    max-width: 100%;
+}
+
+.restaurant-card-container {}
+
+.restaurant-card-title {
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 18px;    
+}
+
+.background-subtitle {
+    color: darkgray;
+    font-family: 'Open Sans';
+    font-weight: 300;
+}
+
+.info-box {
+    background-color: darkgray;
+    padding: 20px;
+}
+
+.restaurant-card-subtitle {
+    font-family: 'Roboto';
+    color: #626262;
+    margin-top: -10px;
+}
+
+.search-icon {
+    font-size: 24px;
+    margin-top: -28px;
+}
+
+.navbar-search-container {
+    list-style-type: none;
+    padding-left: 0px;
+    margin-top: -25px;
+}
+
+.navbar-search-container li {
+    display: inline-block;
+}
+
+.navbar-search-box {
+    height: 27px;
+    margin-top: -1px;
+    border: none;
+    border-bottom: 1px solid black;
+    margin-left: 6px;
+    padding-bottom: 16px;
+    
+}
+
+.navbar-search-box-visible {
+    -webkit-animation: fade-in 0.5s ease-in;
+    -moz-animation: fade-in 0.5s ease-in;
+    -ms-animation: fade-in 0.5s ease-in;
+    -o-animation: fade-in 0.5s ease-in;
+    animation: fade-in 0.5s ease-in;
+}
+
+.navbar-search-box-invisible {
+    -webkit-animation: fade-out 0.5s ease-in;
+    -moz-animation: fade-out 0.5s ease-in;
+    -ms-animation: fade-out 0.5s ease-in;
+    -o-animation: fade-out 0.5s ease-in;
+    animation: fade-out 0.5s ease-in;
+    display: none;
+}
+
+.div-invisible {
+    display: none !important;
+}
+
+.navbar-search-box:focus {
+    box-shadow: none;
+}
+
+.navbar-search-button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+@keyframes fade-out {
+    0% { opacity: 1 }
+    99% { opacity: 0 }
+    100% { opacity: 0, display: none }
+}
+
+@keyframes fade-in {
+    0% { opacity: 0 }
+    99% { opacity: 1 }
+    100% { opacity: 1, display: initial }
 }

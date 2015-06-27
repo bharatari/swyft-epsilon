@@ -1,4 +1,4 @@
-{{partial "navbar-alternate"}}
+{{partial "navbar-standard"}}
 
 {{#animate-body}} 
 <div class="container">
@@ -15,17 +15,17 @@
             <div>
                 {{input class="form-control" value=firstName type="text" placeholder="First Name"}}
                 {{input class="form-control" value=lastName type="text" placeholder="Last Name"}}
-                {{view "select" content=deliveryLocations value=dormitory optionValuePath="content.name" optionLabelPath="content.name" class="form-control" prompt="Select a Default Location"}}
+                {{x-select content=deliveryLocations value=dormitory optionValuePath="content.name" optionLabelPath="content.name" class="form-control" prompt="Select a Default Location"}}
                 {{input class="form-control" value=phoneNumber type="text" placeholder="Phone Number"}}
                 {{input class="form-control" value=email type="text" placeholder="Exeter Email Address"}}
-                <input id="password" class="form-control" {{bind-attr value=password}} type="password" placeholder="Password (Between 6 and 20 characters)" {{action "validatePassword" on="change"}}/>
-                <input id="confirmPassword" class="form-control" {{bind-attr value=confirmPassword}} type="password" placeholder="Confirm Password" {{action "validatePassword" on="change"}}/>
+                <input id="password" class="form-control" value={{password}} type="password" placeholder="Password (Between 6 and 20 characters)" {{action "validatePassword" on="change"}}/>
+                <input id="confirmPassword" class="form-control" value={{confirmPassword}} type="password" placeholder="Confirm Password" {{action "validatePassword" on="change"}}/>
                 <label>
                     {{input class="checkbox-control" checked=contactConsent type="checkbox"}} It's okay to contact me about promotions and new product offerings.
                 </label>
             </div>
             {{#unless buttonPressed}}
-            <button class="btn btn-default btn-float" type="submit">Sign Up</button>     
+                <button class="btn btn-default btn-float" type="submit">Sign Up</button>     
             {{/unless}}
         </fieldset>
     </form>

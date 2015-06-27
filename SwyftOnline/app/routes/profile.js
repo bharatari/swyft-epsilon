@@ -27,5 +27,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, SidebarRouteMixin, An
         controller.set('user', model.user);
         controller.set('recentOrders', model.recentOrders);
         controller.set('pendingOrders', model.pendingOrders);
+        controller.set('isAuthenticated', true);
     }
 });

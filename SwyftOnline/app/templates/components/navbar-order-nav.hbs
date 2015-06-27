@@ -5,7 +5,11 @@
                 <span class="navbar-brand-order">{{#link-to 'index'}}SWYFT{{/link-to}}</span>
             </div>
             <ul class="nav navbar-nav navbar-left">
-                <li class="search-icon ion-ios-search"></li>
+                <li>
+                    <ul class="navbar-search-container">
+                        <li><button class="navbar-search-button" {{action 'goBack'}}><i class="search-icon ion-ios-arrow-left"></i></button></li>
+                    </ul>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>{{navbar-toggle}}</li>
@@ -17,6 +21,6 @@
         <div class="navbar-float">
             {{navbar-toggle}}
         </div>
-        
+
     </div>--}}
 </nav>

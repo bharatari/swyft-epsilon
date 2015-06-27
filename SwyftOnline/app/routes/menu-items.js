@@ -20,6 +20,7 @@ export default Ember.Route.extend(SessionRouteMixin, AnimateOutRouteMixin, Sideb
     setupController: function(controller, model) {
         this._super();
         controller.set('sortedCategories', itemUtils.sortCategories(itemUtils.getCategories(model.menuItems), model.menuItems));
+        controller.set('menuItems', model.menuItems);
         controller.set('restaurant', model.restaurant);
         controller.set('isAuthenticated', this.get('isAuthenticated'));
     }

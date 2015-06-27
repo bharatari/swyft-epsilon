@@ -38,6 +38,9 @@ export default Ember.Controller.extend(StandardActionsMixin, SidebarRouteMixin, 
                 self.set('modalBody', "You've left some required fields blank.");
                 self.set('displayModal', true);
             }
+        },
+        goBack: function() {
+            this.transitionTo('menu-items', this.get('item').restaurant);
         }
     }
 });

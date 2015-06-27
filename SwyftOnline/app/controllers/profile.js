@@ -2,8 +2,10 @@ import Ember from "ember";
 import config from 'swyft-online/config/environment';
 import loginUtils from 'swyft-online/utils/login-utils';
 import itemUtils from 'swyft-online/utils/item-utils';
+import SidebarRouteMixin from 'swyft-online/mixins/sidebar-route';
+import StandardActionsMixin from 'swyft-online/mixins/standard-actions';
 
-export default Ember.Controller.extend({ 
+export default Ember.Controller.extend(SidebarRouteMixin, StandardActionsMixin, { 
     orders: function() {
         var array = this.get('recentOrders');
         for(var i = 0; i < array.length; i++) {
@@ -31,6 +33,9 @@ export default Ember.Controller.extend({
             this.set('selectedOrder', order);
             this.set('modalTitle', order.displayTime);
             this.set('displayModal', true);
+        },
+        goBack: function() {
+            this.transitionTo('restaurants');
         }
     }
 });

@@ -1,23 +1,24 @@
-{{partial "navbar-order"}}
+{{navbar-order-search value=searchValue}}
 
 {{side-bar checkout="checkout" login="login" profile="profile" logout="logout" isAuthenticated=isAuthenticated}}
 
 {{#animate-body}}
-<div class="img-background container-fluid">
-    <h1 class="background-title">Restaurants.</h1>
+<div class="img-background container">
+    <h1 class="background-title">restaurants</h1>
+    <h3 class="background-subtitle">We deliver from the best of Exeter.</h3>
+    {{!--<div class="info-box">
+        <p>Tutti</p>
+    </div>--}}
 </div>
 
-<div class="container">
-    <ul class="breadcrumb">
-        <li>{{#link-to 'index'}}Home{{/link-to}}</li>
-        <li class="active">Restaurants</li>
-    </ul>
-    <div class="list-group">
-        {{#each restaurants as |restaurant|}}
-        <button class="grid-restaurant list-group-item" {{action 'transition' restaurant.name}}>
-            <p class="click-through justify-left">{{restaurant.title}}</p>
-        </button>
-        {{/each}}
-    </div>   
+<div class="app-content">
+    <div class="container">
+        <div class="restaurant-card-container list-group">
+            {{#each filteredRestaurants as |restaurant|}}
+                {{restaurant-item restaurant=restaurant transition="transition"}}
+            {{/each}}
+        </div>   
+    </div>
 </div>
 {{/animate-body}}
+{{partial "footer"}}
