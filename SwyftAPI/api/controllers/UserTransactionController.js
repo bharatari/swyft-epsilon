@@ -1,10 +1,10 @@
 module.exports = {
-    /*
-    getTransactions: function(req, res) {
+    find: function(req, res) {
         TransactionService.getTransactions(req.query, function(result) {
             res.json(result);
         });
     },
+    /*
     getTransaction: function(req, res) {
         UserTransaction.findOne({ id: req.params.id }).exec(function(err, transaction) {
             if(!transaction && req.query.admin) {
@@ -36,8 +36,11 @@ module.exports = {
     },
     */
     getTransactionMetadata: function(req, res) {
-        MetaService.getTransactionMetadata(req.query.recordsPerPage, function(result) {
+        MetaService.getTransactionMetadata(req.query.limit, function(result) {
             res.json(result);
         });
+    },
+    getTransactionModel: function(req, res) {
+        res.json(new ModelService.Transaction());
     }
 }

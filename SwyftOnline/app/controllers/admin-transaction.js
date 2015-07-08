@@ -5,14 +5,11 @@ import modelUtils from 'swyft-online/utils/model-utils';
 
 export default Ember.Controller.extend({
     currentRoute: 'admin-transaction',
-    transitionToData: function(data, metadata) {
-        for(var i = 0; i < metadata.properties.length; i++) {
-            if(metadata.properties[i].editable) {
-                data[metadata.properties[i].propertyName] = metadata.properties[i].value;
-            }
-        }
-        return data;
-    },
+    modelName: 'Transaction',
+    newDescription: "Add a new User Transaction. The user's balance will not be automatically updated.",
+    updateDescription: "Update a User Transaction. The user's balance will not be automatically updated.",
+    newHelp: "You can look up User ID's from the Users page of Swyft Admin. To add balance to a user's account, enter a positive transaction amount, to deduct balance, enter a negative balance. Don't fill in the Final Balance, Admin ID, Order ID fields unless you really know what you're doing, these are normally automatically managed by the system.",
+    updateHelp: "You can look up User ID's from the Users page of Swyft Admin. To add balance to a user's account, enter a positive transaction amount, to deduct balance, enter a negative balance. Don't fill in the Final Balance, Admin ID, Order ID fields unless you really know what you're doing, these are normally automatically managed by the system.",
     actions: {
         submit: function(type) {
             this.set('type', type);
@@ -31,9 +28,9 @@ export default Ember.Controller.extend({
             var self = this;
             var type = this.get('type');
             var data = this.get('data');
-            data = transitionToData(data, this.get('metadata'));
+            data = modelUtils.transitionToData(data, this.get('metadata'));
             if(type === "new") {
-                var url = config.routeLocation + "/api/admin/transaction";
+                var url = config.routeLocation + "/api/admin/userTransaction";
                 Ember.$.ajax({
                     url: url,
                     data: data,
@@ -52,7 +49,7 @@ export default Ember.Controller.extend({
                 });
             }
             else if(type === "update") {
-                var url = config.routeLocation + "/api/admin/transaction/" + this.get('id');
+                var url = config.routeLocation + "/api/admin/userTransaction/" + this.get('id');
                 Ember.$.ajax({
                     url: url,
                     data: data,

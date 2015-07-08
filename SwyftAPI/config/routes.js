@@ -119,8 +119,12 @@ module.exports.routes = {
   'get /csrfToken':'AuthController.csrfToken',
     
   //Admin Routes  
-  'get /api/admin/transaction/metadata':'UserTransactionController.getTransactionMetadata',
-  'get /api/admin/user/metadata':'UserController.getUserMetadata'
+  'get /api/admin/userTransaction/metadata':'UserTransactionController.getTransactionMetadata',
+  'get /api/admin/userTransaction/model':'UserTransactionController.getTransactionModel',
+  'get /api/admin/user/metadata':'UserController.getUserMetadata',
+  'get /api/admin/user/model':'UserController.getUserModel',
+  'get /api/admin/global/metadata':'GlobalController.getGlobalMetadata',
+  'get /api/admin/global/model':'GlobalController.getGlobalModel'
     
   /***************************************************************************
   *                                                                          *

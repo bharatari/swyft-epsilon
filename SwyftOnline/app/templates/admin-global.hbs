@@ -1,0 +1,40 @@
+{{partial "navbar-admin-modern"}}
+
+{{confirmation-dialog body=dialogBody title=dialogTitle displayDialog=displayDialog accept="accept" cancel="cancel"}}
+
+{{modal-dialog body=modalBody title=modalTitle displayModal=modalDisplay}}
+
+<div class="admin-container">
+    <div class="admin-content">
+        <div class="admin-content-container">
+            <div class="admin-header-bar">
+                {{#if isNew}}
+                    <h1 class="admin-header">New Global</h1>
+                    <h4 class="admin-subtitle">Add a new Global.</h4>
+                    <h4 class="admin-help">This is generally an action that should be handled by a developer.</h4>
+                {{else}}
+                    <h1 class="admin-header">Update Global</h1>
+                    <h4 class="admin-subtitle">Update a Global.</h4>
+                    <h4 class="admin-help"></h4>
+                {{/if}}
+                
+            </div>
+            <div class="panel admin-panel">
+                <div class="admin-panel-header-area">
+                    <h1 class="admin-panel-header">Form</h1>
+                </div>
+                {{admin-ui properties=metadata.properties}}
+                {{#if isNew}}
+                <div class="row clearbox">
+                    <button class="btn btn-default btn-standard" {{action 'submit' 'new'}}>Submit</button>
+                </div>
+                
+                {{else}}
+                <div class="row clearbox">
+                    <button class="btn btn-default btn-standard" {{action 'submit' 'update'}}>Submit</button>
+                </div>
+                {{/if}}
+            </div>          
+        </div>
+    </div>
+</div>

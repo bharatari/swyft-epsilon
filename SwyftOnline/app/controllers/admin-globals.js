@@ -4,9 +4,9 @@ import config from 'swyft-online/config/environment';
 import AdminPageMixin from 'swyft-online/mixins/admin-page';
 
 export default Ember.Controller.extend(AdminPageMixin, {
-    modelName: 'Transaction',
-    description: 'Add, update, and edit User Transactions.',
-    currentRoute: 'admin-transactions',
+    modelName: 'Global',
+    description: 'Add, update, and edit Globals.',
+    currentRoute: 'admin-globals',
     queryParams: ['page', 'sort', 'sortType', 'filters', 'filterArray'],
     page: 1,                                  
     sort: 'createdAt',
@@ -18,7 +18,7 @@ export default Ember.Controller.extend(AdminPageMixin, {
     actions: {
         delete: function(id) {
             this.set('dialogTitle', 'Confirmation');
-            this.set('dialogBody', "You are attempting to permanently delete this transaction. Deleting a transaction does not automatically update the user's balance, this will have to be done separately.");
+            this.set('dialogBody', "You are attempting to permanently delete this global.");
             this.set('displayDialog', true);
             this.set('deleteId', id);
         },
@@ -26,15 +26,15 @@ export default Ember.Controller.extend(AdminPageMixin, {
             var self = this;
             if(this.get('deleteId')) {
                 Ember.$.ajax({
-                    url: config.routeLocation + "/api/admin/userTransaction/" + this.get('deleteId'),
-                    type: "DELETE",
+                    url: config.routeLocation + "/api/admin/global/" + this.get('deleteId'),
                     data: {
                         user: {token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token}
                     },
+                    type: "DELETE",
                     success: function(response) {
                         self.set('displayDialog', false);
-                        self.set('modalTitle', 'Transaction Deleted');
-                        self.set('modalBody', 'This transaction has been successfully deleted.');
+                        self.set('modalTitle', 'Global Deleted');
+                        self.set('modalBody', 'This global has been successfully deleted.');
                         self.set('displayModal', true);
                     },
                     error: function(xhr, textStatus, error) {
@@ -50,11 +50,11 @@ export default Ember.Controller.extend(AdminPageMixin, {
             this.set('deleteId', 0);
             this.set('displayDialog', false);
         },
-        goToNewTransaction: function() {
-            this.transitionToRoute('admin-transaction', 0);
+        goToNewGlobal: function() {
+            this.transitionToRoute('admin-global', 0);
         },
-        goToTransaction: function(id) {
-            this.transitionToRoute('admin-transaction', id);
+        goToGlobal: function(id) {
+            this.transitionToRoute('admin-global', id);
         }
     }
 });

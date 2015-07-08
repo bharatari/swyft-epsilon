@@ -8,14 +8,14 @@ export default Ember.Route.extend(AdminRouteMixin, {
     model: function(params) {
         var url = "";
         if(params.id == 0) {
-            url = config.routeLocation + '/api/admin/userTransaction/model';
+            url = config.routeLocation + '/api/admin/global/model';
         } 
         else {
-            url = config.routeLocation + '/api/admin/userTransaction/' + params.id;
+            url = config.routeLocation + '/api/admin/global/' + params.id;
         }
         return Ember.RSVP.hash({
             data: Ember.$.getJSON(url, {token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.token, tokenId: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.id}),
-            metadata:  Ember.$.getJSON(config.routeLocation + '/api/admin/userTransaction/metadata', {token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.token, tokenId: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.id}),
+            metadata:  Ember.$.getJSON(config.routeLocation + '/api/admin/global/metadata', {token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.token, tokenId: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.id}),
             id: params.id
         });
     },

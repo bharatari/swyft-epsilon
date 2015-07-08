@@ -7,7 +7,7 @@ var bcrypt = require('bcrypt');
 module.exports={
     create:function(req,res){
         req.body.phoneNumber = req.body.phoneNumber.replace(/\D/g,'');
-        if(req.body.email.toLowerCase().indexOf("@exeter.edu") === -1){
+        if(req.body.username.toLowerCase().indexOf("@exeter.edu") === -1){
             return res.send(400);
         }
         var token=chance.guid();
@@ -17,7 +17,7 @@ module.exports={
         User.find().exec(function(err, users) {
             for(var i = 0; i < users.length; i++){
                 if(users[i].verified) {
-                    if(users[i].username.toLowerCase() === req.body.email.toLowerCase()){
+                    if(users[i].username.toLowerCase() === req.body.username.toLowerCase()){
                         return res.badRequest('EMAIL_IN_USE');
                     }
                 }
@@ -26,7 +26,7 @@ module.exports={
         });
         function process(){
             User.create({
-                username:req.body.email.toLowerCase(),
+                username:req.body.username.toLowerCase(),
                 password:req.body.password,
                 firstName:req.body.firstName,
                 lastName:req.body.lastName,
@@ -45,7 +45,7 @@ module.exports={
                     res.send(500);
                 }
                 else{
-                    EmailService.sendSignupEmail(req.body.firstName, req.body.lastName, req.body.email, token, function(){
+                    EmailService.sendSignupEmail(req.body.firstName, req.body.lastName, req.body.username, token, function(){
                         res.send(200);
                     });
                     
@@ -321,8 +321,11 @@ module.exports={
     },
     */
     getUserMetadata: function(req, res) {
-        MetaService.getUserMetadata(req.query.recordsPerPage, function(result) {
+        MetaService.getUserMetadata(req.query.limit, function(result) {
             res.json(result);
         });
+    },
+    getUserModel: function(req, res) {
+        res.json(new ModelService.User());
     }
 }

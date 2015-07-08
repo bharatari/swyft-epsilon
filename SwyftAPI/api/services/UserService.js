@@ -28,15 +28,21 @@ module.exports = {
         });
     },
     deleteSensitiveIterate: function(users) {
-        for(var i = 0; i < users.length; i++) {
-            delete users[i].password;
-            delete users[i].token;
-        }  
+        if(users) {
+            for(var i = 0; i < users.length; i++) {
+                if(users[i]) {
+                    delete users[i].password;
+                    delete users[i].token;
+                }
+            }  
+        }
         return users;
     },
     deleteSensitive: function(user) {
-        delete user.password;
-        delete user.token;
+        if(user) {
+            delete user.password;
+            delete user.token;
+        }
         return user;
     },
     /*

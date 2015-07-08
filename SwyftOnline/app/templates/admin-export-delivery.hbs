@@ -1,9 +1,10 @@
 {{partial "navbar-admin-page"}}
 
 <div class="container">
-    {{view "select" content=deliveryLocations value=deliveryLocation class="form-control" prompt="Select a Delivery Location"}}
+    {{select-menu action=(action (mut deliveryLocation)) content=deliveryLocations selection=deliveryLocation class="form-control" prompt="Select a Delivery Location"}}
     <h3>Not Delivered</h3>
     <table class="table table-hover master-sheet">
+        <tbody>
         <tr>
             <th>Name</th>
             <th>Items</th>
@@ -34,6 +35,7 @@
             <td>{{order.charge}}</td>
         </tr>
         {{/each}}
+        </tbody>
     </table>
     <h3>Delivered</h3>
     <table class="table table-hover master-sheet">

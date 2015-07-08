@@ -1,4 +1,5 @@
 module.exports = {
+    /** Models for internal use **/
     MasterListItem: function(firstName, lastName, items, deliveryLocation, total, phoneNumber, paymentType, chargeLater, deliveryNote) {
         this.name = firstName.toUpperCase() + " " + lastName.toUpperCase();
         this.deliveryLocation = deliveryLocation.toUpperCase();
@@ -24,12 +25,18 @@ module.exports = {
         this.adminClosed = false;
         this.autoDelivery = true;
     },
-    DeliveryNote: function(commentedBy, delivererId, comments, isDelivered, deliveredAt, cashPayment) {
+    DeliveryNote: function(commentedBy, delivererId, comments, isDelivered, deliveredAt, cashPayment, chargeLater) {
         this.commentedBy = commentedBy;
         this.deliveredBy = delivererId;
         this.comments = comments;
         this.isDelivered = isDelivered;
         this.deliveredAt = new Date();
+        if(typeof chargeLater === 'undefined') {
+            this.chargeLater = chargeLater;
+        }
+        else {
+            this.chargeLater = false;
+        }
         if (typeof cashPayment === 'undefined') { 
             this.cashPayment = null; 
         }
@@ -37,6 +44,7 @@ module.exports = {
             this.cashPayment = cashPayment;
         }
     },
+    /** Models for external use **/
     Transaction: function() {
         this.userId = "";
         this.type = "";
@@ -63,5 +71,9 @@ module.exports = {
         this.isDeliverer = false;
         this.isEnabled = false;
         this.testUser = false;
+    },
+    Global: function() {
+        this.key = "";
+        this.value = "";
     }
 }

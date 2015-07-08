@@ -18,5 +18,13 @@ module.exports = {
                 return res.ok();
             }
         });
+    },
+    getGlobalMetadata: function(req, res) {
+        MetaService.getGlobalMetadata(req.query.limit, function(result) {
+            res.json(result);
+        });
+    },
+    getGlobalModel: function(req, res) {
+        res.json(new ModelService.Global());
     }
 }

@@ -2,12 +2,12 @@
 
 <div class="container">
     <table class="table table-hover aggregate">
-        {{#each aggregate in processed}}
+        {{#each processed as |aggregate|}}
         <tr>
             <td>
                 <h4>{{aggregate.name}}</h4>
                 <ul>
-                    {{#each item in aggregate.items}}
+                    {{#each aggregate.items as |item|}}
                     <li>
                         {{#if aggregate.fullRender}}
                             <p><strong>Customer Name:</strong> {{item.customerName}}</p>

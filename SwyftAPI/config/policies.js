@@ -41,20 +41,29 @@ module.exports.policies = {
     "preliminaryBalanceRequest":['isAdmin', 'userDisabled'],
     "balanceRequest":['isAdmin', 'userDisabled'],
     "getUsers":['isAdmin', 'userDisabled'],
-    "find":['isAdmin', 'userDisabled'],
+    "find":['isAdmin', 'removeAdminParams', 'userDisabled'],
     "findOne":['isAdmin', 'userDisabled'],
-    "create":['isAdmin', 'userDisabled'],
-    "update":['isAdmin', 'userDisabled'],
+    // In this case, create should be public (sign up)
+    /* "create":['isAdmin' , 'removeAdminParams', 'userDisabled'], */
+    "update":['isAdmin', 'removeAdminParams', 'userDisabled'],
     "destroy":['isAdmin', 'userDisabled'],
     "populate":['isAdmin', 'userDisabled'],
     "add":['isAdmin', 'userDisabled'],
-    "remove":['isAdmin', 'userDisabled'],
+    "remove":['isAdmin', 'userDisabled']
   },
   ViewController:{
     "*":true
   },
   UserTransactionController:{
-    "*":['isAdmin', 'userDisabled']
+    "*":['isAdmin', 'userDisabled'],
+    "find":['isAdmin', 'removeAdminParams', 'userDisabled'],
+    "findOne":['isAdmin', 'userDisabled'],
+    "create":['isAdmin', 'removeAdminParams', 'userDisabled'],
+    "update":['isAdmin', 'removeAdminParams', 'userDisabled'],
+    "destroy":['isAdmin', 'userDisabled'],
+    "populate":['isAdmin', 'userDisabled'],
+    "add":['isAdmin', 'userDisabled'],
+    "remove":['isAdmin', 'userDisabled']
   },
   DeliveryNoteController:{
     "*":['isDelivery', 'userDisabled']
@@ -64,7 +73,15 @@ module.exports.policies = {
     "checkToken":[]
   },
   GlobalController:{
-    "setNews":['isAdmin', 'userDisabled']
+    "setNews":['isAdmin', 'userDisabled'],
+    "find":['isAdmin', 'removeAdminParams', 'userDisabled'],
+    "findOne":['isAdmin', 'userDisabled'],
+    "create":['isAdmin', 'removeAdminParams', 'userDisabled'],
+    "update":['isAdmin', 'removeAdminParams', 'userDisabled'],
+    "destroy":['isAdmin', 'userDisabled'],
+    "populate":['isAdmin', 'userDisabled'],
+    "add":['isAdmin', 'userDisabled'],
+    "remove":['isAdmin', 'userDisabled']  
   },
   AnalyticsController:{
     "*":['isAdmin', 'userDisabled']

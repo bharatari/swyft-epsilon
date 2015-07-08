@@ -40,9 +40,17 @@ export default Ember.Component.extend({
         else {
             return false;
         }
-    },
+    }.property('property'),
     booleanValues: [
         { propertyName: true, displayName: 'True' },
         { propertyName: false, displayName: 'False' }
-    ]
+    ],
+    adminDiscourage: function() {
+        if(this.get('property').advancedField) {
+            return 'form-control admin-discourage';
+        }  
+        else {
+            return 'form-control';
+        }
+    }.property('property')
 });

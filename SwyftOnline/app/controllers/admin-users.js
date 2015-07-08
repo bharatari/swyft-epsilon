@@ -1,17 +1,20 @@
 import Ember from "ember";
 import config from 'swyft-online/config/environment';
-import cartUtils from 'swyft-online/utils/cart-utils';
 import loginUtils from 'swyft-online/utils/login-utils';
+import AdminPageMixin from 'swyft-online/mixins/admin-page';
 
-export default Ember.Controller.extend({ 
+export default Ember.Controller.extend(AdminPageMixin, { 
     modelName: 'User',
     description: 'Add, update, and edit Users.',
     currentRoute: 'admin-users',
-    queryParams: ['page', 'sort', 'sortType', 'filters'],
+    queryParams: ['page', 'sort', 'sortType', 'filters', 'filterArray'],
     page: 1,                                  
     sort: 'createdAt',
-    sortType: 'desc',
-    filters:[],
+    sortType: 'DESC',
+    filterArray: [],
+    filtersChanged: function() {
+        this.set('filters', JSON.stringify(this.convertFilters(this.get('filterArray'))));
+    }.observes('filterArray'),
     actions: {
         delete: function(id) {
             this.set('dialogTitle', 'Confirmation');

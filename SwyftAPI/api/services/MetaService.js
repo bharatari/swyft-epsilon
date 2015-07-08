@@ -1,11 +1,11 @@
 module.exports = {
     sortTypes: [
         {
-            propertyName:'desc',
+            propertyName:'DESC',
             displayName:'Descending'
         },
         {
-            propertyName:'asc',
+            propertyName:'ASC',
             displayName:'Ascending'
         }
     ],
@@ -93,7 +93,7 @@ module.exports = {
                 propertyName: 'createdAt',
                 displayName: 'Created At',
                 display: true,
-                type:'date',
+                type: 'date',
                 editable: true,
                 advancedField: true
             }
@@ -103,7 +103,52 @@ module.exports = {
                 total: transactions.length,
                 totalPages: Math.ceil(transactions.length / recordsPerPage),
                 sort: 'createdAt',
-                sortType: 'desc',
+                sortType: 'DESC',
+                properties: combined,
+                sortTypes: self.sortTypes
+            });
+        });
+    },
+    getGlobalMetadata: function(recordsPerPage, cb) {
+        var self = this;
+        var combined = [
+            {
+                propertyName: 'id',
+                displayName: 'ID',
+                display: true,
+                type: 'string',
+                editable: false
+            },
+            {
+                propertyName: 'key',
+                displayName: 'Key',
+                display: true,
+                type: 'string',
+                editable: true
+            },
+            { 
+                propertyName: 'value',
+                displayName: 'Value',
+                display: true,
+                type: 'string',
+                editable: true,
+                largeField: true
+            },
+            {
+                propertyName: 'createdAt',
+                displayName: 'Created At',
+                display: true,
+                type: 'date',
+                editable: true,
+                advancedField: true
+            }
+        ];
+        Global.find().exec(function(err, globals) {
+            cb({
+                total: globals.length,
+                totalPages: Math.ceil(globals.length / recordsPerPage),
+                sort: 'createdAt',
+                sortType: 'DESC',
                 properties: combined,
                 sortTypes: self.sortTypes
             });
@@ -165,7 +210,7 @@ module.exports = {
                 propertyName: 'verified',
                 displayName: 'Verified',
                 display: true,
-                type: 'string',
+                type: 'boolean',
                 editable: true
             },
             {
@@ -228,8 +273,9 @@ module.exports = {
                 propertyName: 'createdAt',
                 displayName: 'Created At',
                 display: true,
-                type: 'boolean',
-                editable: true
+                type: 'date',
+                editable: true,
+                advancedField: true
             }
         ];
         User.find().exec(function(err, users) {
@@ -237,7 +283,7 @@ module.exports = {
                 total: users.length,
                 totalPages: Math.ceil(users.length / recordsPerPage),
                 sort: 'createdAt',
-                sortType: 'desc',
+                sortType: 'DESC',
                 properties: combined,
                 sortTypes: self.sortTypes
             });

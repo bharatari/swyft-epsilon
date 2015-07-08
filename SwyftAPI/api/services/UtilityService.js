@@ -45,18 +45,35 @@ module.exports = {
         });
     },
     pagination: function(data, recordsPerPage, page) {
-        var totalPages = Math.ceil(data.length / recordsPerPage);
-        var lower = (page - 1) * recordsPerPage;
-        var upper = data.length - (page * recordsPerPage);
-        data = _.drop(data, lower);
-        data = _.dropRight(data, upper);
-        return data;
+        if(data) {
+            var totalPages = Math.ceil(data.length / recordsPerPage);
+            var lower = (page - 1) * recordsPerPage;
+            var upper = data.length - (page * recordsPerPage);
+            data = _.drop(data, lower);
+            data = _.dropRight(data, upper);
+            return data;
+        }
+        else {
+            return data;
+        }
+    },
+    paginationSkip: function(data, recordsPerPage, skip) {
+        if(data) {
+            var page = (skip / 100) + 1;
+            var upper = data.length - (page * recordsPerPage);
+            data = _.drop(data, skip);
+            data = _.dropRight(data, upper);
+            return data;
+        }
+        else {
+            return data;
+        }
     },
     sortData: function(data, sortProperty, sortType) {
-        if(sortType === 'asc') {
+        if(sortType === 'ASC') {
             return _.sortByOrder(data, [sortProperty], [true]);
         }
-        else if(sortType === 'desc') {
+        else if(sortType === 'DESC') {
             return _.sortByOrder(data, [sortProperty], [false]);
         }
     },
@@ -153,5 +170,62 @@ module.exports = {
         propertyDictionary["lessThan"] = '<';
         propertyDictionary["notEqualTo"] = '!';
         return propertyDictionary[filterType];
+    },
+    /** Converts filters from Waterline syntax to Firefly syntax **/
+    convertFilterFromWaterline: function(filter) {
+        filter = JSON.parse(filter);
+        var filters = [];
+        for(var property in filter) {
+            if (filter.hasOwnProperty(property)) {
+                if(typeof filter[property] === "object") {
+                    var obj = filter[property];
+                    if(obj['<']) {
+                        filters.push({
+                            filterType: 'lessThan',
+                            filterValue: obj['<'],
+                            filterProperty: property
+                        });
+                    }
+                    else if(obj['>']) {
+                        filters.push({
+                            filterType: 'greaterThan',
+                            filterValue: obj['>'],
+                            filterProperty: property
+                        });
+                    }
+                    else if(obj['!']) {
+                        filters.push({
+                            filterType: 'notEqualTo',
+                            filterValue: obj['!'],
+                            filterProperty: property
+                        });
+                    }
+                }
+                else {
+                    filters.push({
+                        filterType: 'equalTo',
+                        filterValue: filter[property],
+                        filterProperty: property
+                    });
+                }
+            }
+        }
+        return filters;
+    },
+    getPropertyValue: function(object, propertyName) {
+        for(var property in object) {
+            if(object.hasOwnProperty(property)) {
+                if(property === propertyName) {
+                    return object[property];
+                }   
+            }
+        }
+    },
+    splitSortAttrs: function(sort) {
+        var array = sort.split(" ");
+        return {
+            sort: array[0],
+            sortType: array[1]
+        }
     }
 }
