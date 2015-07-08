@@ -1,65 +1,56 @@
 {{#if property.editable}}
     {{#if typeString}}
-        {{#if property.advancedField}}
+        {{#if property.largeField}}
             <div class="form-group">
                 <label class="col-sm-2 control-label">{{property.displayName}}</label>
                 <div class="col-sm-9">
-                    {{input class="form-control admin-discourage" value=property.value type="text"}}
+                    {{textarea class=(concat 'text-area' adminDiscourage) value=property.value}}
                 </div>
             </div>
         {{else}}
             <div class="form-group">
                 <label class="col-sm-2 control-label">{{property.displayName}}</label>
                 <div class="col-sm-9">
-                    {{input class="form-control" value=property.value type="text"}}
+                    {{input class=adminDiscourage value=property.value type="text"}}
                 </div>
             </div>
         {{/if}}
     {{/if}}
 
     {{#if typeNumber}}
-        {{#if property.advancedField}}
-            <div class="form-group">
-                <label class="col-sm-2 control-label">{{property.displayName}}</label>
-                <div class="col-sm-9">
-                    {{input class="form-control admin-discourage" value=property.value type="number"}}
-                </div>
+         <div class="form-group">
+            <label class="col-sm-2 control-label">{{property.displayName}}</label>
+            <div class="col-sm-9">
+                {{input class=adminDiscourage value=property.value type="number"}}
             </div>
-        {{else}}
-            <div class="form-group">
-                <label class="col-sm-2 control-label">{{property.displayName}}</label>
-                <div class="col-sm-9">
-                    {{input class="form-control" value=property.value type="number"}}
-                </div>
-            </div>            
-        {{/if}}
+        </div>
     {{/if}}
 
     {{#if typeDate}}
-            <div class="form-group">
-                <label class="col-sm-2 control-label">{{property.displayName}}</label>
-                <div class="col-sm-9">
-                    {{input class="form-control admin-discourage" value=property.value type="text"}}
-                </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">{{property.displayName}}</label>
+            <div class="col-sm-9">
+                {{input class=adminDiscourage value=property.value type="text"}}
             </div>
+        </div>
     {{/if}}
 
     {{#if typeEnum}}
-            <div class="form-group">
-                <label class="col-sm-2 control-label">{{property.displayName}}</label>
-                <div class="col-sm-9">
-                    {{view "select" content=property.enum value=property.value optionValuePath="content.propertyName" optionLabelPath="content.displayName" class="form-control"}}
-                </div>
-            </div>    
+        <div class="form-group">
+            <label class="col-sm-2 control-label">{{property.displayName}}</label>
+            <div class="col-sm-9">
+                {{select-menu action=(action (mut property.value)) content=property.enum selection=property.value optionValuePath="propertyName" optionLabelPath="displayName" class=adminDiscourage}}
+            </div>
+        </div>    
     {{/if}}
 
     {{#if typeBoolean}}
-            <div class="form-group">
-                <label class="col-sm-2 control-label">{{property.displayName}}</label>
-                <div class="col-sm-9">
-                    {{view "select" content=booleanValues value=property.value optionValuePath="content.propertyName" optionLabelPath="content.displayName" class="form-control"}}
-                </div>
-            </div>  
+        <div class="form-group">
+            <label class="col-sm-2 control-label">{{property.displayName}}</label>
+            <div class="col-sm-9">
+                {{select-menu action=(action (mut property.value)) content=booleanValues selection=property.value optionValuePath="propertyName" optionLabelPath="displayName" class=adminDiscourage}}
+            </div>
+        </div>  
     {{/if}}
 {{/if}}
 

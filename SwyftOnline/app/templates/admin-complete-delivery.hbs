@@ -12,7 +12,7 @@
         <h1>Complete Delivery</h1>
         <div class="list-group">
             {{#each deliveryList as |delivery|}}
-                <a class="list-group-item">{{radio-button name=deliveryList.value class="option" value=delivery.id}}<span class="option-text">{{delivery.displayTime}}</span></a>
+                <a class="list-group-item">{{radio-button name="deliveries" selected=deliveryList.value class="option" value=delivery.id}}<span class="option-text">{{delivery.displayTime}}</span></a>
             {{/each}}
         </div>   
         <button class="btn btn-primary" {{action 'submit'}}>Submit</button>

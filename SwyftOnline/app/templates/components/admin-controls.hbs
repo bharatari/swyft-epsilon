@@ -3,14 +3,13 @@
     <div class="form-group">
         <label for="sort" class="col-sm-2 control-label">Sort By</label>
         <div class="col-sm-9">
-
-            {{view "select" id='sort' content=metadata.properties value=sort optionValuePath="content.propertyName" optionLabelPath="content.displayName" class="form-control" prompt="Select a Property To Sort"}}
+            {{select-menu id='sort' action=(action (mut sort)) content=metadata.properties selection=sort optionValuePath="propertyName" optionLabelPath="displayName" class="form-control" prompt="Select a Property To Sort"}}
         </div>
     </div>
     <div class="form-group">
         <label for="sort-type" class="col-sm-2 control-label">Sort Type</label>
         <div class="col-sm-9">
-            {{view "select" id="sort-type" content=metadata.sortTypes value=sortType optionValuePath="content.propertyName" optionLabelPath="content.displayName" class="form-control" prompt="Sort Type"}}
+            {{select-menu id="sort-type" action=(action (mut sortType)) content=metadata.sortTypes selection=sortType optionValuePath="propertyName" optionLabelPath="displayName" class="form-control" prompt="Sort Type"}}
         </div>
     </div>
     <div class="form-group">

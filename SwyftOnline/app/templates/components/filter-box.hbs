@@ -3,13 +3,13 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">Property</label>
             <div class="col-sm-9">
-                {{view "select" content=properties value=filterProperty optionValuePath="content.propertyName" optionLabelPath="content.displayName" class="form-control"}}
+                {{select-menu action=(action (mut filterProperty)) selection=filterProperty content=objectProperties optionValuePath="propertyName" optionLabelPath="displayName" class="form-control"}}
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">Type</label>
             <div class="col-sm-9">
-                {{view "select" content=filterTypes value=filterType class="form-control" optionValuePath="content.propertyName" optionLabelPath="content.displayName"}}
+                {{select-menu action=(action (mut filterType)) selection=filterType content=filterTypes class="form-control" optionValuePath="propertyName" optionLabelPath="displayName"}}
             </div>
         </div>
         <div class="form-group">
@@ -26,7 +26,7 @@
         </div>
     </form>
     <div class="col-sm-offset-2 col-sm-9">
-        {{#each filterArray as |filter|}}
+        {{#each filters as |filter|}}
             <h4 class="filter-text">{{filter.filterProperty}} <strong>{{filter.filterType}}</strong> {{filter.filterValue}} <button class="filter-remove" {{action 'remove' filter}}><i class="glyphicon glyphicon-trash"></i></button></h4>
         {{/each}}
     </div>    

@@ -4,83 +4,83 @@
 {{loading-bar display=displayLoading}}
 
 {{#animate-body}}
-<div class="img-background container-fluid">
-    <h1 class="background-title">Checkout.</h1>
+<div class="img-background container">
+    <h1 class="background-title">checkout</h1>
+    <h3 class="background-subtitle">You're almost there...</h3>
 </div>
 
-<div class="container">
-    <ul class="breadcrumb">
-        <li><a>{{#link-to 'index'}}Home{{/link-to}}</a></li>
-        <li><a>{{#link-to 'restaurants'}}Restaurants{{/link-to}}</a></li>
-        <li class="active">Checkout</li>
-    </ul>
-    <div class="summary-well well col-md-3">
-        <h1 class="centered-text">Summary</h1>
-        <ul class="cart-list">
-            {{#each cartArray as |item|}}
+<div class="app-content">
+    <div class="container">
+        <div class="summary-well well col-md-3">
+            <h1 class="centered-text">Summary</h1>
+            <ul class="cart-list">
+                {{#each cartArray as |item|}}
                 {{sidebar-item item=item}}
-            {{/each}}
-        </ul>
-        <p class="summary-total">Total (including tax): {{dynamic-price dynamic=tokenValid price=totalPrice value=token finalAmount=finalAmount}}</p>
-    </div>
-    <form>
-        <div class="info-well well col-md-8">
-            <h3 class="option-group-header">Account Balance: {{render-decimals-simple user.balance}}</h3>
-            {{#unless user.balance}}
+                {{/each}}
+            </ul>
+            <p class="summary-total">Total (including tax): {{dynamic-price dynamic=tokenValid price=totalPrice value=token finalAmount=finalAmount}}</p>
+        </div>
+        <form>
+            <div class="info-well well col-md-8">
+                <h3 class="option-group-header">Account Balance: {{render-decimals-simple user.balance}}</h3>
+                {{#unless user.balance}}
                 <p class="sub-heading">You can add change to your Swyft Debit account on delivery. You can now also use your LionCard to add balance to Swyft Debit by visiting us in Agora during Meetings (on specific days).</p>
-            {{/unless}}
-            <h3 class="option-group-header">Payment Options</h3>
-            <div class="option-group">
-                <div class="list-group">
-                    {{#each paymentOptions as |paymentOption|}}
-                    <a class="list-group-item">
-                        {{#if paymentOption.disabled}}
-                            {{radio-button name=paymentOptions.value class="option" value=paymentOption.id disabled="true"}}
-                        {{else}}
-                            {{radio-button name=paymentOptions.value class="option" value=paymentOption.id}}
-                        {{/if}}
-                        <span class="option-text">{{paymentOption.name}}</span>
-                    </a>
-                    {{/each}}
-                </div>   
-            </div>
-            
-            {{#if displaySlider}}
-            <div class="slider-box">
-                {{input class="slider" value=sliderValue max=sliderMax type="range" min="0.01" step="0.01"}}
-                <div class="slider-text">
-                    <p class="remaining-total"><span class="text-light">DEBIT </span>{{render-decimals-simple sliderValue}}</p>
-                    <p class="remaining-total"><span class="text-light">CASH </span>{{render-decimals-simple remainingTotal}}</p>
+                {{/unless}}
+                <h3 class="option-group-header">Payment Options</h3>
+                <div class="option-group">
+                    <div class="list-group">
+                        {{#each paymentOptions as |paymentOption|}}
+                        <label class="list-group-item">
+                            {{#if paymentOption.disabled}}
+                            {{radio-button selected=paymentOptions.value name="paymentOptions" class="option" value=paymentOption.id disabled="true"}}
+                            {{else}}
+                            {{radio-button selected=paymentOptions.value name="paymentOptions" class="option" value=paymentOption.id}}
+                            {{/if}}
+                            <span class="option-text">{{paymentOption.name}}</span>
+                        </label>
+                        {{/each}}
+                    </div>   
                 </div>
-            </div>
-            {{/if}}
-        
-            <h3 class="option-group-header">Options</h3>
-            
-            {{view "select" content=deliveryLocations value=user.dormitory class="form-control" prompt="Select a Delivery Location"}}
-            {{input class="form-control" value=user.phoneNumber type="text" placeholder="Phone Number"}}
-            {{validation-box value=token placeholder="One Time Coupon" isValid=tokenValid invalidMessage="The token you entered is invalid."}}
-            {{input class="form-control" value=additionalRequests type="text" placeholder="Additional Requests"}}
-            
-            <p class="sub-heading">If you're paying with a 50 or 100 dollar bill, let us know so that we can get you the right amount of change. Please do not place any specific item customization requests here, as we cannot guarantee they will be fullfilled.</p>
-            <h3 class="option-group-header">When do you want your food?</h3>
-            <div class="option-group">
-                <div class="list-group">
-                    {{#each deliveryList as |delivery|}}
-                        <a class="list-group-item">{{radio-button name=deliveryList.value class="option" value=delivery.id}}<span class="option-text">{{delivery.displayTime}} &nbsp;|&nbsp; <span class="light-text">Order Cutoff: {{delivery.displayCutoff}}</span></span></a>
-                    {{else}}
-                        <h3 class="error-text">Our deliveries are closed for the day. Check our homepage to see when we deliver.</h3>
-                    {{/each}}
-                </div>            
-            </div>
-            {{#if tokenValid}}
-                {{#if deliveryList}}
-                    {{#unless buttonPressed}}
-                        <button class="btn btn-default" type="submit" {{action 'checkout'}}>Checkout</button>       
-                    {{/unless}}
+
+                {{#if displaySlider}}
+                <div class="slider-box">
+                    {{input class="slider" value=sliderValue max=sliderMax type="range" min="0.01" step="0.01"}}
+                    <div class="slider-text">
+                        <p class="remaining-total"><span class="text-light">DEBIT </span>{{render-decimals-simple sliderValue}}</p>
+                        <p class="remaining-total"><span class="text-light">CASH </span>{{render-decimals-simple remainingTotal}}</p>
+                    </div>
+                </div>
                 {{/if}}
-            {{/if}}
-        </div>  
-    </form>
+
+                <h3 class="option-group-header">Options</h3>
+
+                {{select-menu action=(action (mut user.dormitory)) content=deliveryLocations selection=user.dormitory class="form-control" prompt="Select a Delivery Location"}}
+                {{input class="form-control" value=user.phoneNumber type="text" placeholder="Phone Number"}}
+                {{validation-box value=token placeholder="One Time Coupon" isValid=tokenValid invalidMessage="The token you entered is invalid."}}
+                {{input class="form-control" value=additionalRequests type="text" placeholder="Additional Requests"}}
+
+                <p class="sub-heading">If you're paying with a 50 or 100 dollar bill, let us know so that we can get you the right amount of change. Please do not place any specific item customization requests here, as we cannot guarantee they will be fullfilled.</p>
+                <h3 class="option-group-header">When do you want your food?</h3>
+                <div class="option-group">
+                    <div class="list-group">
+                        {{#each deliveryList as |delivery|}}
+                        <label class="list-group-item">{{radio-button selected=deliveryList.value name="deliveryList" class="option" value=delivery.id}}<span class="option-text">{{delivery.displayTime}} &nbsp;|&nbsp; <span class="light-text">Order Cutoff: {{delivery.displayCutoff}}</span></span></label>
+                        {{else}}
+                        <h3 class="error-text">Our deliveries are closed for the day. Check our homepage to see when we deliver.</h3>
+                        {{/each}}
+                    </div>            
+                </div>
+                {{#if tokenValid}}
+                {{#if deliveryList}}
+                {{#unless buttonPressed}}
+                <button class="btn btn-default" type="submit" {{action 'checkout'}}>Checkout</button>       
+                {{/unless}}
+                {{/if}}
+                {{/if}}
+            </div>  
+        </form>
+    </div>
 </div>
+
+
 {{/animate-body}}
