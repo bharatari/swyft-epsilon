@@ -45,5 +45,13 @@ module.exports = {
                 res.json(token);
             } 
         });
+    },
+    getCouponMetadata: function(req, res) {
+        MetaService.getCouponMetadata(req.query.limit, function(result) {
+            res.json(result);
+        });
+    },
+    getCouponModel: function(req, res) {
+        res.json(new ModelService.Coupon());
     }
 }

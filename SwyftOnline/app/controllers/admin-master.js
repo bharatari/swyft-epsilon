@@ -1,6 +1,6 @@
 import Ember from "ember"
-import config from 'swyft-online/config/environment';
-import cartUtils from 'swyft-online/utils/cart-utils';
+import config from 'swyft-epsilon-online/config/environment';
+import cartUtils from 'swyft-epsilon-online/utils/cart-utils';
 
 export default Ember.Controller.extend({ 
     filters: [],

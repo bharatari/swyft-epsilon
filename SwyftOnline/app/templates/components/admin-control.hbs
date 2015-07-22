@@ -30,7 +30,25 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">{{property.displayName}}</label>
             <div class="col-sm-9">
-                {{input class=adminDiscourage value=property.value type="text"}}
+                {{input class=adminDiscourage value=property.value type="date"}}
+            </div>
+        </div>
+    {{/if}}
+    
+    {{#if typeDateTime}}
+        <div class="form-group">
+            <label class="col-sm-2 control-label">{{property.displayName}}</label>
+            <div class="col-sm-9">
+                {{input class=adminDiscourage value=property.value type="datetime-local"}}
+            </div>
+        </div>
+    {{/if}}
+    
+    {{#if typeTime}}
+        <div class="form-group">
+            <label class="col-sm-2 control-label">{{property.displayName}}</label>
+            <div class="col-sm-9">
+                {{input class=adminDiscourage value=property.value type="time"}}
             </div>
         </div>
     {{/if}}

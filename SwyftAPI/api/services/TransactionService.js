@@ -1,11 +1,13 @@
 module.exports = {
     iterateJoinUsers: function(items, callback) {
-        function loop(i){
-            if(i<items.length){
-                function query(cb){
-                    User.find().where({id:items[i].userId}).exec(function(err, user){
-                        user[0] = UserService.deleteSensitive(user[0]);
-                        items[i].user=user[0];
+        function loop(i) {
+            if(i < items.length){
+                function query(cb) {
+                    User.find().where({ id: items[i].userId }).exec(function(err, user) {
+                        if(user) {
+                            user[0] = UserService.deleteSensitive(user[0]);
+                            items[i].user = user[0];
+                        }
                         cb();
                     });
                 }
@@ -19,43 +21,39 @@ module.exports = {
         }
         loop(0);
     },
-    /*
     getTransactions: function(query, cb) {
-        if(query.filters) {
+        if(query.where && (Object.getOwnPropertyNames(JSON.parse(query.where)).length !== 0)) {
             UserTransaction.find().exec(function(err, items) {
                 TransactionService.iterateJoinUsers(items, function(transactions) {
-                    transactions = UtilityService.filterData(transactions, query.filters);
-                    if(query.page && query.sort && query.sortType) {
-                        TransactionService.iterateJoinUsers(transactions, function(items) {
-                            var data = UtilityService.sortData(items, query.sort, query.sortType);
-                            cb(UtilityService.pagination(data, query.recordsPerPage, 1));
-                        });
+                    var filter = UtilityService.convertFilterFromWaterline(query.where);
+                    transactions = UtilityService.filterData(transactions, filter);
+                    if(query.skip && query.sort) {
+                        var sort = UtilityService.splitSortAttrs(query.sort);
+                        var data = UtilityService.sortData(transactions, sort.sort, sort.sortType);
+                        cb(UtilityService.paginationSkip(data, query.limit, query.skip));
                     }
-                    else if(query.page) {
-                        TransactionService.iterateJoinUsers(transactions, function(items) {
-                            cb(UtilityService.pagination(items, query.recordsPerPage, 1));
-                        });
+                    else if(query.skip) {
+                        cb(UtilityService.paginationSkip(transactions, query.limit, query.skip));
                     }
                     else if(query.sort) {
-                        TransactionService.iterateJoinUsers(transactions, function(items) {
-                            cb(UtilityService.sortData(items, query.sort, query.sortType));
-                        });
+                        var sort = UtilityService.splitSortAttrs(query.sort);
+                        cb(UtilityService.sortData(transactions, sort.sort, sort.sortType));
                     }
                 });
             });
         }
         else {
-            if(query.page && query.sort && query.sortType) {
+            if(query.skip && query.sort) {
                 UserTransaction.find().exec(function(err, transactions) {
                     TransactionService.iterateJoinUsers(transactions, function(items) {
-                        var data = UtilityService.sortData(items, query.sort, query.sortType);
-                        cb(UtilityService.pagination(data, query.recordsPerPage, 1));
-                    });
-                    
+                        var sort = UtilityService.splitSortAttrs(query.sort);
+                        var data = UtilityService.sortData(items, sort.sort, sort.sortType);
+                        cb(UtilityService.paginationSkip(data, query.limit, query.skip));
+                    }); 
                 });
             }
-            else if(query.page) {
-                UserTransaction.find().paginate({page: query.page, limit: query.recordsPerPage}).exec(function(err, transactions) {
+            else if(query.skip) {
+                UserTransaction.find().paginate({page: query.skip, limit: query.limit }).exec(function(err, transactions) {
                     TransactionService.iterateJoinUsers(transactions, function(items) {
                         cb(items);
                     });
@@ -64,11 +62,11 @@ module.exports = {
             else if(query.sort) {
                 UserTransaction.find().exec(function(err, transactions) {
                     TransactionService.iterateJoinUsers(transactions, function(items) {
-                        cb(UtilityService.sortData(items, query.sort, query.sortType));
+                        var sort = UtilityService.splitSortAttrs(query.sort);
+                        cb(UtilityService.sortData(items, sort.sort, sort.sortType));
                     });
                 });
             }
         }
     }   
-    */
 }

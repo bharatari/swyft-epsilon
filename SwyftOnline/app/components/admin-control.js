@@ -17,6 +17,22 @@ export default Ember.Component.extend({
             return false;
         }
     }.property('property'),
+    typeDateTime: function() {
+        if(this.get('property').type === 'datetime') {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }.property('property'),
+    typeTime: function() {
+        if(this.get('property').type === 'time') {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }.property('property'),
     typeNumber: function() {
         if(this.get('property').type === 'number') {
             return true;

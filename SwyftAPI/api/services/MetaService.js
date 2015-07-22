@@ -98,10 +98,10 @@ module.exports = {
                 advancedField: true
             }
         ];
-        UserTransaction.find().exec(function(err, transactions) {
+        UserTransaction.find().exec(function(err, data) {
             cb({
-                total: transactions.length,
-                totalPages: Math.ceil(transactions.length / recordsPerPage),
+                total: data.length,
+                totalPages: Math.ceil(data.length / recordsPerPage),
                 sort: 'createdAt',
                 sortType: 'DESC',
                 properties: combined,
@@ -143,10 +143,149 @@ module.exports = {
                 advancedField: true
             }
         ];
-        Global.find().exec(function(err, globals) {
+        Global.find().exec(function(err, data) {
             cb({
-                total: globals.length,
-                totalPages: Math.ceil(globals.length / recordsPerPage),
+                total: data.length,
+                totalPages: Math.ceil(data.length / recordsPerPage),
+                sort: 'createdAt',
+                sortType: 'DESC',
+                properties: combined,
+                sortTypes: self.sortTypes
+            });
+        });
+    },
+    getTokenMetadata: function(recordsPerPage, cb) {
+        var self = this;
+        var combined = [
+            {
+                propertyName: 'id',
+                displayName: 'ID',
+                display: true,
+                type: 'string',
+                editable: false
+            },
+            {
+                propertyName: 'token',
+                displayName: 'Token',
+                display: true,
+                type: 'string',
+                editable: true
+            },
+            { 
+                propertyName: 'discount',
+                displayName: 'Discount',
+                display: true,
+                type: 'number',
+                editable: true
+            },
+            { 
+                propertyName: 'comments',
+                displayName: 'Comments',
+                display: true,
+                type: 'string',
+                editable: true,
+                largeField: true
+            },
+            { 
+                propertyName: 'hasBeenUsed',
+                displayName: 'Has Been Used',
+                display: true,
+                type: 'boolean',
+                editable: true
+            },
+            { 
+                propertyName: 'usedBy',
+                displayName: 'Used By',
+                display: true,
+                type: 'string',
+                editable: true
+            },
+            { 
+                propertyName: 'orderId',
+                displayName: 'Order ID',
+                display: true,
+                type: 'string',
+                editable: true,
+            },
+            {
+                propertyName: 'createdAt',
+                displayName: 'Created At',
+                display: true,
+                type: 'date',
+                editable: true,
+                advancedField: true
+            }
+        ];
+        Token.find().exec(function(err, data) {
+            cb({
+                total: data.length,
+                totalPages: Math.ceil(data.length / recordsPerPage),
+                sort: 'createdAt',
+                sortType: 'DESC',
+                properties: combined,
+                sortTypes: self.sortTypes
+            });
+        });
+    },
+    getCouponMetadata: function(recordsPerPage, cb) {
+        var self = this;
+        var combined = [
+            {
+                propertyName: 'id',
+                displayName: 'ID',
+                display: true,
+                type: 'string',
+                editable: false
+            },
+            {
+                propertyName: 'name',
+                displayName: 'Name',
+                display: true,
+                type: 'string',
+                editable: true
+            },
+            { 
+                propertyName: 'comments',
+                displayName: 'Comments',
+                display: true,
+                type: 'string',
+                editable: true,
+                largeField: true
+            },
+            {
+                propertyName: 'isActive',
+                displayName: 'Active',
+                display: true,
+                type: 'boolean',
+                editable: true
+            },
+            {
+                propertyName: 'discount',
+                displayName: 'Discount',
+                display: true,
+                type: 'number',
+                editable: true
+            },
+            {
+                propertyName: 'code',
+                displayName: 'Coupon Code',
+                display: true,
+                type: 'string',
+                editable: true
+            },
+            {
+                propertyName: 'createdAt',
+                displayName: 'Created At',
+                display: true,
+                type: 'date',
+                editable: true,
+                advancedField: true
+            }
+        ];
+        Coupon.find().exec(function(err, data) {
+            cb({
+                total: data.length,
+                totalPages: Math.ceil(data.length / recordsPerPage),
                 sort: 'createdAt',
                 sortType: 'DESC',
                 properties: combined,
@@ -282,6 +421,171 @@ module.exports = {
             cb({
                 total: users.length,
                 totalPages: Math.ceil(users.length / recordsPerPage),
+                sort: 'createdAt',
+                sortType: 'DESC',
+                properties: combined,
+                sortTypes: self.sortTypes
+            });
+        });
+    },
+    getDeliveryMetadata: function(recordsPerPage, cb) {
+        var self = this;
+        var combined = [
+            {
+                propertyName: 'id',
+                displayName: 'ID',
+                display: true,
+                type: 'string',
+                editable: false
+            },
+            {
+                propertyName: 'deliverers',
+                displayName: 'Deliverers',
+                display: true,
+                type: 'string',
+                editable: true
+            },
+            {
+                propertyName: 'comments',
+                displayName: 'Comments',
+                display: true,
+                type: 'string',
+                editable: true
+            },
+            {
+                propertyName: 'deliveryDate',
+                displayName: 'Delivery Date',
+                display: true,
+                type: 'datetime',
+                editable: true
+            },
+            {
+                propertyName: 'deliveryPeriod',
+                displayName: 'Delivery Period',
+                display: true,
+                type: 'string',
+                editable: true
+            },
+            {
+                propertyName: 'restaurants',
+                displayName: 'Restaurants',
+                display: true,
+                type: 'string',
+                editable: true
+            },
+            {
+                propertyName: 'autoDelivery',
+                displayName: 'Auto Delviery',
+                display: true,
+                type: 'boolean',
+                editable: true
+            },
+            {
+                propertyName: 'orderCutoff',
+                displayName: 'Order Cutoff',
+                display: true,
+                type: 'datetime',
+                editable: true
+            },
+            {
+                propertyName: 'fulfillment',
+                displayName: 'Fulfillment',
+                display: false,
+                type: 'array',
+                editable: false
+            },
+            {
+                propertyName: 'closed',
+                displayName: 'Closed',
+                display: true,
+                type: 'boolean',
+                editable: true
+            },
+            {
+                propertyName: 'adminClosed',
+                displayName: 'Admin Closed',
+                display: true,
+                type: 'boolean',
+                editable: true
+            },
+            {
+                propertyName: 'createdAt',
+                displayName: 'Created At',
+                display: true,
+                type: 'date',
+                editable: true,
+                advancedField: true
+            }
+        ];
+        Delivery.find().exec(function(err, data) {
+            cb({
+                total: data.length,
+                totalPages: Math.ceil(data.length / recordsPerPage),
+                sort: 'createdAt',
+                sortType: 'DESC',
+                properties: combined,
+                sortTypes: self.sortTypes
+            });
+        });
+    },
+    getDeliveryLocationMetadata: function(recordsPerPage, cb) {
+        var self = this;
+        var combined = [
+            {
+                propertyName: 'id',
+                displayName: 'ID',
+                display: true,
+                type: 'string',
+                editable: false
+            },
+            {
+                propertyName: 'name',
+                displayName: 'Name',
+                display: true,
+                type: 'string',
+                editable: true
+            },
+            {
+                propertyName: 'group',
+                displayName: 'Group',
+                display: true,
+                type: 'string',
+                editable: true
+            },
+            {
+                propertyName: 'latitude',
+                displayName: 'Latitude',
+                display: false,
+                type: 'number',
+                editable: false
+            },
+            {
+                propertyName: 'longitude',
+                displayName: 'Longitude',
+                display: false,
+                type: 'number',
+                editable: false
+            },
+            {
+                propertyName: 'disabled',
+                displayName: 'Disabled',
+                display: true,
+                type: 'boolean',
+                editable: true
+            },
+            {
+                propertyName: 'createdAt',
+                displayName: 'Created At',
+                display: true,
+                type: 'date',
+                editable: true,
+                advancedField: true
+            }
+        ];
+        DeliveryLocation.find().exec(function(err, data) {
+            cb({
+                total: data.length,
+                totalPages: Math.ceil(data.length / recordsPerPage),
                 sort: 'createdAt',
                 sortType: 'DESC',
                 properties: combined,

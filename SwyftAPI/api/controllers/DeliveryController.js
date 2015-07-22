@@ -48,5 +48,13 @@ module.exports = {
                 res.ok();
             }
         });
+    },
+    getDeliveryMetadata: function(req, res) {
+        MetaService.getDeliveryMetadata(req.query.limit, function(result) {
+            res.json(result);
+        });
+    },
+    getDeliveryModel: function(req, res) {
+        res.json(new ModelService.Delivery());
     }
 }

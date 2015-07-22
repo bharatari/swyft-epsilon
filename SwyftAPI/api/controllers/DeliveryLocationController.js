@@ -22,5 +22,13 @@ module.exports = {
                 res.json(result);
             });
         });
+    },
+    getDeliveryLocationMetadata: function(req, res) {
+        MetaService.getDeliveryLocationMetadata(req.query.limit, function(result) {
+            res.json(result);
+        });
+    },
+    getDeliveryLocationModel: function(req, res) {
+        res.json(new ModelService.DeliveryLocation());
     }
 }

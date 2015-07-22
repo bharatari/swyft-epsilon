@@ -75,5 +75,39 @@ module.exports = {
     Global: function() {
         this.key = "";
         this.value = "";
+    },
+    Coupon: function() {
+        this.name = "";
+        this.comemnts = "";
+        this.isActive = false;
+        this.discount = 0.0;
+        this.code = "";
+    },
+    Token: function() {
+        this.token = "";
+        this.discount = 0.0;
+        this.comments = "";
+        this.hasBeenUsed = false;
+        this.usedBy = "";
+        this.orderId = "";
+    },
+    Delivery: function() {
+        this.deliverers = "";
+        this.comments = "";
+        this.deliveryDate = new Date();
+        this.deliveryPeriod = "";
+        this.restaurants = "All";
+        this.autoDelivery = false;
+        this.orderCutoff = new Date();
+        //this.fulfillment = [];
+        this.closed = false;
+        this.adminClosed = false;
+    },
+    DeliveryLocation: function() {
+        this.name = "";
+        this.group = "";
+        //this.latitude = 0.0;
+        //this.longitude = 0.0;
+        this.disabled = false;
     }
 }

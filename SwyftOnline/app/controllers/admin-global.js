@@ -1,10 +1,15 @@
 import Ember from "ember";
-import config from 'swyft-online/config/environment';
-import loginUtils from 'swyft-online/utils/login-utils';
-import modelUtils from 'swyft-online/utils/model-utils';
+import config from 'swyft-epsilon-online/config/environment';
+import loginUtils from 'swyft-epsilon-online/utils/login-utils';
+import modelUtils from 'swyft-epsilon-online/utils/model-utils';
 
 export default Ember.Controller.extend({
     currentRoute: 'admin-global',
+    modelName: 'Global',
+    newDescription: "Add a new Global.",
+    updateDescription: "Update a Global.",
+    newHelp: "This is generally an action that should be handled by a developer.",
+    updateHelp: "",
     actions: {
         submit: function(type) {
             this.set('type', type);
