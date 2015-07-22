@@ -1,9 +1,9 @@
 import Ember from "ember";
-import config from 'swyft-online/config/environment';
-import loginUtils from 'swyft-online/utils/login-utils';
-import itemUtils from 'swyft-online/utils/item-utils';
-import SidebarRouteMixin from 'swyft-online/mixins/sidebar-route';
-import StandardActionsMixin from 'swyft-online/mixins/standard-actions';
+import config from 'swyft-epsilon-online/config/environment';
+import loginUtils from 'swyft-epsilon-online/utils/login-utils';
+import itemUtils from 'swyft-epsilon-online/utils/item-utils';
+import SidebarRouteMixin from 'swyft-epsilon-online/mixins/sidebar-route';
+import StandardActionsMixin from 'swyft-epsilon-online/mixins/standard-actions';
 
 export default Ember.Controller.extend(SidebarRouteMixin, StandardActionsMixin, { 
     orders: function() {

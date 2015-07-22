@@ -1,8 +1,8 @@
 import Ember from "ember";
-import config from 'swyft-online/config/environment';
-import loginUtils from 'swyft-online/utils/login-utils';
-import modelUtils from 'swyft-online/utils/model-utils';
-import itemUtils from 'swyft-online/utils/item-utils';
+import config from 'swyft-epsilon-online/config/environment';
+import loginUtils from 'swyft-epsilon-online/utils/login-utils';
+import modelUtils from 'swyft-epsilon-online/utils/model-utils';
+import itemUtils from 'swyft-epsilon-online/utils/item-utils';
 
 export default Ember.Controller.extend({ 
     order: function() {

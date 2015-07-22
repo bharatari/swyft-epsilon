@@ -1,37 +1,39 @@
 import Ember from "ember";
-import config from 'swyft-online/config/environment';
-import cartUtils from 'swyft-online/utils/cart-utils';
-import constants from 'swyft-online/utils/constants-utils';
-import loginUtils from 'swyft-online/utils/login-utils';
+import config from 'swyft-epsilon-online/config/environment';
+import cartUtils from 'swyft-epsilon-online/utils/cart-utils';
+import constants from 'swyft-epsilon-online/utils/constants-utils';
+import loginUtils from 'swyft-epsilon-online/utils/login-utils';
 
 export default Ember.Component.extend({
-    cart: [],
-    cartArray: Ember.computed('cart', {
-        get(key) {
-            if(localStorage.getItem("cart")) {
-                if(localStorage.getItem("cartVersion")) {
-                    if(localStorage.getItem("cartVersion") < config.cartVersion) {
-                        localStorage.removeItem("cart");
-                        localStorage.removeItem("cartVersion");
-                    }
-                }
-                else {
+    init: function() {
+        this._super.apply(this, arguments);
+        if(localStorage.getItem("cart")) {
+            if(localStorage.getItem("cartVersion")) {
+                if(localStorage.getItem("cartVersion") < config.cartVersion) {
                     localStorage.removeItem("cart");
-                    localStorage.removeItem("cartVersion");      
+                    localStorage.removeItem("cartVersion");
                 }
-                this.set('cart', cartUtils.processCart());
-                return this.get('cart');
             }
             else {
-                this.set('cart', []);
-                return this.get('cart');
+                localStorage.removeItem("cart");
+                localStorage.removeItem("cartVersion");      
             }
-        },
-        set(key, value) {
-            localStorage.setItem("cart", JSON.stringify(value));
-            this.set('cart', value)
-        }
-    }),
+            try {
+                this.set('cart', cartUtils.processCart());
+            }
+            catch(e) {
+                this.setCart([]);
+            }
+       }
+       else {
+            this.set('cart', []);
+       }
+    },
+    cart: [],
+    setCart: function(value) {
+        localStorage.setItem("cart", JSON.stringify(value));
+        this.set('cart', value);
+    },
     totalPrice: function() {
         var cart = JSON.parse(localStorage.getItem("cart"));
         var totalPrice = 0;
@@ -75,25 +77,25 @@ export default Ember.Component.extend({
             this.sendAction('logout');
         },
         removeItem: function(item){
-            var array = JSON.parse(localStorage.getItem("cart"));
+            var array = _.clone(this.get('cart'), true);
             for(var i = 0; i < array.length; i++){
                 if(cartUtils.cartItemsEqual(item, array[i])){
                     array.splice(i, 1);
                 }
             }
-            this.set('cartArray', array);
+            this.setCart(array);
         },
         increaseQuantity: function(item) {
-            var array = JSON.parse(localStorage.getItem("cart"));
+            var array = _.clone(this.get('cart'), true);
             for(var i = 0; i < array.length; i++){
                 if(cartUtils.cartItemsEqual(item, array[i])){
                     array[i].quantity++;
                 }
             }
-            this.set('cartArray', array);
+            this.setCart(array);
         },
         decreaseQuantity: function(item) {
-            var array = JSON.parse(localStorage.getItem("cart"));
+            var array = _.clone(this.get('cart'), true);
             for(var i = 0; i < array.length; i++){
                 if(cartUtils.cartItemsEqual(item, array[i])){
                     var quantity = array[i].quantity;
@@ -102,7 +104,7 @@ export default Ember.Component.extend({
                     }
                 }
             }
-            this.set('cartArray', array);
+            this.setCart(array);
         },
         checkout: function() {
             this.sendAction('checkout');

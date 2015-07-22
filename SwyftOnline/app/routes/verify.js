@@ -1,6 +1,7 @@
 import Ember from "ember";
-import config from 'swyft-online/config/environment';
-import AnimateOutRouteMixin from 'swyft-online/mixins/animate-out-route';
-import UnauthenticatedRouteMixin from 'swyft-online/mixins/unauthenticated-route';
+import config from 'swyft-epsilon-online/config/environment';
+import AnimateOutRouteMixin from 'swyft-epsilon-online/mixins/animate-out-route';
+import UnauthenticatedRouteMixin from 'swyft-epsilon-online/mixins/unauthenticated-route';
+import SidebarRouteMixin from 'swyft-epsilon-online/mixins/sidebar-route';
 
-export default Ember.Route.extend(UnauthenticatedRouteMixin, AnimateOutRouteMixin, { });
+export default Ember.Route.extend(UnauthenticatedRouteMixin, AnimateOutRouteMixin, SidebarRouteMixin, { });

@@ -1,12 +1,9 @@
 import Ember from "ember";
-import config from 'swyft-online/config/environment';
-import loginUtils from 'swyft-online/utils/login-utils';
+import config from 'swyft-epsilon-online/config/environment';
+import loginUtils from 'swyft-epsilon-online/utils/login-utils';
 
 export default Ember.Controller.extend({
     error: false,
-    setup: function() {
-        this.set('contactConsent', false);
-    }.on('init'),
     actions: {
         closeError: function() {
             this.set('error', false);
@@ -36,7 +33,7 @@ export default Ember.Controller.extend({
                         lastName: this.get('lastName'),
                         dormitory: this.get('dormitory'),
                         phoneNumber: this.get('phoneNumber'),
-                        email: this.get('email'),
+                        username: this.get('username'),
                         contactConsent: this.get('contactConsent'),
                         password: password1
                     }

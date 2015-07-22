@@ -1,8 +1,8 @@
 import Ember from "ember";
-import config from 'swyft-online/config/environment';
-import cartUtils from 'swyft-online/utils/cart-utils';
-import loginUtils from 'swyft-online/utils/login-utils';
-import constants from 'swyft-online/utils/constants-utils';
+import config from 'swyft-epsilon-online/config/environment';
+import cartUtils from 'swyft-epsilon-online/utils/cart-utils';
+import loginUtils from 'swyft-epsilon-online/utils/login-utils';
+import constants from 'swyft-epsilon-online/utils/constants-utils';
 
 export default Ember.Controller.extend({
     conversionTracking: function() {

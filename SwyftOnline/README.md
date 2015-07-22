@@ -78,7 +78,7 @@ SwyftOnline has its own modal system based on the Bootstrap Modal component. Thi
 There are three types of modals, the first is a standard `modal-dialog` with a dynamically set body of text and a close button. This first modal is best used to replace a JavaScript alert, as it is only designed to present data with no user input. The second is `modal-dialog-dynamic` that is available with a block helper that allows you to dynamically set the body of the modal to any HTML and Handlebars markup. This allows for flexibility in what you present to the user, however, it also doesn't allow for user input. The last type of modal is a `confirmation-dialog`, which is based on the `modal-dialog` component with options for user input.
 
 ##Authentication
-SwyftOnline is designed for token-based authentication. There are multiple mixins available to regulate routes by authentication status
+SwyftOnline is designed for token-based authentication. There are multiple mixins available to regulate routes by authentication status. The `authenticated-route` mixin restricts pages to authenticated users only. The `admin-route` and `delivery-route` mixins restrict access to authenticated administrators and authenticated delivery personnel, respectively.
 
 ##Admin Utilities
 SwyftOnline provides components for building modular administrative interfaces. All administrative routes that use the admin-navigation component must have a currentRoute property within their controller.
@@ -87,7 +87,14 @@ SwyftOnline provides components for building modular administrative interfaces. 
 The `render-decimal` and `render-decimal-simple` helpers aid in rendering decimal values properly. This is especilally useful when rendering prices, so that a value of 2.3 will appear as 2.30.
 ###Text Capitalization
 The `capitalize-letters` helper calls `toUpperCase()` on string values to capitalizate them. This can be done with the CSS `text-transform` property as well.
+###Dynamic Property
+The `dynamic-property` allows for dynamic properties to be rendered into Ember templates. The helper also supports nested object properties as well. 
+Usage:
+`{{dynamic-property object propertyName}}`
 ##Utilities
 SwyftOnline provides utility helpers for different parts of the application.
+##Notes
+###Time Zones
+Swyft Online automatically converts dates to EST time using Moment.js because Swyft only operates in the New England region. This also ensures that dates and times appear normally to our administrators when they are not in the New England region.
 #License
 SwyftOnline is currently a closed-source project property of Swyft Web Services and Bharat Arimilli.

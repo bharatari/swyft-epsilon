@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
-    modulePrefix: 'swyft-online',
+    modulePrefix: 'swyft-epsilon-online',
     environment: environment,
     baseURL: '/',
     locationType: 'auto',

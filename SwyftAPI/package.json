@@ -1,7 +1,7 @@
 {
-  "name": "SwyftAPI",
+  "name": "swyft-epsilon-api",
   "private": true,
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "SwyftAPI is the server-side implementation of Swyft's web infrastructure. It is designed to be used as a client-agnostic server for Swyft data and authentication, though it currently serves as a server for the SwyftOnline project.",
   "keywords": [],
   "dependencies": {
@@ -33,25 +33,28 @@
     "moment-timezone": "^0.3.1",
     "q": "^1.2.0",
     "rc": "^0.5.5",
-    "sails": "^0.10.5",
+    "sails": "^0.11.0",
     "sails-disk": "~0.10.0",
     "sails-mongo": "^0.10.6"
   },
   "scripts": {
     "start": "node forever.js",
-    "debug": "node debug forever.js"
+    "debug": "node debug forever.js",
+    "test": "mocha test/bootstrap.test.js test/unit/**/*.test.js"
   },
   "main": "forever.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/anonymous node/sails user/Swyft.git"
   },
-  "author": "Swyft Web Services",
+  "author": "Bharat Arimilli",
   "license": "",
   "devDependencies": {
+    "chai": "^3.0.0",
     "ember-template-compiler": "^1.9.0-alpha",
     "grunt-ember-templates": "^0.5.0-alpha",
-    "handlebars": "^2.0.0"
+    "handlebars": "^2.0.0",
+    "mocha": "^2.2.5"
   },
   "engines": {
     "node": "0.10.36"

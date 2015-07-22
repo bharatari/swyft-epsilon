@@ -1,11 +1,7 @@
 import Ember from "ember";
-import config from 'swyft-online/config/environment';
+import config from 'swyft-epsilon-online/config/environment';
 
 export default Ember.Component.extend({
-    setup: function() {
-        this.set('isValid', true);
-        this.set('value', "");
-    }.on('didInsertElement'),
     valueChanged: function() {
         var self = this;
         if(this.get('value')) {

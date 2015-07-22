@@ -1,10 +1,10 @@
 import Ember from "ember";
-import loginUtils from 'swyft-online/utils/login-utils';
-import config from 'swyft-online/config/environment';
-import itemUtils from 'swyft-online/utils/item-utils';
-import cartUtils from 'swyft-online/utils/cart-utils';
-import SidebarRouteMixin from 'swyft-online/mixins/sidebar-route';
-import StandardActionsMixin from 'swyft-online/mixins/standard-actions';
+import loginUtils from 'swyft-epsilon-online/utils/login-utils';
+import config from 'swyft-epsilon-online/config/environment';
+import itemUtils from 'swyft-epsilon-online/utils/item-utils';
+import cartUtils from 'swyft-epsilon-online/utils/cart-utils';
+import SidebarRouteMixin from 'swyft-epsilon-online/mixins/sidebar-route';
+import StandardActionsMixin from 'swyft-epsilon-online/mixins/standard-actions';
 
 export default Ember.Controller.extend(StandardActionsMixin, SidebarRouteMixin, {
     item: function() {

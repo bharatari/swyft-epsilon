@@ -1,4 +1,4 @@
-import itemUtils from 'swyft-online/utils/item-utils';
+import itemUtils from 'swyft-epsilon-online/utils/item-utils';
 
 export default {
     /** This is used to find items **/

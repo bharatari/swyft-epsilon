@@ -1,4 +1,4 @@
-import config from 'swyft-online/config/environment';
+import config from 'swyft-epsilon-online/config/environment';
 
 export default {
     localStorageKey: "currentSession-R32FSTF12YE43A3",
@@ -30,12 +30,12 @@ export default {
             }
         });
     },
-    logout: function(csrf) {
+    logout: function() {
         var key = this.localStorageKey;
         return new Ember.RSVP.Promise(function(resolve, reject){
             if(JSON.parse(localStorage.getItem(key))) {
                 var url = config.routeLocation + "/api/logout";
-                var data = {userId: JSON.parse(localStorage.getItem(key)).user.id, _csrf: csrf};
+                var data = {userId: JSON.parse(localStorage.getItem(key)).user.id};
                 Ember.$.ajax({
                     url:         url,
                     type:        'POST',

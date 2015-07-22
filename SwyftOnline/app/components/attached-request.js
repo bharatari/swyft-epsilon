@@ -1,5 +1,5 @@
 import Ember from "ember";
-import itemUtils from 'swyft-online/utils/item-utils';
+import itemUtils from 'swyft-epsilon-online/utils/item-utils';
 
 var observer = Ember.observer;
 var get = Ember.get;

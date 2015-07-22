@@ -1,4 +1,4 @@
-import config from 'swyft-online/config/environment';
+import config from 'swyft-epsilon-online/config/environment';
 
 export default {
     DeliveryNote: function() {
@@ -8,6 +8,7 @@ export default {
         this.isDelivered = false;
         this.deliveredAt = null; 
         this.cashPayment = null;
+        this.chargeLater = false;
     },
     Transaction: function() {
         this.userId = "";
@@ -17,5 +18,21 @@ export default {
         this.orderId = "";
         this.transactionCreator = "";
         this.finalBalance = 0;
+    },
+    transitionToData: function(data, metadata) {
+        for(var i = 0; i < metadata.properties.length; i++) {
+            if(metadata.properties[i].editable) {
+                data[metadata.properties[i].propertyName] = metadata.properties[i].value;
+            }
+        }
+        return data;
+    },
+    transitionToMeta: function(data, metadata) {
+        for(var i = 0; i < metadata.properties.length; i++) {
+            if(metadata.properties[i].editable) {
+                metadata.properties[i].value = data[metadata.properties[i].propertyName];
+            }
+        }
+        return metadata;
     }
 }

@@ -22,9 +22,19 @@ You will need the following things properly installed on your computer.
 * `sails lift`
 * Visit your app at [http://localhost:4200](http://localhost:4200).`
 
+### Features
+
+## Automatic Delivery Service
+From Version 3, Epsilon has had an Automatic Delivery Management feature that creates and closes deliveries automatically based on a predefined schedule. This predefined schedule is contained within the `deliveryPeriods` MongoDB collection. The resulting deliveries are contained within the `deliveries` collection. Automatically created deliveries have a `autoDelivery` attribute set to `true`, which flags the delivery for automatic closing. If one wants to create a delivery that is manually closed, simply set this property to `false`. If an automatically created delivery needs to be removed (in the case that operations are not running that specific day), simply deleting the delivery will cause the automatic service to create another delivery in it's place. The record in `deliveryPeriods` needs to be disabled, which will stop the system from automatically creating deliveries based on that schedule, and then the delivery itself in `deliveries` can be deleted. 
+
 ### Notes
 The `/** HARDCODE **/` flag is used to label a function that does not work in a modular or data-agnostic fashion. 
 The `/** FUTURE **/` flag is used to label properties or functions that exist to accomodate future expansion, but are not used currently.
+
+### Limitations
+The `user` property is used to manage admin authentication, and therefore it should not be used as a property on models or for any other purpose.
+
+The `token` property should be used with caution. It is generally reserved for admin authentication on req.query.token and req.query.tokenId. For request bodies, the token is reserved on req.body.user.token. 
   
 ### Deploying
 
@@ -37,7 +47,7 @@ Ensure that all development environment settings, such as CORS have been switche
 Once the proper SwyftOnline files have been setup and necessary changes haves been made to the server for productiojn, simply change to the SwyftAPI root folder in a Node.js console and `modulus deploy`. You may be asked to login to your Modulus.io account, and if you have multiple projects associated with your account, you will be asked to pick one. Be sure to choose `SwyftApp`. 
 
 #License
-This project is property of Swyft Web Services and Bharat Arimilli.
+This project is property of Bharat Arimilli.
 
 
 
