@@ -1,14 +1,11 @@
 {{partial "navbar-standard"}}
 
-<div class="img-background container-fluid">
-    <h1 class="background-title">Delivery.</h1>
+<div class="img-background container">
+    <h1 class="background-title">delivery</h1>
 </div>
 
-<div class="container">
-    <ul class="breadcrumb">
-        <li><a>{{#link-to 'index'}}Home{{/link-to}}</a></li>
-        <li class="active">Delivery</li>
-    </ul>
+<div class="app-content">
+    <div class="container">
     <h4>For assistance, please contact Operations at <a href="tel:603-793-7333">603-793-7333</a></h4>
     <div class="delivery-note">
         <pre>{{deliveryNote.value}}</pre>
@@ -25,4 +22,6 @@
         </button>
         {{/each}}
     </div>
+</div>
+
 </div>

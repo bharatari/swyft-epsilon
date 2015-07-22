@@ -8,7 +8,7 @@
     <h3 class="background-subtitle">{{restaurant.subtitle}}</h3>
 </div>
 
-<div class="app-content">
+<div class="app-content app-content-no-padding">
     <div class="container">
         {{!--<ul class="breadcrumb">
         <li><a>{{#link-to 'index'}}Home{{/link-to}}</a></li>
@@ -41,7 +41,7 @@
             {{/each}}
         </div>
         
-        <div id="all-items">
+        <div id="all-items" class="div-invisible">
             {{#each filteredItems as |item|}}
             <button class="grid-product list-group-item" {{action 'transition' item.id}}>
                 <div class="click-through">

@@ -1,29 +1,50 @@
-<nav class="navbar-transparent navbar navbar-default" role="navigation">
+<nav class="navbar navbar-order navbar-transparent" role="navigation">
     <div class="container">
-        <div class="navbar-main-transparent row">
+        <div class="navbar-order-header">
+            <ul class="nav navbar-nav navbar-left">
+                <span class="navbar-brand-transparent">{{#link-to 'index'}}Swyft{{/link-to}}</span>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>                
+                    <button class="btn btn-shadow order-button" {{action 'order'}}>ORDER</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav> 
+
+{{!-- <nav class="navbar navbar-default navbar-home" role="navigation">
+    <div class="container">
+        <div class="row">
             <div class="navbar-header">
-                <a class="navbar-brand-transparent" href="/">SWYFT</a>
+                <span class="navbar-brand">{{#link-to 'index'}}Swyft{{/link-to}}</span>
             </div>
             <div class="navbar-float navbar-float-margin">
                 <button class="btn btn-shadow order-button" {{action 'order'}}>ORDER</button>
             </div>
         </div>
     </div>
-</nav>
+</nav>--}}
 
 {{#animate-body animateDelay=delay}}
 <div class="row row-one">
     <div class="container-fluid">
         <div class="row-one-text">
-            <h1 class="welcome-text-temporary">WE'RE IN MAINTENANCE MODE.</h1>
-            <h2 class="sub-promo-text-temporary">ANYTHING YOU DO FROM NOW UNTIL THE FALL WILL BE RESET.</h2>
+            <h1 class="welcome-text-temporary">DELIVERY FROM YOUR<br> FAVORITE RESTAURANTS.</h1>
+            <h2 class="sub-promo-text-temporary">WE DELIVER TO PHILLIPS EXETER ACADEMY IN EXETER, NH.</h2>
             <div class="promo-group list-group">
                 {{#unless isAuthenticated}}
-                <button class="btn list-group-item promo-button" {{action 'signUp'}}>SIGN UP</button>
+                <button class="btn list-group-item promo-button turquoise-button" {{action 'signUp'}}>SIGN UP</button>
                 {{/unless}}
-                <button class="btn list-group-item promo-button" {{action 'learnMore'}}>LEARN MORE</button>
+                <button class="btn list-group-item promo-button lime-button" {{action 'learnMore'}}>LEARN MORE</button>
             </div>        
         </div>
+    </div>
+</div>
+
+<div class="row row-three">
+    <div class="container">
+        <h1 class="row-four-text">We're a <span class="highlight">student-run</span> business at Phillips Exeter Academy.</h1>
     </div>
 </div>
 
@@ -36,7 +57,7 @@
             </div>
             <div class="col-xs-12 col-md-4">
                 <h4 class="section-header">When Can I Order?</h4>
-                <table class="table table-hover">
+                <table class="table table-hover deliveries-table">
                     <thead>
                         <tr>
                             <th>Day</th>
@@ -69,14 +90,12 @@
     </div>
 </div>
 
+ 
 <div class="image-scroller"></div>
+<div class="image-scroller-gradient"></div>    
 
-<div class="row row-three">
-    <div class="container">
-        <h1 class="row-four-text">We're a <span class="highlight">student-run</span> business at Phillips Exeter Academy.</h1>
-        <h2 class="row-three-text">WE PROVIDE STUDENTS A REAL-WORLD ENVIRONMENT TO REALIZE THEIR PASSIONS.</h2>
-    </div>
-</div>
+
+
 
 <div class="swyft-footer-container">
     <div class="container swyft-footer">

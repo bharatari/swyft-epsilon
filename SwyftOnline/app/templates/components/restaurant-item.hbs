@@ -1,14 +1,9 @@
 <div class="col-md-3">
     <div class="thumbnail restaurant-card" {{action 'transition' restaurant.name}}>
-        <div class="restaurant-card-image click-through" style="background-image:url({{restaurant.image}});"></div>
+        <div class="restaurant-card-image click-through" style="background-image:url({{imageUrl}});"></div>
         <div class="caption click-through">
             <h3 class="restaurant-card-title">{{restaurant.title}}</h3>
             <p class="restaurant-card-subtitle">{{restaurant.subtitle}}</p>
         </div>
     </div>
 </div>
-{{!--
-<img height="200" src={{restaurant.image}}>
-<button class="grid-restaurant list-group-item" >
-    <p class="click-through justify-left">{{restaurant.title}}</p>
-</button>--}}

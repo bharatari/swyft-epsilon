@@ -3,7 +3,7 @@
     <div class="option-group">
         <div class="list-group">
             {{#each request.options as |option|}}
-                <a class="list-group-item">{{radio-button name=request.value class="option" value=option}}<span class="option-text">{{option.name}}</span><span class="badge">{{#if option.price}}{{render-decimals option.price}}{{/if}}</span></a>
+                <label class="list-group-item">{{radio-button selected=request.value name=request.label class="option" value=option}}<span class="option-text">{{option.name}}</span><span class="badge">{{#if option.price}}{{render-decimals option.price}}{{/if}}</span></label>
             {{/each}}
         </div>            
     </div>

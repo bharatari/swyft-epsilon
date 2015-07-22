@@ -2,6 +2,7 @@ body {
     overflow-x: hidden;
     /* FIX FOR JASNY BOOTSTRAP SIDEBAR */
     padding-left: 0px !important;
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
 #nav-menu {
@@ -31,7 +32,7 @@ body {
     font-size: 20px;
     text-align: center;
     letter-spacing: 5px;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
 .btn-sidemenu {
@@ -39,7 +40,7 @@ body {
     letter-spacing: 3px;
     background-color: white;
     color: black;
-    font-family: 'Open Sans' !important;
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif !important;
     font-weight: 600 !important;
     border-color: transparent;
     margin-left: -12px;
@@ -100,7 +101,7 @@ body {
 
 .navbar-brand a {
     color: black !important;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-weight: 600;
     font-size: 22px;
     color: black;
@@ -113,7 +114,7 @@ body {
 
 .navbar-brand-admin {
     color: black !important;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-weight: 600;
     letter-spacing: 2px;
     font-size: 16px;
@@ -127,7 +128,7 @@ body {
 
 .navbar-brand-transparent a {
     color: white !important;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-weight: 600;
     font-size: 22px;
     -webkit-transition: transform 0.5s ease-in;
@@ -153,7 +154,7 @@ body {
 
 .navbar-brand-order a {
     color: black !important;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-weight: 600;
     letter-spacing: 7px;
     font-size: 18px;
@@ -255,12 +256,10 @@ body {
 
 .row-one {
     color:black !important;
-    height: 62vh;
     margin-top: -20px;
     /*background-image: url('/images/BuildingEdit.png');*/
     background-position: center;
     background-size: cover;
-    min-height: 170px;
     position: relative;
 }
 
@@ -269,7 +268,8 @@ body {
 }
 
 .row-one-text {
-    margin-top: 21vh;
+    margin-top: 250px;
+    margin-bottom: 280px;
 }
 
 .welcome-text {
@@ -333,7 +333,7 @@ body {
 }
 
 .welcome-text-temporary {
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-weight: 300;
     color: white;
     text-align: center;
@@ -354,7 +354,7 @@ body {
 }
 
 .sub-promo-text-temporary {
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-weight: 400;
     color: white;
     margin-top:-7px;
@@ -401,7 +401,7 @@ body {
     margin-top: 10px;
     font-weight: 400;
     padding-top: 0px;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     border: 1px solid darkgray;
     font-size: 11px;
     letter-spacing: 2px;
@@ -425,7 +425,7 @@ body {
 
 .quick-link {
    color: black !important;
-   font-family: 'Roboto';
+   font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
 .login-button {
@@ -439,7 +439,7 @@ body {
     color: black;
     font-weight: 400;
     font-size: 11px;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     -webkit-transition: background-color 0.2s ease-in, color 0.2s ease-out;
     -moz-transition: background-color 0.2s ease-in, color 0.2s ease-out;
     -ms-transition: background-color 0.2s ease-in, color 0.2s ease-out;
@@ -464,7 +464,7 @@ body {
     font-weight: 600;
     font-size: 11px;
     margin-top: 36px;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     -webkit-transition: background-color 0.2s ease-in, color 0.2s ease-out;
     -moz-transition: background-color 0.2s ease-in, color 0.2s ease-out;
     -ms-transition: background-color 0.2s ease-in, color 0.2s ease-out;
@@ -499,7 +499,7 @@ body {
     margin-bottom: 5.5vh;
     color: white;
     text-align: center;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-size: 20px;
 }
 
@@ -515,7 +515,7 @@ body {
     width: 130px;
     font-weight: 400;
     display: inline;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-size: 11px;
     letter-spacing: 2px;
     border-radius: 26px;
@@ -603,7 +603,7 @@ body {
     text-align: left;
     margin-top: 90px;
     font-size: 64px;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-weight: 300;
 }
 
@@ -618,17 +618,17 @@ body {
 
 .item-title {
     text-align: center;
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
 .item-price {
     text-align: center;
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
 .item-description {
     text-align: center;
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
     color: #555;
 }
 
@@ -638,7 +638,7 @@ body {
 
 .option-text {
     margin-left: 3px;   
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-weight: 400;
 }
 
@@ -654,7 +654,7 @@ body {
     float: left;
     background-color: white;
     border: 1px solid #ddd;
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-weight: 400;
     -webkit-transition: transform 0.2s ease-in, box-shadow 0.2s ease-in;
     -moz-transition: transform 0.2s ease-in, box-shadow 0.2s ease-in;
@@ -691,7 +691,7 @@ a.list-group-item:hover, a.list-group-item:focus {
 }
 
 .grid-product-title {
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-weight: 300;
     font-size: 26px;
     pointer-events: none;
@@ -700,7 +700,7 @@ a.list-group-item:hover, a.list-group-item:focus {
 
 .grid-product-price {
     color: #272727;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     pointer-events: none;
 }
 
@@ -715,7 +715,7 @@ a.list-group-item:hover, a.list-group-item:focus {
     margin-left: 10px;
     background-color: white;
     float: left;
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-weight: 400;
     border: 1px solid darkgray;
     -webkit-transition: transform 0.2s ease-in;
@@ -746,7 +746,7 @@ a.list-group-item:hover, a.list-group-item:focus {
     font-weight: 600;
     font-size: 14px;
     letter-spacing: 4px;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
 .price-light {
@@ -765,17 +765,17 @@ a.list-group-item:hover, a.list-group-item:focus {
 .cart-item-name {
     font-weight: 300;
     font-size: 25px;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
 .cart-item-itemoptions {
     font-size: 16px;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
 .cart-item-price {
     font-size: 18px;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
 .remove-button {
@@ -784,7 +784,7 @@ a.list-group-item:hover, a.list-group-item:focus {
     letter-spacing: 3px;
     background-color: white;
     color: black;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     border: 1px solid darkgray;
     height: 30px;
     width: 100px;
@@ -807,20 +807,27 @@ a.list-group-item:hover, a.list-group-item:focus {
 }
 
 .modal-backdrop {
+    position: fixed !important;
+    z-index: 400;
+    bottom: 0;
     pointer-events: none;
+}
+
+.modal {
+    z-index: 999;
 }
 
 .section-header {
     font-weight: 300;
     color:#727272;
     font-size: 24px;
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
 .centered-text {
     text-align: center;
     margin-bottom: 30px;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
 .sub-link {
@@ -851,7 +858,7 @@ a.list-group-item:hover, a.list-group-item:focus {
     font-size: 12px;
     color: #2C2C2C;
     margin-left: 15px;
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
 .footer-item:hover {
@@ -911,7 +918,7 @@ a.list-group-item:hover, a.list-group-item:focus {
 .faq {
     list-style-type: none;
     margin-left: -40px;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
 .question {
@@ -936,7 +943,7 @@ a.list-group-item:hover, a.list-group-item:focus {
 }
 
 .category-name {
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-size: 23px;
     font-weight: 500;
     margin-top: 8px;
@@ -1011,7 +1018,7 @@ a.list-group-item:hover, a.list-group-item:focus {
 }
 
 .news-text {
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
 .row-three {
@@ -1020,7 +1027,7 @@ a.list-group-item:hover, a.list-group-item:focus {
 
 .row-three-text {
     text-align: center;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-weight: 100;
     color: white;
     font-size: 20px;
@@ -1030,7 +1037,7 @@ a.list-group-item:hover, a.list-group-item:focus {
 
 .section-header-three {
     text-align: center;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-weight: 100;
     color: white;
 }
@@ -1040,18 +1047,18 @@ a.list-group-item:hover, a.list-group-item:focus {
 }
 
 .checkbox-label {
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
 .name-header {
     font-size: 42px;
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
 .small-header {
     font-size: 25px;
     font-weight: 300;
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
 .light-text {
@@ -1084,7 +1091,7 @@ a.list-group-item:hover, a.list-group-item:focus {
     font-weight: 600;
     text-transform: uppercase;
     font-size: 14px;
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
 .master-sheet {
@@ -1120,7 +1127,7 @@ a.list-group-item:hover, a.list-group-item:focus {
     background-color: white;
     color: black;
     font-weight: 400;
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
     border: 1px solid darkgray;
     height: 30px;
     width: 30px;
@@ -1142,13 +1149,13 @@ a.list-group-item:hover, a.list-group-item:focus {
     margin-right: 10px;
     margin-top: 4px;
     font-size: 16px;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
 .quantity-label-summary {
     margin-top: 4px;
     font-size: 16px;
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
 .no-list {
@@ -1165,7 +1172,8 @@ a.list-group-item:hover, a.list-group-item:focus {
     height: auto; 
     z-index: -100;
     background-size: cover;
-    background-image: url('/images/Exeter.JPG'); 
+    /* background-image: url('/images/Exeter.JPG'); */
+    background-color: #4a4a4a;
     background-position: center;
     opacity: inherit;
 }
@@ -1191,7 +1199,7 @@ a.list-group-item:hover, a.list-group-item:focus {
     margin-bottom: 10vh;
     text-align: center;
     color: white;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
 .highlight {
@@ -1199,11 +1207,11 @@ a.list-group-item:hover, a.list-group-item:focus {
 }
 
 .restaurant-notice {
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
 .notice-header {
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-size: 14px;
     font-weight: 600;
 }
@@ -1217,22 +1225,22 @@ a.list-group-item:hover, a.list-group-item:focus {
     font-weight: 400;
     margin-top: 5px;
     font-size: 16px;
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
 .text-light {
     font-weight: 300;
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
 .transparent-box {
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
     border: none;   
     font-size: 16px;
 }
 
 .transparent-box-label {
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-size: 16px;
 }
 
@@ -1246,11 +1254,11 @@ a.list-group-item:hover, a.list-group-item:focus {
 }
 
 .option-group-header {
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
 .form-control {
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     margin-top: 10px;
     border-radius: 2px;
     box-shadow: inset 0 2px 2px rgba(0,0,0,0.075)
@@ -1262,7 +1270,7 @@ a.list-group-item:hover, a.list-group-item:focus {
 }
 
 .balance {
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
 .box-dark {
@@ -1289,7 +1297,7 @@ a.list-group-item:hover, a.list-group-item:focus {
 }
 
 .box-content {
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     text-align: center;
     color: white;
     font-weight: 400;
@@ -1315,7 +1323,7 @@ a.list-group-item:hover, a.list-group-item:focus {
 .learn-row-header {
     font-size: 17px;
     text-align: center;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-weight: 600;
     letter-spacing: 2px;
 }
@@ -1323,7 +1331,7 @@ a.list-group-item:hover, a.list-group-item:focus {
 .learn-two-text {
     font-size: 32px;
     text-align: center;
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-weight: 300;
 }
 
@@ -1335,13 +1343,13 @@ a.list-group-item:hover, a.list-group-item:focus {
 }
 
 .learn-three-header {
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
     text-align: center;
     padding-bottom: 15px;
 }
 
 .learn-three-text {
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-size: 32px;
     font-weight: 300;
     text-align: center;
@@ -1357,7 +1365,7 @@ a.list-group-item:hover, a.list-group-item:focus {
 
 .learn-four-text {
     font-size: 32px;
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-weight: 300;
 }
 
@@ -1368,14 +1376,14 @@ a.list-group-item:hover, a.list-group-item:focus {
 
 .learn-five-text {
     font-size: 32px;
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-weight: 300;
 }
 
 .team-header {
     font-size: 17px;
     text-align: center;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-weight: 600;
     margin-top: 110px;
     margin-bottom: 40px;
@@ -1385,7 +1393,7 @@ a.list-group-item:hover, a.list-group-item:focus {
 .summary-total {
     font-weight: 600;
     font-size: 18px;
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
 .filter-box { }
@@ -1397,7 +1405,7 @@ a.list-group-item:hover, a.list-group-item:focus {
 }
 
 .filter-text {
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
     margin-bottom: 20px;
 }
 
@@ -1409,6 +1417,30 @@ a.list-group-item:hover, a.list-group-item:focus {
 @media only screen and (max-width: 992px) {
     .summary-well {
         margin-right: 0px;
+    }
+    
+    .login-block {
+        margin-bottom: 70px;    
+        margin-top: -70px;
+    }
+    
+    .login-block .background-subtitle {
+        text-align: center;
+    }
+    
+    .login-block .background-title {
+        text-align: center;
+    }
+    
+    .login-form {
+        margin-bottom: 70px;
+        margin-top: -30px;
+    }
+    
+    .login-form {
+        width: 300px;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 
@@ -1439,7 +1471,6 @@ a.list-group-item:hover, a.list-group-item:focus {
     
     .row-one {
         color:black !important;
-        height: 50vh;
         margin-top: -32px;
     }
 
@@ -1450,7 +1481,8 @@ a.list-group-item:hover, a.list-group-item:focus {
     }
     
     .row-one-text {
-        margin-top: 13vh;
+        margin-top: 80px;
+        margin-bottom: 135px;
     }
     
     .welcome-text {
@@ -1481,7 +1513,7 @@ a.list-group-item:hover, a.list-group-item:focus {
         margin-top: -30px !important;
     }
     
-    .app-content {
+    .app-content-no-padding {
         padding-top: 0px !important;
     }
     
@@ -1547,7 +1579,7 @@ a.list-group-item:hover, a.list-group-item:focus {
         border-bottom-color: transparent;
         border-top-color: #e0e0e0;
         margin-bottom: 0px;
-        font-family: 'Roboto';
+        font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
         font-weight: 400;
         font-size: 16px;
         -webkit-transition: background-color 0.2s ease-in;
@@ -1563,7 +1595,7 @@ a.list-group-item:hover, a.list-group-item:focus {
     }
     
     .grid-product-title {
-        font-family: 'Roboto';
+        font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
         font-weight: 300;
         font-size: 22px;
         text-align: left;
@@ -1583,12 +1615,6 @@ a.list-group-item:hover, a.list-group-item:focus {
         border-top-color: #e0e0e0;
         border-bottom-style: none;
         border-bottom-color: transparent;
-    }
-
-    .login-form {
-        width: 300px;
-        margin-left: auto;
-        margin-right: auto;
     }
     
     .navbar-float-margin {
@@ -1617,6 +1643,20 @@ a.list-group-item:hover, a.list-group-item:focus {
 
     .promo-text {
         font-size: 41px;
+    }
+    
+    .order-button {
+        float: right;
+        margin-top: -5px;
+        margin-right: 20px;
+    }
+    
+    .login-block {
+        margin-top: -35px;
+    }
+    
+    .navbar-brand-transparent a {
+        margin-left: 30px;
     }
 }
 
@@ -1709,7 +1749,7 @@ figure span {
     min-height: 93vh;
     overflow-x: hidden;
     overflow-y: auto;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     background-color: rgb(244, 244, 244);
 }
 
@@ -1724,7 +1764,7 @@ figure span {
 
 .admin-brand {
     color: #4a4a4a !important;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-weight: 600;
     font-size: 16px;
     color: black;
@@ -1752,19 +1792,23 @@ figure span {
     padding-bottom: 24px;
 }
 
+#admin-menu {
+    box-shadow: 0 5px 30px -10px #000
+}
+
 .admin-sidebar-header {
     font-weight: 600;
     margin-top: 27px;
     margin-left: 40px;
     margin-bottom: 20px;
     color: white;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-size: 14px;
 }
 
 .admin-sidebar-list li a {
     color: #363636;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-weight: 600;
     font-size: 13px;
     -webkit-transition: background-color 0.5s ease-in;
@@ -1785,7 +1829,7 @@ figure span {
 }
 
 .admin-header {
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-size: 24px;
     margin-top: 0px;
     color: #505050;
@@ -1793,14 +1837,14 @@ figure span {
 
 .admin-subtitle {
     font-size: 15px;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-weight: 700;
     color: #505050;
 }
 
 .admin-help {
     font-size: 15px;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-weight: 400;
     color: #505050;
 }
@@ -1851,13 +1895,13 @@ figure span {
     padding-top: 30px;
     color: white;
     font-weight: 300;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
 .admin-content-box-subtitle {
     font-size: 23px;
     font-weight: 300;
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
     color: white;
 }
 
@@ -1890,7 +1934,7 @@ figure span {
 */
 
 .admin-panel-header {
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     margin-bottom: 23px;
     color: rgb(103, 106, 108);
     margin-top: 10px;
@@ -1945,11 +1989,11 @@ figure span {
 }
 
 .admin-table {
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
 .btn-default {
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
 .btn-pill {
@@ -1982,11 +2026,11 @@ figure span {
 }
 
 .admin-data-count {
-    font-family: 'Roboto';    
+    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;    
 }
 
 .admin-roboto {
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
 .admin-control-header {
@@ -2023,13 +2067,13 @@ figure span {
 }
 
 .error-text {
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-weight: 300;
     text-align: center;
 }
 
 .error-subtitle {
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-weight: 300;
     text-align: center;    
 }
@@ -2079,14 +2123,14 @@ figure span {
 .restaurant-card-container {}
 
 .restaurant-card-title {
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-weight: 400;
     font-size: 18px;    
 }
 
 .background-subtitle {
     color: darkgray;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-weight: 300;
 }
 
@@ -2096,7 +2140,7 @@ figure span {
 }
 
 .restaurant-card-subtitle {
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     color: #626262;
     margin-top: -10px;
 }
@@ -2158,11 +2202,11 @@ figure span {
 }
 
 .body-font {
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
 .deliveries-table {
-    font-family: 'Open Sans';    
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;    
 }
 
 @keyframes fade-out {

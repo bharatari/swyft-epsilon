@@ -3,9 +3,12 @@
 {{#animate-body}} 
 <div class="container">
     {{modal-dialog body=modalBody title=modalTitle displayModal=displayModal}}
-    <form class="login-form" {{action 'signUp' on='submit'}}>
+     <div class="col-md-6 login-block">
+        <h1 class="background-title">sign up</h1>
+        <h3 class="background-subtitle">Sign up for a new Swyft Account</h3>
+    </div>
+    <form class="col-md-6 sign-up-form" {{action 'signUp' on='submit'}}>
         <fieldset>
-            <h2 class="centered-text">Sign Up</h2>
             {{#if error}}
             <div class="alert alert-dismissable alert-danger">
                 <button class="close" type="button" {{action 'closeError'}}>×</button>
@@ -15,19 +18,20 @@
             <div>
                 {{input class="form-control" value=firstName type="text" placeholder="First Name"}}
                 {{input class="form-control" value=lastName type="text" placeholder="Last Name"}}
-                {{x-select content=deliveryLocations value=dormitory optionValuePath="content.name" optionLabelPath="content.name" class="form-control" prompt="Select a Default Location"}}
+                {{select-menu action=(action (mut dormitory)) content=deliveryLocations selection=dormitory optionValuePath="name" optionLabelPath="name" class="form-control" prompt="Select a Default Location"}}
                 {{input class="form-control" value=phoneNumber type="text" placeholder="Phone Number"}}
-                {{input class="form-control" value=email type="text" placeholder="Exeter Email Address"}}
+                {{input class="form-control" value=username type="text" placeholder="Exeter Email Address"}}
                 <input id="password" class="form-control" value={{password}} type="password" placeholder="Password (Between 6 and 20 characters)" {{action "validatePassword" on="change"}}/>
                 <input id="confirmPassword" class="form-control" value={{confirmPassword}} type="password" placeholder="Confirm Password" {{action "validatePassword" on="change"}}/>
-                <label>
+                <label class="checkbox-label">
                     {{input class="checkbox-control" checked=contactConsent type="checkbox"}} It's okay to contact me about promotions and new product offerings.
                 </label>
             </div>
             {{#unless buttonPressed}}
-                <button class="btn btn-default btn-float" type="submit">Sign Up</button>     
+                <button class="btn btn-default btn-float btn-pill" type="submit">Sign Up</button>     
             {{/unless}}
         </fieldset>
     </form>
 </div>
 {{/animate-body}} 
+{{partial 'footer'}}
