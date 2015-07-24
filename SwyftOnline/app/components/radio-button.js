@@ -8,9 +8,9 @@ export default Ember.Component.extend({
         return this.get('name');
     },
     checked: function () {
-        return this.get('value') === this.get('name');
-    }.property('value', 'name'),
+        return this.get('value') === this.get('selected');
+    }.property('value', 'selected'),
     click: function () {
-        this.set('name', this.get('value'));
+        this.set('selected', this.get('value'));
     }
 });

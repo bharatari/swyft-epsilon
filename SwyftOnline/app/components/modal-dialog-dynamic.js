@@ -1,14 +1,21 @@
 import Ember from "ember";
 
 export default Ember.Component.extend({
+    setup: function() {
+        $('#' + this.elementId + ' .modal').modal({
+            backdrop: 'static',
+            keyboard: false,
+            show: false
+        });
+    }.on('didInsertElement'),
     displayModalChanged: function() {
         if(this.get('displayModal')) {
-            $('.modal').modal('show');
+            $('#' + this.elementId + ' .modal').modal('show');
         }
         else {
-            $('.modal').modal('hide');
+            $('#' + this.elementId + ' .modal').modal('hide');
         }
-    }.observes('displayModal').on('didInsertElement'),
+    }.observes('displayModal'),
     actions: {
         close: function() {
             this.set('displayModal', false);
