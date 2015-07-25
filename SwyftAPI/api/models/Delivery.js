@@ -14,6 +14,7 @@ module.exports={
         deliveryPeriod:{
             type:'string'
         },
+        /** FUTURE **/
         restaurants:{
             type:'string'
         },

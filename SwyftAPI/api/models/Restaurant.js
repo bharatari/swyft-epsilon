@@ -17,6 +17,12 @@ module.exports={
         },
         notice:{
             type:'string'
+        },
+        image:{
+            type:'string'
+        },
+        subtitle:{
+            type:'string'
         }
     },
 }
