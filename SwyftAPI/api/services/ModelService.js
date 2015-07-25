@@ -109,5 +109,14 @@ module.exports = {
         //this.latitude = 0.0;
         //this.longitude = 0.0;
         this.disabled = false;
+    },
+    Restaurant: function() {
+        this.name = "";
+        this.title = "";
+        this.unavailable = false;
+        this.aggregateStyle = "";
+        this.notice = "";
+        this.image = "";
+        this.subtitle = "";
     }
 }

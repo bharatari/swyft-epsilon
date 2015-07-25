@@ -20,11 +20,19 @@
 module.exports.policies = {
   AuthController:{ },
   MenuController:{ },
-  DeliveryController: {
+  DeliveryController:{
     "getAdminDeliveries":['isAdmin', 'userDisabled'],
     "completeDelivery":['isAdmin', 'userDisabled'],
     "getDeliveryOrders":['isAdmin', 'userDisabled'],
-    "closeDelivery":['isAdmin', 'userDisabled']
+    "closeDelivery":['isAdmin', 'userDisabled'],
+    "find":['isAdmin', 'removeAdminParams', 'userDisabled'],
+    "findOne":['isAdmin', 'userDisabled'],
+    "create":['isAdmin', 'removeAdminParams', 'userDisabled'],
+    "update":['isAdmin', 'removeAdminParams', 'userDisabled'],
+    "destroy":['isAdmin', 'userDisabled'],
+    "populate":['isAdmin', 'userDisabled'],
+    "add":['isAdmin', 'userDisabled'],
+    "remove":['isAdmin', 'userDisabled']  
   },
   OrderController:{
     "*":['isAuthenticated', 'userDisabled', 'suppressSystem'],
@@ -70,10 +78,48 @@ module.exports.policies = {
   },
   CouponController:{
     "*":['isAdmin', 'userDisabled'],
-    "checkToken":[]
+    "checkToken":[],
+    "find":['isAdmin', 'removeAdminParams', 'userDisabled'],
+    "findOne":['isAdmin', 'userDisabled'],
+    "create":['isAdmin', 'removeAdminParams', 'userDisabled'],
+    "update":['isAdmin', 'removeAdminParams', 'userDisabled'],
+    "destroy":['isAdmin', 'userDisabled'],
+    "populate":['isAdmin', 'userDisabled'],
+    "add":['isAdmin', 'userDisabled'],
+    "remove":['isAdmin', 'userDisabled'] 
   },
   GlobalController:{
     "setNews":['isAdmin', 'userDisabled'],
+    "find":['isAdmin', 'removeAdminParams', 'userDisabled'],
+    "findOne":['isAdmin', 'userDisabled'],
+    "create":['isAdmin', 'removeAdminParams', 'userDisabled'],
+    "update":['isAdmin', 'removeAdminParams', 'userDisabled'],
+    "destroy":['isAdmin', 'userDisabled'],
+    "populate":['isAdmin', 'userDisabled'],
+    "add":['isAdmin', 'userDisabled'],
+    "remove":['isAdmin', 'userDisabled']  
+  },
+  TokenController:{
+    "find":['isAdmin', 'removeAdminParams', 'userDisabled'],
+    "findOne":['isAdmin', 'userDisabled'],
+    "create":['isAdmin', 'removeAdminParams', 'userDisabled'],
+    "update":['isAdmin', 'removeAdminParams', 'userDisabled'],
+    "destroy":['isAdmin', 'userDisabled'],
+    "populate":['isAdmin', 'userDisabled'],
+    "add":['isAdmin', 'userDisabled'],
+    "remove":['isAdmin', 'userDisabled']  
+  },
+  DeliveryLocationController:{
+    "find":['isAdmin', 'removeAdminParams', 'userDisabled'],
+    "findOne":['isAdmin', 'userDisabled'],
+    "create":['isAdmin', 'removeAdminParams', 'userDisabled'],
+    "update":['isAdmin', 'removeAdminParams', 'userDisabled'],
+    "destroy":['isAdmin', 'userDisabled'],
+    "populate":['isAdmin', 'userDisabled'],
+    "add":['isAdmin', 'userDisabled'],
+    "remove":['isAdmin', 'userDisabled']  
+  },
+  RestaurantController:{
     "find":['isAdmin', 'removeAdminParams', 'userDisabled'],
     "findOne":['isAdmin', 'userDisabled'],
     "create":['isAdmin', 'removeAdminParams', 'userDisabled'],

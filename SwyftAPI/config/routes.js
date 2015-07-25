@@ -124,7 +124,18 @@ module.exports.routes = {
   'get /api/admin/user/metadata':'UserController.getUserMetadata',
   'get /api/admin/user/model':'UserController.getUserModel',
   'get /api/admin/global/metadata':'GlobalController.getGlobalMetadata',
-  'get /api/admin/global/model':'GlobalController.getGlobalModel'
+  'get /api/admin/global/model':'GlobalController.getGlobalModel',
+  'get /api/admin/coupon/metadata':'CouponController.getCouponMetadata',
+  'get /api/admin/coupon/model':'CouponController.getCouponModel',
+  'get /api/admin/token/metadata':'TokenController.getTokenMetadata',
+  'get /api/admin/token/model':'TokenController.getTokenModel',
+  'get /api/admin/delivery/metadata':'DeliveryController.getDeliveryMetadata',
+  'get /api/admin/delivery/model':'DeliveryController.getDeliveryModel',
+  'get /api/admin/deliveryLocation/metadata':'DeliveryLocationController.getDeliveryLocationMetadata',
+  'get /api/admin/deliveryLocation/model':'DeliveryLocationController.getDeliveryLocationModel',
+  'get /api/admin/restaurant/model':'RestaurantController.getRestaurantModel',
+  'get /api/admin/restaurant/metadata':'RestaurantController.getRestaurantMetadata'
+    
     
   /***************************************************************************
   *                                                                          *
