@@ -56,9 +56,9 @@ module.exports={
             type:'boolean',
             defaultsTo:false
         },
-        isEnabled:{
+        disabled:{
             type:'boolean',
-            defaultsTo:true
+            defaultsTo:false
         },
         testUser:{
             type:'boolean',

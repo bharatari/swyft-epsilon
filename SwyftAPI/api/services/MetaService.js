@@ -395,8 +395,8 @@ module.exports = {
                 editable: true
             },
             {
-                propertyName: 'isEnabled',
-                displayName: 'Enabled',
+                propertyName: 'disabled',
+                displayName: 'Disabled',
                 display: true,
                 type: 'boolean',
                 editable: true

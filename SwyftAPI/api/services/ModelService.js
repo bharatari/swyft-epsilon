@@ -69,7 +69,7 @@ module.exports = {
         this.isDriver = false;
         this.isEmployee = false;
         this.isDeliverer = false;
-        this.isEnabled = false;
+        this.disabled = false;
         this.testUser = false;
     },
     Global: function() {
