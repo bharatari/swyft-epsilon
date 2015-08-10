@@ -118,5 +118,20 @@ module.exports = {
         this.notice = "";
         this.image = "";
         this.subtitle = "";
+    },
+    MenuItem: function() {
+        this.name = "";
+        this.baseprice = 0.0;
+        this.category = "";
+        this.description = "";
+        this.itemOptions = [];
+        this.extras = [];
+        this.attachedRequests = "";
+        this.unavailable = false;
+        this.restaurant = "";
+        this.adminComments = "";
+        this.note = "";
+        this.seasonal = false;
+        this.temporary = false;
     }
 }

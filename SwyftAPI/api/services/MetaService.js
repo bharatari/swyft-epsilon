@@ -675,5 +675,126 @@ module.exports = {
                 sortTypes: self.sortTypes
             });
         });
-    }
+    },
+    getMenuItemMetadata: function(recordsPerPage, cb) {
+        var self = this;
+        var combined = [
+            {
+                propertyName: 'id',
+                displayName: 'ID',
+                display: true,
+                type: 'string',
+                editable: false
+            },
+            {
+                propertyName: 'name',
+                displayName: 'Name',
+                display: true,
+                type: 'string',
+                editable: true
+            },
+            {
+                propertyName: 'baseprice',
+                displayName: 'Base Price',
+                display: true,
+                type: 'number',
+                editable: true
+            },
+            {
+                propertyName: 'category',
+                displayName: 'Category',
+                display: true,
+                type: 'string',
+                editable: true
+            },
+            {
+                propertyName: 'description',
+                displayName: 'Description',
+                display: true,
+                type: 'string',
+                editable: true
+            },
+            {
+                propertyName: 'itemOptions',
+                displayName: 'Item Options',
+                display: true,
+                type: 'array',
+                editable: true
+            },
+            {
+                propertyName: 'extras',
+                displayName: 'Extras',
+                display: true,
+                type: 'array',
+                editable: true
+            },
+            {
+                propertyName: 'attachedRequests',
+                displayName: 'Attached Requests',
+                display: true,
+                type: 'string',
+                editable: true
+            },
+            {
+                propertyName: 'unavailable',
+                displayName: 'Unavailable',
+                display: true,
+                type: 'boolean',
+                editable: true
+            },
+            {
+                propertyName: 'restaurant',
+                displayName: 'Restaurant',
+                display: true,
+                type: 'string',
+                editable: true
+            },
+            {
+                propertyName: 'adminComments',
+                displayName: 'Admin Comments',
+                display: true,
+                type: 'string',
+                editable: true
+            },
+            {
+                propertyName: 'note',
+                displayName: 'Note',
+                display: true,
+                type: 'string',
+                editable: true
+            },
+            {
+                propertyName: 'seasonal',
+                displayName: 'Seasonal',
+                display: true,
+                type: 'boolean',
+                editable: true
+            },
+            {
+                propertyName: 'temporary',
+                displayName: 'Temporary',
+                display: true,
+                type: 'boolean',
+                editable: true
+            },
+            {
+                propertyName: 'createdAt',
+                displayName: 'Created At',
+                display: true,
+                type: 'datetime',
+                editable: true,
+                advancedField: true
+            }
+        ];
+        MenuItem.find().exec(function(err, data) {
+            cb({
+                total: data.length,
+                totalPages: Math.ceil(data.length / recordsPerPage),
+                sort: 'createdAt',
+                sortType: 'DESC',
+                properties: combined,
+                sortTypes: self.sortTypes
+            });
+        });
+    },
 }   

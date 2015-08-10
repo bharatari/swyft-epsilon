@@ -1,0 +1,94 @@
+<div class="form-group">
+  	<label class="col-sm-2 control-label">{{name.displayName}}</label>
+   	<div class="col-sm-9">
+      	{{input class="form-control" value=name.value type="text"}}
+    </div>
+</div>
+<div class="form-group">
+  	<label class="col-sm-2 control-label">{{baseprice.displayName}}</label>
+   	<div class="col-sm-9">
+      	{{input class="form-control" value=baseprice.value type="number"}}
+    </div>
+</div>
+<div class="form-group">
+  	<label class="col-sm-2 control-label">{{category.displayName}}</label>
+   	<div class="col-sm-9">
+      	{{input class="form-control" value=category.value type="text"}}
+    </div>
+</div>
+<div class="form-group">
+  	<label class="col-sm-2 control-label">{{attachedRequests.displayName}}</label>
+   	<div class="col-sm-9">
+      	{{input class="form-control" value=attachedRequests.value type="text"}}
+    </div>
+</div>
+<div class="form-group">
+  	<label class="col-sm-2 control-label">{{description.displayName}}</label>
+   	<div class="col-sm-9">
+        {{textarea class="text-area form-control" value=description.value}}
+    </div>
+</div>
+<div class="form-group">
+  	<label class="col-sm-2 control-label">{{note.displayName}}</label>
+   	<div class="col-sm-9">
+        {{textarea class="text-area form-control" value=note.value}}
+    </div>
+</div>
+<div class="form-group">
+  	<label class="col-sm-2 control-label">{{adminComments.displayName}}</label>
+   	<div class="col-sm-9">
+        {{textarea class="text-area form-control" value=adminComments.value}}
+    </div>
+</div>
+<div class="form-group">
+  	<label class="col-sm-2 control-label">{{restaurant.displayName}}</label>
+   	<div class="col-sm-9">
+      	{{input class="form-control" value=restaurant.value type="text"}}
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">{{unavailable.displayName}}</label>
+    <div class="col-sm-9">
+       {{select-menu class="form-control" action=(action (mut unavailable.value)) content=booleanValues selection=unavailable.value optionValuePath="propertyName" optionLabelPath="displayName"}}
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">{{seasonal.displayName}}</label>
+    <div class="col-sm-9">
+       {{select-menu class="form-control" action=(action (mut seasonal.value)) content=booleanValues selection=seasonal.value optionValuePath="propertyName" optionLabelPath="displayName"}}
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">{{temporary.displayName}}</label>
+    <div class="col-sm-9">
+       {{select-menu class="form-control" action=(action (mut temporary.value)) content=booleanValues selection=temporary.value optionValuePath="propertyName" optionLabelPath="displayName"}}
+    </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-md-12 col-md-offset-2">
+     <h2 class="menu-item-wizard-header">Item Options</h2>
+     {{#each itemOptions.value as |option|}}
+        {{menu-item-options itemOption=option deleteItemOption="deleteItemOption"}}
+     {{/each}}
+     <button {{action 'addItemOption'}}>Add item option</button>
+     {{#if standardOptionsExists}}
+        <button {{action 'removeStandardOptions'}}>Remove Standard Options</button>
+     {{else}}
+        <button {{action 'addStandardOptions'}}>Add Standard Options</button>
+     {{/if}}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12 col-md-offset-2">
+     <h2 class="menu-item-wizard-header">Extras</h2>
+     {{#each extras.value as |extra|}}
+        {{menu-item-extra extra=extra deleteExtra="deleteExtra"}}
+     {{/each}}
+     <button {{action 'addExtra'}}>Add Extra</button>
+  </div>
+</div>
+
