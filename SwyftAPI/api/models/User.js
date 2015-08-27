@@ -59,10 +59,6 @@ module.exports={
         disabled:{
             type:'boolean',
             defaultsTo:false
-        },
-        testUser:{
-            type:'boolean',
-            defaultsTo:false
         }
     },
     
