@@ -71,8 +71,7 @@ export default {
             return true;
         }
     },
-    processCart: function() {
-        var array = JSON.parse(localStorage.getItem("cart"));
+    processCart: function(array) {
         if(!array) {
             return;
         }
