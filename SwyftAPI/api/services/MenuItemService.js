@@ -13,6 +13,34 @@ module.exports = {
         }
         return items;
     },
+    processMenuItem: function(menuItem, cb) {
+        if(menuItem.itemOptions) {
+            for(var i = 0; i < menuItem.itemOptions.length; i++) {
+                if(menuItem.itemOptions[i]) {
+                    if(menuItem.itemOptions[i].options) {
+                        for(var e = 0; e < menuItem.itemOptions[i].options.length; e++) {
+                            if(menuItem.itemOptions[i].options[e]) {
+                                if(typeof menuItem.itemOptions[i].options[e].price === 'string') {
+                                    menuItem.itemOptions[i].options[e].price = parseFloat(menuItem.itemOptions[i].options[e].price);
+                                }
+                            }
+                        }
+                        
+                    }   
+                }
+            }
+        }
+        if(menuItem.extras) {
+            for(var i = 0; i < menuItem.extras.length; i++) {
+                if(menuItem.extras[i]) {
+                    if(typeof menuItem.extras[i].price === 'string') {
+                        menuItem.extras[i].price = parseFloat(menuItem.extras[i].price);                        
+                    }
+                }
+            }
+        }
+        cb(menuItem);
+    },
     /** HARDCODE **/
     /* Please refer to the README to learn more about SwyftAPI flags */
     processItemComments: function(item, cb) {

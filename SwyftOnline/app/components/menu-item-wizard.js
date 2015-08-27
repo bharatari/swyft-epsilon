@@ -142,7 +142,7 @@ export default Ember.Component.extend({
 			var extras = this.get('extras');
 			var value = extras.value;
 			var extra = {
-				price: 0,
+				price: null,
 				name: ""
 			}
 			value.push(extra);
