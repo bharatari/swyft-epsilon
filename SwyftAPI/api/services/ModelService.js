@@ -25,23 +25,35 @@ module.exports = {
         this.adminClosed = false;
         this.autoDelivery = true;
     },
-    DeliveryNote: function(commentedBy, delivererId, comments, isDelivered, deliveredAt, cashPayment, chargeLater) {
+    DeliveryNote: function(commentedBy, delivererId, comments, isDelivered, deliveredAt, cashPayment, chargeLater, creditCardCharged, creditCardMessage) {
         this.commentedBy = commentedBy;
         this.deliveredBy = delivererId;
         this.comments = comments;
         this.isDelivered = isDelivered;
-        this.deliveredAt = new Date();
+        this.deliveredAt = deliveredAt;
+        if (typeof cashPayment === 'undefined') { 
+            this.cashPayment = null; 
+        }
+        else {
+            this.cashPayment = cashPayment;
+        }
         if(typeof chargeLater === 'undefined') {
             this.chargeLater = chargeLater;
         }
         else {
             this.chargeLater = false;
         }
-        if (typeof cashPayment === 'undefined') { 
-            this.cashPayment = null; 
+        if (typeof creditCardCharged === 'undefined') {
+            this.creditCardCharged = false;
         }
         else {
-            this.cashPayment = cashPayment;
+            this.creditCardCharged = creditCardCharged;
+        }
+        if (typeof creditCardMessage === 'undefined') {
+            this.creditCardMessage = "";
+        }
+        else {
+            this.creditCardMessage = creditCardMessage;
         }
     },
     /** Models for external use **/
@@ -133,5 +145,22 @@ module.exports = {
         this.note = "";
         this.seasonal = false;
         this.temporary = false;
+    },
+    Order: function() {
+        this.type = "";
+        this.items = [];
+        this.userId = "";
+        this.contactPhone = "";
+        this.adminComments = "";
+        this.totalAmount = 0.0;
+        this.actualAmount = 0.0;
+        this.paymentType = "";
+        this.deliveryTime = new Date();
+        this.deliveryId = "";
+        this.deliveryLocation = "";
+        this.couponId = "";
+        this.tokenId = "";
+        this.deliveryNote = new ModelService.DeliveryNote(null, null, null, null, null, null, null, null, null);
+        this.isDeleted = false;
     }
 }

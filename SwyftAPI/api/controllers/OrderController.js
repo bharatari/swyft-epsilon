@@ -31,7 +31,7 @@ module.exports={
                                     if(order.paymentType === "cash") {
                                         OrderService.submitCash(order, req.user.id, function(response){
                                             if(response) {
-                                                res.ok();
+                                                res.json(response);
                                             }
                                             else {
                                                 res.serverError();
@@ -41,7 +41,7 @@ module.exports={
                                     else if(order.paymentType === "swyftdebit") {
                                         OrderService.submitSwyftDebit(order, req.user.id, function(response){
                                             if(response) {
-                                                res.ok();
+                                                res.json(response);
                                             }
                                             else {
                                                 res.serverError();
@@ -51,10 +51,20 @@ module.exports={
                                     else if(order.paymentType === "cash+swyftdebit") {
                                         OrderService.submitCashSwyftDebit(order, req.user.id, function(response){
                                             if(response) {
-                                                res.ok();
+                                                res.json(response);
                                             }
                                             else {
                                                 res.serverError();
+                                            }
+                                        });
+                                    }
+                                    else if(order.paymentType === "creditcard") {
+                                        OrderService.submitCreditCard(order, req.user.id, req.body.stripeToken, function(response, message){
+                                            if(response) {
+                                                res.json(response);
+                                            }
+                                            else {
+                                                res.badRequest(message);
                                             }
                                         });
                                     }
@@ -69,7 +79,7 @@ module.exports={
             }
         });
     },
-   getOrders:function(req,res){
+    getOrders:function(req,res){
         Order.find().where({deliveryPeriod:req.body.deliveryPeriod, isDeleted:false, hasFulfillment:false}).exec(function(err, items){
             OrderService.iterateJoinUsers(items, function(orders) {
                 return res.json(orders);
@@ -146,5 +156,28 @@ module.exports={
                 res.json(result);
             });
         });
+    },
+    find: function(req, res) {
+        OrderService.getOrders(req.query, function(result) {
+            res.json(result);
+        });
+    },
+    findOne: function(req, res) {
+        Order.findOne({ id: req.params.id }).exec(function(err, order) {
+            OrderService.joinUser(order, function(result) {
+                if(!order.deliveryNote) {
+                    order.deliveryNote = new ModelService.DeliveryNote(null, null, null, null, null, null, null, null, null);
+                }
+                res.json(result);
+            });
+        });
+    },
+    getOrderMetadata: function(req, res) {
+        MetaService.getOrderMetadata(req.query.limit, req.query.where, function(result) {
+            res.json(result);
+        });
+    },
+    getOrderModel: function(req, res) {
+        res.json(new ModelService.Order());
     }
 }

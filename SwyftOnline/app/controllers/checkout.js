@@ -20,12 +20,11 @@ export default Ember.Controller.extend({
         window._fbq = window._fbq || [];
         window._fbq.push(['track', '6021240611293', {'value':'0.00','currency':'USD'}]);
     },
-    buttonPressed: false,
     cartArray: function() {
-        if(localStorage.getItem("cart")){
-            return cartUtils.processCart();
+        if(this.get('cart')) {
+            return cartUtils.processCart(this.get('cart'));
         }
-    }.property(),
+    }.property('cart'),
     totalPrice: function() {
         var cart = this.get("cart");
         if(cart) {
@@ -37,6 +36,7 @@ export default Ember.Controller.extend({
                 var tax = Math.round((totalPrice * constants.tax) * 10) / 10;
                 totalPrice = totalPrice + tax;
                 totalPrice = Math.round(totalPrice * 10) / 10;
+                this.set('finalAmount', totalPrice);
                 return totalPrice;
             }
         }
@@ -49,30 +49,32 @@ export default Ember.Controller.extend({
         }
         return array;
     }.property('deliveries'),
-    paymentOptions: function() {
+    paymentOptions: Ember.computed('finalAmount', function() {
         if(this.get('user').balance <= 0) {
             return [
                 { id: "swyftdebit", name: "Swyft Debit", disabled: true },
                 { id: "cash", name: "Cash" },
-                { id: "cash+swyftdebit", name:"Cash + Swyft Debit", disabled: true } 
+                { id: "cash+swyftdebit", name:"Cash + Swyft Debit", disabled: true },
+                { id: "creditcard", name:"Credit Card" } 
             ];
         }
         else if(this.get('finalAmount') > this.get('user').balance) {
             return [
                 { id: "swyftdebit", name: "Swyft Debit", disabled: true },
                 { id: "cash", name: "Cash" },
-                { id: "cash+swyftdebit", name:"Cash + Swyft Debit" } 
+                { id: "cash+swyftdebit", name:"Cash + Swyft Debit" },
+                { id: "creditcard", name:"Credit Card" } 
             ];
         }
         else {
             return [
                 { id: "swyftdebit", name: "Swyft Debit" },
                 { id: "cash", name: "Cash" },
-                { id: "cash+swyftdebit", name:"Cash + Swyft Debit" } 
+                { id: "cash+swyftdebit", name:"Cash + Swyft Debit" },
+                { id: "creditcard", name:"Credit Card" }  
             ];
         }
-        
-    }.property('finalAmount'),
+    }),
     showSlider: function() {
         if(this.get('paymentOptions').value === "cash+swyftdebit") {
             if(this.get('user').balance < this.get('finalAmount')) {
@@ -88,13 +90,72 @@ export default Ember.Controller.extend({
             this.set('displaySlider', false);
         }
     }.observes('paymentOptions.value'),
-    remainingTotal: function() {
+    creditCardSelected: Ember.computed('paymentOptions.value', function() {
+        if(this.get('paymentOptions').value === "creditcard") {
+            return true
+        }
+        else {
+            return false;
+        }
+    }),
+    remainingTotal: Ember.computed('sliderValue', function() {
         return Math.round((this.get('finalAmount') - this.get('sliderValue')) * 100) / 100;
-    }.property('sliderValue'),
+    }),
+    finalAmountCents: Ember.computed('finalAmount', function() {
+        return this.get("finalAmount") * 100;  
+    }),
+    checkoutDisabled: Ember.computed('user.dormitory', 'deliveryList.value', 'paymentOptions.value', function() {
+        if(!this.get('user').dormitory || !this.get('deliveryList').value || !this.get('paymentOptions').value || !this.get('tokenValid')) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }),
     actions: {
+        checkoutCreditCard: function(token) {
+            var self = this;
+            this.set('displayLoading', true);
+            this.set('checkoutPressed', true);
+            var data = {
+                items: this.get('cart'),
+                paymentType: this.get('paymentOptions').value,
+                deliveryLocation: this.get('user').dormitory,
+                contactPhone: this.get('user').phoneNumber,
+                userComments: this.get('additionalRequests'),
+                userId: this.get('user').id,
+                token: this.get('token'),
+                stripeToken: token.id,
+                deliveryId: this.get('deliveryList').value,
+                user: { token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token }
+            };
+            var url = config.routeLocation + "/api/order";
+                Ember.$.ajax({
+                    url: url,
+                    headers: { 
+                        Accept : "application/json; charset=utf-8",
+                        "Content-Type": "application/json; charset=utf-8"
+                    },
+                    data: JSON.stringify(data),
+                    type: "POST",
+                    success: function(response) {
+                        self.set('displayLoading', false);
+                        localStorage.removeItem('cart');
+                        self.conversionTracking();
+                        self.transitionToRoute('confirmation', { queryParams: { id: response.id }});
+                    },
+                    error: function(xhr, textStatus, error) {
+                        self.set('displayLoading', false);
+                        self.set('modalTitle', 'Whoops.');
+                        self.set('modalBody', "Something went wrong with your request. Your order has not been submitted. If you're using Swyft Debit as your payment type, ensure you have enough balance in your account to proceed. If you attempted to use a one-time coupon, it's either invalid or it has already been used. Otherwise, try emptying your cart and starting over. Please contact us at development@orderswyft.com if you have any further questions.");
+                        self.set('displayModal', true);
+                        self.set('checkoutPressed', false)
+                    }
+                });
+        },
         checkout: function() {
             var self = this;
-            this.set('buttonPressed', true);
+            this.set('checkoutPressed', true);
             if(this.get('deliveryList').value && this.get('paymentOptions').value) {
                 this.set('displayLoading', true);
                 var data = {
@@ -112,13 +173,13 @@ export default Ember.Controller.extend({
                     self.set('modalTitle', 'Woah there, not so fast.');
                     self.set('modalBody', "You haven't selected a delivery location.");
                     self.set('displayModal', true);
-                    self.set('buttonPressed', false);
+                    self.set('checkoutPressed', false);
                     self.set('displayLoading', false);
                     return;
                 }
                 if(this.get('paymentOptions').value === "cash+swyftdebit") {
                     data.cashPayment = this.get('remainingTotal');
-                    data.debitPayment = this.get('sliderValue');
+                    data.debitPayment = parseFloat(this.get('sliderValue'));
                 }
                 var url = config.routeLocation + "/api/order";
                 Ember.$.ajax({
@@ -131,18 +192,16 @@ export default Ember.Controller.extend({
                     type: "POST",
                     success: function(response) {
                         self.set('displayLoading', false);
-                        self.set('modalTitle', 'Your order has been submitted.');
-                        self.set('modalBody', 'Thanks for ordering with Swyft. Your order will be delivered at the specified delivery time.');
-                        self.set('displayModal', true);
                         localStorage.removeItem('cart');
-                        this.conversionTracking();
+                        self.conversionTracking();
+                        self.transitionToRoute('confirmation', { queryParams: { id: response.id }});
                     },
                     error: function(xhr, textStatus, error) {
                         self.set('displayLoading', false);
                         self.set('modalTitle', 'Whoops.');
                         self.set('modalBody', "Something went wrong with your request. Your order has not been submitted. If you're using Swyft Debit as your payment type, ensure you have enough balance in your account to proceed. If you attempted to use a one-time coupon, it's either invalid or it has already been used. Otherwise, try emptying your cart and starting over. Please contact us at development@orderswyft.com if you have any further questions.");
                         self.set('displayModal', true);
-                        self.set('buttonPressed', false);
+                        self.set('checkoutPressed', false);
                     }
                 });
             }
@@ -150,7 +209,7 @@ export default Ember.Controller.extend({
                 self.set('modalTitle', 'Woah there, not so fast.');
                 self.set('modalBody', "You haven't selected a payment option and/or a delivery time.");
                 self.set('displayModal', true);
-                self.set('buttonPressed', false);
+                self.set('checkoutPressed', false);
             }
         }
     }

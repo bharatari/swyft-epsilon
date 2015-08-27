@@ -115,7 +115,7 @@ module.exports = {
         }
         
         function standardOptions() {
-            //I don't think we're account for "No " as in default: true
+            //I don't think we're accounting for "No " as in default: true
             /*
             if(item.standardOptions){
                 var options;
@@ -186,10 +186,12 @@ module.exports = {
         }
     },
     submitCash: function(order, userId, cb) {
+        order.deliveryNote = new ModelService.DeliveryNote(null, null, null, null, null, null, null, null, null);
+        /** Why do we need to find the user here? **/
         User.findOne({ id: userId }).exec(function(err, user) {
             Order.create(order).exec(function(err, result) {
                 if(!err) {  
-                    cb(true);
+                    cb(result);
                 }
                 else {
                     cb(false);
@@ -198,6 +200,7 @@ module.exports = {
         });
     },
     submitSwyftDebit: function(order, userId, cb) {
+        order.deliveryNote = new ModelService.DeliveryNote(null, null, null, null, null, null, null, null, null);
         User.findOne({ id: userId }).exec(function(err, user) {
             if(order.actualAmount <= user.balance){
                 Order.create(order).exec(function(err, result) {
@@ -210,7 +213,7 @@ module.exports = {
                                         cb(false);
                                     }
                                     else {
-                                        cb(true);
+                                        cb(result);
                                     }
                                 });
 
@@ -250,7 +253,7 @@ module.exports = {
                                         cb(false);
                                     }
                                     else {
-                                        cb(true);
+                                        cb(result);
                                     }
                                 });
                             }
@@ -268,6 +271,40 @@ module.exports = {
                 cb(false);
             }
         });
+    },
+    submitCreditCard: function(order, userId, stripeToken, cb) {
+        var referenceOrder = _.cloneDeep(order);
+        delete order.stripeToken;
+        order.deliveryNote = new ModelService.DeliveryNote(null, null, null, null, null, null, null, false, null);
+        Order.create(order).exec(function(err, result) {
+            if(!err) {  
+                CreditCardService.chargeCreditCard(referenceOrder.stripeToken, referenceOrder.actualAmount, function(status, message) {
+                    if(!status) {
+                        Order.destroy({ id: result.id }).exec(function(err) {
+                            if(err) {
+                                DeliveryNoteService.setCreditCardToDeclined(result.id, message, function(response) {
+                                    cb(false, message);
+                                });
+                            }
+                            else {
+                                cb(false, message);
+                            }
+                        });
+                        
+                    }
+                    else {
+                        DeliveryNoteService.setCreditCardToProcessed(result.id, "CREDIT_CARD_SUCCESS", function(response) {
+                            if(response) {
+                                cb(result);
+                            }
+                        });
+                    }
+                });
+            }
+            else {
+                cb(false, "DATABASE_ERROR+CREDIT_CARD_NOT_CHARGED");
+            }
+        });          
     },
     similarOrders: function(order1, order2) {
         if(order1.deliveryLocation !== order2.deliveryLocation) {
@@ -308,19 +345,26 @@ module.exports = {
         } 
         return order;
     },
-    joinUser: function(order) {
-        User.findOne({ id:order.userId }).exec(function(err, user){  
-            order.user = UserService.deleteSensitive(user);
-            return order;
-        });
+    joinUser: function(order, cb) {
+        if(order) {
+            User.findOne({ id: order.userId }).exec(function(err, user) {
+                order.user = UserService.deleteSensitive(user);
+                cb(order);
+            });
+        }
+        else {
+            cb(order);
+        }
     },
     iterateJoinUsers: function(items, callback) {
         function loop(i){
             if(i<items.length){
                 function query(cb){
                     User.find().where({id:items[i].userId}).exec(function(err, user){
-                        user[0] = UserService.deleteSensitive(user[0]);
-                        items[i].user = user[0];
+                        if(user[0]) {
+                            user[0] = UserService.deleteSensitive(user[0]);
+                            items[i].user = user[0];
+                        }
                         cb();
                     });
                 }
@@ -514,7 +558,10 @@ module.exports = {
                 orders = result;
                 async.each(orders, function(order, callback) {
                     masterList.deliveryTotal += order.actualAmount;
-                    var item = new ModelService.MasterListItem(order.user.firstName, order.user.lastName, order.items, order.deliveryLocation, order.actualAmount, order.contactPhone, order.paymentType, false, order.deliveryNote);
+                    if(!order.deliveryNote) {
+                        order.deliveryNote = new ModelService.DeliveryNote(null, null, null, false, null);
+                    }
+                    var item = new ModelService.MasterListItem(order.user.firstName, order.user.lastName, order.items, order.deliveryLocation, order.actualAmount, order.contactPhone, order.paymentType, order.deliveryNote.chargeLater, order.deliveryNote);
                     processItems(item, function(result) {
                         processRegion(result, function(finalResult) {
                             masterList.items.push(finalResult);
@@ -544,14 +591,10 @@ module.exports = {
                     final(masterListItem);
                 }
                 else {
-                    /** HARDCODE **/
-                    if(location.group === "South Side") {
-                        masterListItem.region = "Bravo";
-                    }
-                    else {
-                        masterListItem.region = "Alpha";
-                    }
-                    final(masterListItem);
+                    DeliveryGroup.findOne({ name: location.group }).exec(function(err, group) {
+                        masterListItem.region = group.codename;
+                        final(masterListItem);
+                    });
                 }
             });
         }
@@ -568,5 +611,53 @@ module.exports = {
                 cb(true);
             }
         });
+    },
+    getOrders: function(query, cb) {
+        if(query.where && (Object.getOwnPropertyNames(JSON.parse(query.where)).length !== 0)) {
+            Order.find().exec(function(err, items) {
+                OrderService.iterateJoinUsers(items, function(orders) {
+                    var filter = UtilityService.convertFilterFromWaterline(query.where);
+                    orders = UtilityService.filterData(orders, filter);
+                    if(query.skip && query.sort) {
+                        var sort = UtilityService.splitSortAttrs(query.sort);
+                        var data = UtilityService.sortData(orders, sort.sort, sort.sortType);
+                        cb(UtilityService.paginationSkip(data, query.limit, query.skip));
+                    }
+                    else if(query.skip) {
+                        cb(UtilityService.paginationSkip(orders, query.limit, query.skip));
+                    }
+                    else if(query.sort) {
+                        var sort = UtilityService.splitSortAttrs(query.sort);
+                        cb(UtilityService.sortData(orders, sort.sort, sort.sortType));
+                    }
+                });
+            });
+        }
+        else {
+            if(query.skip && query.sort) {
+                Order.find().exec(function(err, orders) {
+                    OrderService.iterateJoinUsers(orders, function(items) {
+                        var sort = UtilityService.splitSortAttrs(query.sort);
+                        var data = UtilityService.sortData(items, sort.sort, sort.sortType);
+                        cb(UtilityService.paginationSkip(data, query.limit, query.skip));
+                    }); 
+                });
+            }
+            else if(query.skip) {
+                Order.find().paginate({page: query.skip, limit: query.limit }).exec(function(err, orders) {
+                    OrderService.iterateJoinUsers(orders, function(items) {
+                        cb(items);
+                    });
+                });
+            }
+            else if(query.sort) {
+                Order.find().exec(function(err, orders) {
+                    OrderService.iterateJoinUsers(orders, function(items) {
+                        var sort = UtilityService.splitSortAttrs(query.sort);
+                        cb(UtilityService.sortData(items, sort.sort, sort.sortType));
+                    });
+                });
+            }
+        }
     }
 }
