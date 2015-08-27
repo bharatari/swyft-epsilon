@@ -1,11 +1,12 @@
 import Ember from "ember";
 import config from 'swyft-epsilon-online/config/environment';
 import loginUtils from 'swyft-epsilon-online/utils/login-utils';
+import ResetScrollMixin from 'swyft-epsilon-online/mixins/reset-scroll';
 import SessionRouteMixin from 'swyft-epsilon-online/mixins/session-route';
 import SidebarRouteMixin from 'swyft-epsilon-online/mixins/sidebar-route';
 import AnimateOutRouteMixin from 'swyft-epsilon-online/mixins/animate-out-route';
 
-export default Ember.Route.extend(SessionRouteMixin, AnimateOutRouteMixin, SidebarRouteMixin, {
+export default Ember.Route.extend(SessionRouteMixin, AnimateOutRouteMixin, SidebarRouteMixin, ResetScrollMixin, {
     model: function() {
         return Ember.$.getJSON(config.routeLocation + "/api/restaurants");
     },
@@ -13,5 +14,6 @@ export default Ember.Route.extend(SessionRouteMixin, AnimateOutRouteMixin, Sideb
         this._super();
         controller.set('restaurants', model);
         controller.set('isAuthenticated', this.get('isAuthenticated'));
+        controller.set('searchValue', "");
     }
 });

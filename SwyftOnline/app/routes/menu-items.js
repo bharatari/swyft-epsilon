@@ -1,11 +1,12 @@
 import Ember from "ember";
 import config from 'swyft-epsilon-online/config/environment';
 import itemUtils from 'swyft-epsilon-online/utils/item-utils';
+import ResetScrollMixin from 'swyft-epsilon-online/mixins/reset-scroll';
 import SessionRouteMixin from 'swyft-epsilon-online/mixins/session-route';
 import SidebarRouteMixin from 'swyft-epsilon-online/mixins/sidebar-route';
 import AnimateOutRouteMixin from 'swyft-epsilon-online/mixins/animate-out-route';
 
-export default Ember.Route.extend(SessionRouteMixin, AnimateOutRouteMixin, SidebarRouteMixin, {
+export default Ember.Route.extend(SessionRouteMixin, AnimateOutRouteMixin, SidebarRouteMixin, ResetScrollMixin, {
     queryParams: {
         restaurant_name: {
             refreshModel: true
