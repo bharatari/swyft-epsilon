@@ -24,7 +24,11 @@
                 <div class="admin-panel-header-area">
                     <h1 class="admin-panel-header">Form</h1>
                 </div>
-                {{admin-ui properties=metadata.properties}}
+                {{#if hasBlock}}
+                    {{yield}}
+                {{else}}   
+                    {{admin-ui properties=metadata.properties}}
+                {{/if}}
                 {{#if isNew}}
                 <div class="row clearbox">
                     <button class="btn btn-default btn-standard" {{action 'submit' 'new'}}>Submit</button>

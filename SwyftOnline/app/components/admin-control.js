@@ -9,24 +9,8 @@ export default Ember.Component.extend({
             return false;
         }
     }.property('property'),
-    typeDate: function() {
-        if(this.get('property').type === 'date') {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }.property('property'),
     typeDateTime: function() {
         if(this.get('property').type === 'datetime') {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }.property('property'),
-    typeTime: function() {
-        if(this.get('property').type === 'time') {
             return true;
         }
         else {
@@ -51,6 +35,22 @@ export default Ember.Component.extend({
     }.property('property'),
     typeBoolean: function() {
         if(this.get('property').type === 'boolean') {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }.property('property'),
+    typeArray: function() {
+        if(this.get('property').type === 'array') {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }.property('property'),
+    typeObject: function() {
+        if(this.get('property').type === 'object') {
             return true;
         }
         else {

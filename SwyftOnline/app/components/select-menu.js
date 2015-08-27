@@ -10,12 +10,14 @@ export default Ember.Component.extend({
     action: Ember.K, // Ember.K is a placeholder for the passed in action function
                      // Action to fire on change
             
-    didInsertElement: function() {
+    didInitAttrs() {
         if(this.get('selection') === null || this.get('selection') === undefined) {
             if(!this.get('prompt')) {
                 this.processSelection(this.get('content')[0]);
             }
         }    
+    },
+    didInsertElement() {
         this.on('change', function() {
             const selectedIndex = $("#" + this.elementId)[0].selectedIndex;
             const content = this.get('content');

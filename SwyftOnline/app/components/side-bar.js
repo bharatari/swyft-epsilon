@@ -19,7 +19,7 @@ export default Ember.Component.extend({
                 localStorage.removeItem("cartVersion");      
             }
             try {
-                this.set('cart', cartUtils.processCart());
+                this.set('cart', cartUtils.processCart(JSON.parse(localStorage.getItem("cart"))));
             }
             catch(e) {
                 this.setCart([]);

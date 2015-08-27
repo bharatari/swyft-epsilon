@@ -49,19 +49,19 @@
 <div class="form-group">
     <label class="col-sm-2 control-label">{{unavailable.displayName}}</label>
     <div class="col-sm-9">
-       {{select-menu class="form-control" action=(action (mut unavailable.value)) content=booleanValues selection=unavailable.value optionValuePath="propertyName" optionLabelPath="displayName"}}
+       {{select-menu class="form-control" action=(action (mut unavailable.value)) content=booleanValues selection=unavailable.value optionValuePath="propertyName" optionLabelPath="displayName" prompt="Select a Value"}}
     </div>
 </div>
 <div class="form-group">
     <label class="col-sm-2 control-label">{{seasonal.displayName}}</label>
     <div class="col-sm-9">
-       {{select-menu class="form-control" action=(action (mut seasonal.value)) content=booleanValues selection=seasonal.value optionValuePath="propertyName" optionLabelPath="displayName"}}
+       {{select-menu class="form-control" action=(action (mut seasonal.value)) content=booleanValues selection=seasonal.value optionValuePath="propertyName" optionLabelPath="displayName" prompt="Select a Value"}}
     </div>
 </div>
 <div class="form-group">
     <label class="col-sm-2 control-label">{{temporary.displayName}}</label>
     <div class="col-sm-9">
-       {{select-menu class="form-control" action=(action (mut temporary.value)) content=booleanValues selection=temporary.value optionValuePath="propertyName" optionLabelPath="displayName"}}
+       {{select-menu class="form-control" action=(action (mut temporary.value)) content=booleanValues selection=temporary.value optionValuePath="propertyName" optionLabelPath="displayName" prompt="Select a Value"}}
     </div>
 </div>
 

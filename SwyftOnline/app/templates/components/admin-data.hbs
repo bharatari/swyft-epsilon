@@ -12,7 +12,7 @@
             <td><button class="flat-icon-button" {{action 'edit' item.id}}><i class="fa fa-pencil-square-o admin-delete-icon"></i></button></td>
             <td><button class="flat-icon-button" {{action 'delete' item.id}}><i class="fa fa-trash-o admin-delete-icon"></i></button></td>
             {{#each metadata.properties as |property|}}
-            <td class={{if property.display 'admin-show' 'admin-hide'}}>{{dynamic-property item property.propertyName}}</td>
+            <td class={{if property.display 'admin-show' 'admin-hide'}}>{{dynamic-property-control item=item property=property}}</td>
             {{/each}}                      
         </tr>
         {{/each}}

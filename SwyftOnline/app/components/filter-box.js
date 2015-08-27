@@ -37,7 +37,7 @@ export default Ember.Component.extend({
                 filterType: this.get('filterType'),
                 filterValue: this.get('filterValue')
             };
-            if(parseFloat(newFilter.filterValue)) {
+            if(parseFloat(newFilter.filterValue) && (parseFloat(newFilter.filterValue).toString().length === newFilter.filterValue.length)) {
                 newFilter.filterValue = parseFloat(newFilter.filterValue);
             }
             else if (this.get(newFilter.filterProperty) === 'boolean') {

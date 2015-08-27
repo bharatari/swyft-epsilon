@@ -4,7 +4,7 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">{{property.displayName}}</label>
                 <div class="col-sm-9">
-                    {{textarea class=(concat 'text-area' adminDiscourage) value=property.value}}
+                    {{textarea class=(concat 'text-area ' adminDiscourage) value=property.value}}
                 </div>
             </div>
         {{else}}
@@ -25,30 +25,12 @@
             </div>
         </div>
     {{/if}}
-
-    {{#if typeDate}}
-        <div class="form-group">
-            <label class="col-sm-2 control-label">{{property.displayName}}</label>
-            <div class="col-sm-9">
-                {{input class=adminDiscourage value=property.value type="date"}}
-            </div>
-        </div>
-    {{/if}}
     
     {{#if typeDateTime}}
         <div class="form-group">
             <label class="col-sm-2 control-label">{{property.displayName}}</label>
             <div class="col-sm-9">
-                {{input class=adminDiscourage value=property.value type="datetime-local"}}
-            </div>
-        </div>
-    {{/if}}
-    
-    {{#if typeTime}}
-        <div class="form-group">
-            <label class="col-sm-2 control-label">{{property.displayName}}</label>
-            <div class="col-sm-9">
-                {{input class=adminDiscourage value=property.value type="time"}}
+                {{date-time-picker class=adminDiscourage initialValue=property.value action=(action (mut property.value))}}
             </div>
         </div>
     {{/if}}
@@ -57,7 +39,7 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">{{property.displayName}}</label>
             <div class="col-sm-9">
-                {{select-menu action=(action (mut property.value)) content=property.enum selection=property.value optionValuePath="propertyName" optionLabelPath="displayName" class=adminDiscourage}}
+                {{select-menu action=(action (mut property.value)) content=property.enum selection=property.value optionValuePath="propertyName" optionLabelPath="displayName" class=adminDiscourage prompt="Select a Value"}}
             </div>
         </div>    
     {{/if}}
@@ -66,9 +48,98 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">{{property.displayName}}</label>
             <div class="col-sm-9">
-                {{select-menu action=(action (mut property.value)) content=booleanValues selection=property.value optionValuePath="propertyName" optionLabelPath="displayName" class=adminDiscourage}}
+                {{select-menu action=(action (mut property.value)) content=booleanValues selection=property.value optionValuePath="propertyName" optionLabelPath="displayName" class=adminDiscourage prompt="Select a Value"}}
             </div>
         </div>  
     {{/if}}
-{{/if}}
+    
+    {{#if typeArray}}
+        <div class="row">
+            <div class="col-md-12 col-md-offset-2">
+                <h2 class="menu-item-wizard-header">{{property.displayName}}</h2>
+                {{data-tree data=property.value rootName="" editable=true}}
+            </div>
+        </div>
+    {{/if}}
+    
+    {{#if typeObject}}
+        <div class="row">
+            <div class="col-md-12 col-md-offset-2">
+                <h2 class="menu-item-wizard-header">{{property.displayName}}</h2>
+                {{data-tree data=property.value rootName="" editable=true}}
+            </div>
+        </div>
+    {{/if}}
+{{else}}
+    {{#if typeString}}
+        {{#if property.largeField}}
+            <div class="form-group">
+                <label class="col-sm-2 control-label">{{property.displayName}}</label>
+                <div class="col-sm-9">
+                    {{textarea class=(concat 'text-area ' adminDiscourage) value=property.value readonly="true"}}
+                </div>
+            </div>
+        {{else}}
+            <div class="form-group">
+                <label class="col-sm-2 control-label">{{property.displayName}}</label>
+                <div class="col-sm-9">
+                    {{input class=adminDiscourage value=property.value type="text" readonly="true"}}
+                </div>
+            </div>
+        {{/if}}
+    {{/if}}
 
+    {{#if typeNumber}}
+         <div class="form-group">
+            <label class="col-sm-2 control-label">{{property.displayName}}</label>
+            <div class="col-sm-9">
+                {{input class=adminDiscourage value=property.value type="number" readonly="true"}}
+            </div>
+        </div>
+    {{/if}}
+    
+    {{#if typeDateTime}}
+        <div class="form-group">
+            <label class="col-sm-2 control-label">{{property.displayName}}</label>
+            <div class="col-sm-9">
+                {{date-time-picker class=adminDiscourage initialValue=property.value action=(action (mut property.value)) readonly="true"}}
+            </div>
+        </div>
+    {{/if}}
+
+    {{#if typeEnum}}
+        <div class="form-group">
+            <label class="col-sm-2 control-label">{{property.displayName}}</label>
+            <div class="col-sm-9">
+                {{select-menu action=(action (mut property.value)) content=property.enum selection=property.value optionValuePath="propertyName" optionLabelPath="displayName" class=adminDiscourage disabled="true" prompt="No Value"}}
+            </div>
+        </div>    
+    {{/if}}
+
+    {{#if typeBoolean}}
+        <div class="form-group">
+            <label class="col-sm-2 control-label">{{property.displayName}}</label>
+            <div class="col-sm-9">
+                {{select-menu action=(action (mut property.value)) content=booleanValues selection=property.value optionValuePath="propertyName" optionLabelPath="displayName" class=adminDiscourage disabled="true" prompt="No Value"}}
+            </div>
+        </div>  
+    {{/if}}
+    
+    {{#if typeArray}}
+        <div class="row">
+            <div class="col-md-12 col-md-offset-2">
+                <h2 class="menu-item-wizard-header">{{property.displayName}}</h2>
+                {{data-tree data=property.value rootName="" editable=false}}
+            </div>
+        </div>
+    {{/if}}
+    
+    {{#if typeObject}}
+        <div class="row">
+            <div class="col-md-12 col-md-offset-2">
+                <h2 class="menu-item-wizard-header">{{property.displayName}}</h2>
+                {{data-tree data=property.value rootName="" editable=false}}
+            </div>
+        </div>
+    {{/if}}
+{{/if}}
