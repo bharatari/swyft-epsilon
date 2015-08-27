@@ -1,0 +1,19 @@
+{{#if typeString}}
+    {{dynamic-property item property.propertyName}}
+{{/if}}
+
+{{#if typeNumber}}
+    {{dynamic-property item property.propertyName}}
+{{/if}}
+    
+{{#if typeDateTime}}
+    {{format-datetime item property.propertyName}}
+{{/if}}
+
+{{#if typeEnum}}
+    {{dynamic-property item property.propertyName}}
+{{/if}}
+
+{{#if typeBoolean}}
+    {{dynamic-property item property.propertyName}}
+{{/if}}
