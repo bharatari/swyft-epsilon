@@ -6,7 +6,7 @@ export default Ember.Component.extend({
         var self = this;
         if(this.get('value')) {
             Ember.$.ajax({
-                url: config.routeLocation + "/api/coupon/checkCoupon/" + this.get('value'),
+                url: config.routeLocation + "/api/coupon/checkCoupon/" + this.get('value').trim(),
                 headers: { 
                     Accept : "application/json; charset=utf-8",
                     "Content-Type": "application/json; charset=utf-8"
