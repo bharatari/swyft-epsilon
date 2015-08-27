@@ -40,7 +40,8 @@ export default Ember.Controller.extend(StandardActionsMixin, SidebarRouteMixin, 
             }
         },
         goBack: function() {
-            this.transitionTo('menu-items', this.get('item').restaurant);
+           window.history.back();
+            //this.transitionToRoute('menu-items', this.get('item').restaurant);
         }
     }
 });
