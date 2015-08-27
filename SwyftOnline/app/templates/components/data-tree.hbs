@@ -1,0 +1,7 @@
+{{# if editable}} 
+	<button class="btn btn-success" {{action 'add'}}>Add Child</button>
+	<button class="btn btn-warning" {{action 'edit'}}>Edit</button>
+	<button class="btn btn-danger" {{action 'remove'}}>Remove</button>
+{{/if}}
+
+<div id="tree-{{elementId}}"></div>
