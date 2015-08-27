@@ -65,6 +65,7 @@ module.exports.routes = {
   'post /api/user/forgotPassword':'UserController.forgotPasswordToken',
   'post /api/user/password':'UserController.resetPassword',
   'get /api/user/forgotPassword/verify/:token':'UserController.validForgotPasswordToken',
+  'put /api/user/contactConsent':'UserController.setContactConsent',
 
   //Order Routes
   'get /api/orders':'OrderController.getOrders',
@@ -121,8 +122,10 @@ module.exports.routes = {
   //Admin Routes  
   'get /api/admin/userTransaction/metadata':'UserTransactionController.getTransactionMetadata',
   'get /api/admin/userTransaction/model':'UserTransactionController.getTransactionModel',
+  'get /api/admin/userTransaction/:id':'UserTransactionController.findOne',
   'get /api/admin/user/metadata':'UserController.getUserMetadata',
   'get /api/admin/user/model':'UserController.getUserModel',
+  'get /api/admin/user/:id':'UserController.findOne',
   'get /api/admin/global/metadata':'GlobalController.getGlobalMetadata',
   'get /api/admin/global/model':'GlobalController.getGlobalModel',
   'get /api/admin/coupon/metadata':'CouponController.getCouponMetadata',
@@ -134,8 +137,12 @@ module.exports.routes = {
   'get /api/admin/deliveryLocation/metadata':'DeliveryLocationController.getDeliveryLocationMetadata',
   'get /api/admin/deliveryLocation/model':'DeliveryLocationController.getDeliveryLocationModel',
   'get /api/admin/restaurant/model':'RestaurantController.getRestaurantModel',
-  'get /api/admin/restaurant/metadata':'RestaurantController.getRestaurantMetadata'
-    
+  'get /api/admin/restaurant/metadata':'RestaurantController.getRestaurantMetadata',
+  'get /api/admin/menuItem/model':'MenuItemController.getMenuItemModel',
+  'get /api/admin/menuItem/metadata':'MenuItemController.getMenuItemMetadata',
+  'get /api/admin/order/model':'OrderController.getOrderModel',
+  'get /api/admin/order/metadata':'OrderController.getOrderMetadata',
+  'get /api/admin/order/:id':'OrderController.findOne'
     
   /***************************************************************************
   *                                                                          *

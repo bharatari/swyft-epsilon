@@ -5,7 +5,7 @@ var bcrypt = require('bcrypt');
 
 
 module.exports={
-    create:function(req,res){
+    create: function(req,res) {
         req.body.phoneNumber = req.body.phoneNumber.replace(/\D/g,'');
         if(req.body.username.toLowerCase().indexOf("@exeter.edu") === -1){
             return res.send(400);
@@ -84,7 +84,7 @@ module.exports={
         });
         
     },
-    verify:function(req,res) {
+    verify: function(req,res) {
         if(req.body.email) {
             User.findOne({ username: req.body.email.toLowerCase() }).exec(function(err, user){
                 if(err) {
@@ -111,12 +111,12 @@ module.exports={
             res.badRequest();
         }
     },
-    getUser:function(req,res){
-        User.findOne({id:req.user.id}).exec(function(err, user){
-            res.json(user);
+    getUser: function(req,res) {
+        User.findOne({ id:req.user.id }).exec(function(err, user){
+            res.json(UserService.deleteSensitive(user));
         });
     },
-    getUsers:function(req,res){
+    getUsers: function(req,res){
         User.find().exec(function(err, users){
             for(var i = 0; i < users.length; i++) {
                 UserService.deleteSensitive(users[i]);
@@ -124,7 +124,7 @@ module.exports={
             res.json(users);
         });
     },
-    forgotPasswordToken:function(req, res){
+    forgotPasswordToken: function(req, res){
         var date=moment().add(1, 'days').toDate();
         User.findOne({ username: req.body.email.toLowerCase() }).exec(function(err, user){
             if(err || !user) {
@@ -283,6 +283,16 @@ module.exports={
             }
         });
     },
+    setContactConsent: function(req, res) {
+        User.update({ id: req.user.id }, { contactConsent: req.body.contactConsent }).exec(function(err, user) {
+            if(err) {
+                res.serverError();
+            }
+            else {
+                res.ok();
+            }
+        });
+    },
     /*
     getUsersAdmin: function(req, res) {
         UserService.getUsers(req.query, function(result) {
@@ -320,8 +330,20 @@ module.exports={
         });
     },
     */
+    find: function(req, res) {
+        UserService.getUsers(req.query, function(result) {
+            res.json(result);
+        });
+    },
+    findOne: function(req, res) {
+        if(req.params) {
+            User.findOne({ id: req.params.id }).exec(function(err, user) {
+                res.json(UserService.deleteSensitiveCRUD(user));
+            });
+        }
+    },
     getUserMetadata: function(req, res) {
-        MetaService.getUserMetadata(req.query.limit, function(result) {
+        MetaService.getUserMetadata(req.query.limit, req.query.where, function(result) {
             res.json(result);
         });
     },

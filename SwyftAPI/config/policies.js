@@ -42,7 +42,15 @@ module.exports.policies = {
     "createFulfillment":['isAdmin', 'userDisabled'],
     "getDeliveryOrders":['isDelivery', 'userDisabled'],
     "getAggregateOrders":[],
-    "getAllOrders":['isAdmin', 'userDisabled']
+    "getAllOrders":['isAdmin', 'userDisabled'],
+    "find":['isAdmin', 'removeAdminParams', 'userDisabled'],
+    "findOne":['isAdmin', 'userDisabled'],
+    "create":['isAdmin', 'removeAdminParams', 'userDisabled'],
+    "update":['isAdmin', 'removeAdminParams', 'userDisabled'],
+    "destroy":['isAdmin', 'userDisabled'],
+    "populate":['isAdmin', 'userDisabled'],
+    "add":['isAdmin', 'userDisabled'],
+    "remove":['isAdmin', 'userDisabled']  
   },   
   UserController:{
     "getUser":['isAuthenticated', 'userDisabled'],
@@ -51,6 +59,7 @@ module.exports.policies = {
     "getUsers":['isAdmin', 'userDisabled'],
     "find":['isAdmin', 'removeAdminParams', 'userDisabled'],
     "findOne":['isAdmin', 'userDisabled'],
+    "setContactConsent":['isAuthenticated', 'userDisabled'],
     // In this case, create should be public (sign up)
     /* "create":['isAdmin' , 'removeAdminParams', 'userDisabled'], */
     "update":['isAdmin', 'removeAdminParams', 'userDisabled'],
@@ -131,6 +140,16 @@ module.exports.policies = {
   },
   AnalyticsController:{
     "*":['isAdmin', 'userDisabled']
+  },
+  MenuItemController:{
+    "find":['isAdmin', 'removeAdminParams', 'userDisabled'],
+    "findOne":['isAdmin', 'userDisabled'],
+    "create":['isAdmin', 'removeAdminParams', 'userDisabled'],
+    "update":['isAdmin', 'removeAdminParams', 'userDisabled'],
+    "destroy":['isAdmin', 'userDisabled'],
+    "populate":['isAdmin', 'userDisabled'],
+    "add":['isAdmin', 'userDisabled'],
+    "remove":['isAdmin', 'userDisabled']  
   }
   
   /***************************************************************************

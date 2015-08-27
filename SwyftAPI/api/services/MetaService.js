@@ -9,7 +9,48 @@ module.exports = {
             displayName:'Ascending'
         }
     ],
-    getTransactionMetadata: function(recordsPerPage, cb) {
+    checkFilters: function(filters) {
+        if(filters && (Object.getOwnPropertyNames(JSON.parse(filters)).length !== 0)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    },
+    processFilters: function(filters) {
+        if(this.checkFilters(filters)) {
+            filters = JSON.parse(filters);
+        }
+        else { 
+            filters = {};
+        }
+        return filters;
+    },
+    processFiltersTransactions: function(filters, items, cb) {
+        if(this.checkFilters(filters)) {
+            TransactionService.iterateJoinUsers(items, function(transactions) {
+                var filter = UtilityService.convertFilterFromWaterline(filters);
+                transactions = UtilityService.filterData(transactions, filter);
+                cb(transactions);
+            });
+        }
+        else { 
+            cb(items);
+        }
+    },
+    processFiltersOrders: function(filters, items, cb) {
+        if(this.checkFilters(filters)) {
+            OrderService.iterateJoinUsers(items, function(orders) {
+                var filter = UtilityService.convertFilterFromWaterline(filters);
+                orders = UtilityService.filterData(orders, filter);
+                cb(orders);
+            });
+        }
+        else { 
+            cb(items);
+        }
+    },
+    getTransactionMetadata: function(recordsPerPage, filters, cb) {
         var self = this;
         var combined = [
             {
@@ -90,26 +131,37 @@ module.exports = {
                 advancedField: true
             },
             {
+                propertyName: 'updatedAt',
+                displayName: 'Updated At',
+                display: true,
+                type: 'datetime',
+                editable: true,
+                advancedField: true
+            },
+            {
                 propertyName: 'createdAt',
                 displayName: 'Created At',
                 display: true,
-                type: 'date',
+                type: 'datetime',
                 editable: true,
                 advancedField: true
             }
         ];
-        UserTransaction.find().exec(function(err, data) {
-            cb({
-                total: data.length,
-                totalPages: Math.ceil(data.length / recordsPerPage),
-                sort: 'createdAt',
-                sortType: 'DESC',
-                properties: combined,
-                sortTypes: self.sortTypes
+        UserTransaction.find().exec(function(err, items) {
+            self.processFiltersTransactions(filters, items, function(data) {
+                cb({
+                    total: data.length,
+                    totalPages: Math.ceil(data.length / recordsPerPage),
+                    sort: 'createdAt',
+                    sortType: 'DESC',
+                    properties: combined,
+                    recordsPerPage: recordsPerPage,
+                    sortTypes: self.sortTypes
+                });
             });
         });
     },
-    getGlobalMetadata: function(recordsPerPage, cb) {
+    getGlobalMetadata: function(recordsPerPage, filters, cb) {
         var self = this;
         var combined = [
             {
@@ -135,26 +187,35 @@ module.exports = {
                 largeField: true
             },
             {
+                propertyName: 'updatedAt',
+                displayName: 'Updated At',
+                display: true,
+                type: 'datetime',
+                editable: true,
+                advancedField: true
+            },
+            {
                 propertyName: 'createdAt',
                 displayName: 'Created At',
                 display: true,
-                type: 'date',
+                type: 'datetime',
                 editable: true,
                 advancedField: true
             }
         ];
-        Global.find().exec(function(err, data) {
+        Global.find(this.processFilters(filters)).exec(function(err, data) {
             cb({
                 total: data.length,
                 totalPages: Math.ceil(data.length / recordsPerPage),
                 sort: 'createdAt',
                 sortType: 'DESC',
                 properties: combined,
+                recordsPerPage: recordsPerPage,
                 sortTypes: self.sortTypes
             });
         });
     },
-    getTokenMetadata: function(recordsPerPage, cb) {
+    getTokenMetadata: function(recordsPerPage, filters, cb) {
         var self = this;
         var combined = [
             {
@@ -208,26 +269,35 @@ module.exports = {
                 editable: true,
             },
             {
+                propertyName: 'updatedAt',
+                displayName: 'Updated At',
+                display: true,
+                type: 'datetime',
+                editable: true,
+                advancedField: true
+            },
+            {
                 propertyName: 'createdAt',
                 displayName: 'Created At',
                 display: true,
-                type: 'date',
+                type: 'datetime',
                 editable: true,
                 advancedField: true
             }
         ];
-        Token.find().exec(function(err, data) {
+        Token.find(this.processFilters(filters)).exec(function(err, data) {
             cb({
                 total: data.length,
                 totalPages: Math.ceil(data.length / recordsPerPage),
                 sort: 'createdAt',
                 sortType: 'DESC',
                 properties: combined,
+                recordsPerPage: recordsPerPage,
                 sortTypes: self.sortTypes
             });
         });
     },
-    getCouponMetadata: function(recordsPerPage, cb) {
+    getCouponMetadata: function(recordsPerPage, filters, cb) {
         var self = this;
         var combined = [
             {
@@ -274,26 +344,35 @@ module.exports = {
                 editable: true
             },
             {
+                propertyName: 'updatedAt',
+                displayName: 'Updated At',
+                display: true,
+                type: 'datetime',
+                editable: true,
+                advancedField: true
+            },
+            {
                 propertyName: 'createdAt',
                 displayName: 'Created At',
                 display: true,
-                type: 'date',
+                type: 'datetime',
                 editable: true,
                 advancedField: true
             }
         ];
-        Coupon.find().exec(function(err, data) {
+        Coupon.find(this.processFilters(filters)).exec(function(err, data) {
             cb({
                 total: data.length,
                 totalPages: Math.ceil(data.length / recordsPerPage),
                 sort: 'createdAt',
                 sortType: 'DESC',
                 properties: combined,
+                recordsPerPage: recordsPerPage,
                 sortTypes: self.sortTypes
             });
         });
     },
-    getUserMetadata: function(recordsPerPage, cb) {
+    getUserMetadata: function(recordsPerPage, filters, cb) {
         var self = this;
         var combined = [
             {
@@ -409,26 +488,35 @@ module.exports = {
                 editable: true
             },
             {
+                propertyName: 'updatedAt',
+                displayName: 'Updated At',
+                display: true,
+                type: 'datetime',
+                editable: true,
+                advancedField: true
+            },
+            {
                 propertyName: 'createdAt',
                 displayName: 'Created At',
                 display: true,
-                type: 'date',
+                type: 'datetime',
                 editable: true,
                 advancedField: true
             }
         ];
-        User.find().exec(function(err, users) {
+        User.find(this.processFilters(filters)).exec(function(err, users) {
             cb({
                 total: users.length,
                 totalPages: Math.ceil(users.length / recordsPerPage),
                 sort: 'createdAt',
                 sortType: 'DESC',
                 properties: combined,
+                recordsPerPage: recordsPerPage,
                 sortTypes: self.sortTypes
             });
         });
     },
-    getDeliveryMetadata: function(recordsPerPage, cb) {
+    getDeliveryMetadata: function(recordsPerPage, filters, cb) {
         var self = this;
         var combined = [
             {
@@ -475,7 +563,7 @@ module.exports = {
             },
             {
                 propertyName: 'autoDelivery',
-                displayName: 'Auto Delviery',
+                displayName: 'Auto Delivery',
                 display: true,
                 type: 'boolean',
                 editable: true
@@ -487,6 +575,7 @@ module.exports = {
                 type: 'datetime',
                 editable: true
             },
+            /*
             {
                 propertyName: 'fulfillment',
                 displayName: 'Fulfillment',
@@ -494,6 +583,7 @@ module.exports = {
                 type: 'array',
                 editable: false
             },
+            */
             {
                 propertyName: 'closed',
                 displayName: 'Closed',
@@ -509,26 +599,35 @@ module.exports = {
                 editable: true
             },
             {
+                propertyName: 'updatedAt',
+                displayName: 'Updated At',
+                display: true,
+                type: 'datetime',
+                editable: true,
+                advancedField: true
+            },
+            {
                 propertyName: 'createdAt',
                 displayName: 'Created At',
                 display: true,
-                type: 'date',
+                type: 'datetime',
                 editable: true,
                 advancedField: true
             }
         ];
-        Delivery.find().exec(function(err, data) {
+        Delivery.find(this.processFilters(filters)).exec(function(err, data) {
             cb({
                 total: data.length,
                 totalPages: Math.ceil(data.length / recordsPerPage),
                 sort: 'createdAt',
                 sortType: 'DESC',
                 properties: combined,
+                recordsPerPage: recordsPerPage,
                 sortTypes: self.sortTypes
             });
         });
     },
-    getDeliveryLocationMetadata: function(recordsPerPage, cb) {
+    getDeliveryLocationMetadata: function(recordsPerPage, filters, cb) {
         var self = this;
         var combined = [
             {
@@ -574,26 +673,35 @@ module.exports = {
                 editable: true
             },
             {
+                propertyName: 'updatedAt',
+                displayName: 'Updated At',
+                display: true,
+                type: 'datetime',
+                editable: true,
+                advancedField: true
+            },
+            {
                 propertyName: 'createdAt',
                 displayName: 'Created At',
                 display: true,
-                type: 'date',
+                type: 'datetime',
                 editable: true,
                 advancedField: true
             }
         ];
-        DeliveryLocation.find().exec(function(err, data) {
+        DeliveryLocation.find(this.processFilters(filters)).exec(function(err, data) {
             cb({
                 total: data.length,
                 totalPages: Math.ceil(data.length / recordsPerPage),
                 sort: 'createdAt',
                 sortType: 'DESC',
                 properties: combined,
+                recordsPerPage: recordsPerPage,
                 sortTypes: self.sortTypes
             });
         });
     },
-    getRestaurantMetadata: function(recordsPerPage, cb) {
+    getRestaurantMetadata: function(recordsPerPage, filters, cb) {
         var self = this;
         var combined = [
             {
@@ -657,26 +765,35 @@ module.exports = {
                 editable: true
             },
             {
+                propertyName: 'updatedAt',
+                displayName: 'Updated At',
+                display: true,
+                type: 'datetime',
+                editable: true,
+                advancedField: true
+            },
+            {
                 propertyName: 'createdAt',
                 displayName: 'Created At',
                 display: true,
-                type: 'date',
+                type: 'datetime',
                 editable: true,
                 advancedField: true
             }
         ];
-        Restaurant.find().exec(function(err, data) {
+        Restaurant.find(this.processFilters(filters)).exec(function(err, data) {
             cb({
                 total: data.length,
                 totalPages: Math.ceil(data.length / recordsPerPage),
                 sort: 'createdAt',
                 sortType: 'DESC',
                 properties: combined,
+                recordsPerPage: recordsPerPage,
                 sortTypes: self.sortTypes
             });
         });
     },
-    getMenuItemMetadata: function(recordsPerPage, cb) {
+    getMenuItemMetadata: function(recordsPerPage, filters, cb) {
         var self = this;
         var combined = [
             {
@@ -717,14 +834,14 @@ module.exports = {
             {
                 propertyName: 'itemOptions',
                 displayName: 'Item Options',
-                display: true,
+                display: false,
                 type: 'array',
                 editable: true
             },
             {
                 propertyName: 'extras',
                 displayName: 'Extras',
-                display: true,
+                display: false,
                 type: 'array',
                 editable: true
             },
@@ -778,6 +895,14 @@ module.exports = {
                 editable: true
             },
             {
+                propertyName: 'updatedAt',
+                displayName: 'Updated At',
+                display: true,
+                type: 'datetime',
+                editable: true,
+                advancedField: true
+            },
+            {
                 propertyName: 'createdAt',
                 displayName: 'Created At',
                 display: true,
@@ -786,15 +911,250 @@ module.exports = {
                 advancedField: true
             }
         ];
-        MenuItem.find().exec(function(err, data) {
+        MenuItem.find(this.processFilters(filters)).exec(function(err, data) {
             cb({
                 total: data.length,
                 totalPages: Math.ceil(data.length / recordsPerPage),
                 sort: 'createdAt',
                 sortType: 'DESC',
                 properties: combined,
+                recordsPerPage: recordsPerPage,
                 sortTypes: self.sortTypes
             });
         });
     },
+    getOrderMetadata: function(recordsPerPage, filters, cb) {
+        var self = this;
+        var combined = [
+            {
+                propertyName: 'id',
+                displayName: 'ID',
+                display: true,
+                type: 'string',
+                editable: false
+            },
+            {
+                propertyName: 'user.firstName',
+                displayName: 'First Name',
+                display: true,
+                type: 'string',
+                editable: false
+            },
+            {
+                propertyName: 'user.lastName',
+                displayName: 'Last Name',
+                display: true,
+                type: 'string',
+                editable: false
+            },
+            {
+                propertyName: 'type',
+                displayName: 'Type',
+                display: true,
+                type: 'enum',
+                enum: [
+                    { propertyName:'scheduled', displayName:'Scheduled' },
+                    { propertyName:'asap', displayName:'ASAP' }
+                ],
+                editable: true
+            },
+            {
+                propertyName: 'items',
+                displayName: 'Items',
+                display: false,
+                type: 'array',
+                editable: false
+            },
+            {
+                propertyName: 'userId',
+                displayName: 'User ID',
+                display: true,
+                type: 'string',
+                editable: true,
+                advancedField: true
+            },
+            {
+                propertyName: 'contactPhone',
+                displayName: 'Phone',
+                display: true,
+                type: 'string',
+                editable: true
+            },
+            {
+                propertyName: 'userComments',
+                displayName: 'User Comments',
+                display: true,
+                type: 'string',
+                editable: true
+            },
+            {
+                propertyName: 'adminComments',
+                displayName: 'Admin Comments',
+                display: true,
+                type: 'string',
+                editable: true
+            },
+            {
+                propertyName: 'totalAmount',
+                displayName: 'Total Amount',
+                display: true,
+                type: 'number',
+                editable: true
+            },
+            {
+                propertyName: 'actualAmount',
+                displayName: 'Actual Amount',
+                display: true,
+                type: 'number',
+                editable: true
+            },
+            {
+                propertyName: 'paymentType',
+                displayName: 'Payment Type',
+                display: true,
+                type: 'enum',
+                enum: [
+                    { propertyName:'creditcard', displayName:'Credit Card' },
+                    { propertyName:'swyftdebit', displayName:'Swyft Debit' },
+                    { propertyName:'cash', displayName:'Cash' },
+                    { propertyName:'cash+swyftdebit', displayName:'Cash + Swyft Debit' }
+                ],
+                editable: true
+            },
+            {
+                propertyName: 'deliveryTime',
+                displayName: 'Delivery Time',
+                display: true,
+                type: 'datetime',
+                editable: true
+            },
+            {
+                propertyName: 'deliveryId',
+                displayName: 'Delivery ID',
+                display: true,
+                type: 'string',
+                editable: true
+            },
+            {
+                propertyName: 'deliveryLocation',
+                displayName: 'Delivery Location',
+                display: true,
+                type: 'string',
+                editable: true
+            },
+            {
+                propertyName: 'couponId',
+                displayName: 'Coupon ID',
+                display: true,
+                type: 'string',
+                editable: true
+            },
+            {
+                propertyName: 'tokenId',
+                displayName: 'Token ID',
+                display: true,
+                type: 'string',
+                editable: true
+            },
+            {
+                propertyName: 'deliveryNote.isDelivered',
+                displayName: 'Is Delivered',
+                display: true,
+                type: 'boolean',
+                editable: true
+            },
+            {
+                propertyName: 'deliveryNote.deliveredBy',
+                displayName: 'Delivered By',
+                display: true,
+                type: 'boolean',
+                editable: true
+            },
+            {
+                propertyName: 'deliveryNote.commentedBy',
+                displayName: 'Commented By',
+                display: false,
+                type: 'string',
+                editable: true
+            },
+            {
+                propertyName: 'deliveryNote.comments',
+                displayName: 'Comments',
+                display: false,
+                type: 'string',
+                editable: true
+            },
+            {
+                propertyName: 'deliveryNote.deliveredAt',
+                displayName: 'Delivered At',
+                display: false,
+                type: 'datetime',
+                editable: true
+            },
+            {
+                propertyName: 'deliveryNote.cashPayment',
+                displayName: 'Cash Payment',
+                display: false,
+                type: 'number',
+                editable: true
+            },
+            {
+                propertyName: 'deliveryNote.chargeLater',
+                displayName: 'Charge Later',
+                display: false,
+                type: 'boolean',
+                editable: true
+            },
+            {
+                propertyName: 'deliveryNote.creditCardCharged',
+                displayName: 'Credit Card Charged',
+                display: false,
+                type: 'boolean',
+                editable: true
+            },
+            {
+                propertyName: 'deliveryNote.creditCardMessage',
+                displayName: 'Credit Card Message',
+                display: false,
+                type: 'string',
+                editable: true
+            },
+            {
+                propertyName: 'isDeleted',
+                displayName: 'Is Deleted',
+                display: true,
+                type: 'boolean',
+                editable: true
+            },
+            {
+                propertyName: 'updatedAt',
+                displayName: 'Updated At',
+                display: true,
+                type: 'datetime',
+                editable: true,
+                advancedField: true
+            },
+            {
+                propertyName: 'createdAt',
+                displayName: 'Created At',
+                display: true,
+                type: 'datetime',
+                editable: true,
+                advancedField: true
+            }
+        ];
+        Order.find().exec(function(err, items) {
+            self.processFiltersOrders(filters, items, function(data) {
+                cb({
+                    total: data.length,
+                    totalPages: Math.ceil(data.length / recordsPerPage),
+                    sort: 'createdAt',
+                    sortType: 'DESC',
+                    properties: combined,
+                    recordsPerPage: recordsPerPage,
+                    sortTypes: self.sortTypes
+                });
+            });
+        });
+    }
 }   

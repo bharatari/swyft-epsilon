@@ -86,7 +86,7 @@ module.exports = {
     filter: function(data, filterProperty, filterType, filterValue) {
         var newData = [];
         if(typeof filterValue === 'string') {
-            if(parseFloat(filterValue)) {
+            if(parseFloat(filterValue) && (parseFloat(filterValue).toString().length === filterValue.length)) {
                 filterValue = parseFloat(filterValue);
             }
             else {
@@ -140,7 +140,12 @@ module.exports = {
                 var array = property.split(".");
                 var value = object;
                 for(var i = 0; i < array.length; i++) {
-                    value = value[array[i]]
+                    if(value) {
+                        value = value[array[i]];
+                    }
+                    else { 
+                        return null;
+                    }
                 }
                 return value;
             }

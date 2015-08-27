@@ -21,6 +21,13 @@ module.exports = {
         }
         loop(0);
     },
+    joinUser: function(item, cb) {
+        User.findOne({ id: item.userId }).exec(function(err, user) {
+            user = UserService.deleteSensitive(user);
+            item.user = user;
+            cb(item);
+        });
+    },
     getTransactions: function(query, cb) {
         if(query.where && (Object.getOwnPropertyNames(JSON.parse(query.where)).length !== 0)) {
             UserTransaction.find().exec(function(err, items) {

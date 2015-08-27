@@ -4,6 +4,13 @@ module.exports = {
             res.json(result);
         });
     },
+    findOne: function(req, res) {
+        UserTransaction.findOne({ id: req.params.id }).exec(function(err, userTransaction) {
+            TransactionService.joinUser(userTransaction, function(result) {
+                res.json(result);
+            });
+        });
+    },
     /*
     getTransaction: function(req, res) {
         UserTransaction.findOne({ id: req.params.id }).exec(function(err, transaction) {
@@ -36,7 +43,7 @@ module.exports = {
     },
     */
     getTransactionMetadata: function(req, res) {
-        MetaService.getTransactionMetadata(req.query.limit, function(result) {
+        MetaService.getTransactionMetadata(req.query.limit, req.query.where, function(result) {
             res.json(result);
         });
     },
