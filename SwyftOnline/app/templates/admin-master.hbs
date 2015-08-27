@@ -1,7 +1,7 @@
 {{partial "navbar-admin-page"}}
 
 <div class="container">
-    {{filter-box filters=filters}}
+    {{filter-box filters=filters properties=metadata.properties}}
     <table class="table table-hover master-sheet">
         <tbody>
         <tr>
@@ -29,13 +29,13 @@
             {{#if masterItem.deliveryNote.cashPayment}}
                 <td>
                     <div>
-                        <p>Cash: {{render-decimals masterItem.deliveryNote.cashPayment}}</p>
-                        <p>Debit: {{render-subtract-numbers masterItem.deliveryNote.cashPayment masterItem.total}}</p>
-                        <p>Total: {{render-decimals masterItem.total}}</p>
+                        <p>Cash: {{format-currency masterItem.deliveryNote.cashPayment}}</p>
+                        <p>Debit: {{format-subtract-currency masterItem.deliveryNote.cashPayment masterItem.total}}</p>
+                        <p>Total: {{format-currency masterItem.total}}</p>
                     </div>
                 </td>
             {{else}}
-                <td>{{render-decimals masterItem.total}}</td>
+                <td>{{format-currency masterItem.total}}</td>
             {{/if}}
             <td>{{masterItem.deliveryLocation}}</td>
             <td>{{masterItem.phoneNumber}}</td>

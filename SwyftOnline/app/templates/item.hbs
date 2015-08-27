@@ -12,14 +12,14 @@
             {{#if item.description}}
                 <h3 class="item-description">{{item.description}}</h3>
             {{/if}}
-            <h3 class="item-price">{{render-decimals item.baseprice}}</h3>
+            <h3 class="item-price">{{format-currency item.baseprice simple="true"}}</h3>
             <hr>
             {{#each item.itemOptions as |optionGroup|}}
             <div class="option-group">
                 <h2 class="option-group-header">{{optionGroup.name}} <span class="required-header">Required</span></h2>
                 <div class="list-group">
                     {{#each optionGroup.options as |option|}}
-                    <label class="list-group-item">{{radio-button selected=optionGroup.value name=optionGroup.name class="option" value=option}}<span class="option-text">{{option.name}}</span><span class="badge">{{#if option.price}}{{render-decimals option.price}}{{/if}}</span></label>
+                    <label class="list-group-item">{{radio-button selected=optionGroup.value name=optionGroup.name class="option" value=option}}<span class="option-text">{{option.name}}</span><span class="badge">{{#if option.price}}{{format-currency option.price simple="true"}}{{/if}}</span></label>
                     {{/each}}
                 </div>            
             </div>
@@ -29,7 +29,7 @@
             <h2 class="option-group-header">Options</h2>
             <div class="list-group">
                 {{#each item.standardOptions as |option|}}
-                <label class="list-group-item">{{input checked=option.isSelected class="option" type="checkbox"}}<span class="option-text">{{option.name}}</span><span class="badge">{{#if option.price}}{{render-decimals option.price}}{{/if}}</span></label>
+                <label class="list-group-item">{{input checked=option.isSelected class="option" type="checkbox"}}<span class="option-text">{{option.name}}</span><span class="badge">{{#if option.price}}{{format-currency option.price simple="true"}}{{/if}}</span></label>
                 {{/each}}
             </div>
             {{/if}}
@@ -38,7 +38,7 @@
             <h2 class="option-group-header">Extras</h2>
             <div class="list-group">
                 {{#each item.extras as |extra|}}
-                <label class="list-group-item">{{input class="option" type="checkbox" checked=extra.isSelected}}<span class="option-text">{{extra.name}}</span><span class="badge">{{render-decimals extra.price}}</span></label>
+                <label class="list-group-item">{{input class="option" type="checkbox" checked=extra.isSelected}}<span class="option-text">{{extra.name}}</span><span class="badge">{{format-currency extra.price simple="true"}}</span></label>
                 {{/each}}
             </div>
             {{/if}}

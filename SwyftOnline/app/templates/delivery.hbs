@@ -17,7 +17,7 @@
                 <h4 class="grid-product-title">{{order.user.firstName}} {{order.user.lastName}}</h4>
                 <span class="grid-product-price">{{order.deliveryLocation}}</span>
                 <br>
-                <span class="grid-product-price">{{render-decimals order.actualAmount}} {{order.paymentType}}</span>
+                <span class="grid-product-price">{{format-currency order.actualAmount}} {{order.paymentType}}</span>
             </div>
         </button>
         {{/each}}

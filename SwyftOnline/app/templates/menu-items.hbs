@@ -33,7 +33,7 @@
                     <div class="click-through">
                         <h4 class="grid-product-title">{{item.name}}</h4>
                         <br>
-                        <span class="grid-product-price">{{render-decimals item.baseprice}}</span>
+                        <span class="grid-product-price">{{format-currency item.baseprice simple="true"}}</span>
                     </div>
                 </button>
                 {{/each}}     
@@ -47,9 +47,11 @@
                 <div class="click-through">
                     <h4 class="grid-product-title">{{item.name}}</h4>
                     <br>
-                    <span class="grid-product-price">{{render-decimals item.baseprice}}</span>
+                    <span class="grid-product-price">{{format-currency item.baseprice simple="true"}}</span>
                 </div>
             </button>
+            {{else}}
+                <h1 class="no-results">We have no results to show.</h1>
             {{/each}}     
         </div>
     </div>

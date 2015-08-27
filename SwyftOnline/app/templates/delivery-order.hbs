@@ -12,9 +12,9 @@
         <h3>{{order.deliveryLocation}}</h3>
         <h3><a href={{order.phoneLink}}>{{order.contactPhone}}</a></h3>
         <h3>{{order.userComments}}</h3>
-        <h3>{{render-decimals order.actualAmount}}</h3>
+        <h3>{{format-currency order.actualAmount}}</h3>
         {{#if order.deliveryNote.cashPayment}}
-            <h3><strong>{{render-decimals order.deliveryNote.cashPayment}}</strong> needs to be paid for this mixed transaction.</h3>
+            <h3><strong>{{format-currency order.deliveryNote.cashPayment}}</strong> needs to be paid for this mixed transaction.</h3>
         {{/if}}
         <h3>{{order.paymentType}}</h3>
         <ul class="item-list">
@@ -26,7 +26,7 @@
                     <p>Item Options: {{item.itemOptions}}</p>
                     <p>Requests: {{item.additionalRequests}}</p>
                     <p>Quantity: {{item.quantity}}</p>
-                    <p>{{render-decimals item.price}}</p>
+                    <p>{{format-currency item.price}}</p>
                 </div>
             </li>
             {{/each}}

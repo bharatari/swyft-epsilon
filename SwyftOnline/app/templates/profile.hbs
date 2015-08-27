@@ -2,6 +2,8 @@
 
 {{side-bar checkout="checkout" login="login" profile="profile" logout="logout" isAuthenticated=isAuthenticated hideProfile=true}}
 
+{{modal-dialog body=modalBody title=modalTitle displayModal=displayInfoModal}}
+
 {{#modal-dialog-dynamic title=modalTitle displayModal=displayModal}}
 <ul class="no-list">
     {{#each processedOrder.items as |item|}}
@@ -18,7 +20,7 @@
             {{#if item.quantity}}
                 <p>Quantity: {{item.quantity}}</p>
             {{/if}}
-            <p>{{render-decimals item.price}}</p>
+            <p>{{format-currency item.price}}</p>
         </div>
     </li>
     {{/each}}
@@ -36,13 +38,13 @@
         <form>
             <div class="info-well well">
                 <h2 class="name-header">{{user.firstName}} {{user.lastName}}</h2>
-                <h4 class="balance">Balance: {{render-decimals-simple user.balance}}</h4>
+                <h4 class="balance">Balance: {{format-currency user.balance}}</h4>
                 {{#if pending}}
                 <div class="option-group">
                     <h2 class="small-header">Pending Orders</h2>
                     <div class="list-group">
                         {{#each pending as |order|}}
-                        <a class="list-group-item" href="#" {{action 'openModal' order}}><span class="option-text">{{order.displayTime}}</span><span class="badge">{{#if order.actualAmount}}{{render-decimals order.actualAmount}}{{/if}}</span></a>
+                        <a class="list-group-item" href="#" {{action 'openModal' order}}><span class="option-text">{{order.displayTime}}</span><span class="badge">{{#if order.actualAmount}}{{format-currency order.actualAmount}}{{/if}}</span></a>
                         {{/each}}
                     </div>            
                 </div>
@@ -51,10 +53,16 @@
                     <h2 class="small-header">Recent Orders</h2>
                     <div class="list-group">
                         {{#each orders as |order|}}
-                        <a class="list-group-item" href="#" {{action 'openModal' order}}><span class="option-text">{{order.displayTime}}</span><span class="badge">{{#if order.actualAmount}}{{render-decimals order.actualAmount}}{{/if}}</span></a>
+                        <a class="list-group-item" href="#" {{action 'openModal' order}}><span class="option-text">{{order.displayTime}}</span><span class="badge">{{#if order.actualAmount}}{{format-currency order.actualAmount}}{{/if}}</span></a>
                         {{/each}}
                     </div>            
                 </div>
+                <label class="checkbox-label checkbox-margin">
+                    {{input class="checkbox-control" checked=user.contactConsent type="checkbox"}} It's okay to contact me about promotions and new product offerings.
+                </label>
+                <br/>
+                <button class="btn btn-default" {{action 'setContactConsent'}}>Update</button>
+                <p class="profile-sub-heading sub-heading">If you want to change any other details of your account such as your default delivery location, you'll need to contact us.</p>
             </div>  
         </form>
     </div>

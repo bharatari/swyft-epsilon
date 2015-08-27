@@ -18,7 +18,7 @@
                 <td>{{order.user.firstName}}</td>
                 <td>{{order.user.lastName}}</td>
                 <td>{{order.userComments}}</td>
-                <td>{{render-decimals order.actualAmount}}</td>
+                <td>{{format-currency order.actualAmount}}</td>
                 <td>{{order.deliveryLocation}}</td>
                 <td>{{order.contactPhone}}</td>
                 <td>{{order.paymentType}}</td>
@@ -34,7 +34,7 @@
                                 {{#if item.quantity}}
                                 <p><strong>Quantity: {{item.quantity}}</strong></p>
                                 {{/if}}
-                                <p>{{render-decimals item.price}}</p>
+                                <p>{{format-currency item.price}}</p>
                             </div>
                         </li>
                         {{/each}}
