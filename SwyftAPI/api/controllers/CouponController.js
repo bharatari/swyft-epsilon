@@ -47,7 +47,7 @@ module.exports = {
         });
     },
     getCouponMetadata: function(req, res) {
-        MetaService.getCouponMetadata(req.query.limit, function(result) {
+        MetaService.getCouponMetadata(req.query.limit, req.query.where, function(result) {
             res.json(result);
         });
     },

@@ -1,6 +1,6 @@
 module.exports = {
     getTokenMetadata: function(req, res) {
-        MetaService.getTokenMetadata(req.query.limit, function(result) {
+        MetaService.getTokenMetadata(req.query.limit, req.query.where, function(result) {
             res.json(result);
         });
     },

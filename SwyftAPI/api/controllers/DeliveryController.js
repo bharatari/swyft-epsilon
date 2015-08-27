@@ -50,7 +50,7 @@ module.exports = {
         });
     },
     getDeliveryMetadata: function(req, res) {
-        MetaService.getDeliveryMetadata(req.query.limit, function(result) {
+        MetaService.getDeliveryMetadata(req.query.limit, req.query.where, function(result) {
             res.json(result);
         });
     },

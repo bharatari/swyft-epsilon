@@ -20,7 +20,7 @@ module.exports = {
         });
     },
     getGlobalMetadata: function(req, res) {
-        MetaService.getGlobalMetadata(req.query.limit, function(result) {
+        MetaService.getGlobalMetadata(req.query.limit, req.query.where, function(result) {
             res.json(result);
         });
     },

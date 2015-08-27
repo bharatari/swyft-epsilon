@@ -1,6 +1,6 @@
 module.exports = {
     getRestaurantMetadata: function(req, res) {
-        MetaService.getRestaurantMetadata(req.query.limit, function(result) {
+        MetaService.getRestaurantMetadata(req.query.limit, req.query.where, function(result) {
             res.json(result);
         });
     },

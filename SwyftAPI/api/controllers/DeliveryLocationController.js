@@ -24,7 +24,7 @@ module.exports = {
         });
     },
     getDeliveryLocationMetadata: function(req, res) {
-        MetaService.getDeliveryLocationMetadata(req.query.limit, function(result) {
+        MetaService.getDeliveryLocationMetadata(req.query.limit, req.query.where, function(result) {
             res.json(result);
         });
     },
