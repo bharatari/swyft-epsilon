@@ -12,6 +12,8 @@ var App = Ember.Application.extend({
   Resolver: Resolver,
   ready: function() {
     moment.tz.add(constants.timeZones.zones);
+    $.ajaxSetup({ cache: false });
+    Ember.$.ajaxSetup({ cache: false });
   }
 });
 
