@@ -53,5 +53,23 @@ module.exports = {
                 cb(orders);
             });
         });
+    },
+    setCreditCardToProcessed: function(orderId, message, cb) {
+        Order.findOne({ id: orderId }).exec(function(err, order) {
+            order.deliveryNote.creditCardCharged = true;
+            order.deliveryNote.creditCardMessage = message;
+            Order.update({ id: orderId }, order).exec(function(err, result) {
+                cb(true);
+            });
+        });
+    },
+    setCreditCardToDeclined: function(orderId, message, cb) {
+        Order.findOne({ id: orderId }).exec(function(err, order) {
+            order.deliveryNote.creditCardCharged = false;
+            order.deliveryNote.creditCardMessage = message;
+            Order.update({ id: orderId }, order).exec(function(err, result) {
+                cb(true);
+            });
+        });
     }
 }
