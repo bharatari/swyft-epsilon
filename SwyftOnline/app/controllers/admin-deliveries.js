@@ -6,7 +6,7 @@ import AdminPageMixin from 'swyft-epsilon-online/mixins/admin-page';
 export default Ember.Controller.extend(AdminPageMixin, { 
     modelName: 'Delivery',
     description: 'Add, update, and edit Deliveries.',
-    currentRoute: 'admin-tokens',
+    currentRoute: 'admin-deliveries',
     queryParams: ['page', 'sort', 'sortType', 'filters', 'filterArray'],
     page: 1,                                  
     sort: 'createdAt',

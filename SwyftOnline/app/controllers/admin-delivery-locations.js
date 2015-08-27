@@ -6,7 +6,7 @@ import AdminPageMixin from 'swyft-epsilon-online/mixins/admin-page';
 export default Ember.Controller.extend(AdminPageMixin, {
     modelName: 'Delivery Location',
     description: 'Add, update, and edit Delivery Locations.',
-    currentRoute: 'admin-delivery-location',
+    currentRoute: 'admin-delivery-locations',
     queryParams: ['page', 'sort', 'sortType', 'filters', 'filterArray'],
     page: 1,                                  
     sort: 'createdAt',
@@ -18,7 +18,7 @@ export default Ember.Controller.extend(AdminPageMixin, {
     actions: {
         delete: function(id) {
             this.set('dialogTitle', 'Confirmation');
-            this.set('dialogBody', "You are attempting to permanently delete this delivery locations.");
+            this.set('dialogBody', "You are attempting to permanently delete this delivery location.");
             this.set('displayDialog', true);
             this.set('deleteId', id);
         },
