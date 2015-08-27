@@ -1,38 +1,35 @@
 import Ember from "ember";
 
 export default Ember.Component.extend({
-    hasLastPage: function() {
-        if(this.get('totalPages') < 2) {
-            return false;
+    didInitAttrs() {
+        if(!this.get('currentPage')) {
+            this.set('currentPage', 1);
         }
-        else {
-            return true;
-        }
-    }.property('totalPages'),
-    onLastPage: function() {
+    },
+    onLastPage: Ember.computed('totalPages', 'currentPage', function() {
         if(this.get('currentPage') === this.get('totalPages')) {
             return true;
         }
         else {
             return false;
         }
-    }.property('currentPage', 'totalPages'),
-    onFirstPage: function() {
+    }),
+    onFirstPage: Ember.computed('currentPage', function() {
         if(this.get('currentPage') === 1) {
             return true;
         }
         else {
             return false;
         }
-    }.property('currentPage'),
-    pages: function() {
+    }),
+    pages: Ember.computed('totalPages', function() {
         var totalPages = this.get('totalPages');
         var pages = [];
         for(var i = 1; i <= totalPages; i++) {
             pages.push(i);
         } 
-    }.property('totalPages'),
-    previousFive: function() {
+    }),
+    previousFive: Ember.computed('totalPages', 'currentPage', function() {
         var previousFive = [];
         for(var i = this.get('currentPage') - 1; i > this.get('currentPage') - 6; i--) {
             if(i < 2) {
@@ -43,8 +40,8 @@ export default Ember.Component.extend({
             }
         }
         return previousFive;
-    }.property('totalPages', 'currentPage'),
-    nextFive: function() {
+    }),
+    nextFive: Ember.computed('totalPages', 'currentPage', function() {
         var nextFive = [];
         for(var i = this.get('currentPage') + 1; i < this.get('currentPage') + 6; i++) {
             if(i >= this.get('totalPages')) {
@@ -55,7 +52,7 @@ export default Ember.Component.extend({
             }
         }
         return nextFive;
-    }.property('totalPages', 'currentPage'),
+    }),
     actions: {
         goToPage: function(page) {
             this.set('currentPage', page);

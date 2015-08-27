@@ -21,7 +21,7 @@ export default Ember.Route.extend(AdminRouteMixin, {
     model: function(params) {
         return Ember.RSVP.hash({
             restaurants: Ember.$.getJSON(config.routeLocation + '/api/admin/restaurant', {token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.token, tokenId: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.id, sort: params.sort + " " + params.sortType, skip: (params.page - 1) * 100, where: params.filters, limit: 100 }),
-            metadata:  Ember.$.getJSON(config.routeLocation + '/api/admin/restaurant/metadata', {token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.token, tokenId: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.id, limit: 100 })
+            metadata:  Ember.$.getJSON(config.routeLocation + '/api/admin/restaurant/metadata', {token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.token, tokenId: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.id, limit: 100, where: params.filters })
         });
     },
     setupController: function(controller, model) {
