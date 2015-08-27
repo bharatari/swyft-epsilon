@@ -1241,15 +1241,15 @@ a.list-group-item:hover, a.list-group-item:focus {
 }
 
 .remaining-total {
-    font-weight: 400;
+    font-weight: 600;
     margin-top: 5px;
     font-size: 16px;
-    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
 .text-light {
-    font-weight: 300;
-    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
+    font-weight: 400;
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
 .transparent-box {
@@ -1502,6 +1502,16 @@ a.list-group-item:hover, a.list-group-item:focus {
 }
 
 @media only screen and (max-width: 768px) {
+    .confirmation-icon {
+        font-size: 170px;    
+        margin-top: -50px;
+    }
+    
+    .error-icon {
+        font-size: 170px !important;
+        margin-top: -70px;  
+    }
+    
     .navbar-main {
         margin-top: 10px;
         margin-bottom: 10px;
@@ -1715,6 +1725,10 @@ a.list-group-item:hover, a.list-group-item:focus {
     .navbar-brand-transparent a {
         margin-left: 30px;
     }
+    
+    .confirmation-text {
+        margin-top: -25px;
+    }
 }
 
 /* Image Caption Reveal */
@@ -1739,11 +1753,14 @@ figure h3 {
     color: #fff;
     font-size: 22px;
     line-height: 1.2;
-    font-weight: 700;
+    font-weight: 400;
+    letter-spacing: -1px;
+    font-family: 'Open Sans';
     margin-bottom: 10px;
 }
 figure span {
     color: #d8d8d8;
+    font-family: 'Open Sans';
     display: block;
     line-height: 1.2;
 }
@@ -2289,14 +2306,22 @@ figure span {
     font-size: 60px;
     z-index: 999;
     position: fixed;
-    margin-left: 50vw;
-    margin-top: 35vh;
+    top: 50%;
+    left: 50%;
+    margin-top: -58px;
+    margin-left: -39px;
     color: white;
     -webkit-animation: spin 1s ease-in infinite;    
     -moz-animation: spin 1s ease-in infinite;    
     -ms-animation: spin 1s ease-in infinite;    
     -o-animation: spin 1s ease-in infinite;    
     animation: spin 1s ease-in infinite;    
+}
+
+.no-results {
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
+    font-weight: 300;
+    color: darkgray;
 }
 
 @-webkit-keyframes fade-out {

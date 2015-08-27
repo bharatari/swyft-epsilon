@@ -6,9 +6,6 @@
 <div class="img-background container">
     <h1 class="background-title">restaurants</h1>
     <h3 class="background-subtitle">We deliver from the best of Exeter.</h3>
-    {{!--<div class="info-box">
-        <p>Tutti</p>
-    </div>--}}
 </div>
 
 <div class="app-content">
@@ -16,6 +13,8 @@
         <div class="restaurant-card-container list-group">
             {{#each filteredRestaurants as |restaurant|}}
                 {{restaurant-item restaurant=restaurant transition="transition"}}
+            {{else}}
+                <h1 class="no-results">We have no results to show.</h1>
             {{/each}}
         </div>   
     </div>
