@@ -18,7 +18,7 @@ export default Ember.Controller.extend({
         }
     }.observes('filters'),
     filter: function(data, property, type, value) {
-        property = this.convertProperty(property);
+        //property = this.convertProperty(property);
         var newData = {
             items: []
         }
@@ -64,16 +64,5 @@ export default Ember.Controller.extend({
             }
         }
         return newData;
-    },
-    convertProperty: function(property) {
-        var propertyDictionary = new Array();
-        propertyDictionary["Name"] = 'name';
-        propertyDictionary["Location"] = 'deliveryLocation';
-        propertyDictionary["Total"] = 'total';
-        propertyDictionary["Phone"] = 'phoneNumber';
-        propertyDictionary["Payment"] = 'paymentType';
-        propertyDictionary["Charge"] = 'charge';
-        propertyDictionary["Region"] = 'region';
-        return propertyDictionary[property];
     }
 });
