@@ -12,6 +12,9 @@ module.exports = function(req, res, next) {
         if(req.body.user) {
             delete req.body.user;
         }
+        else if(req.body._user) {
+            delete req.body._user;
+        }
     }
     next();
 }
