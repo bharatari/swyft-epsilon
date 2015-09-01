@@ -27,6 +27,9 @@ export default Ember.Controller.extend(AdminPageMixin, {
             if(this.get('deleteId')) {
                 Ember.$.ajax({
                     url: config.routeLocation + "/api/admin/delivery/" + this.get('deleteId'),
+                    data: {
+                        user: {token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token}
+                    },
                     type: "DELETE",
                     success: function(response) {
                         self.set('displayDialog', false);
