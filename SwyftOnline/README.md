@@ -39,7 +39,7 @@ SwyftOnline currently does not have tests setup. The following is directly from 
 
 SwyftAPI and SwyftOnline, the server-side and client-side implementations of Swyft's web infrastructure, respectively, are developed separately in order to promote modularity and stability. 
 
-For production, however, the SwyftOnline project is hosted with the SwyftAPI server. SwyftOnline must be built with the `ember build --environment=production` flag. The resulting production files, located with in the `dist` folder of your SwyftOnline folder, must then be placed within the `assets/SwyftOnline` folder in the SwyftAPI project. The contents of the `index.html` file must be copied into the `homepage.ejs` view file within the SwyftAPI project. 
+For production, however, the SwyftOnline project is hosted with the SwyftAPI server. SwyftOnline must be built with the `ember build --environment="production"` flag. The resulting production files, located with in the `dist` folder of your SwyftOnline folder, must then be placed within the `assets/SwyftOnline` folder in the SwyftAPI project. The contents of the `index.html` file must be copied into the `homepage.ejs` view file within the SwyftAPI project. 
 
 Lastly, using any text editor with a Find and Replace function, you must replace `"assets/"` with `"/SwyftOnline/assets/` in the homepage.ejs file. `(images/` must be replaced with `(/SwyftOnline/images/` in the swyft-online css file. `"images/` must be replaced with `"/SwyftOnline/images/`.
 
@@ -47,7 +47,7 @@ Following these steps, use the SwyftAPI deployment guide to deploy the project.
 
 A Grunt task is available that automatically runs the above steps:
 
-* `ember build --environment production`
+* `ember build --environment="production"`
 * `grunt default` in the root Swyft directory
 * Follow SwyftAPI deployment guide
 
@@ -94,7 +94,16 @@ Usage:
 ##Utilities
 SwyftOnline provides utility helpers for different parts of the application.
 ##Notes
+###Admin CRUD Pagination
+Records per page is hardcoded on the route page of each Admin CRUD page. It is passed to the server, which passes it to MetaService. So the server treats recordsPerPage dynamically.
+
+###Routes
+All consumer facing pages should implement the `SidebarRouteMixin` and all admin pages the `AdminRouteMixin`. 
 ###Time Zones
 Swyft Online automatically converts dates to EST time using Moment.js because Swyft only operates in the New England region. This also ensures that dates and times appear normally to our administrators when they are not in the New England region.
+###Admin CRUD Notes
+When creating a new data record or editing an existing one, you will see three types of inputs. One is a normal white input, one is a grayed out input and the last is a grayed out read only input. The grayed out input means that you can edit the data, but it's not recommended in most situations. 
+
+If changing the total amount on an order, leave the total amount intact just to show how much the order would have costed, and then simply edit the actual amount and then be sure to leave an admin comment of how much the actual amount was originally and how much it was changed to. Be aware that changing the total amount doesn't automatically charge the user again for payment methods such as Swyft Debit or Credit Card. The recommended course of action is to simply add this as a deduction in the customer's Swyft Debit balance, and allow them to pay it off however they choose.
 #License
 SwyftOnline is currently a closed-source project property of Swyft Web Services and Bharat Arimilli.
