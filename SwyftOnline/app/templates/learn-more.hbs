@@ -1,8 +1,16 @@
-{{partial "navbar-standard"}}
+<nav class="navbar navbar-order navbar-transparent" role="navigation">
+    <div class="container">
+        <div class="navbar-order-header">
+            <ul class="nav navbar-nav navbar-left">
+                <span class="navbar-brand-transparent">{{#link-to 'index'}}Swyft{{/link-to}}</span>
+            </ul>
+        </div>
+    </div>
+</nav> 
 
 {{#animate-body}}
 <div class="row learn-more">
-    <div class="row-one-text">
+    <div class="row-one-learn-text">
         <h1 class="promo-text">COMPLETELY STUDENT-RUN.</h1>
         <h2 class="sub-promo-text">FROM ACCOUNTING TO WEB DEVELOPMENT, WE DO IT ALL.</h2>
     </div>
@@ -29,7 +37,7 @@
     </div>
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid row-learn-team">
     <h1 class="team-header">OUR TEAM</h1>
     <div id="effect-1" class="row">        
         <div class="col-sm-6 col-md-4">
@@ -111,7 +119,7 @@
     <div class="container">
         <h1 class="centered-text">Technology is our core.</h1>
         <div class="col-md-4">
-            <img src="images/Server.png" class="learn-image-fix" height="300"/>
+            <i class="ion-ios-monitor-outline tech-icon"></i>
         </div>
         <div class="col-md-8">
             <p class="learn-four-text">With web infrastructure built from the ground up, Swyft is one of the most technologically-oriented student organizations at Phillips Exeter Academy. Technology at our core means a modern experience for our customers and a streamlined workflow for our personnel. At Swyft, technology isn’t a frivolous distraction. Instead, it’s engineered to maximize productivity.</p>
@@ -126,7 +134,7 @@
             <p class="learn-five-text">Our <strong>Swyft Debit</strong> transaction system gives our customers power and flexibility. It’s easier than cash and safer than credit. Simply top up your balance and use it on any Swyft transaction.</p>
         </div>
         <div class="col-md-4">
-            <img src="images/CreditCard.png" class="learn-image-fix" height="300"/>
+            <i class="ion-card credit-card-icon"></i>
         </div>
     </div>
 </div>
@@ -136,5 +144,8 @@
         <p class="footer-item">DESIGNED BY BHARAT ARIMILLI</p>
     </div>
 </div>
+
+<div class="image-scroller-learn-more"></div> 
+<div class="filter-scroller"></div>
 
 {{/animate-body}}
