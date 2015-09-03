@@ -28,7 +28,7 @@ module.exports = {
     },
     processFiltersTransactions: function(filters, items, cb) {
         if(this.checkFilters(filters)) {
-            TransactionService.iterateJoinUsers(items, function(transactions) {
+            UserService.joinUsers(items, function(transactions) {
                 var filter = UtilityService.convertFilterFromWaterline(filters);
                 transactions = UtilityService.filterData(transactions, filter);
                 cb(transactions);
@@ -40,7 +40,7 @@ module.exports = {
     },
     processFiltersOrders: function(filters, items, cb) {
         if(this.checkFilters(filters)) {
-            OrderService.iterateJoinUsers(items, function(orders) {
+            UserService.joinUsers(items, function(orders) {
                 var filter = UtilityService.convertFilterFromWaterline(filters);
                 orders = UtilityService.filterData(orders, filter);
                 cb(orders);
@@ -1156,5 +1156,132 @@ module.exports = {
                 });
             });
         });
-    }
+    },
+    getDeliveryPeriodMetadata: function(recordsPerPage, filters, cb) {
+        var self = this;
+        this.deliveryDay = "";
+        this.deliveryHour = 0.0;
+        this.deliveryMinute = 0.0;
+        this.deliverySecond = 0.0;
+        this.cutoffDay = "";
+        this.cutoffHour = 0.0;
+        this.cutoffMinute = 0.0;
+        this.cutoffSecond = 0.0;
+        this.restaurants = "All";
+        this.deliverers = "";
+        this.enabled = false; 
+        var combined = [
+            {
+                propertyName: 'id',
+                displayName: 'ID',
+                display: true,
+                type: 'string',
+                editable: false
+            },
+            {
+                propertyName: 'deliveryDay',
+                displayName: 'Delivery Day',
+                display: true,
+                type: 'string',
+                editable: true
+            },
+            {
+                propertyName: 'deliveryHour',
+                displayName: 'Delivery Hour',
+                display: true,
+                type: 'number',
+                editable: true
+            },
+            {
+                propertyName: 'deliveryMinute',
+                displayName: 'Delivery Minute',
+                display: true,
+                type: 'number',
+                editable: true
+            },
+            {
+                propertyName: 'deliverySecond',
+                displayName: 'Delivery Second',
+                display: true,
+                type: 'number',
+                editable: true
+            },
+            {
+                propertyName: 'cutoffDay',
+                displayName: 'Cutoff Day',
+                display: true,
+                type: 'string',
+                editable: true
+            },
+            {
+                propertyName: 'cutoffHour',
+                displayName: 'Cutoff Hour',
+                display: true,
+                type: 'number',
+                editable: true
+            },
+            {
+                propertyName: 'cutoffMinute',
+                displayName: 'Cutoff Minute',
+                display: true,
+                type: 'number',
+                editable: true
+            },
+            {
+                propertyName: 'cutoffSecond',
+                displayName: 'Cutoff Second',
+                display: true,
+                type: 'number',
+                editable: true
+            },
+            {
+                propertyName: 'restaurants',
+                displayName: 'Restaurants',
+                display: true,
+                type: 'string',
+                editable: true
+            },
+            {
+                propertyName: 'deliverers',
+                displayName: 'Deliverers',
+                display: true,
+                type: 'string',
+                editable: true
+            },
+            {
+                propertyName: 'enabled',
+                displayName: 'Enabled',
+                display: true,
+                type: 'boolean',
+                editable: true
+            },
+            {
+                propertyName: 'updatedAt',
+                displayName: 'Updated At',
+                display: true,
+                type: 'datetime',
+                editable: true,
+                advancedField: true
+            },
+            {
+                propertyName: 'createdAt',
+                displayName: 'Created At',
+                display: true,
+                type: 'datetime',
+                editable: true,
+                advancedField: true
+            }
+        ];
+        DeliveryPeriod.find(this.processFilters(filters)).exec(function(err, data) {
+            cb({
+                total: data.length,
+                totalPages: Math.ceil(data.length / recordsPerPage),
+                sort: 'createdAt',
+                sortType: 'DESC',
+                properties: combined,
+                recordsPerPage: recordsPerPage,
+                sortTypes: self.sortTypes
+            });
+        });
+    },
 }   

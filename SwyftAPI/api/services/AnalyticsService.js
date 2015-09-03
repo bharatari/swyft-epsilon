@@ -21,8 +21,10 @@ module.exports = {
         async.eachSeries(deliveries, function(delivery, callback) {
             Order.find({ deliveryId: delivery.id }).exec(function(err, orders) {
                 var total = 0;
-                for(var i = 0; i < orders.length; i++) {
-                    total += orders[i].actualAmount;
+                if(orders) {
+                    for(var i = 0; i < orders.length; i++) {
+                        total += orders[i].actualAmount;
+                    }
                 }
                 data.push({
                     label: moment(delivery.deliveryDate).format("MM/DD"),
@@ -37,7 +39,12 @@ module.exports = {
     processDeliveryData: function(deliveries, cb) {
         async.each(deliveries, function(delivery, callback) {
             Order.find({ deliveryId: delivery.id }).exec(function(err, orders) {
-                delivery.orderCount = orders.length;
+                if(orders) {
+                    delivery.orderCount = orders.length;
+                }
+                else {
+                    delivery.orderCount = 0;
+                }
                 callback();
             });
         }, function(err) {

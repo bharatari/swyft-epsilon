@@ -6,7 +6,7 @@ module.exports = {
     },
     findOne: function(req, res) {
         UserTransaction.findOne({ id: req.params.id }).exec(function(err, userTransaction) {
-            TransactionService.joinUser(userTransaction, function(result) {
+            UserService.joinUser(userTransaction, function(result) {
                 res.json(result);
             });
         });

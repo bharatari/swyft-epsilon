@@ -45,41 +45,108 @@ module.exports = {
         }
         return user;
     },
-    /*
+    deleteSensitiveCRUD: function(user) {
+        if(user) {
+            delete user.password;
+        }
+        return user;
+    },
+    deleteSensitiveCRUDIterate: function(users, cb) {
+        if(users) {
+            for(var i = 0; i < users.length; i++) {
+                if(users[i]) {
+                    delete users[i].password;
+                }
+            }  
+        }
+        cb(users);
+    },
     getUsers: function(query, cb) {
-        if(query.filters) {
+        if(query.where && (Object.getOwnPropertyNames(JSON.parse(query.where)).length !== 0)) {
             User.find().exec(function(err, items) {
-                items = UtilityService.filterData(items, query.filters);
-                if(query.page && query.sort && query.sortType) {
-                    var data = UtilityService.sortData(items, query.sort, query.sortType);
-                    cb(UtilityService.pagination(data, query.recordsPerPage, 1));
-                }
-                else if(query.page) {
-                    cb(UtilityService.pagination(items, query.recordsPerPage, 1));
-                }
-                else if(query.sort) {
-                    cb(UtilityService.sortData(items, query.sort, query.sortType));
-                }
+                UserService.deleteSensitiveCRUDIterate(items, function(users) {
+                    var filter = UtilityService.convertFilterFromWaterline(query.where);
+                    users = UtilityService.filterData(users, filter);
+                    if(query.skip && query.sort) {
+                        var sort = UtilityService.splitSortAttrs(query.sort);
+                        var data = UtilityService.sortData(users, sort.sort, sort.sortType);
+                        cb(UtilityService.paginationSkip(data, query.limit, query.skip));
+                    }
+                    else if(query.skip) {
+                        cb(UtilityService.paginationSkip(users, query.limit, query.skip));
+                    }
+                    else if(query.sort) {
+                        var sort = UtilityService.splitSortAttrs(query.sort);
+                        cb(UtilityService.sortData(users, sort.sort, sort.sortType));
+                    }
+                });
             });
         }
         else {
-            if(query.page && query.sort && query.sortType) {
+            if(query.skip && query.sort) {
                 User.find().exec(function(err, users) {
-                    var data = UtilityService.sortData(users, query.sort, query.sortType);
-                    cb(UtilityService.pagination(data, query.recordsPerPage, 1));
+                    UserService.deleteSensitiveCRUDIterate(users, function(items) {
+                        var sort = UtilityService.splitSortAttrs(query.sort);
+                        var data = UtilityService.sortData(items, sort.sort, sort.sortType);
+                        cb(UtilityService.paginationSkip(data, query.limit, query.skip));
+                    }); 
                 });
             }
-            else if(query.page) {
-                User.find().paginate({page: query.page, limit: query.recordsPerPage}).exec(function(err, users) {
-                    cb(users);
+            else if(query.skip) {
+                User.find().paginate({page: query.skip, limit: query.limit }).exec(function(err, users) {
+                    UserService.deleteSensitiveCRUDIterate(users, function(items) {
+                        cb(items);
+                    });
                 });
             }
             else if(query.sort) {
                 User.find().exec(function(err, users) {
-                    cb(UtilityService.sortData(users, query.sort, query.sortType));
+                    UserService.deleteSensitiveCRUDIterate(users, function(items) {
+                        var sort = UtilityService.splitSortAttrs(query.sort);
+                        cb(UtilityService.sortData(items, sort.sort, sort.sortType));
+                    });
                 });
             }
         }
-    }   
-    */
+    },
+    joinUser: function(object, cb) {
+        if(object) {
+            if(object.userId) {
+                User.findOne({ id: object.userId }).exec(function(err, user) {
+                    if(err || !user) {
+                        object.user = {};
+                        cb(object);
+                    }
+                    else {
+                        user = UserService.deleteSensitive(user);
+                        object.user = user;
+                        cb(object);
+                    }
+                });
+            }
+            else {
+                object.user = {};
+                cb(object);
+            }
+        }
+        else {
+            return object;
+        }
+    },
+    joinUsers: function(objects, cb) {
+        var self = this;
+        if(objects) {
+            async.each(objects, function(object, callback) {
+                self.joinUser(object, function(result) {
+                    object = result;
+                    callback();
+                });
+            }, function(err) {
+                cb(objects);
+            }); 
+        }
+        else {
+            cb(objects);
+        }
+    }
 }

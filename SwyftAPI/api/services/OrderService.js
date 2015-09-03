@@ -345,39 +345,6 @@ module.exports = {
         } 
         return order;
     },
-    joinUser: function(order, cb) {
-        if(order) {
-            User.findOne({ id: order.userId }).exec(function(err, user) {
-                order.user = UserService.deleteSensitive(user);
-                cb(order);
-            });
-        }
-        else {
-            cb(order);
-        }
-    },
-    iterateJoinUsers: function(items, callback) {
-        function loop(i){
-            if(i<items.length){
-                function query(cb){
-                    User.find().where({id:items[i].userId}).exec(function(err, user){
-                        if(user[0]) {
-                            user[0] = UserService.deleteSensitive(user[0]);
-                            items[i].user = user[0];
-                        }
-                        cb();
-                    });
-                }
-                query(function(){
-                    loop(i+1);
-                });
-            }
-            else{
-                callback(items);
-            }
-        }
-        loop(0);
-    },
     joinOrdersSameUser: function(items, callback) {
         function process(final) {
             async.each(items, function(item, cb) {
@@ -453,7 +420,7 @@ module.exports = {
     },
     getOrderItems: function(data, cb) {
         var items = [];
-        OrderService.iterateJoinUsers(data, function(orders) {
+        UserService.joinUsers(data, function(orders) {
             for(var i = 0; i < orders.length; i++) {
                 for(var e = 0; e < orders[i].items.length; e++) {
                     if(!orders[i].items[e].quantity) {
@@ -554,7 +521,7 @@ module.exports = {
                 deliveryTotal: 0,
                 deliveryDate: orders[0].deliveryTime
             };
-            self.iterateJoinUsers(orders, function(result) {
+            UserService.joinUsers(orders, function(result) {
                 orders = result;
                 async.each(orders, function(order, callback) {
                     masterList.deliveryTotal += order.actualAmount;
@@ -615,7 +582,7 @@ module.exports = {
     getOrders: function(query, cb) {
         if(query.where && (Object.getOwnPropertyNames(JSON.parse(query.where)).length !== 0)) {
             Order.find().exec(function(err, items) {
-                OrderService.iterateJoinUsers(items, function(orders) {
+                UserService.joinUsers(items, function(orders) {
                     var filter = UtilityService.convertFilterFromWaterline(query.where);
                     orders = UtilityService.filterData(orders, filter);
                     if(query.skip && query.sort) {
@@ -636,7 +603,7 @@ module.exports = {
         else {
             if(query.skip && query.sort) {
                 Order.find().exec(function(err, orders) {
-                    OrderService.iterateJoinUsers(orders, function(items) {
+                    UserService.joinUsers(orders, function(items) {
                         var sort = UtilityService.splitSortAttrs(query.sort);
                         var data = UtilityService.sortData(items, sort.sort, sort.sortType);
                         cb(UtilityService.paginationSkip(data, query.limit, query.skip));
@@ -645,14 +612,14 @@ module.exports = {
             }
             else if(query.skip) {
                 Order.find().paginate({page: query.skip, limit: query.limit }).exec(function(err, orders) {
-                    OrderService.iterateJoinUsers(orders, function(items) {
+                    UserService.joinUsers(orders, function(items) {
                         cb(items);
                     });
                 });
             }
             else if(query.sort) {
                 Order.find().exec(function(err, orders) {
-                    OrderService.iterateJoinUsers(orders, function(items) {
+                    UserService.joinUsers(orders, function(items) {
                         var sort = UtilityService.splitSortAttrs(query.sort);
                         cb(UtilityService.sortData(items, sort.sort, sort.sortType));
                     });

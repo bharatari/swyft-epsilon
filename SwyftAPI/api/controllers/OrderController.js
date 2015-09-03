@@ -81,9 +81,9 @@ module.exports={
     },
     getOrders:function(req,res){
         Order.find().where({deliveryPeriod:req.body.deliveryPeriod, isDeleted:false, hasFulfillment:false}).exec(function(err, items){
-            OrderService.iterateJoinUsers(items, function(orders) {
+            UserService.joinUsers(items, function(orders) {
                 return res.json(orders);
-            })
+            });
         });        
     },
     getOrder: function(req, res) {
@@ -114,12 +114,12 @@ module.exports={
                 Order.find({ deliveryId: delivery.id }).exec(function(err, items){
                     /*
                 OrderService.joinOrdersSameUser(items, function(results) {
-                    OrderService.iterateJoinUsers(results, function(orders) {
+                    UserService.joinUsers(results, function(orders) {
                         res.json(orders);
                     });
                 });
                 */
-                    OrderService.iterateJoinUsers(items, function(orders) {
+                    UserService.joinUsers(items, function(orders) {
                         res.json(orders);
                     });
                 });
@@ -145,7 +145,7 @@ module.exports={
     },
     getAllOrders: function(req, res) {
         Order.find({ isDeleted: false }).exec(function(err, orders) {
-            OrderService.iterateJoinUsers(orders, function(result) {
+            UserService.joinUsers(orders, function(result) {
                 res.json(result);
             });
         });
@@ -164,7 +164,7 @@ module.exports={
     },
     findOne: function(req, res) {
         Order.findOne({ id: req.params.id }).exec(function(err, order) {
-            OrderService.joinUser(order, function(result) {
+            UserService.joinUser(order, function(result) {
                 if(!order.deliveryNote) {
                     order.deliveryNote = new ModelService.DeliveryNote(null, null, null, null, null, null, null, null, null);
                 }
