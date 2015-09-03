@@ -1,11 +1,18 @@
-{{#if activeRoute}}
+{{#if route}}
+    {{#if activeRoute}}
+        <a href="javascript:void(0)">
+            <i class="fa admin-sidebar-icon {{icon}}"></i>
+            {{label}}
+        </a>
+    {{else}}
+        {{#link-to route}}
+            <i class="fa admin-sidebar-icon {{icon}}"></i>
+            {{label}}
+        {{/link-to}}
+    {{/if}}
+{{else}}
     <a href="javascript:void(0)">
         <i class="fa admin-sidebar-icon {{icon}}"></i>
         {{label}}
     </a>
-{{else}}
-    {{#link-to route}}
-        <i class="fa admin-sidebar-icon {{icon}}"></i>
-        {{label}}
-    {{/link-to}}
 {{/if}}

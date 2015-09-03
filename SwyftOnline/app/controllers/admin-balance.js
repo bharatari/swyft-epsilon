@@ -9,9 +9,11 @@ export default Ember.Controller.extend({
         submit: function() {
             var self = this;
             var url = config.routeLocation + "/api/user/balance/preliminary";
+            var data = this.get('data');
+            data.user = { token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token };
             Ember.$.ajax({
                 url: url,
-                data: this.get('data'),
+                data: data,
                 type: "POST",
                 success: function(response) {
                     self.set('displayDialog', false);

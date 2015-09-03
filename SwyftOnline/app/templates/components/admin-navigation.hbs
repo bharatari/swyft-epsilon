@@ -2,7 +2,7 @@
     <h5 class="admin-sidebar-header">Main Navigation</h5>
     <ul class="nav nav-pills admin-sidebar-list nav-stacked">
         {{#each navigation as |nav|}}
-            {{admin-nav label=nav.label route=nav.route icon=nav.icon currentRoute=currentRoute}}
+            {{admin-nav label=nav.label route=nav.route icon=nav.icon static=nav.static currentRoute=currentRoute}}
         {{/each}}
     </ul>
 </nav>

@@ -22,12 +22,12 @@ Router.map(function() {
     this.route("faq", { path:"/app/faq" });
     this.route("contact-us", { path:"/app/contact-us" });
     this.route("profile", { path:"/app/profile" });
+    this.route("confirmation", { path:"/app/confirmation" });
     this.route("delivery", { path:"/delivery" });
     this.route("delivery-order", { path:"/delivery/order/:order_id" });
     this.route("admin-export-picker", { path:"/admin/export-picker"});
     this.route("admin-export", { path:"/admin/export/:delivery_id"});
     this.route("admin-unauthorized", { path:"/admin/unauthorized"});
-    this.route("admin-new-delivery", { path:"/admin/new-delivery" });
     this.route("admin-complete-delivery", { path:"/admin/complete-delivery" });
     this.route("admin-user", { path:"/admin/user/:id" });
     this.route("admin-users", { path:"/admin/users" });
@@ -43,6 +43,14 @@ Router.map(function() {
     this.route("admin-delivery", { path:"/admin/delivery/:id" });
     this.route("admin-delivery-locations", { path:"/admin/delivery-locations" });
     this.route("admin-delivery-location", { path:"/admin/delivery-location/:id" });
+    this.route("admin-restaurants", { path:"/admin/restaurants" });
+    this.route("admin-restaurant", { path:"/admin/restaurant/:id" });
+    this.route("admin-menu-items", { path:"/admin/menu-items" });
+    this.route("admin-menu-item", { path:"/admin/menu-item/:id" });
+    this.route("admin-orders", { path:"/admin/orders" }); 
+    this.route("admin-order", { path:"/admin/order/:id" });
+    this.route("admin-delivery-periods", { path:"/admin/delivery-periods" }); 
+    this.route("admin-delivery-period", { path:"/admin/delivery-period/:id" });
     this.route("admin-balance", { path:"/admin/balance" });
     this.route("admin-global-delivery-note", { path:"/admin/global-delivery-note" });
     this.route("admin-news", { path:"/admin/news" });
@@ -52,7 +60,6 @@ Router.map(function() {
     this.route("admin-tokens", { path:"/admin/tokens" });
     this.route("admin-new-token", { path:"/admin/new-token" });
     this.route("admin-export-delivery", { path:"/admin/export-delivery/:delivery_id" }); 
-    this.route("admin-orders", { path:"/admin/orders" }); 
 });
 
 export default Router;

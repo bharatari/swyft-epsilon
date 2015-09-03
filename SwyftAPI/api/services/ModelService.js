@@ -162,5 +162,18 @@ module.exports = {
         this.tokenId = "";
         this.deliveryNote = new ModelService.DeliveryNote(null, null, null, null, null, null, null, null, null);
         this.isDeleted = false;
+    },
+    DeliveryPeriod: function() {
+        this.deliveryDay = "";
+        this.deliveryHour = 0.0;
+        this.deliveryMinute = 0.0;
+        this.deliverySecond = 0.0;
+        this.cutoffDay = "";
+        this.cutoffHour = 0.0;
+        this.cutoffMinute = 0.0;
+        this.cutoffSecond = 0.0;
+        this.restaurants = "All";
+        this.deliverers = "";
+        this.enabled = false;   
     }
 }

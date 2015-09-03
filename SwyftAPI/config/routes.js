@@ -142,7 +142,9 @@ module.exports.routes = {
   'get /api/admin/menuItem/metadata':'MenuItemController.getMenuItemMetadata',
   'get /api/admin/order/model':'OrderController.getOrderModel',
   'get /api/admin/order/metadata':'OrderController.getOrderMetadata',
-  'get /api/admin/order/:id':'OrderController.findOne'
+  'get /api/admin/order/:id':'OrderController.findOne',
+  'get /api/admin/deliveryPeriod/model':'DeliveryPeriodController.getDeliveryPeriodModel',
+  'get /api/admin/deliveryPeriod/metadata':'DeliveryPeriodController.getDeliveryPeriodMetadata'
     
   /***************************************************************************
   *                                                                          *
