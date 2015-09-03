@@ -55,6 +55,10 @@ module.exports = function(environment) {
   }   
     
   ENV.cartVersion = 2.0;
+
+  ENV.stripe = {
+    key: "pk_test_NWvAAITL9qMM7mUAjknRjeY1"
+  }
    
   return ENV;
 };

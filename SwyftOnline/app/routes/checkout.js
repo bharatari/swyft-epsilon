@@ -28,7 +28,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, SidebarRouteMixin, An
         controller.set('cart', model.cart);
         controller.set('user', model.user);
         controller.set('deliveries', model.deliveries);
-        controller.set('buttonPressed', false);
+        controller.set('checkoutPressed', false);
         controller.set('deliveryLocations', model.deliveryLocations);
         controller.set('token', "");
         controller.set('tokenValid', true);
