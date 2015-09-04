@@ -1159,17 +1159,6 @@ module.exports = {
     },
     getDeliveryPeriodMetadata: function(recordsPerPage, filters, cb) {
         var self = this;
-        this.deliveryDay = "";
-        this.deliveryHour = 0.0;
-        this.deliveryMinute = 0.0;
-        this.deliverySecond = 0.0;
-        this.cutoffDay = "";
-        this.cutoffHour = 0.0;
-        this.cutoffMinute = 0.0;
-        this.cutoffSecond = 0.0;
-        this.restaurants = "All";
-        this.deliverers = "";
-        this.enabled = false; 
         var combined = [
             {
                 propertyName: 'id',
@@ -1284,4 +1273,149 @@ module.exports = {
             });
         });
     },
+    getDeliveryGroupMetadata: function(recordsPerPage, filters, cb) {
+        var self = this;
+        var combined = [
+            {
+                propertyName: 'id',
+                displayName: 'ID',
+                display: true,
+                type: 'string',
+                editable: false
+            },
+            {
+                propertyName: 'name',
+                displayName: 'Name',
+                display: true,
+                type: 'string',
+                editable: true
+            },
+            {
+                propertyName: 'codename',
+                displayName: 'Codename',
+                display: true,
+                type: 'string',
+                editable: true
+            },
+            {
+                propertyName: 'updatedAt',
+                displayName: 'Updated At',
+                display: true,
+                type: 'datetime',
+                editable: true,
+                advancedField: true
+            },
+            {
+                propertyName: 'createdAt',
+                displayName: 'Created At',
+                display: true,
+                type: 'datetime',
+                editable: true,
+                advancedField: true
+            }
+        ];
+        DeliveryGroup.find(this.processFilters(filters)).exec(function(err, data) {
+            cb({
+                total: data.length,
+                totalPages: Math.ceil(data.length / recordsPerPage),
+                sort: 'createdAt',
+                sortType: 'DESC',
+                properties: combined,
+                recordsPerPage: recordsPerPage,
+                sortTypes: self.sortTypes
+            });
+        });
+    },
+    getAttachedRequestMetadata: function(recordsPerPage, filters, cb) {
+        var self = this;
+        var combined = [
+            {
+                propertyName: 'id',
+                displayName: 'ID',
+                display: true,
+                type: 'string',
+                editable: false
+            },
+            {
+                propertyName: 'name',
+                displayName: 'Name',
+                display: true,
+                type: 'string',
+                editable: true
+            },
+            {
+                propertyName: 'label',
+                displayName: 'Label',
+                display: true,
+                type: 'string',
+                editable: true
+            },
+            {
+                propertyName: 'options',
+                displayName: 'Options',
+                display: false,
+                type: 'array',
+                editable: true
+            },
+            {
+                propertyName: 'available',
+                displayName: 'Available',
+                display: true,
+                type: 'enum',
+                enum: [
+                    { propertyName:'onTrue', displayName:'When True' },
+                    { propertyName:'onFalse', displayName:'When False' },
+                ],
+                editable: true
+            },
+            {
+                propertyName: 'watches',
+                displayName: 'Watches',
+                display: true,
+                type: 'string',
+                editable: true
+            },
+            {
+                propertyName: 'on',
+                displayName: 'On',
+                display: true,
+                type: 'string',
+                editable: true
+            },
+            {
+                propertyName: 'required',
+                displayName: 'Required',
+                display: true,
+                type: 'boolean',
+                editable: true
+            },
+            {
+                propertyName: 'updatedAt',
+                displayName: 'Updated At',
+                display: true,
+                type: 'datetime',
+                editable: true,
+                advancedField: true
+            },
+            {
+                propertyName: 'createdAt',
+                displayName: 'Created At',
+                display: true,
+                type: 'datetime',
+                editable: true,
+                advancedField: true
+            }
+        ];
+        AttachedRequest.find(this.processFilters(filters)).exec(function(err, data) {
+            cb({
+                total: data.length,
+                totalPages: Math.ceil(data.length / recordsPerPage),
+                sort: 'createdAt',
+                sortType: 'DESC',
+                properties: combined,
+                recordsPerPage: recordsPerPage,
+                sortTypes: self.sortTypes
+            });
+        });
+    }
 }   

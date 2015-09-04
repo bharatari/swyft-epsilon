@@ -12,14 +12,18 @@ export default Ember.Component.extend({
         { label: 'Deliveries', route: 'admin-deliveries', icon: 'fa-truck' },
         { label: 'Delivery Locations', route: 'admin-delivery-locations', icon: 'fa-map-marker' },
         { label: 'Delivery Periods', route: 'admin-delivery-periods', icon: 'fa-truck' },
+        { label: 'Delivery Groups', route: 'admin-delivery-groups', icon: 'fa-truck' },
         { label: 'Restaurants', route: 'admin-restaurants', icon: 'fa-cutlery' },
         { label: 'Menu Items', route: 'admin-menu-items', icon: 'fa-cutlery' },
+        { label: 'Attached Requests', route: 'admin-attached-requests', icon: 'fa-cutlery' },
         { label: 'Orders', route: 'admin-orders', icon: 'fa-truck' },
         { label: 'Reports', static: true },
         { label: 'Export', route: 'admin-export-picker', icon: 'fa-table' },
         { label: 'Wizards', static: true },
         { label: 'New Swyft Debit', route: 'admin-balance', icon: 'fa-money' },
         { label: 'New One-Time-Use Token', route: 'admin-new-token', icon: 'fa-money'},
-        { label: 'Complete Delivery', route: 'admin-complete-delivery', icon: 'fa-truck'}
+        { label: 'Complete Delivery', route: 'admin-complete-delivery', icon: 'fa-truck'},
+        { label: 'About', static: true },
+        { label: 'About', route: 'admin-about', icon: 'fa-user' }
     ]
 });

@@ -144,7 +144,11 @@ module.exports.routes = {
   'get /api/admin/order/metadata':'OrderController.getOrderMetadata',
   'get /api/admin/order/:id':'OrderController.findOne',
   'get /api/admin/deliveryPeriod/model':'DeliveryPeriodController.getDeliveryPeriodModel',
-  'get /api/admin/deliveryPeriod/metadata':'DeliveryPeriodController.getDeliveryPeriodMetadata'
+  'get /api/admin/deliveryPeriod/metadata':'DeliveryPeriodController.getDeliveryPeriodMetadata',
+  'get /api/admin/deliveryGroup/model':'DeliveryGroupController.getDeliveryGroupModel',
+  'get /api/admin/deliveryGroup/metadata':'DeliveryGroupController.getDeliveryGroupMetadata',
+  'get /api/admin/attachedRequest/model':'AttachedRequestController.getAttachedRequestModel',
+  'get /api/admin/attachedRequest/metadata':'AttachedRequestController.getAttachedRequestMetadata'
     
   /***************************************************************************
   *                                                                          *

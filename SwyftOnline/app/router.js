@@ -51,6 +51,10 @@ Router.map(function() {
     this.route("admin-order", { path:"/admin/order/:id" });
     this.route("admin-delivery-periods", { path:"/admin/delivery-periods" }); 
     this.route("admin-delivery-period", { path:"/admin/delivery-period/:id" });
+    this.route("admin-delivery-groups", { path:"/admin/delivery-groups" }); 
+    this.route("admin-delivery-group", { path:"/admin/delivery-group/:id" });
+    this.route("admin-attached-requests", { path:"/admin/attached-requests" }); 
+    this.route("admin-attached-request", { path:"/admin/attached-request/:id" });
     this.route("admin-balance", { path:"/admin/balance" });
     this.route("admin-global-delivery-note", { path:"/admin/global-delivery-note" });
     this.route("admin-news", { path:"/admin/news" });
@@ -60,6 +64,7 @@ Router.map(function() {
     this.route("admin-tokens", { path:"/admin/tokens" });
     this.route("admin-new-token", { path:"/admin/new-token" });
     this.route("admin-export-delivery", { path:"/admin/export-delivery/:delivery_id" }); 
+    this.route("admin-about", { path:"/admin/about" });
 });
 
 export default Router;

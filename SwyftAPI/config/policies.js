@@ -160,6 +160,26 @@ module.exports.policies = {
     "populate":['isAdmin', 'userDisabled'],
     "add":['isAdmin', 'userDisabled'],
     "remove":['isAdmin', 'userDisabled'] 
+  },
+  DeliveryGroupController:{
+    "find":['isAdmin', 'removeAdminParams', 'userDisabled'],
+    "findOne":['isAdmin', 'userDisabled'],
+    "create":['isAdmin', 'removeAdminParams', 'userDisabled'],
+    "update":['isAdmin', 'removeAdminParams', 'userDisabled'],
+    "destroy":['isAdmin', 'userDisabled'],
+    "populate":['isAdmin', 'userDisabled'],
+    "add":['isAdmin', 'userDisabled'],
+    "remove":['isAdmin', 'userDisabled'] 
+  },
+  AttachedRequestController:{
+    "find":['isAdmin', 'removeAdminParams', 'userDisabled'],
+    "findOne":['isAdmin', 'userDisabled'],
+    "create":['isAdmin', 'removeAdminParams', 'userDisabled'],
+    "update":['isAdmin', 'removeAdminParams', 'userDisabled'],
+    "destroy":['isAdmin', 'userDisabled'],
+    "populate":['isAdmin', 'userDisabled'],
+    "add":['isAdmin', 'userDisabled'],
+    "remove":['isAdmin', 'userDisabled'] 
   }
   
   /***************************************************************************

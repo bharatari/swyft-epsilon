@@ -105,6 +105,29 @@ module.exports = {
                         item.price += extra.price;
                         callback2();
                     }, function(err) {
+                        attachedRequests();
+                    });
+                });
+            }
+            else {
+                attachedRequests();
+            }
+        }
+        
+        function attachedRequests() {
+            if(item.attachedRequests) {
+                async.each(item.attachedRequests, function(attachedRequest, callback) {
+                    if(attachedRequest.price) {
+                        attachedRequest.price = parseFloat(attachedRequest.price);
+                    }
+                    callback();
+                }, function(err) {
+                    async.each(item.attachedRequests, function(attachedRequest, callback2) {
+                        if(attachedRequest.price) {
+                            item.price += attachedRequest.price;
+                        }
+                        callback2();
+                    }, function(err) {
                         standardOptions();
                     });
                 });

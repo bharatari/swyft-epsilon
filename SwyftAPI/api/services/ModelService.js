@@ -175,5 +175,18 @@ module.exports = {
         this.restaurants = "All";
         this.deliverers = "";
         this.enabled = false;   
+    },
+    AttachedRequest: function() {
+        this.name = "";
+        this.label = "";
+        this.options = [];
+        this.available = "";
+        this.watches = "";
+        this.on = "";
+        this.required = false;
+    },
+    DeliveryGroup: function() {
+        this.name = "";
+        this.codename = ""; 
     }
 }

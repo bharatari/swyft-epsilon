@@ -16,5 +16,20 @@ module.exports = {
         else {
             cb(item);
         }
-    }
+    },
+    /** For Admin CRUD **/
+    processAttachedRequest: function(attachedRequest, cb) {
+        if(attachedRequest.options) {
+            for(var i = 0; i < attachedRequest.options.length; i++) {
+                if(attachedRequest.options[i]) {
+                    if(attachedRequest.options[i].price) {
+                        if(typeof attachedRequest.options[i].price === 'string') {
+                            attachedRequest.options[i].price = parseFloat(attachedRequest.options[i].price);
+                        }
+                    }
+                }
+            }
+        }
+        cb(attachedRequest);
+    },
 }

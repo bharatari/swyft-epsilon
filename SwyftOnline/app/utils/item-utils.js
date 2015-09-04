@@ -48,7 +48,7 @@ export default {
         for (var property in cartData.options) {
             if (cartData.options.hasOwnProperty(property)) {
                 if(cartData.options[property].price){
-                    cartData.price+=cartData.options[property].price;
+                    cartData.price += parseFloat(cartData.options[property].price);
                 }
             }
         }
@@ -56,8 +56,15 @@ export default {
             for (var property in cartData.extras) {
                 if (cartData.extras.hasOwnProperty(property)) {
                     if(cartData.extras[property] && cartData.extras[property].price){
-                        cartData.price+=cartData.extras[property].price;
+                        cartData.price += parseFloat(cartData.extras[property].price);
                     }
+                }
+            }
+        }
+        if(cartData.attachedRequests) {
+            for (var i = 0; i < cartData.attachedRequests.length; i++) {
+                if(cartData.attachedRequests[i] && cartData.attachedRequests[i].price) {
+                    cartData.price += parseFloat(cartData.attachedRequests[i].price);
                 }
             }
         }
