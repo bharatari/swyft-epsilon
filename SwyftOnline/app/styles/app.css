@@ -1210,13 +1210,14 @@ a.list-group-item:hover, a.list-group-item:focus {
     height: auto; 
     z-index: -100;
     background-size: cover;
-    background-image: radial-gradient(circle farthest-side at right bottom,#f8cdda,#1d2b64 80%,#0e153a);
+    /*background-image: radial-gradient(circle farthest-side at right bottom,#f8cdda,#1d2b64 80%,#0e153a);*/
     background-position: center;
     opacity: inherit;
     /* background-color: rgb(93, 151, 210); */
 }
 
 .image-scroller-learn-more {
+    background-image: url('/images/BuildingEdit.jpg');
     position: fixed; 
     right: 0; 
     bottom: 0;
@@ -1226,7 +1227,6 @@ a.list-group-item:hover, a.list-group-item:focus {
     height: auto; 
     z-index: -100;
     background-size: cover;
-    background-image: url('/images/BuildingEdit.JPG'); 
     background-position: center;
     opacity: inherit;
 }
@@ -2390,6 +2390,20 @@ figure span {
     font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-weight: 300;
     color: darkgray;
+}
+
+.admin-about-version {
+    font-family: 'Open Sans';
+}
+
+.admin-about-codename {
+    font-family: 'Open Sans';
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.admin-panel-content {
+    margin-left: 15px;
 }
 
 @-webkit-keyframes fade-out {

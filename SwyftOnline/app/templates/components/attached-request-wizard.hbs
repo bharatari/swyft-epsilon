@@ -1,0 +1,56 @@
+<div class="form-group">
+  	<label class="col-sm-2 control-label">{{id.displayName}}</label>
+   	<div class="col-sm-9">
+      	{{input class="form-control" value=id.value type="text" readonly="true"}}
+    </div>
+</div>
+
+<div class="form-group">
+  	<label class="col-sm-2 control-label">{{name.displayName}}</label>
+   	<div class="col-sm-9">
+      	{{input class="form-control" value=name.value type="text"}}
+    </div>
+</div>
+<div class="form-group">
+  	<label class="col-sm-2 control-label">{{label.displayName}}</label>
+   	<div class="col-sm-9">
+      	{{input class="form-control" value=label.value type="text"}}
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">{{available.displayName}}</label>
+    <div class="col-sm-9">
+        {{select-menu action=(action (mut available.value)) content=available.enum selection=available.value optionValuePath="propertyName" optionLabelPath="displayName" prompt="Select a Value" class="form-control"}}
+    </div>
+</div> 
+<div class="form-group">
+  	<label class="col-sm-2 control-label">{{watches.displayName}}</label>
+   	<div class="col-sm-9">
+        {{input class="form-control" value=watches.value type="text"}}
+    </div>
+</div>
+<div class="form-group">
+  	<label class="col-sm-2 control-label">{{on.displayName}}</label>
+   	<div class="col-sm-9">
+        {{input class="form-control" value=on.value type="text"}}
+    </div>
+</div>
+<div class="form-group">
+  	<label class="col-sm-2 control-label">{{required.displayName}}</label>
+   	<div class="col-sm-9">
+        {{select-menu action=(action (mut required.value)) content=booleanValues selection=required.value optionValuePath="propertyName" optionLabelPath="displayName" prompt="Select a Value" class="form-control"}}
+    </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-md-12 col-md-offset-2">
+     <h2 class="menu-item-wizard-header">Options</h2>
+     {{#each options.value as |option|}}
+        {{menu-item-extra extra=option deleteExtra="deleteOption"}}
+     {{/each}}
+     <button {{action 'addOption'}}>Add Option</button>
+  </div>
+</div>
+

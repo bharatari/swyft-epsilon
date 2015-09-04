@@ -66,7 +66,7 @@ export default Ember.Component.extend({
 			instance.delete_node(selectedObject);
 		},
 		edit() {
-			
+			//don't allow editing of array numbers
 		}
 	}
 });

@@ -29,7 +29,7 @@ export default Ember.Route.extend(AdminRouteMixin, {
             controller.set('isNew', true);
         }        
         var data = model.data;
-        data.user = {token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token};
+        data._user = { token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token };
         controller.set('data', data);
         controller.set('id', model.id);
         controller.set('metadata', modelUtils.transitionToMeta(data, model.metadata));
