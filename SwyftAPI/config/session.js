@@ -67,10 +67,12 @@ module.exports.session = {
   *                                                                          *
   ***************************************************************************/
 
+  /*    
   adapter: 'mongo',
   host: 'proximus.modulusmongo.net',
+  //host: 'localhost',
   port: 27017,
-  db: (function() {
+    db: (function() {
     if(this.environment === 'production') {
         return 'igEjo9pe';
     }
@@ -78,7 +80,9 @@ module.exports.session = {
         return 'yju6Wajy';
     }
   })(),
+  //db: 'local',
   collection: 'sessions',
+  */
     
   /***************************************************************************
   *                                                                          *
@@ -89,8 +93,8 @@ module.exports.session = {
   *                                                                          *
   ***************************************************************************/
 
-  username: 'swyftdb',
-  password: 'Xv56magj',
+  // username: 'swyftdb',
+  // password: 'Xv56magj',
   // auto_reconnect: false,
   // ssl: false,
   // stringify: true

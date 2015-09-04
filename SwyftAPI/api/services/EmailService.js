@@ -17,5 +17,21 @@ module.exports = {
         mandrill_client.messages.send({"message":message}, function(result){            
             cb();
         });
+    },
+    sendChargeLaterEmail: function(firstName, lastName, email, chargeLaterOrders, cb) {
+        var message = {
+            "html":"<h1>You've got outstanding payments</h1><p></p>",
+            "subject":"You've got outstanding payments",
+            "from_email":"swyftdeveloper@outlook.com",
+            "from_name":"Swyft",
+            "to":[{
+                "email": email,
+                "name": firstName+" "+lastName,
+                "type": "to"
+            }]
+        };
+        mandrill_client.messages.send({"message":message}, function(result){            
+            cb();
+        });
     }
 }

@@ -5,16 +5,17 @@ var jwt = require('jwt-simple');
 module.exports={
     login: function(req, res) {
         User.findOne({ username: req.body.username.toLowerCase() }, function(err, user) {
-            if (err) {
+            if(err) {
                 return res.serverError(err);
             }
-
-            if (!user) {
+            if(!user) {
                 return res.badRequest();
             }
-
+            if(user.disabled) {
+                return res.forbidden();
+            }
             bcrypt.compare(req.body.password, user.password, function(err, result) {
-                if (!result) {
+                if(!result) {
                     return res.badRequest();
                 }
                 else if(err) {
@@ -30,12 +31,12 @@ module.exports={
                         exp: expires
                     }, AuthService.jwtTokenSecret);
 
-                    LoginToken.create({token:authToken, expires: expires, userId: user.id}).exec(function(err, token){
-                        if(err){
+                    LoginToken.create({token:authToken, expires: expires, userId: user.id}).exec(function(err, token) {
+                        if(err) {
                             return res.serverError(err);
                         }
                         else {
-                            if(token){
+                            if(token) {
                                 return res.ok({
                                     token : token,
                                     expires: expires,
@@ -51,7 +52,7 @@ module.exports={
             });
         });
     },
-    logout:function(req,res){
+    logout:function(req,res) {
         LoginToken.destroy({userId: req.body.userId}).exec(function(err){
             if(err) {
                 res.serverError(err);
@@ -61,7 +62,7 @@ module.exports={
             }
         });
     },
-    isAuthenticated:function(req,res){
+    isAuthenticated:function(req,res) {
         AuthService.authenticated(req.query.tokenId, function(response) {
             if(response) {
                 AuthService.getUser(response.token, function(user){

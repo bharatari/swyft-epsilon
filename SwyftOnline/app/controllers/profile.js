@@ -35,7 +35,34 @@ export default Ember.Controller.extend(SidebarRouteMixin, StandardActionsMixin, 
             this.set('displayModal', true);
         },
         goBack: function() {
-            this.transitionTo('restaurants');
+            this.transitionToRoute('restaurants');
+        },
+        setContactConsent: function() {
+            var self = this;
+            var data = {
+                contactConsent: this.get('user').contactConsent,
+                user: { token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token }
+            };
+            var url = config.routeLocation + "/api/user/contactConsent";
+            Ember.$.ajax({
+                url: url,
+                headers: { 
+                    Accept : "application/json; charset=utf-8",
+                    "Content-Type": "application/json; charset=utf-8"
+                },
+                data: JSON.stringify(data),
+                type: "PUT",
+                success: function(response) {
+                    self.set('modalTitle', "You're all set!");
+                    self.set('modalBody', 'Your preference has been saved.');
+                    self.set('displayInfoModal', true);
+                },
+                error: function(xhr, textStatus, error) {
+                    self.set('modalTitle', 'Error');
+                    self.set('modalBody', "Something went wrong with your request. Try again and if it doesn't work, let us know");
+                    self.set('displayInfoModal', true);
+                }
+            });
         }
     }
 });

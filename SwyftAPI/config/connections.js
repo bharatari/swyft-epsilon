@@ -29,6 +29,8 @@ module.exports.connections = {
   * Run: npm install sails-mongo                                             *
   *                                                                          *
   ***************************************************************************/
+    
+    /*
   Mongo: {
     adapter: 'sails-mongo',
     host: 'proximus.modulusmongo.net',
@@ -37,12 +39,23 @@ module.exports.connections = {
     password: 'Xv56magj',
     database: 'igEjo9pe'
   },
+  */
+
   MongoDev:{
-    adapter:'sails-mongo',
-    host:'proximus.modulusmongo.net',
-    port:27017,
+    adapter: 'sails-mongo',
+    host: 'proximus.modulusmongo.net',
+    port: 27017,
     user: 'swyftdb',
     password: 'Xv56magj',
     database: 'yju6Wajy'
+  },
+
+    /*
+  MongoLocal:{
+    adapter: 'sails-mongo',
+    host: 'localhost',
+    port: 27017,
+    database: 'local'
   }
+      */
 };
