@@ -213,16 +213,19 @@ module.exports={
                 return res.badRequest();
             }
             else {
-                var transactionAmount = Math.round(parseFloat(req.body.amount*100))/100;
+                var transactionAmount = req.body.amount;
                 var balance = user.balance;
-                user.balance += transactionAmount;
+                
+                user.balance += parseFloat(transactionAmount);
+                user.balance = Math.round(parseFloat(user.balance * 100))/100;
+                
                 res.send({
                     userId: req.body.userId,
                     firstName: user.firstName,
                     lastName: user.lastName,
                     previousBalance: balance,
                     balance: user.balance,
-                    amount: transactionAmount,
+                    amount: parseFloat(transactionAmount),
                     comments: req.body.comments
                 });
             }
@@ -230,34 +233,38 @@ module.exports={
     },
     balanceRequest: function(req, res) {
         var transactionType;
-        if(req.body.amount < 0) {
+        var transactionAmount = parseFloat(req.body.amount);
+        var balance = parseFloat(req.body.previousBalance);
+        balance += transactionAmount;
+        balance = Math.round(parseFloat(balance * 100))/100;
+        
+        if(transactionAmount < 0) {
             transactionType = "deduction";
         }
         else {
             transactionType = "deposit";
         }
-        User.update({id: req.body.userId}, {balance: req.body.balance}).exec(function(err, user){
+        
+        var object = {
+            userId: req.body.userId, 
+            type: transactionType, 
+            amount: Math.abs(transactionAmount), 
+            comments: req.body.comments,
+            transactionCreator: req.user.id,
+            finalBalance: balance
+        }
+        
+        UserTransaction.create(object).exec(function(err, transaction) {
             if(err) {
                 return res.badRequest();
             }
             else {
-                var transactionAmount = Math.round(parseFloat(req.body.amount*100))/100;
-                var balance = user.balance;
-                var final = user.balance + transactionAmount;
-                var object = {
-                    userId: req.body.userId, 
-                    type:transactionType, 
-                    amount: Math.abs(req.body.amount), 
-                    comments: req.body.comments,
-                    transactionCreator: req.user.id,
-                    finalBalance: final
-                }
-                UserTransaction.create(object).exec(function(err){
-                    if(err){
+                User.update({ id: req.body.userId }, { balance: transaction.finalBalance }).exec(function(err, user){
+                    if(err) {
                         return res.badRequest();
                     }
                     else {
-                        res.ok();
+                        return res.ok();
                     }
                 });
             }
