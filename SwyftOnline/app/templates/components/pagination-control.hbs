@@ -1,4 +1,5 @@
 <nav>
+    {{#if display}}
     <ul class="pagination">
         {{#unless onFirstPage}}
             <li><a href="#" {{action 'goToFirstPage'}}>...</a></li>
@@ -14,5 +15,6 @@
             <li><a href="#" {{action 'goToLastPage'}}>...</a></li>
         {{/unless}}
     </ul>
-    <p>Page {{currentPage}} of {{totalPages}}</p>
+    {{/if}}
+    <p class="pagination-text">Page {{currentPage}} of {{totalPages}}</p>
 </nav>

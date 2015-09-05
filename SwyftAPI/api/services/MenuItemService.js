@@ -48,22 +48,34 @@ module.exports = {
         if(item.additionalRequests) {
             item.itemComments += "Requests: " + item.additionalRequests + ", ";
         }
-        async.each(item.options, function(option, callback) {
-            if(option.category === "Meal") {
-                if(option.name !== "No Meal") {
+        if(item.options) {
+            async.each(item.options, function(option, callback) {
+                if(option.category === "Meal") {
+                    if(option.name !== "No Meal") {
+                        item.itemComments += option.name + ", ";
+                    }
+                }
+                if(option.category === "Size") {
                     item.itemComments += option.name + ", ";
                 }
-            }
-            if(option.category === "Size") {
-                item.itemComments += option.name + ", ";
-            }
-            callback();
-        }, function(err) {
-            if(item.itemComments.length > 0) {
-                item.itemComments = item.itemComments.substring(0, item.itemComments.length - 2);
+                callback();
+            }, function(err) {
+                if(item.itemComments) {
+                    if(item.itemComments.length > 0) {
+                        item.itemComments = item.itemComments.substring(0, item.itemComments.length - 2);
+                    }
+                }
+                cb(item);
+            });
+        }
+        else {
+            if(item.itemComments) {
+                if(item.itemComments.length > 0) {
+                    item.itemComments = item.itemComments.substring(0, item.itemComments.length - 2);
+                }
             }
             cb(item);
-        });
+        }
     },
     processItemCommentsFull: function(data, cb) {
         async.each(data.items, function(item, callback) {

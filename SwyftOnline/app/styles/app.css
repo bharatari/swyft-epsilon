@@ -1385,6 +1385,8 @@ a.list-group-item:hover, a.list-group-item:focus {
     font-weight: 600;
     color: white;
     letter-spacing: 2px;
+    margin-bottom: 25px;
+    text-transform: uppercase;
 }
 
 .learn-two-text {
@@ -1400,12 +1402,6 @@ a.list-group-item:hover, a.list-group-item:focus {
     color: white;
     padding-top: 100px;
     padding-bottom: 100px;
-}
-
-.learn-three-header {
-    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
-    text-align: center;
-    padding-bottom: 15px;
 }
 
 .learn-three-text {
@@ -1553,6 +1549,18 @@ a.list-group-item:hover, a.list-group-item:focus {
         width: 300px;
         margin-left: auto;
         margin-right: auto;
+    }
+    
+    .learn-more-main {
+        text-align: center;
+        font-size: 32px;
+    }
+    
+    .learn-more-icon {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 200px;
     }
 }
 
@@ -2208,9 +2216,7 @@ figure span {
 .error-text {
     font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-weight: 300;
-    text-align: center;
-    margin-top: -50px;
-    font-size: 50px;
+    font-size: 29px;
     color: rgba(112, 112, 112, 1);
 }
 
@@ -2404,6 +2410,13 @@ figure span {
 
 .admin-panel-content {
     margin-left: 15px;
+}
+
+.pagination-text {
+    text-transform: uppercase;
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
 @-webkit-keyframes fade-out {

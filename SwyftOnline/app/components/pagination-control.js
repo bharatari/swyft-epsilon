@@ -3,9 +3,22 @@ import Ember from "ember";
 export default Ember.Component.extend({
     didInitAttrs() {
         if(!this.get('currentPage')) {
-            this.set('currentPage', 1);
+            if(this.get('totalPages') > 0) {
+                this.set('currentPage', 1);
+            }
+            else {
+                this.set('currentPage', 0);
+            }
         }
     },
+    display: Ember.computed('totalPages', function() {
+        if(this.get('totalPages') > 0) {
+            return true;
+        } 
+        else {
+            return false;
+        }
+    }),
     onLastPage: Ember.computed('totalPages', 'currentPage', function() {
         if(this.get('currentPage') === this.get('totalPages')) {
             return true;
