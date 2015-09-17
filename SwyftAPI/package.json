@@ -1,7 +1,7 @@
 {
   "name": "swyft-epsilon-api",
   "private": true,
-  "version": "4.0.0-alpha4",
+  "version": "4.0.0-alpha5",
   "description": "SwyftAPI is the server-side implementation of Swyft's web infrastructure. It is designed to be used as a client-agnostic server for Swyft data and authentication, though it currently serves as a server for the SwyftOnline project.",
   "keywords": [],
   "dependencies": {

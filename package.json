@@ -1,7 +1,7 @@
 {
   "name": "swyft-epsilon",
   "private": true,
-  "version": "4.0.0-alpha4",
+  "version": "4.0.0-alpha5",
   "dependencies": {
     "grunt": "^0.4.5"
   },

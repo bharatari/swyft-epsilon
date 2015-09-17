@@ -17,6 +17,7 @@ module.exports.bootstrap = function(cb) {
     UtilityService.protect(function() {
         var agenda = new Agenda();
         agenda.database('swyftdb:Xv56magj@proximus.modulusmongo.net:27017/yju6Wajy');
+        //agenda.database('localhost:27017/local');
         agenda.define('deliveryProcessor', function(job, done) {
             AutomaticService.processDeliveryPeriods(function() {
                 AutomaticService.closeDeliveryPeriods(function() { 
@@ -25,7 +26,11 @@ module.exports.bootstrap = function(cb) {
             });
         });
         agenda.every('1 minute', 'deliveryProcessor');
+        agenda.define('sendChargeLaterEmails', function(job, done) {
+        
+        });
         agenda.start();
+        
     }, function(err) {
        console.log('Delivery Processor Error'); 
     });    
