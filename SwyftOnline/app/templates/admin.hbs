@@ -55,8 +55,8 @@
                         <h1 class="admin-panel-header">Welcome</h1>
                     </div>
                     <div class="admin-panel-content">
-                        <h1 class="admin-about-version">Swyft Epsilon 4.0.0 Alpha 3</h1>
-                        <h4 class="admin-about-codename">Codename Icy Mustard</h4>
+                        <h1 class="admin-about-version">Swyft Epsilon {{appVersionLabel}}</h1>
+                        <h4 class="admin-about-codename">Codename {{appCodename}}</h4>
                     </div>
                 </div>
             </div>
@@ -76,8 +76,8 @@
                         <tbody>
                             {{#each activeDeliveries as |delivery|}}
                             <tr>
-                                <td>{{delivery.deliveryDate}}</td>
-                                <td>{{delivery.orderCutoff}}</td>
+                                <td>{{format-datetime delivery "deliveryDate"}}</td>
+                                <td>{{format-datetime delivery "orderCutoff"}}</td>
                                 <td>{{delivery.orderCount}}</td>
                             </tr>
                             {{/each}}

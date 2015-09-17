@@ -33,11 +33,11 @@
         </ul>
         <h2>Deliverer Comments:</h2>
         {{textarea class="form-control text-area" value=order.deliveryNote.comments}}
-        <button class="btn btn-primary btn-standard" {{action 'submitComments'}}>Submit Comments</button>
+        <button class="btn btn-light" {{action 'submitComments'}}>Submit Comments</button>
         {{#if order.deliveryNote.isDelivered}} 
-            <button class="btn btn-primary btn-standard" {{action 'submitNotDelivered'}}>Set To Not Delivered</button>
+            <button class="btn btn-light" {{action 'submitNotDelivered'}}>Set To Not Delivered</button>
         {{else}}
-            <button class="btn btn-primary btn-standard" {{action 'submitDelivered'}}>Set To Delivered</button>
+            <button class="btn btn-light" {{action 'submitDelivered'}}>Set To Delivered</button>
         {{/if}}
     </div>
 </div>

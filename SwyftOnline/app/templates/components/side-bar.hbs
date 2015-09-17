@@ -13,6 +13,8 @@
         <ul class="cart-list">
             {{#each cart as |item|}}
                 {{sidebar-item item=item removeItem="removeItem" decreaseQuantity="decreaseQuantity" increaseQuantity="increaseQuantity" cart=true}}
+            {{else}}
+                <p class="cart-empty">It's lonely in here.</p>
             {{/each}}
         </ul>
         <h4 class="total-text">TAX <span class="price-light">{{format-currency totalTax}}</span></h4>

@@ -5,7 +5,7 @@
 {{modal-dialog body=modalBody title=modalTitle displayModal=displayInfoModal}}
 
 {{#modal-dialog-dynamic title=modalTitle displayModal=displayModal}}
-<ul class="no-list">
+<ul class="no-list profile-items-list">
     {{#each processedOrder.items as |item|}}
     <li>
         <div>
@@ -57,12 +57,12 @@
                         {{/each}}
                     </div>            
                 </div>
+                <p class="profile-sub-heading sub-heading">If you want to change any other details of your account such as your default delivery location, you'll need to contact us.</p>
                 <label class="checkbox-label checkbox-margin">
                     {{input class="checkbox-control" checked=user.contactConsent type="checkbox"}} It's okay to contact me about promotions and new product offerings.
                 </label>
                 <br/>
-                <button class="btn btn-default" {{action 'setContactConsent'}}>Update</button>
-                <p class="profile-sub-heading sub-heading">If you want to change any other details of your account such as your default delivery location, you'll need to contact us.</p>
+                <button class="btn btn-light" {{action 'setContactConsent'}}>Update</button>
             </div>  
         </form>
     </div>

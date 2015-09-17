@@ -7,7 +7,7 @@
     {{select-menu class="form-control" action=(action (mut itemOption.default)) content=booleanValues selection=itemOption.default optionValuePath="propertyName" optionLabelPath="displayName" prompt="Select a Value"}}
   </div>
 {{else}}
-  <button {{action 'addOption'}} class="btn-default">Add Option</button>
+  <button {{action 'addOption'}} class="btn-light">Add Option</button>
   <button {{action 'deleteItemOption'}}>Delete This Item Option</button>
   {{#each itemOption.options as |option|}}
     {{menu-option option=option deleteOption="deleteOption"}}

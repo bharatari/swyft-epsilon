@@ -66,7 +66,7 @@
                         {{#each deliveryList as |delivery|}}
                         <label class="list-group-item">{{radio-button selected=deliveryList.value name="deliveryList" class="option" value=delivery.id}}<span class="option-text">{{delivery.displayTime}} &nbsp;|&nbsp; <span class="light-text">Order Cutoff: {{delivery.displayCutoff}}</span></span></label>
                         {{else}}
-                        <h3 class="error-text">Our deliveries are closed for the day. Check our homepage to see when we deliver.</h3>
+                        <h3 class="checkout-error-text">Our deliveries are closed for the day. Check our homepage to see when we deliver.</h3>
                         {{/each}}
                     </div>            
                 </div>
@@ -74,9 +74,9 @@
                 {{#if deliveryList}}
                     {{#unless checkoutPressed}}
                         {{#if creditCardSelected}}
-                            {{stripe-checkout class="btn btn-default" name="Swyft LLC" description="Swyft Order Payment" amount=finalAmountCents isDisabled=checkoutDisabled action="checkoutCreditCard" email=user.username label="Pay with Card"}}
+                            {{stripe-checkout class="btn btn-light" name="Swyft LLC" description="Swyft Order Payment" amount=finalAmountCents isDisabled=checkoutDisabled action="checkoutCreditCard" email=user.username label="Pay with Card"}}
                         {{else}}
-                            <button class="btn btn-default" disabled={{checkoutDisabled}} type="submit" {{action 'checkout'}}>Checkout</button>       
+                            <button class="btn btn-light" disabled={{checkoutDisabled}} type="submit" {{action 'checkout'}}>Checkout</button>       
                         {{/if}}   
                     {{/unless}}     
                 {{/if}}

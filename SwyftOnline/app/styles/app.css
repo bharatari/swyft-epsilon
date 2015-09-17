@@ -1,3 +1,5 @@
+/* Bootswatch Cosmo bootswatch v3.3.1+2 */
+
 body {
     overflow-x: hidden;
     /* FIX FOR JASNY BOOTSTRAP SIDEBAR */
@@ -28,8 +30,8 @@ body {
 }
 
 .cart-header {
-    font-weight: 500;
-    font-size: 20px;
+    font-weight: 700;
+    font-size: 18px;
     text-align: center;
     letter-spacing: 5px;
     font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
@@ -58,6 +60,18 @@ body {
 }
 
 .btn-sidemenu:hover {
+    border-color: transparent;
+    background-color: #e2e2e2;
+    color: black;
+}
+
+.btn-sidemenu:active {
+    border-color: transparent;
+    background-color: #e2e2e2;
+    color: black;
+}
+
+.btn-sidemenu:focus {
     border-color: transparent;
     background-color: #e2e2e2;
     color: black;
@@ -165,26 +179,29 @@ body {
 }
 
 .navbar-brand-order a {
-    color: black !important;
+    color: black;
     font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-weight: 600;
     letter-spacing: 7px;
     font-size: 18px;
-    color: black;
-    -webkit-transition: transform 0.5s ease-in;
-    -moz-transition: transform 0.5s ease-in;
-    -ms-transition: transform 0.5s ease-in;
-    -o-transition: transform 0.5s ease-in;
-    transition: transform 0.5s ease-in;
+    -webkit-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    -moz-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    -ms-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    -o-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    transition: background-color 0.2s ease-in, color 0.2s ease-out;
 }
 
 .navbar-brand-order a:hover {
     text-decoration: none;
-    -webkit-transform: scale(0.95);
-    -moz-transform: scale(0.95);
-    -ms-transform: scale(0.95);
-    -o-transform: scale(0.95);
-    transform: scale(0.95);
+    color: darkgray;
+}
+
+.navbar-brand-order a:active {
+    text-decoration: none;    
+}
+
+.navbar-brand-order a:focus {
+    text-decoration: none;    
 }
 
 .navbar-order-header {
@@ -444,7 +461,7 @@ body {
 
 .quick-link {
    color: black !important;
-   font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
+   font-family: 'Open Sans', 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
 .login-button {
@@ -493,7 +510,7 @@ body {
 }
 
 .order-button:hover {
-    background-color: rgb(115, 125, 150);
+    background-color: #ff9191;
 }
 
 .row-two {
@@ -671,7 +688,7 @@ body {
     height: 230px;
     float: left;
     background-color: white;
-    border: 1px solid #ddd;
+    border: 1px solid white;
     font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-weight: 400;
     -webkit-transition: transform 0.2s ease-in, box-shadow 0.2s ease-in;
@@ -681,22 +698,8 @@ body {
     transition: transform 0.2s ease-in, box-shadow 0.2s ease-in;
 }
 
-.grid-product:active {
-    -webkit-transform: scale(0.97);
-    -moz-transform: scale(0.97);
-    -ms-transform: scale(0.97);
-    -o-transform: scale(0.97);
-    transform: scale(0.97);
-}
-
 .grid-product:hover {
-    -webkit-transform: scale(1.03);
-    -moz-transform: scale(1.03);
-    -ms-transform: scale(1.03);
-    -o-transform: scale(1.03);
-    transform: scale(1.03);
     box-shadow: 0 5px 30px -10px #000;
-    margin-bottom: 20px;
 }
 
 a.list-group-item:hover, a.list-group-item:focus {
@@ -721,7 +724,7 @@ a.list-group-item:hover, a.list-group-item:focus {
 }
 
 .grid-product-price {
-    color: #272727;
+    color: #B0B0B0;
     font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     pointer-events: none;
 }
@@ -765,14 +768,15 @@ a.list-group-item:hover, a.list-group-item:focus {
 
 .total-text {
     text-align: center;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 14px;
     letter-spacing: 4px;
     font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
 .price-light {
-    font-weight: 300;
+    font-weight: 400;
+    color: gray;
 }
 
 .cart-list {
@@ -785,18 +789,22 @@ a.list-group-item:hover, a.list-group-item:focus {
 }
 
 .cart-item-name {
-    font-weight: 300;
-    font-size: 25px;
+    font-weight: 500;
+    font-size: 25px; 
+    letter-spacing: -0.25px;
     font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
 .cart-item-itemoptions {
     font-size: 16px;
+    font-weight: 500;
     font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
+    letter-spacing: -0.25px;
 }
 
 .cart-item-price {
-    font-size: 18px;
+    font-size: 16px;
+    font-weight: 500;
     font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
@@ -819,8 +827,18 @@ a.list-group-item:hover, a.list-group-item:focus {
 }
 
 .remove-button:hover {
-    background-color: black;
-    color: white;
+    color: black;
+    background-color: #d3d3d3;
+}
+
+.remove-button:focus {
+    color: black;
+    background-color: #d3d3d3;
+}
+
+.remove-button:active {
+    color: black;
+    background-color: #d3d3d3;
 }
 
 .required-header {
@@ -880,7 +898,7 @@ a.list-group-item:hover, a.list-group-item:focus {
     font-size: 12px;
     color: #2C2C2C;
     margin-left: 15px;
-    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
+    font-family: 'Open Sans', 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
 .footer-item:hover {
@@ -1025,18 +1043,12 @@ a.list-group-item:hover, a.list-group-item:focus {
     background-image: url('/images/Joon.jpg');
 }
 
-
 .delivery-note {
     margin-bottom: 16px;
 }
 
 .text-area {
     height: 200px;
-}
-
-.error-text {
-    margin-left: 10px;
-    color: darkgray;
 }
 
 .news-text {
@@ -1074,7 +1086,7 @@ a.list-group-item:hover, a.list-group-item:focus {
 
 .name-header {
     font-size: 42px;
-    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
+    font-family: 'Open Sans', 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
 
 .small-header {
@@ -1162,8 +1174,18 @@ a.list-group-item:hover, a.list-group-item:focus {
 }
 
 .mini-button:hover {
-    background-color: black;
-    color: white;
+    background-color: #d3d3d3;
+    color: black;
+}
+
+.mini-button:active {
+    background-color: #d3d3d3;
+    color: black;
+}
+
+.mini-button:focus {
+    background-color: #d3d3d3;
+    color: black;
 }
 
 .quantity-label {
@@ -1177,7 +1199,9 @@ a.list-group-item:hover, a.list-group-item:focus {
 .quantity-label-summary {
     margin-top: 4px;
     font-size: 16px;
-    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
+    font-family: 'Open Sans', 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
+    font-weight: 600;
+    letter-spacing: -1px;
 }
 
 .no-list {
@@ -1260,13 +1284,19 @@ a.list-group-item:hover, a.list-group-item:focus {
 }
 
 .restaurant-notice {
-    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
+    font-family: 'Open Sans', 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
+    color: gray;
+}
+
+.notice-divider {
+    border: 1px solid #D4D4D4;    
 }
 
 .notice-header {
-    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
+    font-family: 'Open Sans', 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-size: 14px;
     font-weight: 600;
+    color: gray;
 }
 
 .invalid-message {
@@ -1323,7 +1353,17 @@ a.list-group-item:hover, a.list-group-item:focus {
 }
 
 .balance {
-    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
+    font-family: 'Open Sans', 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
+}
+
+.modal-title {
+    font-family: 'Open Sans';
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.profile-items-list {
+    margin-left: -40px;    
 }
 
 .box-dark {
@@ -1463,7 +1503,8 @@ a.list-group-item:hover, a.list-group-item:focus {
 .summary-total {
     font-weight: 600;
     font-size: 18px;
-    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
+    font-family: 'Open Sans', 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
+    letter-spacing: -1px;
 }
 
 .filter-box { }
@@ -1561,6 +1602,12 @@ a.list-group-item:hover, a.list-group-item:focus {
         margin-left: auto;
         margin-right: auto;
         width: 200px;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .grid-column-restaurant {
+        width: 33.33333333% !important;
     }
 }
 
@@ -1794,6 +1841,43 @@ a.list-group-item:hover, a.list-group-item:focus {
     .welcome-text-temporary {
         font-size: 35px;
     }
+    
+    .grid-column-restaurant {
+        width: 33.33333333% !important;
+    }
+}
+
+@media only screen and (max-width: 705px) {
+    .grid-column-restaurant {
+        width: 50% !important;
+    }
+    
+    .restaurant-card {
+        height: 200px !important;
+    }
+}
+
+@media only screen and (max-width: 380px) {
+    .grid-column-restaurant {
+        width: 100% !important;
+        float: none !important;
+    }
+    
+    .img-background {
+        margin-bottom: -45px;    
+    }
+    
+    .background-title {
+        font-size: 45px;
+    }
+    
+    .background-subtitle {
+        font-size: 22px;    
+    }
+    
+    .restaurant-card {
+        height: 190px !important;
+    }
 }
 
 /* Image Caption Reveal */
@@ -1882,7 +1966,6 @@ figure span {
     overflow-x: hidden;
     overflow-y: auto;
     font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
-    background-color: rgb(244, 244, 244);
 }
 
 .admin-navbar {
@@ -1958,6 +2041,14 @@ figure span {
     background-color: #d3d3d3;
 }
 
+.admin-sidebar-list li a:focus {
+    background-color: #d3d3d3;    
+}
+
+.admin-sidebar-list li a:active {
+    background-color: #d3d3d3;
+}
+
 .admin-sidebar-icon {
     color: inherit;
     margin-right: 10px;
@@ -2017,7 +2108,7 @@ figure span {
     position: relative;
     background-color: white;
     padding-bottom: 30px;
-    border: 1px solid rgb(231, 234, 236);
+    border: 1px solid rgb(224, 224, 224);
     margin-right: 10px;
 }
 
@@ -2213,10 +2304,19 @@ figure span {
     margin-top: 10vh;
 }
 
-.error-text {
+.checkout-error-text {
     font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-weight: 300;
     font-size: 29px;
+    color: rgba(112, 112, 112, 1);
+}
+
+.error-text {
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
+    font-weight: 300;
+    text-align: center;
+    margin-top: -50px;
+    font-size: 50px;
     color: rgba(112, 112, 112, 1);
 }
 
@@ -2244,8 +2344,9 @@ figure span {
 
 .restaurant-card {
     padding: 0px !important;
-    height: 225px;
+    height: 190px;
     cursor: pointer;
+    border: none;
     -webkit-transition: all 0.5s ease-out;
     -moz-transition: all 0.5s ease-out;
     -ms-transition: all 0.5s ease-out;
@@ -2254,13 +2355,7 @@ figure span {
 }
 
 .restaurant-card:hover {
-    -webkit-transform: scale(1.03);
-    -moz-transform: scale(1.03);
-    -ms-transform: scale(1.03);
-    -o-transform: scale(1.03);
-    transform: scale(1.03);
     box-shadow: 0 5px 30px -10px #000;
-    margin-bottom: 20px;
 }
 
 .restaurant-card-image {
@@ -2275,8 +2370,11 @@ figure span {
 
 .restaurant-card-title {
     font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
-    font-weight: 400;
-    font-size: 18px;    
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: -1px;
+    color: rgb(60, 60, 60);  
+    margin-top: 6px;
 }
 
 .background-subtitle {
@@ -2294,6 +2392,8 @@ figure span {
     font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     color: #626262;
     margin-top: -10px;
+    letter-spacing: -1px;
+    font-size: 14px;
 }
 
 .search-icon {
@@ -2400,12 +2500,17 @@ figure span {
 
 .admin-about-version {
     font-family: 'Open Sans';
+    margin-bottom: 10px;
+    letter-spacing: -2px;
 }
 
 .admin-about-codename {
     font-family: 'Open Sans';
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
+    font-size: 16px;
+    letter-spacing: 3px;
+    color: black;
 }
 
 .admin-panel-content {
@@ -2417,6 +2522,56 @@ figure span {
     font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-weight: 700;
     letter-spacing: 1px;
+}
+
+.btn-light {
+    color: white;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+    background-color: rgba(51, 51, 51, 1);
+    border: none;
+    border-radius: 4px;
+    -webkit-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    -moz-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    -ms-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    -o-transition: background-color 0.2s ease-in, color 0.2s ease-out;
+    transition: background-color 0.2s ease-in, color 0.2s ease-out;
+}
+
+.btn-light:hover, btn-light:focus, btn-light:active {
+    background-color: #425b9e;
+}
+
+.btn-light-warning {
+    background-color: #ff7518;
+}
+
+.btn-light-warning:hover, btn-light-warning:focus, btn-light-warning:active {
+    background-color: #e45c00;
+}
+
+.grid-column {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.cart-empty {
+    font-family: 'Open Sans';
+    font-size: 27px;
+    text-align: center;
+    color: darkgray;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-weight: 300;    
+}
+
+.grid-column-restaurant {
+    width: 25%;
+    float: left;
 }
 
 @-webkit-keyframes fade-out {
