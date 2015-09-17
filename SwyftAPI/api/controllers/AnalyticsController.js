@@ -2,14 +2,14 @@ var moment = require('moment');
 
 module.exports = {
     getOrderChart: function(req, res) {
-        Delivery.find().sort({ createdAt: 'asc' }).limit(30).exec(function(err, deliveries) {
+        Delivery.find().limit(30).exec(function(err, deliveries) {
             AnalyticsService.getOrderChart(deliveries, function(result) {
                 res.json(result);
             });
         });
     },
     getRevenueChart: function(req, res) {
-        Delivery.find().sort({ createdAt: 'asc' }).limit(30).exec(function(err, deliveries) {
+        Delivery.find().limit(30).exec(function(err, deliveries) {
             AnalyticsService.getRevenueChart(deliveries, function(result) {
                 res.json(result);
             });

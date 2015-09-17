@@ -1067,7 +1067,7 @@ module.exports = {
                 propertyName: 'deliveryNote.deliveredBy',
                 displayName: 'Delivered By',
                 display: true,
-                type: 'boolean',
+                type: 'string',
                 editable: true
             },
             {

@@ -59,6 +59,10 @@ module.exports = function(environment) {
   ENV.stripe = {
     key: "pk_test_NWvAAITL9qMM7mUAjknRjeY1"
   }
+  
+  ENV.appVersion = "4.0.0-alpha5";
+  ENV.appVersionLabel = "4.0.0 Alpha 5"
+  ENV.appCodename= "Icy Mustard";
    
   return ENV;
 };

@@ -7,6 +7,9 @@ export default Ember.Controller.extend({
         this.set("dateString", moment().format("MMMM D YYYY"));
     }.on('init'),
     currentRoute: 'admin',
+    appVersion: config.appVersion,
+    appVersionLabel: config.appVersionLabel,
+    appCodename: config.appCodename,
     actions: {
         goToExport: function() {
             this.transitionToRoute('admin-export-picker');

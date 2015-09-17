@@ -7,12 +7,14 @@ module.exports = {
         async.eachSeries(deliveries, function(delivery, callback) {
             Order.find({ deliveryId: delivery.id }).exec(function(err, orders) {
                 data.push({
+                    date: delivery.deliveryDate,
                     label: moment(delivery.deliveryDate).format("MM/DD"),
                     data: orders.length
                 });
                 callback();
             });
         }, function(err) {
+            data = UtilityService.sortData(data, "date", "ASC");
             cb(data);
         });
     },
@@ -27,12 +29,14 @@ module.exports = {
                     }
                 }
                 data.push({
+                    date: delivery.deliveryDate,
                     label: moment(delivery.deliveryDate).format("MM/DD"),
                     data: total
                 });
                 callback();
             });
         }, function(err) {
+            data = UtilityService.sortData(data, "date", "ASC");
             cb(data);
         });
     },

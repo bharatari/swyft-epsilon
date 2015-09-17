@@ -20,7 +20,7 @@ module.exports = {
     },
     sendChargeLaterEmail: function(firstName, lastName, email, chargeLaterOrders, cb) {
         var message = {
-            "html":"<h1>You've got outstanding payments</h1><p></p>",
+            "html":"<h1>You've got outstanding payments</h1>",
             "subject":"You've got outstanding payments",
             "from_email":"swyftdeveloper@outlook.com",
             "from_name":"Swyft",
