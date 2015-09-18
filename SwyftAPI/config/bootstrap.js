@@ -1,4 +1,5 @@
-var Agenda = require('agenda');
+/*var Agenda = require('agenda'); */
+var schedule = require('node-schedule');
 var moment = require('moment-timezone');
 var math = require('mathjs');
 
@@ -15,6 +16,7 @@ var math = require('mathjs');
 
 module.exports.bootstrap = function(cb) {
     UtilityService.protect(function() {
+        /*
         var agenda = new Agenda();
         agenda.database('swyftdb:Xv56magj@proximus.modulusmongo.net:27017/yju6Wajy');
         //agenda.database('localhost:27017/local');
@@ -30,7 +32,12 @@ module.exports.bootstrap = function(cb) {
         
         });
         agenda.start();
-        
+        */
+        var deliveryProcessor = schedule.scheduleJob("*/1 * * * *", function() {
+            AutomaticService.processDeliveryPeriods(function() {
+                AutomaticService.closeDeliveryPeriods(function() { });
+            });
+        });
     }, function(err) {
        console.log('Delivery Processor Error'); 
     });    
