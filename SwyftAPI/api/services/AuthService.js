@@ -63,8 +63,13 @@ module.exports = {
                                 }
                                 else {
                                     if(user){
-                                        if(user.isAdmin){
-                                            cb(true);
+                                        if(user.roles) {
+                                            if(UtilityService.CSVContains(user.roles, 'admin')) {
+                                                cb(true);
+                                            }
+                                            else {
+                                                cb(false);
+                                            }
                                         }
                                         else {
                                             cb(false);
@@ -115,8 +120,13 @@ module.exports = {
                                 }
                                 else {
                                     if(user){
-                                        if(user.isAdmin || user.isDeliverer){
-                                            cb(true);
+                                        if(user.roles) {
+                                            if(UtilityService.CSVContains(user.roles, 'admin') || UtilityService.CSVContains(user.roles, 'delivery')){
+                                                cb(true);
+                                            }
+                                            else {
+                                                cb(false);
+                                            }
                                         }
                                         else {
                                             cb(false);

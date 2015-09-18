@@ -411,13 +411,6 @@ module.exports = {
                 editable: true
             },
             {
-                propertyName: 'postOfficeBox',
-                displayName: 'PO Box',
-                display: true,
-                type: 'string',
-                editable: true
-            },
-            {
                 propertyName: 'phoneNumber',
                 displayName: 'Phone Number',
                 display: true,
@@ -429,6 +422,13 @@ module.exports = {
                 displayName: 'Verified',
                 display: true,
                 type: 'boolean',
+                editable: true
+            },
+            {
+                propertyName: 'token',
+                displayName: 'Verification Token',
+                display: true,
+                type: 'string',
                 editable: true
             },
             {
@@ -446,31 +446,10 @@ module.exports = {
                 editable: true
             },
             {
-                propertyName: 'isAdmin',
-                displayName: 'Admin',
+                propertyName: 'roles',
+                displayName: 'Roles',
                 display: true,
-                type: 'boolean',
-                editable: true
-            },
-            {
-                propertyName: 'isDriver',
-                displayName: 'Driver',
-                display: true,
-                type: 'boolean',
-                editable: true
-            },
-            {
-                propertyName: 'isEmployee',
-                displayName: 'Employee',
-                display: true,
-                type: 'boolean',
-                editable: true
-            },
-            {
-                propertyName: 'isDeliverer',
-                displayName: 'Deliverer',
-                display: true,
-                type: 'boolean',
+                type: 'string',
                 editable: true
             },
             {
@@ -481,10 +460,10 @@ module.exports = {
                 editable: true
             },
             {
-                propertyName: 'testUser',
-                displayName: 'Test User',
+                propertyName: 'adminComments',
+                displayName: 'Admin Comments',
                 display: true,
-                type: 'boolean',
+                type: 'string',
                 editable: true
             },
             {

@@ -21,9 +21,6 @@ module.exports={
         dormitory:{
             type:'string'
         },
-        postOfficeBox:{
-            type:'string'
-        },
         phoneNumber:{
             type:'string'
         },
@@ -40,21 +37,11 @@ module.exports={
         contactConsent:{
             type:'boolean'
         },
-        isAdmin:{
-            type:'boolean',
-            defaultsTo:false
+        roles:{
+            type:'string'
         },
-        isDriver:{
-            type:'boolean',
-            defaultsTo:false
-        },
-        isEmployee:{
-            type:'boolean',
-            defaultsTo:false
-        },
-        isDeliverer:{
-            type:'boolean',
-            defaultsTo:false
+        adminComments:{
+            type:'string'
         },
         disabled:{
             type:'boolean',

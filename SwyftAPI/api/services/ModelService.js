@@ -71,18 +71,14 @@ module.exports = {
         this.firstName = "";
         this.lastName = "";
         this.dormitory = "";
-        this.postOfficeBox = "";
         this.phoneNumber = "";
         this.verified = false;
         this.token = "";
         this.balance = 0;
         this.contactConsent = true;
-        this.isAdmin = false;
-        this.isDriver = false;
-        this.isEmployee = false;
-        this.isDeliverer = false;
+        this.roles = "";
+        this.adminComments = "";
         this.disabled = false;
-        this.testUser = false;
     },
     Global: function() {
         this.key = "";

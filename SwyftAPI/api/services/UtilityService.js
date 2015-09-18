@@ -34,6 +34,22 @@ module.exports = {
     splitCSV: function(csv) {
         return csv.split(", ");
     },
+    CSVContains: function(csv, string) {
+        if(csv && string) {
+            var array = this.splitCSV(csv);
+            if(array.length > 0) {
+                for(var i = 0; i < array.length; i++) {
+                    if(array[i] === string) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            else {
+                return false;
+            }
+        }
+    },
     protect: function (run, onError) {
         var domain = require('domain').create();
         domain.on('error', onError);
