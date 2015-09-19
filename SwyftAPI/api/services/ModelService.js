@@ -15,7 +15,7 @@ module.exports = {
         this.items = items;
         this.deliveryNote = deliveryNote;
     },
-    Delivery: function(date, id, restaurants, cutoff, deliverers) {
+    AutomaticDelivery: function(date, id, restaurants, cutoff, deliverers) {
         this.deliveryPeriod = id;
         this.deliveryDate = date;
         this.restaurants = restaurants;

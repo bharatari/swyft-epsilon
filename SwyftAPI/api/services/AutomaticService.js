@@ -25,7 +25,7 @@ module.exports = {
             delivery = delivery.add(7, 'days');
         }
         var cutoff = moment().day(period.cutoffDay).set({ hour: period.cutoffHour, minute: period.cutoffMinute, second: period.cutoffSecond });
-        var newDelivery = new ModelService.Delivery(delivery.toDate(), period.id, "All", cutoff.toDate(), period.deliverers);
+        var newDelivery = new ModelService.AutomaticDelivery(delivery.toDate(), period.id, "All", cutoff.toDate(), period.deliverers);
         console.log('Delivery Processor Running');
         console.log('Creating Delivery');
         Delivery.create(newDelivery).exec(function(err) {
