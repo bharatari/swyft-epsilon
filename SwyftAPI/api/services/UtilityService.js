@@ -1,38 +1,13 @@
 var _ = require('lodash'); 
 
 module.exports = {
-    forLoop: function(items, process, callback) {
-        function loop(i){
-            if(i<items.length){
-                function query(cb){
-                    process(items[i], function() {
-                        cb();
-                    });
-                }
-                query(function(){
-                    loop(i+1);
-                });
-            }
-            else{
-                callback(items);
-            }
-        }
-        loop(0);
-    },
-    indexOfByProperty: function(myArray, searchTerm, property) {
-        for(var i = 0, len = myArray.length; i < len; i++) {
-            if (myArray[i][property] === searchTerm) return i;
-        }
-        return -1;
-    },
-    indexOf: function(myArray, searchTerm) {
-        for(var i = 0, len = myArray.length; i < len; i++) {
-            if (myArray[i] === searchTerm) return i;
-        }
-        return -1;
-    },
     splitCSV: function(csv) {
-        return csv.split(", ");
+        if(csv) {
+            return csv.split(", ");
+        }
+        else {
+            return [];
+        }
     },
     CSVContains: function(csv, string) {
         if(csv && string) {
@@ -49,33 +24,18 @@ module.exports = {
                 return false;
             }
         }
+        else {
+            return false;
+        }
     },
     protect: function (run, onError) {
         var domain = require('domain').create();
         domain.on('error', onError);
         domain.run(run);
     },
-    sort: function(array, propertyString) {
-        return array.sort(function(a,b) { 
-            return new Date(a[propertyString]).getTime() - new Date(b[propertyString]).getTime() 
-        });
-    },
-    pagination: function(data, recordsPerPage, page) {
-        if(data) {
-            var totalPages = Math.ceil(data.length / recordsPerPage);
-            var lower = (page - 1) * recordsPerPage;
-            var upper = data.length - (page * recordsPerPage);
-            data = _.drop(data, lower);
-            data = _.dropRight(data, upper);
-            return data;
-        }
-        else {
-            return data;
-        }
-    },
     paginationSkip: function(data, recordsPerPage, skip) {
         if(data) {
-            var page = (skip / 100) + 1;
+            var page = (skip / recordsPerPage) + 1;
             var upper = data.length - (page * recordsPerPage);
             data = _.drop(data, skip);
             data = _.dropRight(data, upper);
@@ -196,17 +156,32 @@ module.exports = {
     /** Converts filters to Waterline syntax **/
     convertFilters: function(filters) {
         var filterObject = {};
-        for(var i = 0; i < filters.length; i++) {
-            if(filters[i].filterType !== 'equalTo') {
-                var filterProperty = {};
-                filterProperty[this.convertFilterType(filters[i].filterType)] = filters[i].filterValue;
-                filterObject[filters[i].filterProperty] = filterProperty;
+        if(filters) {
+            if(Object.prototype.toString.call(filters) === '[object Array]') {
+                if(filters.length > 0) {
+                    for(var i = 0; i < filters.length; i++) {
+                        if(filters[i].filterType !== 'equalTo') {
+                            var filterProperty = {};
+                            filterProperty[this.convertFilterType(filters[i].filterType)] = filters[i].filterValue;
+                            filterObject[filters[i].filterProperty] = filterProperty;
+                        }
+                        else {
+                            filterObject[filters[i].filterProperty] = filters[i].filterValue;
+                        }
+                    }
+                    return filterObject;
+                }
+                else {
+                    return {};       
+                }
             }
             else {
-                filterObject[filters[i].filterProperty] = filters[i].filterValue;
+                return {};
             }
         }
-        return filterObject;
+        else {
+            return {};
+        }
     },
     convertFilterType: function(filterType) {
         var propertyDictionary = new Array();
@@ -218,50 +193,62 @@ module.exports = {
     },
     /** Converts filters from Waterline syntax to Firefly syntax **/
     convertFilterFromWaterline: function(filter) {
-        filter = JSON.parse(filter);
+        if(typeof filter === "string") {
+            try {
+                filter = JSON.parse(filter);
+            }
+            catch(err) {
+                return [];
+            }
+        }
         var filters = [];
-        for(var property in filter) {
-            if (filter.hasOwnProperty(property)) {
-                if(typeof filter[property] === "object") {
-                    var obj = filter[property];
-                    if(obj['<']) {
+        try {
+            for(var property in filter) {
+                if (filter.hasOwnProperty(property)) {
+                    if(typeof filter[property] === "object") {
+                        var obj = filter[property];
+                        if(obj['<']) {
+                            filters.push({
+                                filterType: 'lessThan',
+                                filterValue: obj['<'],
+                                filterProperty: property
+                            });
+                        }
+                        else if(obj['>']) {
+                            filters.push({
+                                filterType: 'greaterThan',
+                                filterValue: obj['>'],
+                                filterProperty: property
+                            });
+                        }
+                        else if(obj['!']) {
+                            filters.push({
+                                filterType: 'notEqualTo',
+                                filterValue: obj['!'],
+                                filterProperty: property
+                            });
+                        }
+                        else if(obj['contains']) {
+                            filters.push({
+                                filterType: 'contains',
+                                filterValue: obj['contains'],
+                                filterProperty: property
+                            });
+                        }
+                    }
+                    else {
                         filters.push({
-                            filterType: 'lessThan',
-                            filterValue: obj['<'],
+                            filterType: 'equalTo',
+                            filterValue: filter[property],
                             filterProperty: property
                         });
                     }
-                    else if(obj['>']) {
-                        filters.push({
-                            filterType: 'greaterThan',
-                            filterValue: obj['>'],
-                            filterProperty: property
-                        });
-                    }
-                    else if(obj['!']) {
-                        filters.push({
-                            filterType: 'notEqualTo',
-                            filterValue: obj['!'],
-                            filterProperty: property
-                        });
-                    }
-                    else if(obj['contains']) {
-                        filters.push({
-                            filterType: 'contains',
-                            filterValue: obj['contains'],
-                            filterProperty: property
-                        });
-                    }
-                }
-                else {
-                    filters.push({
-                        filterType: 'equalTo',
-                        filterValue: filter[property],
-                        filterProperty: property
-                    });
                 }
             }
         }
+        catch(err) {
+            return [];
+        }        
         return filters;
     },
     getPropertyValue: function(object, propertyName) {
