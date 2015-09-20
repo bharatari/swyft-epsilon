@@ -2028,7 +2028,7 @@ figure span {
 .admin-sidebar-list li a {
     color: #363636;
     font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 13px;
     -webkit-transition: background-color 0.5s ease-in;
     -moz-transition: background-color 0.5s ease-in;
@@ -2057,7 +2057,7 @@ figure span {
 
 .admin-sidebar-static a {
     font-size: 16px !important;
-    font-weight: 600 !important;
+    font-weight: 500 !important;
     margin-left: -14px !important;
 }
 
@@ -2108,8 +2108,8 @@ figure span {
     position: relative;
     background-color: white;
     padding-bottom: 30px;
-    border: 1px solid rgb(224, 224, 224);
     margin-right: 10px;
+    box-shadow: none !important;
 }
 
 .admin-panel-fixed-height {
@@ -2122,14 +2122,14 @@ figure span {
 }
 
 .admin-content-box {
-    border-radius: 4px;
+    border-radius: 2px;
     padding-left: 27px;
     padding-bottom: 27px;
     position: relative;
 }
 
 .admin-content-box-text {
-    font-size: 40px;
+    font-size: 34px;
     padding-top: 30px;
     color: white;
     font-weight: 300;
@@ -2137,10 +2137,11 @@ figure span {
 }
 
 .admin-content-box-subtitle {
-    font-size: 23px;
-    font-weight: 300;
-    font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     color: white;
+    text-transform: uppercase;
 }
 
 .blue-dark {
@@ -2160,7 +2161,15 @@ figure span {
 }
 
 .turquoise {
-    background-color: #1abc9c;
+    background-color: #1bc98e;
+}
+
+.red {
+    background-color: #e64759;
+}
+
+.yellow {
+    background-color: #e4d836;    
 }
 
 /*
@@ -2174,11 +2183,12 @@ figure span {
 .admin-panel-header {
     font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     margin-bottom: 23px;
-    color: rgb(103, 106, 108);
+    color: rgba(92, 92, 92, 1);
     margin-top: 10px;
     margin-left: 5px;
-    font-size: 14px;
-    font-weight: 700;
+    font-size: 15px;
+    font-weight: 400;
+    text-transform: uppercase;
 }
 
 .admin-content-inline {
@@ -2219,7 +2229,7 @@ figure span {
 }
 
 .admin-panel-header-area {
-    border-bottom: 1px solid rgb(231, 234, 236);
+    border-bottom: 1px solid lightgray;
     margin-left: -10px;
     margin-right: -10px;
     padding-left: 10px;
@@ -2228,6 +2238,7 @@ figure span {
 
 .admin-table {
     font-family: 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
+    font-size: 13px;
 }
 
 .btn-default {
@@ -2308,6 +2319,7 @@ figure span {
     font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-weight: 300;
     font-size: 29px;
+    margin-left: 12px;
     color: rgba(112, 112, 112, 1);
 }
 
@@ -2371,9 +2383,8 @@ figure span {
 .restaurant-card-title {
     font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-weight: 600;
-    font-size: 17px;
-    letter-spacing: -1px;
-    color: rgb(60, 60, 60);  
+    font-size: 16px;
+    color: #3c3c3c;  
     margin-top: 6px;
 }
 
@@ -2392,7 +2403,6 @@ figure span {
     font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     color: #626262;
     margin-top: -10px;
-    letter-spacing: -1px;
     font-size: 14px;
 }
 
@@ -2517,11 +2527,13 @@ figure span {
     margin-left: 15px;
 }
 
+.admin-content-margin {
+    margin-left: 15px;
+}
+
 .pagination-text {
-    text-transform: uppercase;
     font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
     font-weight: 700;
-    letter-spacing: 1px;
 }
 
 .btn-light {
