@@ -1,7 +1,13 @@
 import config from 'swyft-epsilon-online/config/environment';
 
 export default {
-    localStorageKey: "currentSession-R32FSTF12YE43A3",
+    localStorageKey: "cartToken-e5162f27da96ed8e1ae51def1ba643b91d2581d8", 
+    getToken: function() {
+        return JSON.parse(localStorage.getItem(this.localStorageKey)).token.token;
+    },
+    getTokenId: function() {
+        return JSON.parse(localStorage.getItem(this.localStorageKey)).token.id;
+    },
     checkLogin: function() {
         var key = this.localStorageKey;
         return new Ember.RSVP.Promise(function(resolve, reject){

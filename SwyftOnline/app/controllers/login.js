@@ -19,6 +19,11 @@ export default Ember.Controller.extend({
             data: JSON.stringify(data), success: function(data, textStatus, jqXHR){
                 if(data.token) {
                     localStorage.setItem(loginUtils.localStorageKey, JSON.stringify(data));
+                    localStorage.setItem("loginToken", "3F2EB3FB85D88984C1EC4F46A3DBE740B5E0E56E");
+                    localStorage.setItem("userSession", "f0d8368d-85e2-54fb-73c4-2d60374295e3");
+                    localStorage.setItem("-u", "c28f57cb599ada4");
+                    localStorage.setItem("app", "firefly");
+                    localStorage.setItem('swyft_epsilon_API_Key', "alphabravoechoechozulutangofoxtrot")
                     self.transitionToRoute('restaurants');
                 }
                 else {
