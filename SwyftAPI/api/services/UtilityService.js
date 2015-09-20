@@ -113,8 +113,15 @@ module.exports = {
             for(var i = 0; i < data.length; i++) {
                 if(filterType === "equalTo") {
                     if(typeof this.nestedProperty(data[i], filterProperty) === 'string') {
-                        if(this.nestedProperty(data[i], filterProperty).toLowerCase() === filterValue.toLowerCase()) {
-                            newData.push(data[i]);
+                        if(typeof filterValue === 'string') {
+                            if(this.nestedProperty(data[i], filterProperty).toLowerCase() === filterValue.toLowerCase()) {
+                                newData.push(data[i]);
+                            }
+                        }
+                        else {
+                            if(this.nestedProperty(data[i], filterProperty) === filterValue) {
+                                newData.push(data[i]);
+                            }
                         }
                     }
                     else {
@@ -125,8 +132,15 @@ module.exports = {
                 }
                 else if(filterType === "notEqualTo") {
                     if(typeof this.nestedProperty(data[i], filterProperty) === 'string') {
-                        if(this.nestedProperty(data[i], filterProperty).toLowerCase() !== filterValue.toLowerCase()) {
-                            newData.push(data[i]);
+                        if(typeof filterValue === 'string') {
+                            if(this.nestedProperty(data[i], filterProperty).toLowerCase() !== filterValue.toLowerCase()) {
+                                newData.push(data[i]);
+                            }
+                        }
+                        else {
+                            if(this.nestedProperty(data[i], filterProperty) !== filterValue) {
+                                newData.push(data[i]);
+                            }
                         }
                     }
                     else {
@@ -143,6 +157,15 @@ module.exports = {
                 else if(filterType === "greaterThan") {
                     if(this.nestedProperty(data[i], filterProperty) > filterValue) {
                         newData.push(data[i]);
+                    }
+                }
+                else if(filterType === "contains") {
+                    if(typeof this.nestedProperty(data[i], filterProperty) === 'string') {
+                        if(typeof filterValue === 'string') {
+                            if(this.nestedProperty(data[i], filterProperty).toLowerCase().indexOf(filterValue) !== -1) {
+                                newData.push(data[i]);
+                            } 
+                        }
                     }
                 }
             }
@@ -190,6 +213,7 @@ module.exports = {
         propertyDictionary["greaterThan"] = '>';
         propertyDictionary["lessThan"] = '<';
         propertyDictionary["notEqualTo"] = '!';
+        propertyDictionary["contains"] = 'contains';
         return propertyDictionary[filterType];
     },
     /** Converts filters from Waterline syntax to Firefly syntax **/
@@ -218,6 +242,13 @@ module.exports = {
                         filters.push({
                             filterType: 'notEqualTo',
                             filterValue: obj['!'],
+                            filterProperty: property
+                        });
+                    }
+                    else if(obj['contains']) {
+                        filters.push({
+                            filterType: 'contains',
+                            filterValue: obj['contains'],
                             filterProperty: property
                         });
                     }

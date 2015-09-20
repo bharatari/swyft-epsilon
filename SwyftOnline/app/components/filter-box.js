@@ -6,7 +6,8 @@ export default Ember.Component.extend({
         { propertyName: 'equalTo', displayName: "Equal" },
         { propertyName: 'notEqualTo', displayName: "Not Equal" },
         { propertyName: 'lessThan', displayName: "Less Than" },
-        { propertyName: 'greaterThan', displayName: "Greater Than" }
+        { propertyName: 'greaterThan', displayName: "Greater Than" },
+        { propertyName: 'contains', displayName: "Contains" }
     ],
     filtersEqual: function(filter1, filter2) {
         if((filter1.filterProperty === filter2.filterProperty) && (filter1.filterType === filter2.filterType) && (filter1.filterValue === filter2.filterValue)) {
@@ -40,7 +41,7 @@ export default Ember.Component.extend({
             if(parseFloat(newFilter.filterValue) && (parseFloat(newFilter.filterValue).toString().length === newFilter.filterValue.length)) {
                 newFilter.filterValue = parseFloat(newFilter.filterValue);
             }
-            else if (this.get(newFilter.filterProperty) === 'boolean') {
+            else if (this.getType(newFilter.filterProperty) === 'boolean') {
                 if(newFilter.filterValue === 'true' || newFilter.filterValue === 'True') {
                     newFilter.filterValue = true;
                 }
@@ -48,11 +49,6 @@ export default Ember.Component.extend({
                     newFilter.filterValue = false;
                 }
             }
-            /*
-            else {
-                newFilter.filterValue = newFilter.filterValue.toLowerCase();
-            }
-            */
             filters.push(newFilter);
             this.set('filters', filters);
         },
