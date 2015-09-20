@@ -52,7 +52,11 @@ export default Ember.Controller.extend({
                 var url = config.routeLocation + "/api/admin/order/" + this.get('id');
                 Ember.$.ajax({
                     url: url,
-                    data: data,
+                    data: JSON.stringify(data),
+                    headers: { 
+                        Accept : "application/json; charset=utf-8",
+                        "Content-Type": "application/json; charset=utf-8"
+                    },
                     type: "PUT",
                     success: function(response) {
                         self.set('displayDialog', false);
