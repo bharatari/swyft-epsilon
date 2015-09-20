@@ -1,31 +1,38 @@
-{{partial "navbar-admin-page"}}
+{{partial "navbar-admin-modern"}}
 
-<div class="container">
-    <ul class="breadcrumb">
-        <li><a>{{#link-to 'index'}}Home{{/link-to}}</a></li>
-        <li><a>{{#link-to 'admin'}}Admin{{/link-to}}</a></li>
-        <li class="active">Export</li>
-    </ul>
-    <div class="list-group">
-        {{#each deliveryList as |delivery|}}
-            <div class="row">
-                <h3 class="header-margin">{{delivery.displayTime}}</h3>
-                <button class="grid-restaurant list-group-item" {{action 'goToExport' delivery.id}}>
-                    <p class="click-through justify-left">Export</p>
-                </button>
-                <button class="grid-restaurant list-group-item" {{action 'goToAggregate' delivery.id}}>
-                    <p class="click-through justify-left">Aggregate</p>
-                </button>
-                <button class="grid-restaurant list-group-item" {{action 'goToMaster' delivery.id}}>
-                    <p class="click-through justify-left">Master</p>
-                </button>
-                <button class="grid-restaurant list-group-item" {{action 'goToDelivery' delivery.id}}>
-                    <p class="click-through justify-left">Delivery</p>
-                </button>
+<div class="admin-container">
+    {{admin-navigation currentRoute=currentRoute}}
+
+    <div class="admin-content">
+        <div class="container">
+            <div class="admin-header-bar">
+                <h1 class="admin-header">Export Picker</h1>
+                <h4 class="admin-subtitle">Pick a report to generate.</h4>
             </div>
-        {{else}}
-            <h1>Nope. Nothing to see here.</h1>
-            <h5>There are no deliveries to show.</h5>
-        {{/each}}
-    </div>       
+            <div class="admin-content-margin">
+                <div class="list-group">
+                    {{#each deliveryList as |delivery|}}
+                        <div class="row">
+                            <h3 class="header-margin">{{delivery.displayTime}}</h3>
+                            <button class="grid-restaurant list-group-item" {{action 'goToExport' delivery.id}}>
+                                <p class="click-through justify-left">Export</p>
+                            </button>
+                            <button class="grid-restaurant list-group-item" {{action 'goToAggregate' delivery.id}}>
+                                <p class="click-through justify-left">Aggregate</p>
+                            </button>
+                            <button class="grid-restaurant list-group-item" {{action 'goToMaster' delivery.id}}>
+                                <p class="click-through justify-left">Master</p>
+                            </button>
+                            <button class="grid-restaurant list-group-item" {{action 'goToDelivery' delivery.id}}>
+                                <p class="click-through justify-left">Delivery</p>
+                            </button>
+                        </div>
+                    {{else}}
+                        <h1>Nothing to see here.</h1>
+                        <h5>There are no deliveries to show.</h5>
+                    {{/each}}
+                </div>       
+            </div>    
+        </div>
+    </div>
 </div>

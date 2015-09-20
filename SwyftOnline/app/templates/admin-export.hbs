@@ -1,47 +1,59 @@
-{{partial "navbar-admin-page"}}
+{{partial "navbar-admin-modern"}}
 
-<div class="container">
-    <table class="table table-hover">
-        <tbody>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Comments</th>
-                <th>Total</th>
-                <th>Location</th>
-                <th>Phone</th>
-                <th>Payment</th>
-                <th>Items</th>
-            </tr>
-            {{#each deliveryItems as |order|}}
-            <tr>
-                <td>{{order.user.firstName}}</td>
-                <td>{{order.user.lastName}}</td>
-                <td>{{order.userComments}}</td>
-                <td>{{format-currency order.actualAmount}}</td>
-                <td>{{order.deliveryLocation}}</td>
-                <td>{{order.contactPhone}}</td>
-                <td>{{order.paymentType}}</td>
-                <td>
-                    <ul>
-                        {{#each order.items as |item|}}
-                        <li>
-                            <div>
-                                <p><strong>{{item.restaurant}}</strong></p>
-                                <p>Name: {{item.name}}</p>
-                                <p>Item Options: {{item.itemOptions}}</p>
-                                <p>Requests: {{item.additionalRequests}}</p>
-                                {{#if item.quantity}}
-                                <p><strong>Quantity: {{item.quantity}}</strong></p>
-                                {{/if}}
-                                <p>{{format-currency item.price}}</p>
-                            </div>
-                        </li>
+<div class="admin-container">
+    {{admin-navigation currentRoute=currentRoute}}
+
+    <div class="admin-content">
+        <div class="container">
+            <div class="admin-header-bar">
+                <h1 class="admin-header">Export</h1>
+                <h4 class="admin-subtitle">Raw report of order data.</h4>
+            </div>
+            <div class="admin-content-margin">
+                <table class="table table-hover">
+                    <tbody>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Comments</th>
+                            <th>Total</th>
+                            <th>Location</th>
+                            <th>Phone</th>
+                            <th>Payment</th>
+                            <th>Items</th>
+                        </tr>
+                        {{#each deliveryItems as |order|}}
+                        <tr>
+                            <td>{{order.user.firstName}}</td>
+                            <td>{{order.user.lastName}}</td>
+                            <td>{{order.userComments}}</td>
+                            <td>{{format-currency order.actualAmount}}</td>
+                            <td>{{order.deliveryLocation}}</td>
+                            <td>{{order.contactPhone}}</td>
+                            <td>{{order.paymentType}}</td>
+                            <td>
+                                <ul>
+                                    {{#each order.items as |item|}}
+                                    <li>
+                                        <div>
+                                            <p><strong>{{item.restaurant}}</strong></p>
+                                            <p>Name: {{item.name}}</p>
+                                            <p>Item Options: {{item.itemOptions}}</p>
+                                            <p>Requests: {{item.additionalRequests}}</p>
+                                            {{#if item.quantity}}
+                                            <p><strong>Quantity: {{item.quantity}}</strong></p>
+                                            {{/if}}
+                                            <p>{{format-currency item.price}}</p>
+                                        </div>
+                                    </li>
+                                    {{/each}}
+                                </ul>
+                            </td>
+                        </tr>
                         {{/each}}
-                    </ul>
-                </td>
-            </tr>
-            {{/each}}
-        </tbody>
-    </table>
+                    </tbody>
+                </table>
+            </div>    
+        </div>
+    </div>
 </div>

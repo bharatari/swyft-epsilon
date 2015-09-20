@@ -1,28 +1,39 @@
-{{partial "navbar-admin-page"}}
+{{partial "navbar-admin-modern"}}
 
-<div class="container">
-    <table class="table table-hover aggregate">
-        {{#each processed as |aggregate|}}
-        <tr>
-            <td>
-                <h4>{{aggregate.name}}</h4>
-                <ul>
-                    {{#each aggregate.items as |item|}}
-                    <li>
-                        {{#if aggregate.fullRender}}
-                            <p><strong>Customer Name:</strong> {{item.customerName}}</p>
-                        {{/if}}
-                        <p>{{item.quantity}} <strong>{{item.name}}</strong></p>
-                        <div>
-                            <p class="indent-text">{{item.additionalRequests}}</p>
-                            <p class="indent-text">{{item.itemOptions}}</p>
-                        </div>
-                    </li>
+<div class="admin-container">
+    {{admin-navigation currentRoute=currentRoute}}
+
+    <div class="admin-content">
+        <div class="container">
+            <div class="admin-header-bar">
+                <h1 class="admin-header">Aggregate</h1>
+                <h4 class="admin-subtitle">Aggregates all items ordered for a specific delivery.</h4>
+            </div>
+            <div class="admin-content-margin">
+                <table class="table table-hover aggregate">
+                    {{#each processed as |aggregate|}}
+                    <tr>
+                        <td>
+                            <h4>{{aggregate.name}}</h4>
+                            <ul>
+                                {{#each aggregate.items as |item|}}
+                                <li>
+                                    {{#if aggregate.fullRender}}
+                                        <p><strong>Customer Name:</strong> {{item.customerName}}</p>
+                                    {{/if}}
+                                    <p>{{item.quantity}} <strong>{{item.name}}</strong></p>
+                                    <div>
+                                        <p class="indent-text">{{item.additionalRequests}}</p>
+                                        <p class="indent-text">{{item.itemOptions}}</p>
+                                    </div>
+                                </li>
+                                {{/each}}
+                            </ul>
+                        </td>
+                    </tr>
                     {{/each}}
-                </ul>
-            </td>
-        </tr>
-        {{/each}}
-    </table>
-    
+                </table>
+            </div>    
+        </div>
+    </div>
 </div>

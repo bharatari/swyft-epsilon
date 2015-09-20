@@ -1,19 +1,26 @@
-{{partial "navbar-admin"}}
-
-<div class="img-background container-fluid"></div>
+{{partial "navbar-admin-modern"}}
 
 {{modal-dialog body=modalBody title=modalTitle displayModal=displayModal}}
 
-<div class="container">
-    <ul class="breadcrumb">
-        <li><a>{{#link-to 'index'}}Home{{/link-to}}</a></li>
-        <li><a>{{#link-to 'admin'}}Admin{{/link-to}}</a></li>
-        <li class="active">New Token</li>
-    </ul>
-    <div class="info-well well">
-        <h1>New Token</h1>
-        {{input class="form-control" value=comments type="text" placeholder="Comments"}}
-        {{input class="form-control" value=discount type="number" placeholder="Discount"}}
-        <button class="btn btn-light btn-standard" {{action 'submit'}}>Submit</button>
+<div class="admin-container">
+    {{admin-navigation currentRoute=currentRoute}}
+
+    <div class="admin-content">
+        <div class="container">
+            <div class="admin-header-bar">
+                <h1 class="admin-header">New Token</h1>
+                <h4 class="admin-subtitle">Generate a new one-time use token.</h4>
+            </div>
+            <div class="panel admin-panel">
+                <div class="admin-panel-header-area">
+                    <h1 class="admin-panel-header">Form</h1>
+                </div>
+                <div class="admin-panel-content">
+                    {{input class="form-control" value=comments type="text" placeholder="Comments"}}
+                    {{input class="form-control" value=discount type="number" placeholder="Discount"}}
+                    <button class="btn btn-light btn-standard" {{action 'submit'}}>Submit</button>
+                </div>
+            </div>   
+        </div>
     </div>
 </div>

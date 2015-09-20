@@ -3,6 +3,7 @@ import config from 'swyft-epsilon-online/config/environment';
 import cartUtils from 'swyft-epsilon-online/utils/cart-utils';
 
 export default Ember.Controller.extend({ 
+    currentRoute: 'admin-export',
     filters: [],
     filtersChanged: function() {
         var filters = this.get('filters');

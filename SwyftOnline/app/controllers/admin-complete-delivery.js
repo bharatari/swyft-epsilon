@@ -3,6 +3,7 @@ import loginUtils from 'swyft-epsilon-online/utils/login-utils';
 import config from 'swyft-epsilon-online/config/environment';
 
 export default Ember.Controller.extend({
+    currentRoute: 'admin-complete-delivery',
     deliveryList: function() {
         var array = this.get('deliveries');
         for(var i = 0; i < array.length; i++) {

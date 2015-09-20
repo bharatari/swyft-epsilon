@@ -2,6 +2,7 @@ import Ember from "ember";
 import config from 'swyft-epsilon-online/config/environment';
 
 export default Ember.Controller.extend({
+    currentRoute: 'admin-export-picker',
     deliveryList: Ember.computed('model', function() {
         var array = this.get('model');
         for(var i = 0; i < array.length; i++) {

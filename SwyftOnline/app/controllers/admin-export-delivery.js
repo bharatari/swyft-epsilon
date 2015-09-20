@@ -4,6 +4,7 @@ import cartUtils from 'swyft-epsilon-online/utils/cart-utils';
 import loginUtils from 'swyft-epsilon-online/utils/login-utils';
 
 export default Ember.Controller.extend({
+    currentRoute: 'admin-export',
     notDelivered: function() {
         var data = this.get('data').items;   
         var array = [];
