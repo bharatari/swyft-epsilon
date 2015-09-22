@@ -1,7 +1,9 @@
+/* jslint unused: false */
+import Ember from "ember";
 import config from 'swyft-epsilon-online/config/environment';
 
 export default {
-    localStorageKey: "cartToken-e5162f27da96ed8e1ae51def1ba643b91d2581d8", 
+    localStorageKey: "cart_token-e5162f27da96ed8e1ae51def1ba643b91d2581d8", 
     getToken: function() {
         return JSON.parse(localStorage.getItem(this.localStorageKey)).token.token;
     },
@@ -51,7 +53,10 @@ export default {
                         "Content-Type": "application/json; charset=utf-8"
                     },
                     success: function(response) {
-                        localStorage.removeItem(key);
+                        //localStorage.removeItem(key);
+                        //Resetting everything on logout makes it much more effective at solving any runtime errors that a user may encounter (with the cart, their user session etc.)
+                        //Resetting on logout also totally works with our app flow so it's not going to cause issues either
+                        localStorage.clear();
                         resolve(true);
                     },
                     error: function(xhr, textStatus, error) {
@@ -137,4 +142,4 @@ export default {
         }
     },
     localStorageAlert: "We're having trouble processing your request. You're either using Safari in Private Mode or an older, unsupported browser. Please disable Private Mode on Safari or use another compatible browser, in order to continue."
-}
+};

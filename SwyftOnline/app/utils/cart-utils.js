@@ -1,6 +1,11 @@
+/* jslint unused: false */
+/* global _ */
 import itemUtils from 'swyft-epsilon-online/utils/item-utils';
+import config from 'swyft-epsilon-online/config/environment';
 
 export default {
+    cartKey: 'cart',
+    cartVersionKey: 'cartVersion',
     /** This is used to find items **/
     cartItemsEqual: function(cartItem, arrayItem){
         if(cartItem.id === arrayItem.id && this.optionsEqual(cartItem.options, arrayItem.options) && this.standardOptionsEqual(cartItem.standardOptions, arrayItem.standardOptions) && this.extrasEqual(cartItem.extras, arrayItem.extras) && this.attachedRequestsEqual(cartItem, arrayItem) & (cartItem.additionalRequests === arrayItem.additionalRequests)) {
@@ -115,5 +120,40 @@ export default {
             array.push(item);
         }
         localStorage.setItem("cart", JSON.stringify(array));
+    },
+    getCartForRestore: function() {
+        //This function is just about taking the existing state and restoring it
+        //We don't have to worry about anything else
+        if(typeof localStorage.getItem(this.cartKey) !== 'undefined') {
+            return JSON.parse(localStorage.getItem(this.cartKey));
+        }
+        else {
+            //If the cart doesn't exist, we can safely return an empty array with no side effects
+            return [];
+        }
+    },
+    getCartVersionForRestore: function() {
+        //This will be falsy for 0, which makes sense because 0 is not a valid cartVersion
+        if(typeof localStorage.getItem(this.cartVersionKey) !== 'undefined') {
+            try {
+                return JSON.parse(localStorage.getItem(this.cartVersionKey));
+            }
+            catch(err) {
+                return localStorage.getItem(this.cartVersionKey);
+            }
+        }
+        else {
+            //What we return here is rather important, because it could cause side effects
+            //If there is no cartVersion we can assume there is no cart either and therefore return the config cartVersion value
+            return config.cartVersion;
+        }
+    },
+    restoreCart: function(cart, cartVersion) {
+        if(typeof cart !== 'undefined') {
+            localStorage.setItem(this.cartKey, JSON.stringify(cart));
+        }
+        if(typeof cartVersion !== 'undefined') {
+            localStorage.setItem(this.cartVersionKey, JSON.stringify(cartVersion));
+        }
     }
-}
+};
