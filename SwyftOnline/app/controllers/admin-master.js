@@ -1,4 +1,5 @@
-import Ember from "ember"
+/* jslint unused: false */
+import Ember from "ember";
 import config from 'swyft-epsilon-online/config/environment';
 import cartUtils from 'swyft-epsilon-online/utils/cart-utils';
 
@@ -22,7 +23,7 @@ export default Ember.Controller.extend({
         //property = this.convertProperty(property);
         var newData = {
             items: []
-        }
+        };
         if(parseFloat(value)) {
             value = parseFloat(value);
         }

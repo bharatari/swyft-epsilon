@@ -1,3 +1,4 @@
+/* global moment */
 import Ember from "ember";
 import config from 'swyft-epsilon-online/config/environment';
 

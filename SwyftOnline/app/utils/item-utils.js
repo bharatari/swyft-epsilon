@@ -1,3 +1,5 @@
+/* jslint unused: false */
+/* global $ */
 import config from 'swyft-epsilon-online/config/environment';
 
 export default {

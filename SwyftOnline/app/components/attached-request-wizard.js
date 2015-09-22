@@ -1,3 +1,6 @@
+/* global _ */
+/* jslint unused: false */
+/* jslint eqeqeq: true */
 import Ember from "ember";
 
 export default Ember.Component.extend({
@@ -76,7 +79,7 @@ export default Ember.Component.extend({
 			var option = {
 				price: null,
 				name: ""
-			}
+			};
 			value.push(option);
 			Ember.set(options, 'value', value);
 			this.rerender();

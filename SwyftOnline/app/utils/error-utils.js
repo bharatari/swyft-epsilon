@@ -1,3 +1,4 @@
+/* jslint unused: false */
 import itemUtils from 'swyft-epsilon-online/utils/item-utils';
 
 export default {
@@ -12,4 +13,4 @@ export default {
 			}
 		}
 	}
-}
+};

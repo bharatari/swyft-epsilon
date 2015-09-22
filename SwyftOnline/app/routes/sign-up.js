@@ -8,11 +8,11 @@ export default Ember.Route.extend(UnauthenticatedRouteMixin, AnimateOutRouteMixi
     model: function() {
         return Ember.RSVP.hash({
             deliveryLocations: Ember.$.getJSON(config.routeLocation + "/api/deliveryLocations")
-        })
+        });
     },
     setupController: function(controller, model) {
         this._super();
         controller.set('deliveryLocations', model.deliveryLocations);
-        controller.set('contactConsent', true)
+        controller.set('contactConsent', true);
     }
 });

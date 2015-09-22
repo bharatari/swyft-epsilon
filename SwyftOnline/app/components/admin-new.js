@@ -2,10 +2,10 @@ import Ember from "ember";
 
 export default Ember.Component.extend({ 
     actions: {
-        accept: function(id) {
+        accept: function() {
             this.sendAction('accept');
         },
-        cancel: function(id) {
+        cancel: function() {
             this.sendAction('cancel');
         },
         submit: function(type) {

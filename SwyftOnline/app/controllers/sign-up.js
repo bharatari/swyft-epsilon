@@ -1,3 +1,6 @@
+/* jslint unused: false */
+/* global $ */
+/* jslint eqeqeq: true */
 import Ember from "ember";
 import config from 'swyft-epsilon-online/config/environment';
 import loginUtils from 'swyft-epsilon-online/utils/login-utils';
@@ -36,7 +39,7 @@ export default Ember.Controller.extend({
                         username: this.get('username'),
                         contactConsent: this.get('contactConsent'),
                         password: password1
-                    }
+                    };
                     for (var property in data) {
                         if (data.hasOwnProperty(property)) {
                             if(!data[property] && property != "contactConsent"){

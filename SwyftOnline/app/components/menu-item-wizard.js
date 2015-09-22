@@ -1,3 +1,7 @@
+/* global _ */
+/* jslint unused: false */
+/* jslint eqeqeq: true */
+/* jslint loopfunc: true */
 import Ember from "ember";
 
 export default Ember.Component.extend({
@@ -126,7 +130,7 @@ export default Ember.Component.extend({
 					{ name: "", price: null }
 				],
 				name: ""
-			}
+			};
 			value.push(itemOption);
 			Ember.set(itemOptions, 'value', value);
 			this.rerender();
@@ -144,7 +148,7 @@ export default Ember.Component.extend({
 			var extra = {
 				price: null,
 				name: ""
-			}
+			};
 			value.push(extra);
 			Ember.set(extras, 'value', value);
 			this.rerender();
@@ -165,7 +169,7 @@ export default Ember.Component.extend({
             		}));
 				}
 			}
-			this.set('standardOptionsExists', false)
+			this.set('standardOptionsExists', false);
 		},
 		addStandardOptions: function() {
 			var itemOptions = this.get('itemOptions');
@@ -174,7 +178,7 @@ export default Ember.Component.extend({
 				options: "",
 				default: false,
 				name: "Options"
-			}
+			};
 			value.push(itemOption);
 			Ember.set(itemOptions, 'value', value);
 			this.rerender();

@@ -1,3 +1,5 @@
+/* jslint unused: false */
+/* jslint shadow: true */
 import Ember from "ember";
 import config from 'swyft-epsilon-online/config/environment';
 import loginUtils from 'swyft-epsilon-online/utils/login-utils';

@@ -1,3 +1,5 @@
+/* jslint unused: false */
+/* global moment */
 import Ember from "ember";
 
 export default Ember.Helper.helper(function(params, hash) {
@@ -8,7 +10,7 @@ export default Ember.Helper.helper(function(params, hash) {
             var value = params[0];
             for(var i = 0; i < array.length; i++) {
                 if(value[array[i]]) {
-                    value = value[array[i]]
+                    value = value[array[i]];
                 }
                 else {
                     return "";

@@ -1,3 +1,4 @@
+/* jslint unused: false */
 import Ember from "ember";
 import config from 'swyft-epsilon-online/config/environment';
 import SidebarRouteMixin from 'swyft-epsilon-online/mixins/sidebar-route';

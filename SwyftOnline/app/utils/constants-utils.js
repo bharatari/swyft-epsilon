@@ -589,4 +589,4 @@ export default {
             "Pacific/Pohnpei|Pacific/Ponape"
         ]
     }
-}
+};

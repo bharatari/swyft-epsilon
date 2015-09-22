@@ -16,7 +16,7 @@ export default Ember.Route.extend(SessionRouteMixin, AnimateOutRouteMixin, Sideb
         return Ember.RSVP.hash({
             menuItems: Ember.$.getJSON(config.routeLocation + "/api/menuItems/" + params.restaurant_name),
             restaurant: Ember.$.getJSON(config.routeLocation + "/api/restaurant/" + params.restaurant_name)
-        })
+        });
     },
     setupController: function(controller, model) {
         this._super();

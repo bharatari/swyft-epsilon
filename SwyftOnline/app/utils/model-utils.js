@@ -1,3 +1,5 @@
+/* jslint unused: false */
+import Ember from "ember";
 import config from 'swyft-epsilon-online/config/environment';
 
 export default {
@@ -43,7 +45,7 @@ export default {
                 var value = data;
                 for(var i = 0; i < array.length; i++) {
                     if(value[array[i]]) {
-                        value = value[array[i]]
+                        value = value[array[i]];
                     }
                 }
                 return value;
@@ -53,4 +55,4 @@ export default {
             }
         }
     }
-}
+};

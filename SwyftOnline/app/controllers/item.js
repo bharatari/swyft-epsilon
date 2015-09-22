@@ -6,6 +6,7 @@ import cartUtils from 'swyft-epsilon-online/utils/cart-utils';
 import SidebarRouteMixin from 'swyft-epsilon-online/mixins/sidebar-route';
 import StandardActionsMixin from 'swyft-epsilon-online/mixins/standard-actions';
 
+/* jslint shadow: true */
 export default Ember.Controller.extend(StandardActionsMixin, SidebarRouteMixin, {
     item: function() {
         return itemUtils.processItemView(this.get('model'));

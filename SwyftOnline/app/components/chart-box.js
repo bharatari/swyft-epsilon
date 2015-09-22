@@ -1,3 +1,6 @@
+/* global $ */
+/* global Chart */
+/* jslint unused: false */
 import Ember from "ember";
 import config from 'swyft-epsilon-online/config/environment';
 
@@ -26,7 +29,7 @@ export default Ember.Component.extend({
                     data: []
                 }
             ]
-        }
+        };
         for(var i = 0; i < data.length; i++) {
             allData.labels.push(data[i].label);
             allData.datasets[0].data.push(data[i].data);

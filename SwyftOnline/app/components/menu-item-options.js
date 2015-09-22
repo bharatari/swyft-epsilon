@@ -1,3 +1,6 @@
+/* global _ */
+/* jslint unused: false */
+/* jslint eqeqeq: true */
 import Ember from "ember";
 
 export default Ember.Component.extend({

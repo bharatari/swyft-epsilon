@@ -1,3 +1,4 @@
+/* global $ */
 import Ember from "ember";
 
 /*
@@ -7,7 +8,7 @@ import Ember from "ember";
 
 export default Ember.Mixin.create({
     setupController: function(controller, model) {
-        this._super(controller, model)
+        this._super(controller, model);
         /* FIX FOR JASNY BOOTSTRAP SIDEBAR */
         $(".ember-application").css('overflow', 'auto');
     }

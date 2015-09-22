@@ -1,3 +1,4 @@
+/* jslint unused: false */
 import Ember from "ember";
 import itemUtils from 'swyft-epsilon-online/utils/item-utils';
 

@@ -21,7 +21,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, SidebarRouteMixin, An
             user: Ember.$.getJSON(config.routeLocation + "/api/user", {token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.token, tokenId: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.id}),
             deliveries: Ember.$.getJSON(config.routeLocation + "/api/deliveries"),
             deliveryLocations: Ember.$.getJSON(config.routeLocation + "/api/deliveryLocations/simple")
-        })
+        });
     },
     setupController: function(controller, model) {
         this._super();

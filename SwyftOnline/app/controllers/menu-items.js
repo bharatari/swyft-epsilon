@@ -1,3 +1,4 @@
+/* global $ */
 import Ember from "ember";
 import StandardActionsMixin from 'swyft-epsilon-online/mixins/standard-actions';
 

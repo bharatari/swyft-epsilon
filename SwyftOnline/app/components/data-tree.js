@@ -1,3 +1,4 @@
+/* global $ */
 import Ember from "ember";
 
 export default Ember.Component.extend({
@@ -11,7 +12,7 @@ export default Ember.Component.extend({
 		var root = {
 			text: this.get('rootName'),
 			children: []
-		}
+		};
 		root = this.populateJSON(data, root);
 		return root;
 	}),
@@ -39,18 +40,18 @@ export default Ember.Component.extend({
 	},
 	isArray(object) {
 		if(Object.prototype.toString.call(object) === '[object Array]') {
-			return true
+			return true;
 		}
 		else {
-			return false
+			return false;
 		}
 	},
 	isObject(object) {
 		if(Object.prototype.toString.call(object) === '[object Object]') {
-			return true
+			return true;
 		}
 		else {
-			return false
+			return false;
 		}
 	},
 	actions:{

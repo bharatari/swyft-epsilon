@@ -1,3 +1,4 @@
+/* jslint unused: false */
 import Ember from "ember";
 import config from 'swyft-epsilon-online/config/environment';
 import loginUtils from 'swyft-epsilon-online/utils/login-utils';
@@ -20,7 +21,7 @@ export default Ember.Controller.extend({
                 orderId: this.get('order').id,
                 comments: this.get('order').deliveryNote.comments,
                 user: { token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token }
-            }
+            };
             var url = config.routeLocation + "/api/deliveryNote/comment";
             Ember.$.ajax({
                 url: url,
@@ -43,7 +44,7 @@ export default Ember.Controller.extend({
                 orderId: this.get('order').id,
                 isDelivered: true,
                 user: { token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token }
-            }
+            };
             var url = config.routeLocation + "/api/deliveryNote/delivered";
             Ember.$.ajax({
                 url: url,
@@ -66,7 +67,7 @@ export default Ember.Controller.extend({
                 orderId: this.get('order').id,
                 isDelivered: false,
                 user: { token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token }
-            }
+            };
             var url = config.routeLocation + "/api/deliveryNote/delivered";
             Ember.$.ajax({
                 url: url,

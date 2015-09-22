@@ -1,3 +1,4 @@
+/* jslint unused: false */
 import Ember from "ember";
 import config from 'swyft-epsilon-online/config/environment';
 import cartUtils from 'swyft-epsilon-online/utils/cart-utils';
@@ -44,7 +45,7 @@ export default Ember.Controller.extend({
         else {
             var filteredData = {
                 items: []
-            }
+            };
             var fullData = this.get('fullData').items;
             for(var i = 0; i < fullData.length; i++) {
                 if(fullData[i].deliveryLocation.toLowerCase() === this.get('deliveryLocation').toLowerCase()) {

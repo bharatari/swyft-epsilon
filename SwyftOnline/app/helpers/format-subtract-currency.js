@@ -1,3 +1,4 @@
+/* global math */
 import Ember from "ember";
 
 export default Ember.Helper.helper(function(params, args) {

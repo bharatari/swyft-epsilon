@@ -1,3 +1,5 @@
+/* global moment */
+/* jslint unused: false */
 import Ember from "ember";
 import config from 'swyft-epsilon-online/config/environment';
 import cartUtils from 'swyft-epsilon-online/utils/cart-utils';
@@ -92,7 +94,7 @@ export default Ember.Controller.extend({
     }.observes('paymentOptions.value'),
     creditCardSelected: Ember.computed('paymentOptions.value', function() {
         if(this.get('paymentOptions').value === "creditcard") {
-            return true
+            return true;
         }
         else {
             return false;
@@ -149,7 +151,7 @@ export default Ember.Controller.extend({
                         self.set('modalTitle', 'Whoops.');
                         self.set('modalBody', "Something went wrong with your request. Your order has not been submitted. If you're using Swyft Debit as your payment type, ensure you have enough balance in your account to proceed. If you attempted to use a one-time coupon, it's either invalid or it has already been used. Otherwise, try emptying your cart and starting over. Please contact us at development@orderswyft.com if you have any further questions.");
                         self.set('displayModal', true);
-                        self.set('checkoutPressed', false)
+                        self.set('checkoutPressed', false);
                     }
                 });
         },
