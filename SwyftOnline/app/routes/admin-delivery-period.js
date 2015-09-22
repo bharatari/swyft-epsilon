@@ -1,3 +1,4 @@
+/* jslint unused: false */
 import Ember from "ember";
 import config from 'swyft-epsilon-online/config/environment';
 import loginUtils from 'swyft-epsilon-online/utils/login-utils';
@@ -7,7 +8,7 @@ import AdminRouteMixin from 'swyft-epsilon-online/mixins/admin-route';
 export default Ember.Route.extend(AdminRouteMixin, { 
     model: function(params) {
         var url = "";
-        if(params.id == 0) {
+        if(params.id === 0) {
             url = config.routeLocation + '/api/admin/deliveryPeriod/model';
         } 
         else {
@@ -22,7 +23,7 @@ export default Ember.Route.extend(AdminRouteMixin, {
     setupController: function(controller, model) {
         this._super();
         var self = this;
-        if(model.id != 0) {
+        if(model.id !== 0) {
             controller.set('isNew', false);
         }
         else {
