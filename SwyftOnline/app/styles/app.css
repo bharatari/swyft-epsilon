@@ -2285,6 +2285,10 @@ figure span {
 .admin-control-header {
     margin-top: 40px;
     margin-bottom: 25px;
+    font-family: "Open Sans", "Helvetica Neue", "Segoe UI", sans-serif;
+    text-transform: uppercase;
+    font-size: 25px;
+    letter-spacing: 1px;
 }
 
 .bg-primary {
@@ -2511,7 +2515,6 @@ figure span {
 .admin-about-version {
     font-family: 'Open Sans';
     margin-bottom: 10px;
-    letter-spacing: -2px;
 }
 
 .admin-about-codename {
@@ -2533,7 +2536,9 @@ figure span {
 
 .pagination-text {
     font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
-    font-weight: 700;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 14px;
 }
 
 .btn-light {
