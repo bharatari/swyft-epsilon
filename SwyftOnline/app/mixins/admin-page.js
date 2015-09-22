@@ -19,7 +19,7 @@ export default Ember.Mixin.create({
         return filterObject;
     },
     convertFilterType: function(filterType) {
-        var propertyDictionary = new Array();
+        var propertyDictionary = new Array(); //jshint ignore:line
         propertyDictionary["greaterThan"] = '>';
         propertyDictionary["lessThan"] = '<';
         propertyDictionary["notEqualTo"] = '!';

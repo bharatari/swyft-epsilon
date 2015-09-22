@@ -122,31 +122,38 @@ export default {
         localStorage.setItem("cart", JSON.stringify(array));
     },
     getCartForRestore: function() {
-        //This function is just about taking the existing state and restoring it
-        //We don't have to worry about anything else
-        if(typeof localStorage.getItem(this.cartKey) !== 'undefined') {
-            return JSON.parse(localStorage.getItem(this.cartKey));
+        try {
+            if(JSON.parse(localStorage.getItem(this.cartKey)) instanceof Array) {
+                return JSON.parse(localStorage.getItem(this.cartKey));
+            }
+            else {
+                //If the cart doesn't exist, we can safely return an empty array with no side effects
+                return [];
+            }
         }
-        else {
-            //If the cart doesn't exist, we can safely return an empty array with no side effects
-            return [];
+        catch(err) {
+            //If the localStorage item can't be JSON parsed, then it's invalid, so we
+            //return an empty array
+            return [];   
         }
     },
     getCartVersionForRestore: function() {
-        //This will be falsy for 0, which makes sense because 0 is not a valid cartVersion
-        if(typeof localStorage.getItem(this.cartVersionKey) !== 'undefined') {
-            try {
+        try {
+            if(typeof JSON.parse(localStorage.getItem(this.cartVersionKey)) === 'number') {
                 return JSON.parse(localStorage.getItem(this.cartVersionKey));
             }
-            catch(err) {
-                return localStorage.getItem(this.cartVersionKey);
+            else {
+                //What we return here is rather important, because it could cause side effects
+                //If there is no cartVersion we can assume there is no cart either and therefore return the config cartVersion value
+                return config.cartVersion;
             }
         }
-        else {
-            //What we return here is rather important, because it could cause side effects
-            //If there is no cartVersion we can assume there is no cart either and therefore return the config cartVersion value
+        catch(err) {
+            //If the localStorage item can't be JSON parsed, then it's invalid, so we
+            //return the config cartVersion
             return config.cartVersion;
         }
+        
     },
     restoreCart: function(cart, cartVersion) {
         if(typeof cart !== 'undefined') {

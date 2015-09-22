@@ -1,4 +1,6 @@
 /* jslint unused: false */
+/* jslint shadow: true */
+/* jslint loopfunc: true */
 /* global $ */
 import config from 'swyft-epsilon-online/config/environment';
 
@@ -14,7 +16,7 @@ export default {
             restaurant: data.restaurant,
             standardOptions: [],
             additionalRequests: data.additionalRequests
-        }
+        };
 
         if(data.itemOptions) {
             for(var i = 0; i < data.itemOptions.length; i++) {
@@ -107,20 +109,20 @@ export default {
         function splitArray(csv, bool){
             if(csv.length>0){
                 var array=csv.split(", ");
-                var objectArray=new Array();
+                var objectArray=new Array(); // jshint ignore:line
                 for(var i=0; i<array.length;i++){
                     var obj;
                     if(bool){
                         obj ={
                             name:"No " + array[i],
                             isSelected:false
-                        }
+                        };
                     }
                     else {
                         obj ={
                             name:array[i],
                             isSelected:false
-                        }
+                        };
                     }
                     objectArray.push(obj);
                 }
@@ -279,4 +281,4 @@ export default {
         }
         return items;
     }
-}
+};
