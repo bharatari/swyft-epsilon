@@ -2,6 +2,9 @@ import Ember from "ember";
 
 export default Ember.Component.extend({
     didInitAttrs() {
+        //This will also execute with 0 as a value, which is fine
+        //because if 0 is passed in, we actually need to see 
+        //what to do
         if(!this.get('currentPage')) {
             if(this.get('totalPages') > 0) {
                 this.set('currentPage', 1);
@@ -46,13 +49,13 @@ export default Ember.Component.extend({
         var previousFive = [];
         for(var i = this.get('currentPage') - 1; i > this.get('currentPage') - 6; i--) {
             if(i < 2) {
-                return previousFive;
+                return previousFive.reverse();
             }
             else {
                 previousFive.push(i);
             }
         }
-        return previousFive;
+        return previousFive.reverse();
     }),
     nextFive: Ember.computed('totalPages', 'currentPage', function() {
         var nextFive = [];
