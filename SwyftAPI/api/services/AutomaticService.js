@@ -1,6 +1,7 @@
 var moment = require('moment');
 
 module.exports = {
+    /** Automatic Delivery Management **/
     getDeliveryPeriods: function(cb) {
         DeliveryPeriod.find({ enabled: true }).exec(function(err, deliveryPeriods) {
             cb(deliveryPeriods);
@@ -86,5 +87,80 @@ module.exports = {
                 cb();
             }
         });
+    },
+    /** Outstanding Payments Email System **/
+    processOutstandingPayments: function(cb) {
+        var self = this;
+        var outstandingUsers = [];
+        User.find().exec(function(err, users) {
+            if(!err && users) {
+                async.each(users, function(user, callback) {
+                    if(user) {
+                        UserService.outstandingPayments(user.id, function(result, message) {
+                            if(result === false) {
+                                if(message) {
+                                    console.log("Automatic Email System Error: " + message);
+                                    callback();
+                                }
+                                else {
+                                    callback();
+                                }
+                            }
+                            else {
+                                if(result) {
+                                    if(result.length > 0) {
+                                        self.sendOutstandingPaymentsEmail({
+                                            user: user,
+                                            outstandingPayments: result
+                                        }, function(result, message) {
+                                            if(result === false) {
+                                                if(message) {
+                                                    console.log("Automatic Email System Error: " + message);
+                                                }
+                                            }
+                                            callback();
+                                        });
+                                    }
+                                    else {
+                                        callback();
+                                    }
+                                }
+                                else {
+                                    callback();
+                                }
+                            }
+                        });
+                    }
+                }, function(err) {
+                    cb();
+                });
+            }
+        });
+    },
+    sendOutstandingPaymentsEmail: function(object, cb) {
+        if(object) {
+            if(object.user) {
+                EmailService.sendOutstandingPaymentsEmail(object.user.firstName, object.user.lastName, object.user.username, object.outstandingPayments, function(result, message) {
+                    if(result === false) {
+                        if(message) {
+                            console.log("Automatic Email System Error: " + message.message);
+                            cb(false, message);
+                        }
+                        else {
+                            cb(false);
+                        }
+                    }
+                    else {
+                        cb(true);
+                    }
+                });
+            }
+            else {
+                cb(false, "USER_UNDEFINED");
+            }
+        }
+        else {
+            cb(false, "OBJECT_UNDEFINED");
+        }
     }
 }

@@ -2,6 +2,7 @@ var Chance = require('chance');
 var chance = new Chance();
 var mandrill = require('mandrill-api/mandrill');
 var mandrill_client = new mandrill.Mandrill('pTw4E8DYFKb696f5YzXmzg');
+var moment = require('moment');
 
 module.exports = {
     processForgotPasswordToken: function(user, date, cb) {
@@ -147,6 +148,41 @@ module.exports = {
         }
         else {
             cb(objects);
+        }
+    },
+    /** Should take into account orders and account balances **/
+    outstandingPayments: function(userId, cb) {
+        var outstandingOrders = [];
+        if(userId) {
+            Order.find({ userId: userId }).exec(function(err, orders) {
+                if(err) {
+                    cb(false, "DATABASE_ERR");
+                }
+                else if(orders.length < 1) {
+                    cb(outstandingOrders);
+                }
+                else {
+                    async.each(orders, function(order, callback) {
+                        if(order) {
+                            if(order.deliveryNote) {
+                                if(order.deliveryNote.chargeLater === true) {
+                                    outstandingOrders.push({
+                                        type: "Order",
+                                        date: moment(order.deliveryTime).tz("America/New_York").format("MM-DD-YYYY hh:mm a"),
+                                        amount: order.actualAmount
+                                    });
+                                }
+                            }
+                        }
+                        callback();
+                    }, function(err) {
+                        cb(outstandingOrders);
+                    });
+                }
+            });
+        }
+        else {
+            cb(false, "INVALID_USER_ID");
         }
     }
 }

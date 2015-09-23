@@ -38,8 +38,12 @@ module.exports.bootstrap = function(cb) {
                 AutomaticService.closeDeliveryPeriods(function() { });
             });
         });
+        var deliveryProcessor = schedule.scheduleJob("30 18 * * 3", function() {
+            console.log("Email Service Running");
+            AutomaticService.processOutstandingPayments(function() { });
+        });
     }, function(err) {
-       console.log('Delivery Processor Error'); 
+       console.log('Automatic Service Error'); 
     });    
     
     moment.tz.add(TimeZoneService.timeZones.zones);
