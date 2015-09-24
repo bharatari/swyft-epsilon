@@ -1,4 +1,5 @@
 /* jslint unused: false */
+/* global $ */
 import Ember from "ember";
 import config from 'swyft-epsilon-online/config/environment';
 import loginUtils from 'swyft-epsilon-online/utils/login-utils';
@@ -10,5 +11,14 @@ export default Ember.Mixin.create(SidebarRouteMixin, {
         return loginUtils.isAdmin().then(function(value){ }, function(reason) {
             self.transitionTo('login');
         });
+    },
+    actions:{
+        loading: function(transition) {
+            var loading = $('.admin-loading-container');
+            loading.css("display", "block");
+            transition.then(function() {
+                loading.css("display", "none");
+            }); 
+        }
     }
 });

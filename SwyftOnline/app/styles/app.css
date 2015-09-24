@@ -2513,11 +2513,11 @@ figure span {
     margin-top: -58px;
     margin-left: -39px;
     color: white;
-    -webkit-animation: spin 1s ease-in infinite;    
-    -moz-animation: spin 1s ease-in infinite;    
-    -ms-animation: spin 1s ease-in infinite;    
-    -o-animation: spin 1s ease-in infinite;    
-    animation: spin 1s ease-in infinite;    
+    -webkit-animation: spin 1s ease-in-out infinite;    
+    -moz-animation: spin 1s ease-in-out infinite;    
+    -ms-animation: spin 1s ease-in-out infinite;    
+    -o-animation: spin 1s ease-in-out infinite;    
+    animation: spin 1s ease-in-out infinite;    
 }
 
 .no-results {
@@ -2631,11 +2631,23 @@ figure span {
     min-height: 100%;
     width: auto; 
     height: auto; 
-    z-index: 50;
+    z-index: 1050;
     background-size: cover;
     background-color: white;
     background-position: center;
     opacity: inherit;
+}
+
+.admin-loading-spinner {
+    color: gray !important;
+}
+
+.admin-loading-text {
+    color: darkgray;
+    font-family: 'Open Sans';
+    font-size: 16px;
+    text-align: center;
+    margin-top: 53vh;
 }
 
 @-webkit-keyframes fade-out {
@@ -2676,4 +2688,4 @@ figure span {
 
 @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
 @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
-@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); } }
