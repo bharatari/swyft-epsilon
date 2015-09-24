@@ -99,6 +99,8 @@ module.exports.policies = {
   },
   GlobalController:{
     "setNews":['isAdmin', 'userDisabled'],
+    "setFAQ":['isAdmin', 'userDisabled'],
+    "setTerms":['isAdmin', 'userDisabled'],
     "find":['isAdmin', 'removeAdminParams', 'userDisabled'],
     "findOne":['isAdmin', 'userDisabled'],
     "create":['isAdmin', 'removeAdminParams', 'userDisabled'],

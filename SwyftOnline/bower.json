@@ -19,7 +19,8 @@
     "lodash": "~3.9.3",
     "mathjs": "~1.7.0",
     "Chart.js": "~1.0.2",
-    "ember-mocha": "~0.8.0"
+    "ember-mocha": "~0.8.0",
+    "showdown": "~1.2.3"
   },
   "resolutions": {
     "ember": "1.13.0"

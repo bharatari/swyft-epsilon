@@ -92,6 +92,10 @@ module.exports.routes = {
   //Global Routes
   'get /api/news':'GlobalController.getNews',
   'post /api/news':'GlobalController.setNews',
+  'get /api/faq':'GlobalController.getFAQ',
+  'post /api/faq':'GlobalController.setFAQ',
+  'get /api/terms':'GlobalController.getTerms',
+  'post /api/terms':'GlobalController.setTerms',
     
   //Delivery Note Routes
   'get /api/deliveryNote/global':'DeliveryNoteController.getGlobalDeliveryNote',

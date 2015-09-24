@@ -1,18 +1,19 @@
+/* global _ */
 /* jslint unused: false */
 import Ember from "ember";
 import loginUtils from 'swyft-epsilon-online/utils/login-utils';
 import config from 'swyft-epsilon-online/config/environment';
 
 export default Ember.Controller.extend({
-    currentRoute: 'admin-news',
+    currentRoute: 'admin-terms',
     actions: {
         submit: function() {
             var self = this;
             var data = {
-                news: this.get('news'),
+                terms: this.get('terms'),
                 _user: { token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token }
             };
-            var url = config.routeLocation + "/api/news";
+            var url = config.routeLocation + "/api/terms";
             Ember.$.ajax({
                 url: url,
                 headers: { 
@@ -22,7 +23,7 @@ export default Ember.Controller.extend({
                 data: JSON.stringify(data),
                 type: "POST",
                 success: function(response) {
-                    self.set('modalTitle', 'FAQ Updated');
+                    self.set('modalTitle', 'Terms and Conditions updated');
                     self.set('modalBody', 'Your request has been processed.');
                     self.set('displayModal', true);
                 },

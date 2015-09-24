@@ -6,11 +6,11 @@ import SidebarRouteMixin from 'swyft-epsilon-online/mixins/sidebar-route';
 export default Ember.Route.extend(AnimateOutRouteMixin, SidebarRouteMixin, {
 	model: function() {
         return Ember.RSVP.hash({
-            faq: Ember.$.getJSON(config.routeLocation + "/api/faq")
+            terms: Ember.$.getJSON(config.routeLocation + "/api/terms")
         });
     },
     setupController: function(controller, model) {
         this._super();
-        controller.set('faq', model.faq);
+        controller.set('terms', model.terms);
     }
 });

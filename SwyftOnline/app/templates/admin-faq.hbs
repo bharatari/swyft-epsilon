@@ -1,0 +1,33 @@
+{{partial "navbar-admin-modern"}}
+
+{{modal-dialog body=modalBody title=modalTitle displayModal=displayModal}}
+
+<div class="admin-container">
+    {{admin-navigation currentRoute=currentRoute}}
+
+    <div class="admin-content">
+        <div class="container">
+            <div class="admin-header-bar">
+                <h1 class="admin-header">FAQ</h1>
+                <h4 class="admin-subtitle">Edit the Swyft FAQ.</h4>
+            </div>
+            <div class="panel admin-panel">
+                <div class="admin-panel-header-area">
+                    <h1 class="admin-panel-header">FORM</h1>
+                </div>
+                <div class="admin-panel-content">
+                    <button {{action 'addQuestion'}} class="btn btn-light">Add Question</button>
+                    <br>
+                    {{#each faq as |faqItem|}}
+                        {{input type="text" class="col-xs-12 no-box-textbox admin-faq-question" value=faqItem.question placeholder="Question"}}
+                        {{textarea class="form-control" value=faqItem.answer placeholder="Answer"}}
+                        <button {{action 'deleteQuestion' faqItem}} class="btn btn-light-warning admin-faq-delete btn-light">Delete This Question</button>
+                    <br>
+                    {{/each}}
+                    <br>
+                    <button {{action 'submit'}} class="btn btn-light">Submit</button>
+                </div>
+            </div>   
+        </div>
+    </div>
+</div>

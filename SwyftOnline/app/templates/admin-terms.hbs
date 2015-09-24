@@ -1,0 +1,27 @@
+{{partial "navbar-admin-modern"}}
+
+{{modal-dialog body=modalBody title=modalTitle displayModal=displayModal}}
+
+<div class="admin-container">
+    {{admin-navigation currentRoute=currentRoute}}
+
+    <div class="admin-content">
+        <div class="container">
+            <div class="admin-header-bar">
+                <h1 class="admin-header">Terms and Conditions</h1>
+                <h4 class="admin-subtitle">Edit the Swyft Terms and Conditions. This content is written in Markdown, for more information please visit: <a href="http://support.ghost.org/markdown-guide/">Markdown Guide</a>.</h4>
+            </div>
+            <div class="panel admin-panel">
+                <div class="admin-panel-header-area">
+                    <h1 class="admin-panel-header">FORM</h1>
+                </div>
+                <div class="admin-panel-content">
+                    {{! FIREFLY-TAG Potential XSS vulnerability with directly outputting Markdown on terms.hbs}}
+                    {{textarea class="form-control no-box-text-area" value=terms placeholder="Write content in Markdown"}}
+                    <br>
+                    <button {{action 'submit'}} class="btn btn-light">Submit</button>
+                </div>
+            </div>   
+        </div>
+    </div>
+</div>

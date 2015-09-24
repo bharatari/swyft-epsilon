@@ -23,6 +23,10 @@ export default Ember.Component.extend({
         { label: 'New Swyft Debit', route: 'admin-balance', icon: 'fa-money' },
         { label: 'New One-Time-Use Token', route: 'admin-new-token', icon: 'fa-money'},
         { label: 'Complete Delivery', route: 'admin-complete-delivery', icon: 'fa-truck'},
+        { label: 'Content Management', static: true },
+        { label: 'Edit News', route: 'admin-news', icon: 'fa-user'},
+        { label: 'Edit FAQ', route: 'admin-faq', icon: 'fa-user'},
+        { label: 'Edit Terms & Conditions', route: 'admin-terms', icon: 'fa-user'},
         { label: 'About', static: true },
         { label: 'About', route: 'admin-about', icon: 'fa-user' }
     ]

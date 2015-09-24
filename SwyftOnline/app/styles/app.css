@@ -968,6 +968,11 @@ a.list-group-item:hover, a.list-group-item:focus {
 .terms-container h3 {
     font-weight: 600;
     font-size: 18px;
+    font-family: 'Open Sans';
+}
+
+.terms-container p {
+    font-family: 'Open Sans';
 }
 
 .img-fix {
@@ -2480,10 +2485,19 @@ figure span {
     margin-top: 30px;   
 }
 
+.admin-faq-question {
+    font-weight: 600;
+    font-size: 20px; 
+    margin-top: 30px;   
+    margin-bottom: 15px;
+    padding-left: 0px;
+}
+
 .menu-item-wizard-header {
     font-family: 'Open Sans';    
 }
 
+/* Used by admin-attached-request, admin-faq and admin-menu-item */
 .no-box-textbox {
     border: none;
     outline: none;
@@ -2589,6 +2603,39 @@ figure span {
 .grid-column-restaurant {
     width: 25%;
     float: left;
+}
+
+.admin-faq-delete {
+    margin-top: 15px;
+}
+
+.btn-margin-top {
+    margin-top: 15px;    
+}
+
+.no-box-text-area {
+    height: 700px !important;
+    box-shadow: none;
+    background-color: transparent;
+    color: #2a2a2a;
+    font-family: 'Open Sans';
+    border: none;
+    outline: none;   
+}
+
+.admin-loading-container {
+    position: fixed; 
+    right: 0; 
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+    width: auto; 
+    height: auto; 
+    z-index: 50;
+    background-size: cover;
+    background-color: white;
+    background-position: center;
+    opacity: inherit;
 }
 
 @-webkit-keyframes fade-out {

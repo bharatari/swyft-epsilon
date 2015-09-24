@@ -56,6 +56,8 @@ Router.map(function() {
     this.route("admin-attached-requests", { path:"/admin/attached-requests" }); 
     this.route("admin-attached-request", { path:"/admin/attached-request/:id" });
     this.route("admin-balance", { path:"/admin/balance" });
+    this.route("admin-faq", { path:"/admin/faq" });
+    this.route("admin-terms", { path:"/admin/terms" });
     this.route("admin-global-delivery-note", { path:"/admin/global-delivery-note" });
     this.route("admin-news", { path:"/admin/news" });
     this.route("admin-close-delivery", { path:"/admin/close-delivery" });

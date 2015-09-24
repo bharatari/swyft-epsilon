@@ -1,10 +1,11 @@
+/* jslint unused: false */
 import Ember from "ember";
 import config from 'swyft-epsilon-online/config/environment';
-import AnimateOutRouteMixin from 'swyft-epsilon-online/mixins/animate-out-route';
-import SidebarRouteMixin from 'swyft-epsilon-online/mixins/sidebar-route';
+import loginUtils from 'swyft-epsilon-online/utils/login-utils';
+import AdminRouteMixin from 'swyft-epsilon-online/mixins/admin-route';
 
-export default Ember.Route.extend(AnimateOutRouteMixin, SidebarRouteMixin, {
-	model: function() {
+export default Ember.Route.extend(AdminRouteMixin, { 
+    model: function() {
         return Ember.RSVP.hash({
             faq: Ember.$.getJSON(config.routeLocation + "/api/faq")
         });

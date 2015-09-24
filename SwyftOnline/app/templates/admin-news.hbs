@@ -1,16 +1,25 @@
-{{partial "navbar-admin"}}
+{{partial "navbar-admin-modern"}}
 
-<div class="img-background container-fluid"></div>
+{{modal-dialog body=modalBody title=modalTitle displayModal=displayModal}}
 
-<div class="container">
-    <ul class="breadcrumb">
-        <li><a>{{#link-to 'index'}}Home{{/link-to}}</a></li>
-        <li><a>{{#link-to 'admin'}}Admin{{/link-to}}</a></li>
-        <li class="active">Complete Delivery</li>
-    </ul>
-    <div class="info-well well">
-        <h1>News</h1>
-        {{textarea class="form-control text-area" value=news}}
-        <button class="btn btn-primary btn-standard" {{action 'submit'}}>Submit</button>
+<div class="admin-container">
+    {{admin-navigation currentRoute=currentRoute}}
+
+    <div class="admin-content">
+        <div class="container">
+            <div class="admin-header-bar">
+                <h1 class="admin-header">News</h1>
+                <h4 class="admin-subtitle">Edit News.</h4>
+            </div>
+            <div class="panel admin-panel">
+                <div class="admin-panel-header-area">
+                    <h1 class="admin-panel-header">FORM</h1>
+                </div>
+                <div class="admin-panel-content">
+                    {{textarea class="form-control text-area" value=news}}
+                    <button class="btn btn-light btn-margin-top" {{action 'submit'}}>Submit</button>
+                </div>
+            </div>   
+        </div>
     </div>
 </div>
