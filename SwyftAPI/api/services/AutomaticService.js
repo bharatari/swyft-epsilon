@@ -1,38 +1,59 @@
 var moment = require('moment');
 
 module.exports = {
-    /** Automatic Delivery Management **/
+    /***
+     *
+     * @section - Automatic Delivery Management 
+     *
+     */
     getDeliveryPeriods: function(cb) {
         DeliveryPeriod.find({ enabled: true }).exec(function(err, deliveryPeriods) {
             cb(deliveryPeriods);
         });
     },
-    deliveryInRange: function(period) {
-        var today = moment();
-        var delivery = moment().day(period.deliveryDay).set({ hour: period.deliveryHour, minute: period.deliveryMinute, second: period.deliverySecond });
-        var cutoff = moment().day(period.cutoffDay).set({ hour: period.cutoffHour, minute: period.cutoffMinute, second: period.cutoffSecond });
-        if(period.deliveryDay === "Sunday") {
-            delivery = delivery.add(7, 'days');
-        }
-        var dayBefore = delivery.subtract(1, 'days');
-        if(today.isAfter(dayBefore) && today.isBefore(cutoff)) {
+    deliveryInRange: function(period, today) {
+        var delivery = this.processMoment(period.deliveryDay, period.deliveryHour, period.deliveryMinute, period.deliverySecond);
+        var cutoff = this.processMoment(period.cutoffDay, period.cutoffHour, period.cutoffMinute, period.cutoffSecond);
+        var open = this.processMoment(period.openDay, period.openHour, period.openMinute, period.openSecond);
+        if(today.isAfter(open) && today.isBefore(cutoff)) {
             return true;
         }
         return false;
     },
     createNewDelivery: function(period, cb) {
-        var delivery = moment().day(period.deliveryDay).set({ hour: period.deliveryHour, minute: period.deliveryMinute, second: period.deliverySecond });
-        if(period.deliveryDay === "Sunday") {
-            delivery = delivery.add(7, 'days');
-        }
-        var cutoff = moment().day(period.cutoffDay).set({ hour: period.cutoffHour, minute: period.cutoffMinute, second: period.cutoffSecond });
-        var newDelivery = new ModelService.AutomaticDelivery(delivery.toDate(), period.id, "All", cutoff.toDate(), period.deliverers);
+        var delivery = this.processMoment(period.deliveryDay, period.deliveryHour, period.deliveryMinute, period.deliverySecond);
+        var cutoff = this.processMoment(period.cutoffDay, period.cutoffHour, period.cutoffMinute, period.cutoffSecond);
+        var arrival = this.processMoment(period.arrivalDay, period.arrivalHour, period.arrivalMinute, period.arrivalSecond);
+        var newDelivery = new ModelService.AutomaticDelivery(delivery.toDate(), period.id, "All", cutoff.toDate(), period.deliverers, arrival.toDate());
         console.log('Delivery Processor Running');
         console.log('Creating Delivery');
         Delivery.create(newDelivery).exec(function(err) {
             console.log('Created New Delivery');
             cb();
         });
+    },
+    /** 
+     * Creates a moment from day, hour, minute and second parameters.
+     * Adds seven days to the moment if the day is Sunday, because moment 
+     * treats Sundays as part of the previous week.
+     *
+     * @param {string} day - String representation of day of week.
+     * @param {number} hour - 24-hour representation of hour.
+     * @param {number} minute - 0-59 representation of minute.
+     * @param {number} second - 0-59 representation of second.
+     * @returns {Moment|Date} - Returns date if params are null or undefined.
+     */
+    processMoment: function(day, hour, minute, second) {
+        if((day != null) && (hour != null) && (minute != null) && (second != null)) {
+            var date = moment().day(day).set({ hour: hour, minute: minute, second: second });
+            if(day === "Sunday") {
+                date = date.add(7, 'days');
+            }
+            return date;
+        }
+        else {
+            return new Date();
+        }
     },
     processDeliveryPeriods: function(cb) {
         var self = this;
@@ -43,7 +64,7 @@ module.exports = {
         });
         function process() {
             async.each(deliveryPeriods, function(period, callback) {
-                if(self.deliveryInRange(period)) {
+                if(self.deliveryInRange(period, moment())) {
                     Delivery.find({ closed: false,  deliveryPeriod: period.id }).exec(function(err, deliveries) {
                         if(deliveries.length < 1) {
                             self.createNewDelivery(period, function() {
@@ -88,7 +109,18 @@ module.exports = {
             }
         });
     },
-    /** Outstanding Payments Email System **/
+    
+    /***
+     *
+     * @section - Automatic Email Service
+     *
+     */
+
+    /** 
+     * Finds users with outstanding payments and calls sendOutstandingPaymentsEmail
+     *
+     * @param {AutomaticService~outstandingPaymentsCallback} cb - Called when function finishes.
+     */
     processOutstandingPayments: function(cb) {
         var self = this;
         var outstandingUsers = [];
@@ -137,6 +169,21 @@ module.exports = {
             }
         });
     },
+    /**
+     * @callback AutomaticService~outstandingPaymentsCallback
+     */
+    
+    /** 
+     * Sends emails to users with outstanding payments.
+     *
+     * @param {Object} object
+     * @param {User} object.user
+     * @param {Array} object.outstandingPayments
+     * @param {string} object.outstandingPayments[].type
+     * @param {string} object.outstandingPayments[].date - A Date formatted as a string.
+     * @param {number} object.outstandingPayments[].amount
+     * @param {AutomaticService~outstandingPaymentsEmailCallback} cb - Called when function finishes.
+     */
     sendOutstandingPaymentsEmail: function(object, cb) {
         if(object) {
             if(object.user) {
@@ -163,4 +210,9 @@ module.exports = {
             cb(false, "OBJECT_UNDEFINED");
         }
     }
+    /**
+     * @callback AutomaticService~outstandingPaymentsEmailCallback
+     * @param {boolean} result
+     * @param {string} message
+     */
 }

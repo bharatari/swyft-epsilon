@@ -527,6 +527,27 @@ module.exports = {
                 editable: true
             },
             {
+                propertyName: 'estimatedDelivery',
+                displayName: 'Estimated Delivery',
+                display: true,
+                type: 'datetime',
+                editable: true
+            },
+            {
+                propertyName: 'scheduledArrival',
+                displayName: 'Scheduled Arrival',
+                display: true,
+                type: 'datetime',
+                editable: true
+            },
+            {
+                propertyName: 'estimatedArrival',
+                displayName: 'Estimated Arrival',
+                display: true,
+                type: 'datetime',
+                editable: true
+            },
+            {
                 propertyName: 'deliveryPeriod',
                 displayName: 'Delivery Period',
                 display: true,
@@ -1198,6 +1219,62 @@ module.exports = {
             {
                 propertyName: 'cutoffSecond',
                 displayName: 'Cutoff Second',
+                display: true,
+                type: 'number',
+                editable: true
+            },
+            {
+                propertyName: 'arrivalDay',
+                displayName: 'Arrival Day',
+                display: true,
+                type: 'string',
+                editable: true
+            },
+            {
+                propertyName: 'arrivalHour',
+                displayName: 'Arrival Hour',
+                display: true,
+                type: 'number',
+                editable: true
+            },
+            {
+                propertyName: 'arrivalMinute',
+                displayName: 'Arrival Minute',
+                display: true,
+                type: 'number',
+                editable: true
+            },
+            {
+                propertyName: 'arrivalSecond',
+                displayName: 'Arrival Second',
+                display: true,
+                type: 'number',
+                editable: true
+            },
+            {
+                propertyName: 'openDay',
+                displayName: 'Open Day',
+                display: true,
+                type: 'string',
+                editable: true
+            },
+            {
+                propertyName: 'openHour',
+                displayName: 'Open Hour',
+                display: true,
+                type: 'number',
+                editable: true
+            },
+            {
+                propertyName: 'openMinute',
+                displayName: 'Open Minute',
+                display: true,
+                type: 'number',
+                editable: true
+            },
+            {
+                propertyName: 'openSecond',
+                displayName: 'Open Second',
                 display: true,
                 type: 'number',
                 editable: true

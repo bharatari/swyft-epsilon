@@ -1,7 +1,7 @@
 module.exports={
     tableName:'deliveries',
     attributes:{
-        //Comma-separated
+        /*** @note - Should be comma-separated */
         deliverers:{
             type:'string'
         },
@@ -11,10 +11,19 @@ module.exports={
         deliveryDate:{
             type:'datetime'
         },
+        estimatedDelivery:{
+            type:'datetime'
+        },
+        scheduledArrival:{
+            type:'datetime'
+        },
+        estimatedArrival:{
+            type:'datetime'
+        },
         deliveryPeriod:{
             type:'string'
         },
-        /** FUTURE **/
+        /*** @future -  Accomodates ability for certain restaurants to be disabled for a delivery */
         restaurants:{
             type:'string'
         },
@@ -24,7 +33,7 @@ module.exports={
         orderCutoff:{
             type:'datetime'
         },
-        /** FUTURE **/
+        /*** @future -  Accomodates ability for a delivery to split into multiple fulfillments */
         fulfillment:{
             type:'array'
         },

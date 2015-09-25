@@ -15,16 +15,33 @@ module.exports = {
         this.items = items;
         this.deliveryNote = deliveryNote;
     },
-    AutomaticDelivery: function(date, id, restaurants, cutoff, deliverers) {
+    AutomaticDelivery: function(date, id, restaurants, cutoff, deliverers, arrival) {
         this.deliveryPeriod = id;
         this.deliveryDate = date;
+        this.estimatedDelivery = date;
         this.restaurants = restaurants;
         this.orderCutoff = cutoff;
         this.deliverers = deliverers;
         this.closed = false;
         this.adminClosed = false;
         this.autoDelivery = true;
+        this.scheduledArrival = arrival;
+        this.estimatedArrival = arrival;
     },
+    /** 
+     * Represents a DeliveryNote that gets attached to an order.
+     *
+     * @constructor
+     * @param {string} commentedBy 
+     * @param {string} delivererId 
+     * @param {string} comments 
+     * @param {boolean} isDelivered 
+     * @param {Date} deliveredAt 
+     * @param {number} [cashPayment] 
+     * @param {boolean} [chargeLater] 
+     * @param {boolean} [creditCardCharged]
+     * @param {string} [creditCardMessage]
+     */
     DeliveryNote: function(commentedBy, delivererId, comments, isDelivered, deliveredAt, cashPayment, chargeLater, creditCardCharged, creditCardMessage) {
         this.commentedBy = commentedBy;
         this.deliveredBy = delivererId;
@@ -103,6 +120,9 @@ module.exports = {
         this.deliverers = "";
         this.comments = "";
         this.deliveryDate = new Date();
+        this.estimatedDelivery = new Date();
+        this.scheduledArrival = new Date();
+        this.estimatedArrival = new Date();
         this.deliveryPeriod = "";
         this.restaurants = "All";
         this.autoDelivery = false;
@@ -168,6 +188,14 @@ module.exports = {
         this.cutoffHour = 0.0;
         this.cutoffMinute = 0.0;
         this.cutoffSecond = 0.0;
+        this.arrivalDay = "";
+        this.arrivalHour = 0.0;
+        this.arrivalMinute = 0.0;
+        this.arrivalSecond = 0.0;
+        this.openDay = "";
+        this.openHour = 0.0;
+        this.openMinute = 0.0;
+        this.openSecond = 0.0;
         this.restaurants = "All";
         this.deliverers = "";
         this.enabled = false;   

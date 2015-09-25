@@ -25,6 +25,30 @@ module.exports={
         cutoffSecond: {
             type:'float'
         },
+        arrivalDay: {
+            type:'string'
+        },
+        arrivalHour: {
+            type:'float'
+        },
+        arrivalMinute: {
+            type:'float'
+        },
+        arrivalSecond: {
+            type:'float'
+        },
+        openDay: {
+            type:'string'
+        },
+        openHour: {
+            type:'float'
+        },
+        openMinute: {
+            type:'float'
+        },
+        openSecond: {
+            type:'float'
+        },
         restaurants: {
             type:'string'
         },
