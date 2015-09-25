@@ -5,6 +5,7 @@ import config from 'swyft-epsilon-online/config/environment';
 import cartUtils from 'swyft-epsilon-online/utils/cart-utils';
 
 export default Ember.Controller.extend({
+    queryParams: ['url'],
     loginError: false,
     actions: {
         login: function() {
@@ -41,7 +42,12 @@ export default Ember.Controller.extend({
 	                   "exp": 1442723909
                     }));
                     localStorage.setItem('swyft_epsilon_api_key', "d1391d70-58f0-4524-a144-4ff2427ecf56-echobravotangofoxtrot");
-                    self.transitionToRoute('restaurants');
+                    if(self.get('url')) {
+                        window.location.assign(self.get('url'));
+                    }
+                    else {
+                        self.transitionToRoute('restaurants');
+                    }
                 }
                 else {
                     self.set('loginError', true);

@@ -6,8 +6,8 @@ import loginUtils from 'swyft-epsilon-online/utils/login-utils';
 export default Ember.Mixin.create({
     beforeModel: function() {
         var self = this;
-        return loginUtils.checkLogin().then(function(value){ }, function(reason){
-            self.transitionTo('login');
+        return loginUtils.checkLogin().then(function(value){ }, function(reason) {
+            self.transitionTo('login', { queryParams: { url: window.location.href }});
         });
     }
 });
