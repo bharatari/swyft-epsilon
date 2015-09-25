@@ -11,6 +11,7 @@ module.exports = function(defaults) {
     app.import('bower_components/lodash/lodash.min.js');
     app.import('bower_components/mathjs/dist/math.min.js');
     app.import('bower_components/Chart.js/Chart.min.js');
+    app.import('vendor/sails.io.js');
 
     var mergeTrees = require('broccoli-merge-trees');
     var pickFiles = require('broccoli-static-compiler');
