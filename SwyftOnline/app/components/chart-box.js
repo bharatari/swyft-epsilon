@@ -6,18 +6,31 @@ import config from 'swyft-epsilon-online/config/environment';
 
 export default Ember.Component.extend({
     setup: function() {
+        if(this.get('data') != null) {
+            this.processChart(this.processData(this.get('data')));
+        }
+        else if(this.get('request') != null) {
+            var request = this.get('request');
+            Ember.$.getJSON(
+                request.url, 
+                request.data,
+                function(data) {
+                    this.processChart(this.processData(data));
+                }    
+            );
+        }
+    }.on('didInsertElement'),
+    processChart: function(data) {
         var canvas = document.getElementById(this.get('canvasId'));
         var context = canvas.getContext("2d");
-        var data = this.processData();
         Chart.defaults.global.responsive = true;
         var chart = new Chart(context).Bar(data);
         $(window).resize(function() {
             context.clearRect (0, 0, canvas.width, canvas.height);
             var chart = new Chart(context).Bar(data);
         });
-    }.on('didInsertElement'),
-    processData: function() {
-        var data = this.get('data');
+    },
+    processData: function(data) {
         var allData = {
             labels: [],
             datasets: [

@@ -141,5 +141,13 @@ export default {
             return false;
         }
     },
-    localStorageAlert: "We're having trouble processing your request. You're either using Safari in Private Mode or an older, unsupported browser. Please disable Private Mode on Safari or use another compatible browser, in order to continue."
+    getLogin: function() {
+        if(JSON.parse(localStorage.getItem(this.localStorageKey))) {
+            return {token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.token, tokenId: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.id};
+        }
+        else {
+            return {};
+        }
+    },
+    localStorageAlert: "We're having trouble processing your request. It seems you're using Safari in Private Mode or an older, unsupported browser. Please disable Private Mode on Safari or use another compatible browser in order to continue."
 };

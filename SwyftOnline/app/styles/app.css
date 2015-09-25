@@ -2647,7 +2647,68 @@ figure span {
     font-family: 'Open Sans';
     font-size: 16px;
     text-align: center;
-    margin-top: 53vh;
+    margin-top: 52.5vh;
+}
+
+.flyout-notifications {
+    position: fixed;
+    overflow: hidden;
+    top: 91px;
+    left: 16px;
+    z-index: 990;
+}
+
+.flyout-notification {
+    overflow: hidden;
+    border-radius: 5px;
+    width: 300px;
+    opacity: 0.9;
+    z-index: 1050;
+    transition: left 0.6s ease-out 0s;
+    padding-top: 10x;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 7px;
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+.flyout-notification .flyout-header {
+    font-family: 'Open Sans';
+    font-size: 16px;
+    color: white;
+    font-weight: 600;
+}
+
+.flyout-notification .flyout-text {
+    font-family: 'Open Sans';
+    font-size: 12px;
+    color: white;
+}
+
+.flyout-close {
+    font-weight: 800;
+    font-family: 'Open Sans';
+    font-size: 10px;
+    color: white;
+    margin-bottom: 15px;
+}
+
+.flyout-visible {
+    -webkit-animation: fade-in 0.2s ease-in;
+    -moz-animation: fade-in 0.2s ease-in;
+    -ms-animation: fade-in 0.2s ease-in;
+    -o-animation: fade-in 0.2s ease-in;
+    animation: fade-in 0.2s ease-in;
+}
+
+.flyout-invisible {
+    -webkit-animation: fade-out 0.2s ease-in;
+    -moz-animation: fade-out 0.2s ease-in;
+    -ms-animation: fade-out 0.2s ease-in;
+    -o-animation: fade-out 0.2s ease-in;
+    animation: fade-out 0.2s ease-in;
+    display: none;
 }
 
 @-webkit-keyframes fade-out {

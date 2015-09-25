@@ -16,7 +16,7 @@ module.exports = function(req, res, next) {
     }
     AuthService.isAdmin(tokenId, function(response) {
         if(response) {
-            var user = AuthService.getUser(token, function(user){
+            var user = AuthService.getUser(token, function(user) {
                 if(user) {
                     req.user = user;
                     next();

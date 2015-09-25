@@ -22,7 +22,7 @@ export default Ember.Controller.extend({
                 data: JSON.stringify(data),
                 type: "POST",
                 success: function(response) {
-                    self.set('modalTitle', 'FAQ Updated');
+                    self.set('modalTitle', 'News Updated');
                     self.set('modalBody', 'Your request has been processed.');
                     self.set('displayModal', true);
                 },

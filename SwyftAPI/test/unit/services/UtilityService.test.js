@@ -4,7 +4,7 @@ var UtilityService = require('../../../api/services/UtilityService');
 
 describe.only('UtilityService', function() {
     describe('#splitCSV()', function() {
-        it('should split a comma and space separated string into an array', function(done) {
+        it('should split a comma and space separated string into an array', function() {
             var CSV = "admin, delivery, employee";
             var array = UtilityService.splitCSV(CSV);
             var expected = [
@@ -13,51 +13,44 @@ describe.only('UtilityService', function() {
                 'employee'
             ];
             assert.deepEqual(array, expected);
-            done();
         });
-        it('should return an empty array for empty strings', function(done) {
+        it('should return an empty array for empty strings', function() {
             var CSV = "";
             var array = UtilityService.splitCSV(CSV);
             var expected = [];
             assert.deepEqual(array, expected);
-            done();
         });
-        it('should return an array with a single element for single element strings', function(done) {
+        it('should return an array with a single element for single element strings', function() {
             var CSV = "admin";
             var array = UtilityService.splitCSV(CSV);
             var expected = ['admin'];
             assert.deepEqual(array, expected);
-            done();
         });
     });
     describe('#CSVContains()', function() {
-        it('should return true if CSV contains string', function(done) {
+        it('should return true if CSV contains string', function() {
             var CSV = "admin, delivery, employee";
             var result = UtilityService.CSVContains(CSV, "admin");
             var expected = true;
             assert.equal(result, expected);
-            done();
         });
-        it('should return false if CSV does not contain string', function(done) {
+        it('should return false if CSV does not contain string', function() {
             var CSV = "delivery, employee";
             var result = UtilityService.CSVContains(CSV, "admin");
             var expected = false;
             assert.equal(result, expected);
-            done();
         });
-        it('should return false if CSV is empty', function(done) {
+        it('should return false if CSV is empty', function() {
             var CSV = "";
             var result = UtilityService.CSVContains(CSV, "admin");
             var expected = false;
             assert.equal(result, expected);
-            done();
         });
-        it('should return true if CSV contains string and only that string', function(done) {
+        it('should return true if CSV contains string and only that string', function() {
             var CSV = "admin";
             var result = UtilityService.CSVContains(CSV, "admin");
             var expected = true;
             assert.equal(result, expected);
-            done();
         });
     });
     describe('#paginationSkip()', function() {

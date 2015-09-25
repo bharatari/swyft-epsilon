@@ -61,6 +61,32 @@
                 </div>
             </div>
             <div class="col-md-6">
+                <div class="panel table-responsive admin-panel admin-panel-fixed-height">
+                    <div class="admin-panel-header-area">
+                        <h1 class="admin-panel-header">Incoming Orders</h1>
+                    </div>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Delivery Date</th>
+                                <th>Amount</th>
+                                <th>Created At</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each incomingOrders as |order|}}
+                            <tr>
+                                <td>{{format-datetime order "deliveryTime"}}</td>
+                                <td>{{format-currency order "actualAmount"}}</td>
+                                <td>{{format-datetime order "createdAt"}}</td>
+                                <td></td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-6">
                 <div class="panel admin-panel admin-panel-fixed-height">
                     <div class="admin-panel-header-area">
                         <h1 class="admin-panel-header">Active Deliveries</h1>
@@ -90,7 +116,7 @@
                     <div class="admin-panel-header-area">
                         <h1 class="admin-panel-header">Orders Per Night</h1>
                     </div>
-                    {{chart-box data=ordersChart canvasId="orders-chart"}}
+                    {{chart-box canvasId="orders-chart" request=ordersChart}}
                 </div>
             </div>
             
@@ -99,7 +125,7 @@
                     <div class="admin-panel-header-area">
                         <h1 class="admin-panel-header">Revenue Per Night</h1>
                     </div>
-                    {{chart-box data=revenueChart canvasId="revenue-chart"}}
+                    {{chart-box canvasId="revenue-chart" request=revenueChart}}
                 </div>
             </div>
         </div>
