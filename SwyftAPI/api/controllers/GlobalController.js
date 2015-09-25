@@ -25,21 +25,59 @@ module.exports = {
                 return res.json([]);
             }
             else {
-                return res.json(faq.value);
+                if(typeof faq.value === "string") {
+                    try {
+                        return res.json(JSON.parse(faq.value));
+                    }
+                    catch(err) {
+                        return res.json([]);
+                    }
+                }
+                else {
+                    return res.json(faq.value);
+                }
             }
         }); 
     },
     setFAQ: function(req, res) {
         if(req.body) {
             if(req.body.faq) {
-                Global.update({ key: "faq" }, { value: req.body.faq }).exec(function(err) {
-                    if(err) {
-                        return res.badRequest();
+                if(typeof req.body.faq === "string") {
+                    var faq;
+                    try {
+                        faq = JSON.parse(req.body.faq);
                     }
-                    else {
-                        return res.ok();
+                    catch(err) {
+                        return res.badRequest("Invalid JSON");
                     }
-                });
+                    var faqObject = {
+                        key: "faq",
+                        value: faq
+                    };
+                    Global.update({ key: "faq" }, faqObject).exec(function(err) {
+                        if(err) {
+                            return res.badRequest();
+                        }
+                        else {
+                            return res.ok();
+                        }
+                    });
+                }
+                else {
+                    var faq = {
+                        key: "faq",
+                        value: req.body.faq
+                    };
+                    Global.update({ key: "faq" }, faq).exec(function(err) {
+                        if(err) {
+                            return res.badRequest();
+                        }
+                        else {
+                            return res.ok();
+                        }
+                    });
+                }
+                
             }
             else {
                 return res.badRequest();

@@ -5,7 +5,7 @@ module.exports= {
             type:'string'  
         },
         value: {
-            type:'string'
+            type:'json'
         }
     }
 }
