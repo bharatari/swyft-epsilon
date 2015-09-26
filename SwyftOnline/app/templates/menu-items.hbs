@@ -1,4 +1,4 @@
-{{navbar-order-search value=searchValue}}
+{{navbar-order-search value=searchValue searchVisible=searchVisible}}
 
 {{side-bar checkout="checkout" login="login" profile="profile" logout="logout" isAuthenticated=isAuthenticated}}
 
@@ -10,12 +10,6 @@
 
 <div class="app-content app-content-no-padding">
     <div class="container">
-        {{!--<ul class="breadcrumb">
-        <li><a>{{#link-to 'index'}}Home{{/link-to}}</a></li>
-        <li><a>{{#link-to 'restaurants'}}Restaurants{{/link-to}}</a></li>
-        <li class="active">Menu</li>
-        </ul>--}}
-
         {{#if restaurant.notice}}
         <p class="notice-header">NOTICE</p>
         <p class="restaurant-notice">{{restaurant.notice}}</p>

@@ -2440,6 +2440,11 @@ figure span {
     box-shadow: none;
 }
 
+/***
+ *
+ * @tag - vendor-prefix, fade-animation
+ *
+ */
 .navbar-search-box-visible {
     -webkit-animation: fade-in 0.2s ease-in;
     -moz-animation: fade-in 0.2s ease-in;
@@ -2448,6 +2453,12 @@ figure span {
     animation: fade-in 0.2s ease-in;
 }
 
+/***
+ *
+ * @tag - vendor-prefix, fade-animation
+ * @todo - This just makes the box disappear with no animation. 
+ *
+ */
 .navbar-search-box-invisible {
     -webkit-animation: fade-out 0.2s ease-in;
     -moz-animation: fade-out 0.2s ease-in;
@@ -2694,6 +2705,11 @@ figure span {
     margin-bottom: 15px;
 }
 
+/***
+ *
+ * @tag - vendor-prefix, fade-animation
+ *
+ */
 .flyout-visible {
     -webkit-animation: fade-in 0.2s ease-in;
     -moz-animation: fade-in 0.2s ease-in;
@@ -2702,49 +2718,74 @@ figure span {
     animation: fade-in 0.2s ease-in;
 }
 
+/***
+ *
+ * @tag - vendor-prefix, fade-animation
+ * @todo - This just makes the box disappear with no animation. Just make the 
+ * fade out animation for opacity, and then handle the display: none in 
+ * JavaScript.
+ *
+ */
 .flyout-invisible {
     -webkit-animation: fade-out 0.2s ease-in;
     -moz-animation: fade-out 0.2s ease-in;
     -ms-animation: fade-out 0.2s ease-in;
     -o-animation: fade-out 0.2s ease-in;
     animation: fade-out 0.2s ease-in;
-    display: none;
+    display: none; 
 }
 
+/***
+ *
+ * @section - CSS Animation Keyframes 
+ *
+ */
+ 
 @-webkit-keyframes fade-out {
-    0% { opacity: 1 }
-    99% { opacity: 0 }
-    100% { opacity: 0, display: none }
+    0% { opacity: 1; }
+    99% { opacity: 0; }
+    100% { opacity: 0; display: none; }
 }
 
 @-moz-keyframes fade-out {
-    0% { opacity: 1 }
-    99% { opacity: 0 }
-    100% { opacity: 0, display: none }
+    0% { opacity: 1; }
+    99% { opacity: 0; }
+    100% { opacity: 0; display: none; }
 }
 
+/***
+ *
+ * @note - We can persist the end state of the animation using animation-fill-mode
+ * or by declaring the end state within the class itself (display: none). In order 
+ * to get around the fact that display: none will just make the element disappear
+ * with no animation, we add display: initial in the keyframes to make sure the
+ * element displays normally until the last keyframe. There are, however, issues
+ * with display properties being part of animations, so neither of these methods
+ * may work.
+ *
+ */
 @keyframes fade-out {
-    0% { opacity: 1 }
-    99% { opacity: 0 }
-    100% { opacity: 0, display: none }
+    0% { opacity: 1; }
+    99% { opacity: 0; }
+    100% { opacity: 0; display: none; }
 }
 
 @-moz-keyframes fade-in {
     0% { opacity: 0 }
     99% { opacity: 1 }
-    100% { opacity: 1, display: initial }
+    100% { opacity: 1; display: initial; }
 }
 
 @-webkit-keyframes fade-in {
     0% { opacity: 0 }
     99% { opacity: 1 }
-    100% { opacity: 1, display: initial }
+    100% { opacity: 1; display: initial; }
 }
 
 @keyframes fade-in {
     0% { opacity: 0 }
     99% { opacity: 1 }
-    100% { opacity: 1, display: initial }
+    100% { opacity: 1; display: initial; }
 }
 
 @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }

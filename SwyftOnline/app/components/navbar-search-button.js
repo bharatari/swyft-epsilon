@@ -2,7 +2,6 @@
 import Ember from "ember";
 
 export default Ember.Component.extend({
-    searchVisible: false,
     visibilityChanged: function() {
         if(this.get('searchVisible') === false) {
             this.set('value', "");
@@ -18,6 +17,11 @@ export default Ember.Component.extend({
             $("#search-box").focus();
         }
     }.observes('searchVisible'),
+    valueChanged: function() {
+        if(this.get('searchVisible') === false) {
+            this.set('value', "");
+        }
+    }.observes('value'),
     actions: {
         toggle: function() {
             if(this.get('searchVisible') === true) {

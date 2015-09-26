@@ -31,6 +31,7 @@ module.exports={
                                     if(order.paymentType === "cash") {
                                         OrderService.submitCash(order, req.user.id, function(response){
                                             if(response) {
+                                                User.publishCreate(response.toJSON());               
                                                 res.json(response);
                                             }
                                             else {
@@ -41,6 +42,7 @@ module.exports={
                                     else if(order.paymentType === "swyftdebit") {
                                         OrderService.submitSwyftDebit(order, req.user.id, function(response){
                                             if(response) {
+                                                User.publishCreate(response.toJSON()); 
                                                 res.json(response);
                                             }
                                             else {
@@ -51,6 +53,7 @@ module.exports={
                                     else if(order.paymentType === "cash+swyftdebit") {
                                         OrderService.submitCashSwyftDebit(order, req.user.id, function(response){
                                             if(response) {
+                                                User.publishCreate(response.toJSON()); 
                                                 res.json(response);
                                             }
                                             else {
@@ -61,6 +64,7 @@ module.exports={
                                     else if(order.paymentType === "creditcard") {
                                         OrderService.submitCreditCard(order, req.user.id, req.body.stripeToken, function(response, message){
                                             if(response) {
+                                                User.publishCreate(response.toJSON()); 
                                                 res.json(response);
                                             }
                                             else {
@@ -170,6 +174,20 @@ module.exports={
                 }
                 res.json(result);
             });
+        });
+    },
+    liveOrders: function(req, res) {
+        if(req.isSocket == true) {
+            Order.watch(req);
+            res.send('Connected');
+        }
+        else {
+            res.badRequest('You must be using WebSockets for this request.');
+        }
+    },
+    getAdminRecentOrders: function(req, res) {
+        Order.find().limit(10).sort({ createdAt: "desc" }).exec(function(err, orders) {
+            res.json(orders);
         });
     },
     getOrderMetadata: function(req, res) {

@@ -18,6 +18,9 @@ module.exports = function(grunt) {
                 }, {
                     from: 'src="assets/',                   
                     to: 'src="/SwyftOnline/assets/'
+                }, {
+                    from: 'io.sails.url = "http://localhost:1337";',
+                    to: ''
                 }]
             },
             css: {

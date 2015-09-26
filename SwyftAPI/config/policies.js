@@ -43,6 +43,8 @@ module.exports.policies = {
     "getDeliveryOrders":['isDelivery', 'userDisabled'],
     "getAggregateOrders":[],
     "getAllOrders":['isAdmin', 'userDisabled'],
+    "getAdminRecentOrders":['isAdmin', 'userDisabled'],
+    "liveOrders":['isAdmin', 'userDisabled'],
     "find":['isAdmin', 'removeAdminParams', 'userDisabled'],
     "findOne":['isAdmin', 'userDisabled'],
     "create":['isAdmin', 'removeAdminParams', 'userDisabled'],

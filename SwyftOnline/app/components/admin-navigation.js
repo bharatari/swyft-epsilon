@@ -29,5 +29,17 @@ export default Ember.Component.extend({
         { label: 'Edit Terms & Conditions', route: 'admin-terms', icon: 'fa-user'},
         { label: 'About', static: true },
         { label: 'About', route: 'admin-about', icon: 'fa-user' }
+    ],
+    /***
+     * 
+     * @todo - Setup a socket connection that will capture all notifications sent
+     * from the server and then add them to this array. We also need a way for
+     * these notifications to be cached. The most logical way is to save a Notification
+     * object to the database whereever we emit the notification event.
+     * 
+     */
+    notifications: [
+        { title: 'Bla', body: "more bla" },
+        { title: "Bla2", body: "more blaaa" }
     ]
 });

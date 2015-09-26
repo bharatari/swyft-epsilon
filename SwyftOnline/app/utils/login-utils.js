@@ -143,7 +143,7 @@ export default {
     },
     getLogin: function() {
         if(JSON.parse(localStorage.getItem(this.localStorageKey))) {
-            return {token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.token, tokenId: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.id};
+            return {token: JSON.parse(localStorage.getItem(this.localStorageKey)).token.token, tokenId: JSON.parse(localStorage.getItem(this.localStorageKey)).token.id};
         }
         else {
             return {};

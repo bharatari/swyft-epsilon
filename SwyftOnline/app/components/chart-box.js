@@ -2,22 +2,20 @@
 /* global Chart */
 /* jslint unused: false */
 import Ember from "ember";
+import loginUtils from 'swyft-epsilon-online/utils/login-utils';
 import config from 'swyft-epsilon-online/config/environment';
 
 export default Ember.Component.extend({
     setup: function() {
+        var self = this;
         if(this.get('data') != null) {
             this.processChart(this.processData(this.get('data')));
         }
         else if(this.get('request') != null) {
             var request = this.get('request');
-            Ember.$.getJSON(
-                request.url, 
-                request.data,
-                function(data) {
-                    this.processChart(this.processData(data));
-                }    
-            );
+            Ember.$.getJSON(request.url, request.data).then(function(data) {
+                self.processChart(self.processData(data));
+            });
         }
     }.on('didInsertElement'),
     processChart: function(data) {

@@ -76,6 +76,7 @@ module.exports.routes = {
   'delete /api/order':'OrderController.deleteOrder',
   'get /api/orders/pending':'OrderController.pendingOrders',
   'get /api/orders/recent':'OrderController.recentOrders',
+  'get /api/orders/adminRecent':'OrderController.getAdminRecentOrders',
     
   //Order Management Routes
   'get /api/orders/aggregate/:delivery_id':'OrderController.getAggregateOrders',
@@ -152,8 +153,10 @@ module.exports.routes = {
   'get /api/admin/deliveryGroup/model':'DeliveryGroupController.getDeliveryGroupModel',
   'get /api/admin/deliveryGroup/metadata':'DeliveryGroupController.getDeliveryGroupMetadata',
   'get /api/admin/attachedRequest/model':'AttachedRequestController.getAttachedRequestModel',
-  'get /api/admin/attachedRequest/metadata':'AttachedRequestController.getAttachedRequestMetadata'
-    
+  'get /api/admin/attachedRequest/metadata':'AttachedRequestController.getAttachedRequestMetadata',
+ 
+  //Live Routes
+  'get /api/admin/live/orders':'OrderController.liveOrders'
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *
