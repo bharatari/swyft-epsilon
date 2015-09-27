@@ -60,6 +60,10 @@ A Grunt task is available that automatically runs the above steps:
   * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
 
 #Features
+##CSS
+Swyft Epsilon Online extends Bootstrap Cosmo.
+
+Be careful when editing CSS as certain classes originally intended for a specific use might have been repurposed elsewhere.
 ##Animations
 As of SwyftOnline 2.6, new features were added to allow for animating route transitions. Wrap the body of the content you want to animate in and out with an `animate-body` component.
 
@@ -106,4 +110,5 @@ When creating a new data record or editing an existing one, you will see three t
 
 If changing the total amount on an order, leave the total amount intact just to show how much the order would have costed, and then simply edit the actual amount and then be sure to leave an admin comment of how much the actual amount was originally and how much it was changed to. Be aware that changing the total amount doesn't automatically charge the user again for payment methods such as Swyft Debit or Credit Card. The recommended course of action is to simply add this as a deduction in the customer's Swyft Debit balance, and allow them to pay it off however they choose.
 #License
-SwyftOnline is currently a closed-source project property of Swyft Web Services and Bharat Arimilli.
+Copyright 2015 Bharat Arimilli.
+Swyft Epsilon Online is currently a closed-source project property of Bharat Arimilli.

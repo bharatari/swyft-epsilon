@@ -1,7 +1,8 @@
 {
   "name": "swyft-epsilon",
   "private": true,
-  "version": "4.0.0-alpha5",
+  "license": "Copyright 2015 Bharat Arimilli",
+  "version": "4.0.0-alpha6",
   "dependencies": {
     "grunt": "^0.4.5"
   },

@@ -184,6 +184,9 @@ module.exports.policies = {
     "populate":['isAdmin', 'userDisabled'],
     "add":['isAdmin', 'userDisabled'],
     "remove":['isAdmin', 'userDisabled'] 
+  },
+  NotificationController:{
+    "*":['isAdmin', 'userDisabled']
   }
   
   /***************************************************************************

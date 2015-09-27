@@ -201,7 +201,7 @@ export default Ember.Controller.extend({
                     error: function(xhr, textStatus, error) {
                         self.set('displayLoading', false);
                         self.set('modalTitle', 'Whoops.');
-                        self.set('modalBody', "Something went wrong with your request. Your order has not been submitted. If you're using Swyft Debit as your payment type, ensure you have enough balance in your account to proceed. If you attempted to use a one-time coupon, it's either invalid or it has already been used. Otherwise, try emptying your cart and starting over. Please contact us at development@orderswyft.com if you have any further questions.");
+                        self.set('modalBody', "Something went wrong with your request. You should check your profile page to see if this order has been submitted. If it hasn't, try emptying your cart and starting over or contact us for help.");
                         self.set('displayModal', true);
                         self.set('checkoutPressed', false);
                     }
