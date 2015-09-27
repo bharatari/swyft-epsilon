@@ -2,7 +2,7 @@
 
 body {
     overflow-x: hidden;
-    /* FIX FOR JASNY BOOTSTRAP SIDEBAR */
+    /*** @fix - For Jasny Bootstrap sidebar */
     padding-left: 0px !important;
     font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
 }
@@ -16,13 +16,6 @@ body {
 .navbar-no-shadow {
     box-shadow: none !important;
 }
-
-/*
-.divider {
-    width: 80%;
-    height: 1.5px;
-}
-*/
 
 .nav-menu-content {
     margin-left: 10px; 
@@ -1239,7 +1232,7 @@ a.list-group-item:hover, a.list-group-item:focus {
     height: auto; 
     z-index: -100;
     background-size: cover;
-    /*background-image: radial-gradient(circle farthest-side at right bottom,#f8cdda,#1d2b64 80%,#0e153a);*/
+    background-image: radial-gradient(circle farthest-side at right bottom,#f8cdda,#1d2b64 80%,#0e153a);
     background-position: center;
     opacity: inherit;
     /* background-color: rgb(93, 151, 210); */
@@ -1885,7 +1878,11 @@ a.list-group-item:hover, a.list-group-item:focus {
     }
 }
 
-/* Image Caption Reveal */
+/***
+ *
+ * @section - Image Caption Reveal
+ *
+ */
 
 figure {
     margin: 0;
@@ -2176,14 +2173,6 @@ figure span {
 .yellow {
     background-color: #e4d836;    
 }
-
-/*
-.admin-divider {
-    border-top: 1px solid #CBCBCB;
-    margin-left: -25px;
-    margin-right: -25px;
-}
-*/
 
 .admin-panel-header {
     font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;
@@ -2508,7 +2497,12 @@ figure span {
     font-family: 'Open Sans';    
 }
 
-/* Used by admin-attached-request, admin-faq and admin-menu-item */
+/***
+ *
+ * @tag - transparent-textbox, wizard
+ * @usedby - admin-attached-request, admin-faq and admin-menu-item
+ *
+ */
 .no-box-textbox {
     border: none;
     outline: none;
