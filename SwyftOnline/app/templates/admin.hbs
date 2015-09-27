@@ -68,16 +68,18 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
                                 <th>Delivery Date</th>
-                                <th>Amount</th>
                                 <th>Created At</th>
                             </tr>
                         </thead>
                         <tbody>
                             {{#each incomingOrders as |order|}}
                             <tr>
+                                <td>{{dynamic-property order "user.firstName"}}</td>
+                                <td>{{dynamic-property order "user.lastName"}}</td>
                                 <td>{{format-datetime order "deliveryTime"}}</td>
-                                <td>{{format-currency order "actualAmount"}}</td>
                                 <td>{{format-datetime order "createdAt"}}</td>
                                 <td></td>
                             </tr>

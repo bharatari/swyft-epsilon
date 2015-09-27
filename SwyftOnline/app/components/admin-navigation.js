@@ -1,6 +1,29 @@
+/* global io */
 import Ember from "ember";
+import loginUtils from 'swyft-epsilon-online/utils/login-utils';
+import config from 'swyft-epsilon-online/config/environment';
 
 export default Ember.Component.extend({ 
+    didInitAttrs() {
+        var self = this;
+        io.socket.get(
+            config.routeLocation + "/api/admin/notifications/subscribe", 
+            { user: { token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token }}
+        );
+        io.socket.on('new notification', function(message) {
+            if(message) {
+                var notifications = self.get('notifications');
+                notifications.pushObject(message);
+                self.set('notifications', notifications);
+            }
+        });   
+        io.socket.on('connect', function() {
+            io.socket.get(
+                config.routeLocation + "/api/admin/notifications/subscribe", 
+                { user: { token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token }}
+            );
+        });
+    },
     navigation: [
         { label: 'Dashboard', route: 'admin', icon: 'fa-tachometer' },
         { label: 'Admin CRUD', static: true },
@@ -21,6 +44,7 @@ export default Ember.Component.extend({
         { label: 'Export', route: 'admin-export-picker', icon: 'fa-table' },
         { label: 'Wizards', static: true },
         { label: 'New Swyft Debit', route: 'admin-balance', icon: 'fa-money' },
+        { label: 'Delivery Offset', route: 'admin-delivery-offset', icon: 'fa-money' },
         { label: 'New One-Time-Use Token', route: 'admin-new-token', icon: 'fa-money'},
         { label: 'Complete Delivery', route: 'admin-complete-delivery', icon: 'fa-truck'},
         { label: 'Content Management', static: true },
@@ -38,8 +62,5 @@ export default Ember.Component.extend({
      * object to the database whereever we emit the notification event.
      * 
      */
-    notifications: [
-        { title: 'Bla', body: "more bla" },
-        { title: "Bla2", body: "more blaaa" }
-    ]
+    notifications: Ember.A()
 });
