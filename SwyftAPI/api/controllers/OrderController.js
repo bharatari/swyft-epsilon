@@ -31,41 +31,53 @@ module.exports={
                                     if(order.paymentType === "cash") {
                                         OrderService.submitCash(order, req.user.id, function(response){
                                             if(response) {
-                                                User.publishCreate(response.toJSON());               
-                                                res.json(response);
+                                                response.user = req.user;
+                                                Order.publishCreate(response.toJSON());
+                                                NotificationService.createOrderNotification(response, function() {
+                                                    res.json(response);
+                                                });
                                             }
                                             else {
-                                                res.serverError();
+                                                res.badRequest();
                                             }
                                         });
                                     }
                                     else if(order.paymentType === "swyftdebit") {
                                         OrderService.submitSwyftDebit(order, req.user.id, function(response){
                                             if(response) {
-                                                User.publishCreate(response.toJSON()); 
-                                                res.json(response);
+                                                response.user = req.user;
+                                                Order.publishCreate(response.toJSON()); 
+                                                NotificationService.createOrderNotification(response, function() {
+                                                    res.json(response);
+                                                });
                                             }
                                             else {
-                                                res.serverError();
+                                                res.badRequest();
                                             }
                                         });
                                     }
                                     else if(order.paymentType === "cash+swyftdebit") {
                                         OrderService.submitCashSwyftDebit(order, req.user.id, function(response){
                                             if(response) {
-                                                User.publishCreate(response.toJSON()); 
-                                                res.json(response);
+                                                response.user = req.user;
+                                                Order.publishCreate(response.toJSON()); 
+                                                NotificationService.createOrderNotification(response, function() {
+                                                    res.json(response);
+                                                });
                                             }
                                             else {
-                                                res.serverError();
+                                                res.badRequest();
                                             }
                                         });
                                     }
                                     else if(order.paymentType === "creditcard") {
                                         OrderService.submitCreditCard(order, req.user.id, req.body.stripeToken, function(response, message){
                                             if(response) {
-                                                User.publishCreate(response.toJSON()); 
-                                                res.json(response);
+                                                response.user = req.user;
+                                                Order.publishCreate(response.toJSON()); 
+                                                NotificationService.createOrderNotification(response, function() {
+                                                    res.json(response);
+                                                });
                                             }
                                             else {
                                                 res.badRequest(message);
@@ -176,7 +188,7 @@ module.exports={
             });
         });
     },
-    liveOrders: function(req, res) {
+    watch: function(req, res) {
         if(req.isSocket == true) {
             Order.watch(req);
             res.send('Connected');
@@ -187,7 +199,9 @@ module.exports={
     },
     getAdminRecentOrders: function(req, res) {
         Order.find().limit(10).sort({ createdAt: "desc" }).exec(function(err, orders) {
-            res.json(orders);
+            UserService.joinUsers(orders, function(result) {
+                res.json(result);
+            }); 
         });
     },
     getOrderMetadata: function(req, res) {
