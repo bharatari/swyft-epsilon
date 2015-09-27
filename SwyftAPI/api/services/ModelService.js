@@ -25,6 +25,8 @@ module.exports = {
         this.closed = false;
         this.adminClosed = false;
         this.autoDelivery = true;
+        this.operationalStatus = "scheduled";
+        this.deliveryStatus = "onTime";
         this.scheduledArrival = arrival;
         this.estimatedArrival = arrival;
     },
@@ -127,6 +129,8 @@ module.exports = {
         this.restaurants = "All";
         this.autoDelivery = false;
         this.orderCutoff = new Date();
+        this.operationalStatus = "scheduled";
+        this.deliveryStatus = "onTime";
         //this.fulfillment = [];
         this.closed = false;
         this.adminClosed = false;

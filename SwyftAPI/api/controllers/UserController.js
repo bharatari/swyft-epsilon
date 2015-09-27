@@ -55,7 +55,7 @@ module.exports={
         }
         
     },
-    resend:function(req,res){
+    resend: function(req,res) {
         User.findOne({ username: req.body.username.toLowerCase() }, function(err, user) {
             if (err) {
                 return res.serverError(err);
@@ -300,43 +300,6 @@ module.exports={
             }
         });
     },
-    /*
-    getUsersAdmin: function(req, res) {
-        UserService.getUsers(req.query, function(result) {
-            result = UserService.deleteSensitiveIterate(result);
-            res.json(result);
-        });
-    },
-    getUserAdmin: function(req, res) {
-        User.findOne({ id: req.params.id }).exec(function(err, user) {
-            if(!user && req.query.admin) {
-                res.json(new ModelService.User());
-            }
-            else if(!user) {
-                res.badRequest();
-            }
-            else {
-                user = UserService.deleteSensitive(user);
-                res.json(user);
-            }
-        });
-    },
-    updateUserAdmin: function(req, res) {
-        User.update({ id: req.params.id }, req.body).exec(function(err, transaction) {
-            res.ok();
-        });
-    },
-    newUserAdmin: function(req, res) {
-        User.create(req.body).exec(function(err, transaction) {
-            res.ok();
-        });
-    },
-    deleteUserAdmin: function(req, res) {
-        User.destroy({ id: req.params.id }).exec(function(err) {
-            res.ok();
-        });
-    },
-    */
     find: function(req, res) {
         UserService.getUsers(req.query, function(result) {
             res.json(result);

@@ -520,6 +520,28 @@ module.exports = {
                 editable: true
             },
             {
+                propertyName: 'operationalStatus',
+                displayName: 'Operational Status',
+                display: true,
+                type: 'enum',
+                editable: true,
+                enum: [
+                    { propertyName:'irrops', displayName:'IRROPS' },
+                    { propertyName:'scheduled', displayName:'Scheduled' }
+                ]
+            },
+            {
+                propertyName: 'deliveryStatus',
+                displayName: 'Delivery Status',
+                display: true,
+                type: 'enum',
+                editable: true,
+                enum: [
+                    { propertyName:'onTime', displayName:'On Time' },
+                    { propertyName:'delayed', displayName:'Delayed' }
+                ]
+            },
+            {
                 propertyName: 'deliveryDate',
                 displayName: 'Delivery Date',
                 display: true,

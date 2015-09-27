@@ -8,6 +8,14 @@ module.exports={
         comments:{
             type:'string'
         },
+        operationalStatus:{
+            type:'string',
+            enum:['scheduled', 'irrops']
+        },
+        deliveryStatus:{
+            type:'string',
+            enum:['onTime', 'delayed']
+        },
         deliveryDate:{
             type:'datetime'
         },
