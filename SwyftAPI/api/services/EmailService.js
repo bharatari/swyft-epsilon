@@ -106,5 +106,22 @@ module.exports = {
             cb(false, "OUTSTANDING_PAYMENTS_UNDEFINED");
         }
         
-    }
+    },
+    sendJoinUsEmail: function(email, firstName, lastName, phoneNumber, type, year, interests, cb) {
+        var message = {
+            "html":"Email: " + email + "<br>" + "First Name: " + firstName + "<br>" + "Last Name: " + lastName + "<br>" + "Phone Number: " + phoneNumber + "<br>" + "Type: " + type + "<br>" + "Year: " + year + "<br>" + "Interests: " + interests + "<br>",
+            "subject": "Join our Team email",
+            "from_email": "swyftdeveloper@outlook.com",
+            "from_name": "Swyft",
+            "to":[{
+                "email": "sburleigh@exeter.edu",
+                "type": "to"
+            }]
+        };
+        mandrill_client.messages.send({ message: message }, function(result) {
+            cb(true);
+        }, function(err) {
+            cb(false);
+        });
+    },
 }

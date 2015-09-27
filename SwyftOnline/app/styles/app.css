@@ -2729,6 +2729,12 @@ figure span {
     display: none; 
 }
 
+.centered-form {
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /***
  *
  * @section - CSS Animation Keyframes 

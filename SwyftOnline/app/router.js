@@ -20,6 +20,7 @@ Router.map(function() {
     this.route("admin", { path:"/admin"});
     this.route("terms", { path:"/app/terms" });
     this.route("faq", { path:"/app/faq" });
+    this.route("join-us", { path:"/app/join-us" });
     this.route("contact-us", { path:"/app/contact-us" });
     this.route("profile", { path:"/app/profile" });
     this.route("confirmation", { path:"/app/confirmation" });
@@ -56,6 +57,7 @@ Router.map(function() {
     this.route("admin-attached-requests", { path:"/admin/attached-requests" }); 
     this.route("admin-attached-request", { path:"/admin/attached-request/:id" });
     this.route("admin-balance", { path:"/admin/balance" });
+    this.route("admin-delivery-offset", { path:"/admin/delivery-offset" });
     this.route("admin-faq", { path:"/admin/faq" });
     this.route("admin-terms", { path:"/admin/terms" });
     this.route("admin-global-delivery-note", { path:"/admin/global-delivery-note" });

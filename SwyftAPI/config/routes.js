@@ -89,6 +89,7 @@ module.exports.routes = {
   'get /api/adminDeliveries':'DeliveryController.getAdminDeliveries',
   'post /api/delivery':'DeliveryController.createDelivery',
   'post /api/delivery/close':'DeliveryController.closeDelivery',
+  'post /api/delivery/offset':'DeliveryController.setDeliveryOffset',
 
   //Global Routes
   'get /api/news':'GlobalController.getNews',
@@ -156,7 +157,11 @@ module.exports.routes = {
   'get /api/admin/attachedRequest/metadata':'AttachedRequestController.getAttachedRequestMetadata',
  
   //Live Routes
-  'get /api/admin/live/orders':'OrderController.liveOrders'
+  'get /api/admin/orders/watch':'OrderController.watch',
+  'get /api/admin/notifications/subscribe':'NotificationController.subscribe',
+    
+  //Email Routes
+  'post /api/email/join':'EmailController.sendJoinUsEmail'
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *

@@ -20,6 +20,9 @@ export default Ember.Controller.extend({
         faq: function() {
             this.transitionToRoute('faq');
         },
+        joinUs: function() {
+            this.transitionToRoute('join-us');
+        },
         contactUs: function() {
             this.transitionToRoute('contact-us');
         }

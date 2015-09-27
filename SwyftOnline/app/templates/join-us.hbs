@@ -1,0 +1,38 @@
+{{partial "navbar-standard"}}
+
+{{#animate-body}} 
+<div class="container">
+    <form class="centered-form" {{action 'submit' on='submit'}}>
+        <fieldset>
+            <div class="alert alert-success">
+                <strong>Are you a day student driver?</strong> We're looking for day students who can help support our growing logistics operations.
+            </div>
+            <h2 class="centered-text">Join the Team</h2>
+            <h5 class="centered-text">Be a part of the only real-world business environment at Exeter. Swyft's operations span from logistics to web development to graphic design, so no matter what your passion is, we have a place for you. Fill out this form and we'll get back to you with available opportunities.</h5>
+            {{#if error}}
+            <div class="alert alert-dismissable alert-danger">
+                <button class="close" type="button" {{action 'close'}}>×</button>
+                <strong>Oh snap!</strong> We can't seem to get your message through. Give us a second and try again.
+            </div>
+            {{/if}}
+            {{#if success}}
+                <div class="alert alert-success">
+                    <strong>Great!</strong> Thanks for your interest, we'll get back to you soon.
+                </div>
+            {{/if}}
+            <div>
+                {{input class="form-control" value=email type="text" placeholder="Exeter Email Address"}}
+                {{input class="form-control" value=firstName type="text" placeholder="First Name"}}
+                {{input class="form-control" value=lastName type="text" placeholder="Last Name"}}
+                {{input class="form-control" value=phoneNumber type="text" placeholder="Phone Number"}}
+                {{select-menu action=(action (mut type)) content=studentTypes selection=type class="form-control" prompt="Boarding Student or Day Student?"}}
+                {{select-menu action=(action (mut year)) content=years selection=year class="form-control" prompt="Year"}}
+                {{input class="form-control" value=interests type="text" placeholder="What positions would you be interested in?"}}
+            </div>
+            {{#unless buttonPressed}}
+                <button class="btn btn-light" style="float:right;margin-top:10px;" type="submit">SUBMIT</button>
+            {{/unless}}
+        </fieldset>
+    </form>
+</div>
+{{/animate-body}} 

@@ -61,9 +61,6 @@ export default Ember.Controller.extend({
                             self.set('modalTitle', 'Email Verification');
                             self.set('modalBody', 'An email has been sent to your given Exeter email address. Before you can login to your Swyft Account you will need to verify your email address using the token that has been emailed to you. Be sure to check your spam folder.');
                             self.set('displayModal', true);
-                            setTimeout(function(){
-                                self.transitionToRoute("restaurants");
-                            }, 6000);
                         },
                         error: function(xhr, textStatus, error) {
                             if(xhr.response === "EMAIL_IN_USE"){
