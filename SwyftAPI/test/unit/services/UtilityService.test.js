@@ -2,7 +2,7 @@ var assert = require('chai').assert;
 var expect = require('chai').expect;
 var UtilityService = require('../../../api/services/UtilityService');
 
-describe.only('UtilityService', function() {
+describe('UtilityService', function() {
     describe('#splitCSV()', function() {
         it('should split a comma and space separated string into an array', function() {
             var CSV = "admin, delivery, employee";

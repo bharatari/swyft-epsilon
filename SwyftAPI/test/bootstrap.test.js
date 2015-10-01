@@ -1,20 +1,23 @@
-/*
 var Sails = require('sails'),
-  sails;
+    sails;
 
 before(function(done) {
-  Sails.lift({
-    // configuration for testing purposes
-  }, function(err, server) {
-    sails = server;
-    if (err) return done(err);
-    // here you can load fixtures, etc.
-    done(err, sails);
-  });
+
+    // Increase the Mocha timeout so that Sails has enough time to lift.
+    this.timeout(6000);
+
+    Sails.lift({
+        // configuration for testing purposes
+        environment: 'test'
+    }, function(err, server) {
+        sails = server;
+        if (err) return done(err);
+        // here you can load fixtures, etc.
+        done(err, sails);
+    });
 });
 
 after(function(done) {
-  // here you can clear fixtures, etc.
-  Sails.lower(done);
+    // here you can clear fixtures, etc.
+    Sails.lower(done);
 });
-*/
