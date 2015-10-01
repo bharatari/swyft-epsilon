@@ -13,6 +13,13 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, SidebarRouteMixin, An
     },
     afterModel: function(model) {
         if(new Date() > new Date(model.order.deliveryTime)) {
+            /*** 
+             * 
+             * @note - This functionality needs more testing before it's used,
+             * moreover, it's not necessary to redirect away. It makes things
+             * needlessly more complex.
+             * 
+             */
             //this.transitionTo('restaurants');
         }
     },

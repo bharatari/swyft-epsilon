@@ -131,6 +131,7 @@ module.exports = {
         this.orderCutoff = new Date();
         this.operationalStatus = "scheduled";
         this.deliveryStatus = "onTime";
+        /*** @future - Fulfillments aren't currently used, but are in place to accomodate potential expansion. */
         //this.fulfillment = [];
         this.closed = false;
         this.adminClosed = false;
@@ -138,6 +139,7 @@ module.exports = {
     DeliveryLocation: function() {
         this.name = "";
         this.group = "";
+        /*** @future - We currently don't use latitude and longitude for any purpose. */
         //this.latitude = 0.0;
         //this.longitude = 0.0;
         this.disabled = false;

@@ -38,7 +38,6 @@ module.exports.connections = {
     password: 'Xv56magj',
     database: 'igEjo9pe'
   },
-
   MongoDev:{
     adapter: 'sails-mongo',
     host: 'proximus.modulusmongo.net',

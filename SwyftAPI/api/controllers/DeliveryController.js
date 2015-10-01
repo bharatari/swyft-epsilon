@@ -33,7 +33,7 @@ module.exports = {
             }
         });
     },
-    /** BUG **/
+    /*** @bug - This isn't working at the moment */
     completeDelivery: function(req,res){
         DeliveryNoteService.setOrdersToDelivered(req.body.deliveryId, function() {
             res.ok();
