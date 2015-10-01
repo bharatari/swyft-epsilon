@@ -3,7 +3,7 @@ import Ember from "ember";
 import config from 'swyft-epsilon-online/config/environment';
 
 export default {
-    localStorageKey: "cart_token-e5162f27da96ed8e1ae51def1ba643b91d2581d8", 
+    localStorageKey: "firefly_session", 
     getToken: function() {
         return JSON.parse(localStorage.getItem(this.localStorageKey)).token.token;
     },

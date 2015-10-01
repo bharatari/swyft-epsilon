@@ -14,8 +14,14 @@ var App = Ember.Application.extend({
   Resolver: Resolver,
   ready: function() {
     moment.tz.add(constants.timeZones.zones);
-    $.ajaxSetup({ cache: false });
-    Ember.$.ajaxSetup({ cache: false });
+    $.ajaxSetup({ cache: false, crossDomain: true,
+    xhrFields: {
+        withCredentials: true
+    }});
+    Ember.$.ajaxSetup({ cache: false, crossDomain: true,
+    xhrFields: {
+        withCredentials: true
+    }});
   }
 });
 

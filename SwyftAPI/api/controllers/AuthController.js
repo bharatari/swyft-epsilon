@@ -1,6 +1,8 @@
 var bcrypt = require('bcrypt');
 var moment = require('moment');
 var jwt = require('jwt-simple');
+var Chance = require('chance');
+var chance = new Chance();
 
 module.exports={
     login: function(req, res) {
@@ -26,17 +28,20 @@ module.exports={
                 }
                 else {
                     var expires = moment().add(2, 'days').toDate();
+                    var sessionToken = chance.guid();
                     var authToken = jwt.encode({
                         iss: user.id,
-                        exp: expires
+                        exp: expires,
+                        sessionToken: sessionToken
                     }, AuthService.jwtTokenSecret);
 
-                    LoginToken.create({token:authToken, expires: expires, userId: user.id}).exec(function(err, token) {
+                    LoginToken.create({token: authToken, expires: expires, userId: user.id}).exec(function(err, token) {
                         if(err) {
                             return res.serverError(err);
                         }
                         else {
                             if(token) {
+                                req.session.sessionToken = sessionToken;
                                 return res.ok({
                                     token : token,
                                     expires: expires,
@@ -52,7 +57,7 @@ module.exports={
             });
         });
     },
-    logout:function(req,res) {
+    logout: function(req,res) {
         LoginToken.destroy({userId: req.body.userId}).exec(function(err){
             if(err) {
                 res.serverError(err);
@@ -62,8 +67,8 @@ module.exports={
             }
         });
     },
-    isAuthenticated:function(req,res) {
-        AuthService.authenticated(req.query.tokenId, function(response) {
+    isAuthenticated:function(req, res) {
+        AuthService.authenticated(req.query.tokenId, req.session, function(response) {
             if(response) {
                 AuthService.getUser(response.token, function(user){
                     if(user) {
@@ -86,7 +91,7 @@ module.exports={
         });
     },
     isAdmin:function(req, res) {
-        AuthService.isAdmin(req.query.tokenId, function(response) {
+        AuthService.isAdmin(req.query.tokenId, req.session, function(response) {
             if(response) {
                 return res.ok();
             }
@@ -96,7 +101,7 @@ module.exports={
         });
     },
     isDelivery: function(req, res) {
-        AuthService.isDelivery(req.query.tokenId, function(response) {
+        AuthService.isDelivery(req.query.tokenId, req.session, function(response) {
             if(response) {
                 return res.ok();
             }

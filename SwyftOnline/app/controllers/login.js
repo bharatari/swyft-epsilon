@@ -28,20 +28,9 @@ export default Ember.Controller.extend({
                     //Restore them 
                     cartUtils.restoreCart(cart, cartVersion);
                     localStorage.setItem(loginUtils.localStorageKey, JSON.stringify(data));
-                    localStorage.setItem("login_token-f2a8994c-048f-47d3-a032-4c0fe8780552", "2A6D340D2F5237BAEC5675195991632DE0A315B1");
-                    localStorage.setItem("user_session-f31ca4d1-87b7-499f-ad23-feae4c99303a", "f0d8368Km00DS9SN7rsVnUZWZFjLeCjFbE=");
-                    localStorage.setItem("_u", "d01e6a70-27ac-4d5b-9a3b-f05ba1bc74af");
-                    localStorage.setItem("_v", "ceb46df4fc25c29492579eed19471025");
-                    localStorage.setItem("_e", "77de00ac-9083-4857-861d-381c06134312");
                     localStorage.setItem("app_core", "firefly_core");
                     localStorage.setItem("app_platform_label", config.appCodename);
                     localStorage.setItem("app_platform", "swyft_epsilon " + config.appVersion);
-                    localStorage.setItem("ember_simple_auth:session", JSON.stringify({
-	                   "authenticator": "simple-auth-authenticator:jwt",
-	                   "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwYXNzd29yZCI6ImFiYzEyMyIsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE0NDI3MjM4OTksImV4cCI6MTQ0MjcyMzkwOX0.snOCkqaD9qEPkqguksDfB_eFlHQ917CPpB44CnIyfJY",
-	                   "exp": 1442723909
-                    }));
-                    localStorage.setItem('swyft_epsilon_api_key', "d1391d70-58f0-4524-a144-4ff2427ecf56-echobravotangofoxtrot");
                     if(self.get('url')) {
                         window.location.assign(self.get('url'));
                     }
