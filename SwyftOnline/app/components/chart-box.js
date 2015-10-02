@@ -21,22 +21,38 @@ export default Ember.Component.extend({
     processChart: function(data) {
         var canvas = document.getElementById(this.get('canvasId'));
         var context = canvas.getContext("2d");
-        Chart.defaults.global.responsive = true;
-        var chart = new Chart(context).Bar(data);
+        var options = {
+            responsive: true,
+            scaleFontFamily: "'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+            scaleFontSize: 12,
+            scaleFontStyle: "normal",
+            scaleFontColor: "#666",
+            tooltipFontFamily: "'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+            tooltipFontSize: 14,
+            tooltipFontStyle: "normal",
+            tooltipFontColor: "#fff",
+            tooltipTitleFontFamily: "'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+            tooltipTitleFontSize: 14,
+            tooltipTitleFontStyle: "bold",
+            tooltipTitleFontColor: "#fff"
+        };
+        var chart = new Chart(context).Bar(data, options);
+        /*
         $(window).resize(function() {
             context.clearRect (0, 0, canvas.width, canvas.height);
             var chart = new Chart(context).Bar(data);
         });
+        */
     },
     processData: function(data) {
         var allData = {
             labels: [],
             datasets: [
                 {
-                    fillColor: "rgba(47,128,231,1)",
-                    strokeColor: "rgba(47,128,231,1)",
-                    highlightFill: "rgba(93,156,236,1)",
-                    highlightStroke: "rgba(93,156,236,1)",
+                    fillColor: "rgba(92, 92, 92, 1)",
+                    strokeColor: "rgba(92, 92, 92, 1)",
+                    highlightFill: "rgba(122, 122, 122, 1)",
+                    highlightStroke: "rgba(122, 122, 122, 1)",
                     data: []
                 }
             ]
