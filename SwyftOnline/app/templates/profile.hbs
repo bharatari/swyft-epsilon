@@ -50,12 +50,16 @@
                 </div>
                 {{/if}}
                 <div class="option-group">
+                    {{#if orders}}
                     <h2 class="small-header">Recent Orders</h2>
                     <div class="list-group">
                         {{#each orders as |order|}}
                         <a class="list-group-item" href="#" {{action 'openModal' order}}><span class="option-text">{{order.displayTime}}</span><span class="badge">{{#if order.actualAmount}}{{format-currency order.actualAmount}}{{/if}}</span></a>
                         {{/each}}
-                    </div>            
+                    </div>         
+                    {{else}}
+                    <h2 class="small-header-gray">No orders to show.</h2>
+                    {{/if}}   
                 </div>
                 <p class="profile-sub-heading sub-heading">If you want to change any other details of your account such as your default delivery location, you'll need to contact us.</p>
                 <label class="checkbox-label checkbox-margin">
