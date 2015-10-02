@@ -70,6 +70,7 @@ module.exports = {
         }
     },
     isDelivery: function(tokenId, session, cb) {
+        var self = this;
         if(tokenId) {
             LoginToken.findOne({ id: tokenId }).exec(function(err, token) {
                 if(err) {
