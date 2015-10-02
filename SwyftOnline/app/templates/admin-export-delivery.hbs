@@ -12,73 +12,77 @@
             <div class="admin-content-margin">
                 {{select-menu action=(action (mut deliveryLocation)) content=deliveryLocations selection=deliveryLocation class="form-control" prompt="Select a Delivery Location"}}
                 <h3>Not Delivered</h3>
-                <table class="table table-hover master-sheet">
-                    <tbody>
-                    <tr>
-                        <th>Name</th>
-                        <th>Items</th>
-                        <th>Total</th>
-                        <th>Location</th>
-                        <th>Phone</th>
-                        <th>Payment</th>
-                        <th>Comments</th>
-                        <th>Charge</th>
-                    </tr>
-                    {{#each notDelivered as |order|}}
-                    <tr>
-                        <td>{{order.name}}</td>
-                        <td>
-                            <ul>
-                                {{#each order.items as |item|}}
-                                <li>
-                                    {{item.quantity}} <strong>{{item.name}}</strong>
-                                </li>
-                                {{/each}}
-                            </ul>
-                        </td>
-                        <td>{{format-currency order.total}}</td>
-                        <td>{{order.deliveryLocation}}</td>
-                        <td>{{order.phoneNumber}}</td>
-                        <td>{{order.paymentType}}</td>
-                        <td>{{order.deliveryNote.comments}}</td>
-                        <td>{{order.charge}}</td>
-                    </tr>
-                    {{/each}}
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table table-hover master-sheet">
+                        <tbody>
+                        <tr>
+                            <th>Name</th>
+                            <th>Items</th>
+                            <th>Total</th>
+                            <th>Location</th>
+                            <th>Phone</th>
+                            <th>Payment</th>
+                            <th>Comments</th>
+                            <th>Charge</th>
+                        </tr>
+                        {{#each notDelivered as |order|}}
+                        <tr>
+                            <td>{{order.name}}</td>
+                            <td>
+                                <ul>
+                                    {{#each order.items as |item|}}
+                                    <li>
+                                        {{item.quantity}} <strong>{{item.name}}</strong>
+                                    </li>
+                                    {{/each}}
+                                </ul>
+                            </td>
+                            <td>{{format-currency order.total}}</td>
+                            <td>{{order.deliveryLocation}}</td>
+                            <td>{{order.phoneNumber}}</td>
+                            <td>{{order.paymentType}}</td>
+                            <td>{{order.deliveryNote.comments}}</td>
+                            <td>{{order.charge}}</td>
+                        </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
+                </div>
                 <h3>Delivered</h3>
-                <table class="table table-hover master-sheet">
-                    <tr>
-                        <th>Name</th>
-                        <th>Items</th>
-                        <th>Total</th>
-                        <th>Location</th>
-                        <th>Phone</th>
-                        <th>Payment</th>
-                        <th>Comments</th>
-                        <th>Charge</th>
-                    </tr>
-                    {{#each delivered as |order|}}
-                    <tr>
-                        <td>{{order.name}}</td>
-                        <td>
-                            <ul>
-                                {{#each order.items as |item|}}
-                                <li>
-                                    {{item.quantity}} <strong>{{item.name}}</strong>
-                                </li>
-                                {{/each}}
-                            </ul>
-                        </td>
-                        <td>{{format-currency order.total}}</td>
-                        <td>{{order.deliveryLocation}}</td>
-                        <td>{{order.phoneNumber}}</td>
-                        <td>{{order.paymentType}}</td>
-                        <td>{{order.deliveryNote.comments}}</td>
-                        <td>{{order.charge}}</td>
-                    </tr>
-                    {{/each}}
-                </table>
+                <div class="table-responsive">
+                    <table class="table table-hover master-sheet">
+                        <tr>
+                            <th>Name</th>
+                            <th>Items</th>
+                            <th>Total</th>
+                            <th>Location</th>
+                            <th>Phone</th>
+                            <th>Payment</th>
+                            <th>Comments</th>
+                            <th>Charge</th>
+                        </tr>
+                        {{#each delivered as |order|}}
+                        <tr>
+                            <td>{{order.name}}</td>
+                            <td>
+                                <ul>
+                                    {{#each order.items as |item|}}
+                                    <li>
+                                        {{item.quantity}} <strong>{{item.name}}</strong>
+                                    </li>
+                                    {{/each}}
+                                </ul>
+                            </td>
+                            <td>{{format-currency order.total}}</td>
+                            <td>{{order.deliveryLocation}}</td>
+                            <td>{{order.phoneNumber}}</td>
+                            <td>{{order.paymentType}}</td>
+                            <td>{{order.deliveryNote.comments}}</td>
+                            <td>{{order.charge}}</td>
+                        </tr>
+                        {{/each}}
+                    </table>
+                </div>
             </div>    
         </div>
     </div>

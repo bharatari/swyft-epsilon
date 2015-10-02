@@ -11,50 +11,54 @@
             </div>
             <div class="admin-content-margin">
                 {{filter-box filters=filters properties=metadata.properties}}
-                <table class="table table-hover master-sheet">
-                    <tbody>
-                    <tr>
-                        <th>Name</th>
-                        <th>Items</th>
-                        <th>Total</th>
-                        <th>Location</th>
-                        <th>Phone</th>
-                        <th>Payment</th>
-                        <th>Charge</th>
-                        <th>Region</th>
-                    </tr>
-                    {{#each data.items as |masterItem|}}
-                    <tr>
-                        <td>{{masterItem.name}}</td>
-                        <td>
-                            <ul>
-                                {{#each masterItem.items as |item|}}
-                                <li>
-                                    <p>{{item.quantity}} <strong>{{item.name}}</strong> {{item.itemComments}}</p>
-                                </li>
-                                {{/each}}
-                            </ul>
-                        </td>
-                        {{#if masterItem.deliveryNote.cashPayment}}
+                <br>
+                <div class="table-responsive">
+                    <table class="table table-hover master-sheet">
+                        <tbody>
+                        <tr>
+                            <th>Name</th>
+                            <th>Items</th>
+                            <th>Total</th>
+                            <th>Location</th>
+                            <th>Phone</th>
+                            <th>Payment</th>
+                            <th>Charge</th>
+                            <th>Region</th>
+                        </tr>
+                        {{#each data.items as |masterItem|}}
+                        <tr>
+                            <td>{{masterItem.name}}</td>
                             <td>
-                                <div>
-                                    <p>Cash: {{format-currency masterItem.deliveryNote.cashPayment}}</p>
-                                    <p>Debit: {{format-subtract-currency masterItem.deliveryNote.cashPayment masterItem.total}}</p>
-                                    <p>Total: {{format-currency masterItem.total}}</p>
-                                </div>
+                                <ul>
+                                    {{#each masterItem.items as |item|}}
+                                    <li>
+                                        <p>{{item.quantity}} <strong>{{item.name}}</strong> {{item.itemComments}}</p>
+                                    </li>
+                                    {{/each}}
+                                </ul>
                             </td>
-                        {{else}}
-                            <td>{{format-currency masterItem.total}}</td>
-                        {{/if}}
-                        <td>{{masterItem.deliveryLocation}}</td>
-                        <td>{{masterItem.phoneNumber}}</td>
-                        <td>{{masterItem.paymentType}}</td>
-                        <td>{{masterItem.charge}}</td>
-                        <td>{{masterItem.region}}</td>
-                    </tr>
-                    {{/each}}
-                    </tbody>
-                </table>
+                            {{#if masterItem.deliveryNote.cashPayment}}
+                                <td>
+                                    <div>
+                                        <p>Cash: {{format-currency masterItem.deliveryNote.cashPayment}}</p>
+                                        <p>Debit: {{format-subtract-currency masterItem.deliveryNote.cashPayment masterItem.total}}</p>
+                                        <p>Total: {{format-currency masterItem.total}}</p>
+                                    </div>
+                                </td>
+                            {{else}}
+                                <td>{{format-currency masterItem.total}}</td>
+                            {{/if}}
+                            <td>{{masterItem.deliveryLocation}}</td>
+                            <td>{{masterItem.phoneNumber}}</td>
+                            <td>{{masterItem.paymentType}}</td>
+                            <td>{{masterItem.charge}}</td>
+                            <td>{{masterItem.region}}</td>
+                        </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+                
                 {{#unless filters}}
                     <h3 class="master-sheet master-sheet-total">Total ${{data.deliveryTotal}}</h3>
                 {{/unless}}
