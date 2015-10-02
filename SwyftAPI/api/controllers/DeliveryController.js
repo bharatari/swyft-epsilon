@@ -1,3 +1,5 @@
+var moment = require('moment');
+
 module.exports = {
     getOpenDeliveries: function(req,res){
         Delivery.find({closed: false}).exec(function(err, deliveries){
@@ -33,7 +35,6 @@ module.exports = {
             }
         });
     },
-    /*** @bug - This isn't working at the moment */
     completeDelivery: function(req,res){
         DeliveryNoteService.setOrdersToDelivered(req.body.deliveryId, function() {
             res.ok();
@@ -43,6 +44,119 @@ module.exports = {
         Delivery.update({ id: req.body.id }, { closed: true }).exec(function(err, delivery){
             if(err) {
                 return res.badRequest();
+            }
+            else {
+                res.ok();
+            }
+        });
+    },
+    /*** 
+     * Sets offsets for estimated delivery and arrival times.
+     *
+     * @param {number} offset - Offset in minutes
+     * @param {string} deliveryId
+     *
+     * @tag - timezone
+     *
+     */
+    setDeliveryOffset: function(req, res) {
+        if(req.body) {
+            if(req.body.offset && req.body.deliveryId) {
+                var offset;
+                if(typeof req.body.offset != "number") {
+                    offset = parseInt(req.body.offset);
+                    if(isNaN(offset)) {
+                        return res.badRequest();
+                    }
+                }
+                Delivery.find({ id: req.body.deliveryId }).exec(function(err, delivery) {
+                    if(!err || delivery) {
+                        var estimatedDelivery = moment(delivery.deliveryDate);
+                        var estimatedArrival = moment(delivery.scheduledArrival);
+                        estimatedDelivery.add(offset, 'minutes');
+                        estimatedArrival.add(offset, 'minutes');
+                        Delivery.update({ id: req.body.deliveryId }, { estimatedArrival: estimatedArrival.toDate(), estimatedDelivery: estimatedDelivery.toDate() }).exec(function(err, data) {
+                            if(err) {
+                                return res.badRequest();
+                            }
+                            else {
+                                NotificationService.createDeliveryNotification(data, offset, function() {
+                                    return res.ok();
+                                });
+                            }
+                        });
+                    }  
+                    else {
+                        return res.badRequest();
+                    }
+                });
+            }
+            else {
+                return res.badRequest();
+            }
+        }
+        else {
+            return res.badRequest();
+        }
+    },
+    setDeliveryStatus: function(req, res) {
+        if(req.body) {
+            if(req.body.status && req.body.deliveryId) {
+                Delivery.update({ id: req.body.deliveryId }, { deliveryStatus: req.body.status }).exec(function(err, data) {
+                    if(err) {
+                        return res.badRequest();
+                    }
+                    else {
+                        NotificationService.createDeliveryStatusNotification(data, req.body.status, function() {
+                            return res.ok();
+                        });
+                    }
+                });
+            }
+            else {
+                return res.badRequest();
+            }
+        }
+        else {
+            return res.badRequest();
+        }
+    },
+    setOperationalStatus: function(req, res) {
+        if(req.body) {
+            if(req.body.status && req.body.deliveryId) {
+                Delivery.update({ id: req.body.deliveryId }, { operationalStatus: req.body.status }).exec(function(err, data) {
+                    if(err) {
+                        return res.badRequest();
+                    }
+                    else {
+                        NotificationService.createOperationalStatusNotification(data, req.body.status, function() {
+                            return res.ok();
+                        });
+                    }
+                });
+            }
+            else {
+                return res.badRequest();
+            }
+        }
+        else {
+            return res.badRequest();
+        }
+    },
+    getDeliveryLiveStatus: function(req, res) {
+        Delivery.find({ adminClosed: false }).exec(function(err, deliveries) {
+            if(err || !deliveries) {
+                res.badRequest();
+            }
+            else if(deliveries.length > 0) {
+                DeliveryService.findLatest(deliveries, function(delivery) {
+                    if(delivery) {
+                        res.json(delivery);
+                    }
+                    else {
+                        res.ok();
+                    }
+                });
             }
             else {
                 res.ok();

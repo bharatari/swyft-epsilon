@@ -90,6 +90,9 @@ module.exports.routes = {
   'post /api/delivery':'DeliveryController.createDelivery',
   'post /api/delivery/close':'DeliveryController.closeDelivery',
   'post /api/delivery/offset':'DeliveryController.setDeliveryOffset',
+  'post /api/delivery/deliveryStatus':'DeliveryController.setDeliveryStatus',
+  'post /api/delivery/operationalStatus':'DeliveryController.setOperationalStatus',
+  'get /api/delivery/status':'DeliveryController.getDeliveryLiveStatus',
 
   //Global Routes
   'get /api/news':'GlobalController.getNews',

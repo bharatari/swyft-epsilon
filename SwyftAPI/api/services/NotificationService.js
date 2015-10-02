@@ -69,5 +69,68 @@ module.exports = {
         }, function(err) {
             cb();
         });   
-    }
+    },
+    
+    /*** 
+     * Creates a notification for a changed delivery status.
+     *
+     * @param {Delivery} delivery
+     * @param {string} status
+     * @param {NotificationService~orderCallback} cb - Called when database request finishes.
+     *
+     * @tag - timezone
+     *
+     */
+    createDeliveryStatusNotification: function(delivery, status, cb) {
+        UtilityService.protect(function() {
+            if(delivery) {
+                var body = "Delivery: " + moment(delivery.deliveryDate).format("MM-DD-YYYY hh:mm a Z") + "<br>" + "Delivery Status: " + status;
+                Notification.create({ title: "Delivery Status Changed", body: body, type:"update" }).exec(function(err, data) {
+                    if(err) {
+                        cb();
+                    }
+                    else {
+                        sails.sockets.broadcast('notifications', 'new notification', data);
+                        cb();
+                    }
+                });
+            }
+            else {
+                cb();
+            }
+        }, function(err) {
+            cb();
+        });   
+    },
+    /*** 
+     * Creates a notification for a changed delivery status.
+     *
+     * @param {Delivery} delivery
+     * @param {string} status
+     * @param {NotificationService~orderCallback} cb - Called when database request finishes.
+     *
+     * @tag - timezone
+     *
+     */
+    createOperationalStatusNotification: function(delivery, status, cb) {
+        UtilityService.protect(function() {
+            if(delivery) {
+                var body = "Delivery: " + moment(delivery.deliveryDate).format("MM-DD-YYYY hh:mm a Z") + "<br>" + "Operational Status: " + status;
+                Notification.create({ title: "Operational Status Changed", body: body, type:"update" }).exec(function(err, data) {
+                    if(err) {
+                        cb();
+                    }
+                    else {
+                        sails.sockets.broadcast('notifications', 'new notification', data);
+                        cb();
+                    }
+                });
+            }
+            else {
+                cb();
+            }
+        }, function(err) {
+            cb();
+        });   
+    },
 }

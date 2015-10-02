@@ -1,0 +1,41 @@
+{{partial "navbar-admin-modern"}}
+
+{{modal-dialog body=modalBody title=modalTitle displayModal=modalDisplay}}
+
+<div class="admin-container">
+    {{admin-navigation currentRoute=currentRoute}}
+
+    <div class="admin-content">
+        <div class="container">
+            <div class="admin-header-bar">
+                <h1 class="admin-header">Set Delivery Offset</h1>
+                <h4 class="admin-subtitle">Set a delivery offset to change estimated delivery and arrival times simutaneously.</h4>
+                <h4 class="admin-help">If you would like to change estimated delivery and arrival times separately, edit them in the CRUD interface.</h4>
+            </div>
+            <div class="panel admin-panel">
+                <div class="admin-panel-header-area">
+                    <h1 class="admin-panel-header">Offset</h1>
+                </div>
+                {{input class="form-control" value=offsetData.deliveryId type="text" placeholder="Delivery ID"}}
+                {{input class="form-control" value=offsetData.offset type="number" placeholder="Offset (in minutes)"}}
+                <button class="btn btn-light btn-standard" {{action 'submit'}}>Submit</button>
+            </div>   
+            <div class="panel admin-panel">
+                <div class="admin-panel-header-area">
+                    <h1 class="admin-panel-header">Delivery Status</h1>
+                </div>
+                {{input class="form-control" value=deliveryStatusData.deliveryId type="text" placeholder="Delivery ID"}}
+                {{select-menu action=(action (mut deliveryStatusData.status)) content=deliveryStatus.enum selection=deliveryStatusData.status class="form-control" optionValuePath="propertyName" optionLabelPath="displayName" prompt="Select a Status"}}
+                <button class="btn btn-light btn-standard" {{action 'submitStatus'}}>Submit</button>
+            </div>   
+            <div class="panel admin-panel">
+                <div class="admin-panel-header-area">
+                    <h1 class="admin-panel-header">Operational Status</h1>
+                </div>
+                {{input class="form-control" value=operationalStatusData.deliveryId type="text" placeholder="Delivery ID"}}
+                {{select-menu action=(action (mut operationalStatusData.status)) content=operationalStatus.enum selection=operationalStatusData.status class="form-control" optionValuePath="propertyName" optionLabelPath="displayName" prompt="Select a Status"}}
+                <button class="btn btn-light btn-standard" {{action 'submitOperationalStatus'}}>Submit</button>
+            </div>       
+        </div>
+    </div>
+</div>
