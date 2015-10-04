@@ -2027,6 +2027,10 @@ figure span {
     font-size: 14px;
 }
 
+.admin-sidebar-list {
+    padding-top: 50px;    
+}
+
 .admin-sidebar-list li a {
     color: #363636;
     font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', sans-serif;

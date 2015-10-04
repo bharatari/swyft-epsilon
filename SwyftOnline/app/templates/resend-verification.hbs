@@ -5,6 +5,7 @@
     <form class="login-form" {{action 'sendVerification' on='submit'}}>
         <fieldset>
             <h2 class="centered-text">Resend Verification Email</h2>
+            <h5 class="centered-text">Before you request another verification email, check to see if your original verification email went to spam.</h5>
             {{#if verifyError}}
             <div class="alert alert-dismissable alert-danger">
                 <button class="close" type="button" {{action 'close'}}>×</button>
