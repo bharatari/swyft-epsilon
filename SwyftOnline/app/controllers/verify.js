@@ -1,6 +1,7 @@
 /* jslint unused: false */
 import Ember from "ember";
 import loginUtils from 'swyft-epsilon-online/utils/login-utils';
+import errorUtils from 'swyft-epsilon-online/utils/error-utils';
 import config from 'swyft-epsilon-online/config/environment';
 
 export default Ember.Controller.extend({
@@ -13,17 +14,26 @@ export default Ember.Controller.extend({
                 Accept : "application/json; charset=utf-8",
                 "Content-Type": "application/json; charset=utf-8"
             },
-            url: config.routeLocation + "/api/user/verification/verify", data: JSON.stringify(data), success: function(data, textStatus, jqXHR){
+            url: config.routeLocation + "/api/user/verification/verify", data: JSON.stringify(data), success: function(data, textStatus, jqXHR) {
                 self.set('verifySuccess', true);
                 setTimeout(function(){
                     self.transitionToRoute('login');
                 }, 3000);
-            }, error: function(jqXHR){
-                self.set('verifyError', true);
+            }, error: function(xhr, textStatus, error) {
+                var error = errorUtils.processErrorCode(xhr.responseText);
+                if(error) {
+                    self.set('error', error);
+                    self.set('verifyError', true);
+                }
+                else {
+                    self.set('error', "Your token doesn't seem to be valid for the given email address.");
+                    self.set('verifyError', true);
+                }                
             }});
         },
         close: function() {
             this.set('verifyError', false);
+            this.set('error', "");
         }
     }
 });

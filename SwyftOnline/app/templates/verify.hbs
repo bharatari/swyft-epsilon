@@ -8,7 +8,7 @@
             {{#if verifyError}}
             <div class="alert alert-dismissable alert-danger">
                 <button class="close" type="button" {{action 'close'}}>×</button>
-                <strong>Oh snap!</strong> Your token doesn't seem to be valid for the given email address.
+                <strong>Oh snap!</strong> {{error}}
             </div>
             {{/if}}
             {{#if verifySuccess}}

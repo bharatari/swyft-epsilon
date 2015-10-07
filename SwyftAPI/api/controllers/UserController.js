@@ -84,26 +84,41 @@ module.exports={
         });
         
     },
-    verify: function(req,res) {
+    verify: function(req, res) {
         if(req.body.email) {
-            User.findOne({ username: req.body.email.toLowerCase() }).exec(function(err, user){
-                if(err) {
-                    res.serverError();
-                }
-                else if(user){
-                    if(user.token === req.body.token){
-                        User.update({id:user.id}, {verified:true}).exec(function(err, user){
-                            if(!err){
-                                res.ok();
+            //Check if verified users with the same email already exist
+            //Ideally this shouldn't happen because all duplicates
+            //should be deleted when an account is verified
+            UserService.checkDuplicates(req.body.email, function(result) {
+                if(result) {
+                    User.findOne({ username: req.body.email.toLowerCase() }).exec(function(err, user) {
+                        if(err) {
+                            res.serverError();
+                        }
+                        else if(user) {
+                            if(user.token === req.body.token) {
+                                User.update({ id: user.id }, { verified: true }).exec(function(err, user) {
+                                    if(!err) {
+                                        //Because this account has been successfully verified and we can confirm that this user
+                                        //is the rightful "owner" of this email address, we can safely delete all unverified
+                                        //users with the same email address
+                                        UserService.deleteDuplicates(req.body.email, function(result) {
+                                            res.ok();
+                                        });
+                                    }
+                                    else {
+                                        res.serverError();
+                                    }
+                                });
                             }
-                            else {
-                                res.serverError();
-                            }
-                        });
-                    }
+                        }
+                        else {
+                            res.badRequest();
+                        }
+                    });
                 }
-                else{
-                    res.badRequest();
+                else {
+                    res.badRequest("DUPLICATE_USER");
                 }
             });
         }

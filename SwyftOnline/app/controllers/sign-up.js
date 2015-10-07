@@ -63,7 +63,7 @@ export default Ember.Controller.extend({
                             self.set('displayModal', true);
                         },
                         error: function(xhr, textStatus, error) {
-                            if(xhr.response === "EMAIL_IN_USE"){
+                            if(xhr.responseText === "EMAIL_IN_USE"){
                                 self.set('modalTitle', 'Email already in use');
                                 self.set('modalBody', 'That email seems to be already in use. Make sure your email is spelled correctly. If you forgot your password and are trying to gain access to your account, please contact us at development@orderswyft.com.');
                                 self.set('displayModal', true);

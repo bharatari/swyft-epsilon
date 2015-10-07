@@ -184,5 +184,38 @@ module.exports = {
         else {
             cb(false, "INVALID_USER_ID");
         }
+    },
+    checkDuplicates: function(username, cb) {
+        if(username) {
+            User.find({ username: username, verified: true }).exec(function(err, users) {
+                if(err) {
+                    cb(false);
+                }
+                else if (users.length > 0) {
+                    cb(false);
+                }
+                else {
+                    cb(true);
+                }
+            });
+        }
+        else {
+            cb(false);
+        }
+    },
+    deleteDuplicates: function(username, cb) {
+        if(username) {
+            User.destroy({ username: username, verified: false }).exec(function(err, users) {
+                if(err) {
+                    cb(false);
+                }
+                else {
+                    cb(true);
+                }
+            });
+        }
+        else {
+            cb(false);
+        }
     }
 }
