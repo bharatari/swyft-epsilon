@@ -1,15 +1,15 @@
 {{#if property.editable}}
     {{#if typeString}}
         {{#if property.largeField}}
-            <div class="form-group">
-                <label class="col-sm-2 control-label">{{property.displayName}}</label>
+            <div class="form-group admin-control-group">
+                <label class="col-sm-2 control-label admin-control-label">{{property.displayName}}</label>
                 <div class="col-sm-9">
                     {{textarea class=(concat 'text-area ' adminDiscourage) value=property.value}}
                 </div>
             </div>
         {{else}}
-            <div class="form-group">
-                <label class="col-sm-2 control-label">{{property.displayName}}</label>
+            <div class="form-group admin-control-group">
+                <label class="col-sm-2 control-label admin-control-label">{{property.displayName}}</label>
                 <div class="col-sm-9">
                     {{input class=adminDiscourage value=property.value type="text"}}
                 </div>
@@ -18,8 +18,8 @@
     {{/if}}
 
     {{#if typeNumber}}
-         <div class="form-group">
-            <label class="col-sm-2 control-label">{{property.displayName}}</label>
+         <div class="form-group admin-control-group">
+            <label class="col-sm-2 control-label admin-control-label">{{property.displayName}}</label>
             <div class="col-sm-9">
                 {{input class=adminDiscourage value=property.value type="number"}}
             </div>
@@ -27,8 +27,8 @@
     {{/if}}
     
     {{#if typeDateTime}}
-        <div class="form-group">
-            <label class="col-sm-2 control-label">{{property.displayName}}</label>
+        <div class="form-group admin-control-group">
+            <label class="col-sm-2 control-label admin-control-label">{{property.displayName}}</label>
             <div class="col-sm-9">
                 {{date-time-picker class=adminDiscourage initialValue=property.value action=(action (mut property.value))}}
             </div>
@@ -36,8 +36,8 @@
     {{/if}}
 
     {{#if typeEnum}}
-        <div class="form-group">
-            <label class="col-sm-2 control-label">{{property.displayName}}</label>
+        <div class="form-group admin-control-group">
+            <label class="col-sm-2 control-label admin-control-label">{{property.displayName}}</label>
             <div class="col-sm-9">
                 {{select-menu action=(action (mut property.value)) content=property.enum selection=property.value optionValuePath="propertyName" optionLabelPath="displayName" class=adminDiscourage prompt="Select a Value"}}
             </div>
@@ -45,8 +45,8 @@
     {{/if}}
 
     {{#if typeBoolean}}
-        <div class="form-group">
-            <label class="col-sm-2 control-label">{{property.displayName}}</label>
+        <div class="form-group admin-control-group">
+            <label class="col-sm-2 control-label admin-control-label">{{property.displayName}}</label>
             <div class="col-sm-9">
                 {{select-menu action=(action (mut property.value)) content=booleanValues selection=property.value optionValuePath="propertyName" optionLabelPath="displayName" class=adminDiscourage prompt="Select a Value"}}
             </div>
@@ -75,15 +75,15 @@
 {{else}}
     {{#if typeString}}
         {{#if property.largeField}}
-            <div class="form-group">
-                <label class="col-sm-2 control-label">{{property.displayName}}</label>
+            <div class="form-group admin-control-group">
+                <label class="col-sm-2 control-label admin-control-label">{{property.displayName}}</label>
                 <div class="col-sm-9">
                     {{textarea class=(concat 'text-area ' adminDiscourage) value=property.value readonly="true"}}
                 </div>
             </div>
         {{else}}
-            <div class="form-group">
-                <label class="col-sm-2 control-label">{{property.displayName}}</label>
+            <div class="form-group admin-control-group">
+                <label class="col-sm-2 control-label admin-control-label">{{property.displayName}}</label>
                 <div class="col-sm-9">
                     {{input class=adminDiscourage value=property.value type="text" readonly="true"}}
                 </div>
@@ -92,8 +92,8 @@
     {{/if}}
 
     {{#if typeNumber}}
-         <div class="form-group">
-            <label class="col-sm-2 control-label">{{property.displayName}}</label>
+         <div class="form-group admin-control-group">
+            <label class="col-sm-2 control-label admin-control-label">{{property.displayName}}</label>
             <div class="col-sm-9">
                 {{input class=adminDiscourage value=property.value type="number" readonly="true"}}
             </div>
@@ -101,8 +101,8 @@
     {{/if}}
     
     {{#if typeDateTime}}
-        <div class="form-group">
-            <label class="col-sm-2 control-label">{{property.displayName}}</label>
+        <div class="form-group admin-control-group">
+            <label class="col-sm-2 control-label admin-control-label">{{property.displayName}}</label>
             <div class="col-sm-9">
                 {{date-time-picker class=adminDiscourage initialValue=property.value action=(action (mut property.value)) readonly="true"}}
             </div>
@@ -110,8 +110,8 @@
     {{/if}}
 
     {{#if typeEnum}}
-        <div class="form-group">
-            <label class="col-sm-2 control-label">{{property.displayName}}</label>
+        <div class="form-group admin-control-group">
+            <label class="col-sm-2 control-label admin-control-label">{{property.displayName}}</label>
             <div class="col-sm-9">
                 {{select-menu action=(action (mut property.value)) content=property.enum selection=property.value optionValuePath="propertyName" optionLabelPath="displayName" class=adminDiscourage disabled="true" prompt="No Value"}}
             </div>
@@ -119,8 +119,8 @@
     {{/if}}
 
     {{#if typeBoolean}}
-        <div class="form-group">
-            <label class="col-sm-2 control-label">{{property.displayName}}</label>
+        <div class="form-group admin-control-group">
+            <label class="col-sm-2 control-label admin-control-label">{{property.displayName}}</label>
             <div class="col-sm-9">
                 {{select-menu action=(action (mut property.value)) content=booleanValues selection=property.value optionValuePath="propertyName" optionLabelPath="displayName" class=adminDiscourage disabled="true" prompt="No Value"}}
             </div>

@@ -1843,6 +1843,10 @@ a.list-group-item:hover, a.list-group-item:focus {
     .grid-column-restaurant {
         width: 33.33333333% !important;
     }
+    
+    .admin-control-group {
+        height: auto !important;
+    }
 }
 
 @media only screen and (max-width: 705px) {
@@ -2295,7 +2299,6 @@ figure span {
 
 .control-label {
     text-align: right;
-    margin-top: 8px;
 }
 
 .clearbox {
@@ -2657,6 +2660,14 @@ figure span {
     font-size: 16px;
     text-align: center;
     margin-top: 52.5vh;
+}
+
+.admin-control-group {
+    height: 50px;
+}
+
+.admin-control-label {
+    padding-top: 15px;    
 }
 
 .flyout-notifications {
