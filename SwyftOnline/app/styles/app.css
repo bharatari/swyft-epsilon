@@ -1847,6 +1847,11 @@ a.list-group-item:hover, a.list-group-item:focus {
     .admin-control-group {
         height: auto !important;
     }
+    
+    .btn-option-break-fix {
+        margin-top: -20px !important;
+        margin-bottom: 25px !important;
+    }
 }
 
 @media only screen and (max-width: 705px) {
@@ -2668,6 +2673,15 @@ figure span {
 
 .admin-control-label {
     padding-top: 15px;    
+}
+
+.btn-option-margin {
+    margin-top: 10px;
+}
+
+.admin-menu-item-wizard-mini-header {
+    margin-top: 10px;   
+    font-weight: 600;
 }
 
 .flyout-notifications {

@@ -1,14 +1,14 @@
-{{!--<p class="item-option-name">{{itemOption.name}}</p>--}}
-{{input type="text" class="no-box-textbox item-option-name" value=itemOption.name placeholder="Item Option Name"}}
 {{#if standardOption}}
+  <p class="item-option-name">{{itemOption.name}}</p>
   {{input type="text" class="form-control" value=itemOption.options placeholder="Comma Separated List"}}
   <div class="form-group">
-    <p>Default</p>
+    <p class="admin-menu-item-wizard-mini-header">Do these options come by default?</p>
     {{select-menu class="form-control" action=(action (mut itemOption.default)) content=booleanValues selection=itemOption.default optionValuePath="propertyName" optionLabelPath="displayName" prompt="Select a Value"}}
   </div>
 {{else}}
-  <button {{action 'addOption'}} class="btn-light">Add Option</button>
-  <button {{action 'deleteItemOption'}}>Delete This Item Option</button>
+  {{input type="text" class="no-box-textbox item-option-name" value=itemOption.name placeholder="Item Option Name"}}
+  <button {{action 'addOption'}} class="btn btn-light">Add Option</button>
+  <button {{action 'deleteItemOption'}} class="btn btn-light btn-light-warning">Remove {{itemOption.name}}</button>
   {{#each itemOption.options as |option|}}
     {{menu-option option=option deleteOption="deleteOption"}}
   {{/each}}

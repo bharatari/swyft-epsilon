@@ -73,11 +73,12 @@
      {{#each itemOptions.value as |option|}}
         {{menu-item-options itemOption=option deleteItemOption="deleteItemOption"}}
      {{/each}}
-     <button {{action 'addItemOption'}}>Add item option</button>
+     <button {{action 'addItemOption'}} class="btn btn-light">Add Item Option</button>
+     <br>
      {{#if standardOptionsExists}}
-        <button {{action 'removeStandardOptions'}}>Remove Standard Options</button>
+        <button {{action 'removeStandardOptions'}} class="btn btn-light btn-light-warning btn-option-margin">Remove Standard Options</button>
      {{else}}
-        <button {{action 'addStandardOptions'}}>Add Standard Options</button>
+        <button {{action 'addStandardOptions'}} class="btn btn-light btn-option-margin">Add Standard Options</button>
      {{/if}}
   </div>
 </div>
@@ -88,7 +89,7 @@
      {{#each extras.value as |extra|}}
         {{menu-item-extra extra=extra deleteExtra="deleteExtra"}}
      {{/each}}
-     <button {{action 'addExtra'}}>Add Extra</button>
+     <button {{action 'addExtra'}} class="btn btn-light btn-option-margin">Add Extra</button>
   </div>
 </div>
 
