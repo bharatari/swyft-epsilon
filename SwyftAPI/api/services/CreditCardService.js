@@ -12,7 +12,7 @@ module.exports = {
         }, {
             idempotency_key: chance.guid() + "+" + chance.hash()
         }, function(err, charge) {
-            if (err && err.type === 'StripeCardError') {
+            if(err && err.type === 'StripeCardError') {
                 return cb(false, err);
             }
             cb(true);

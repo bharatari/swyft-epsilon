@@ -18,6 +18,8 @@ module.exports = function(environment) {
       // when it is created
     }
   };
+  
+  ENV.routeLocation = "http://localhost:1337";
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;

@@ -1582,10 +1582,23 @@ a.list-group-item:hover, a.list-group-item:focus {
     .login-form {
         margin-bottom: 70px;
         margin-top: -30px;
+        width: 300px;
+        margin-left: auto;
+        margin-right: auto;
     }
     
-    .login-form {
-        width: 300px;
+    .centered-form {
+        margin-bottom: 70px;
+        margin-top: -30px;
+        width: 300px !important;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .sign-up-form {
+        margin-bottom: 70px;
+        margin-top: -30px;
+        width: 300px !important;
         margin-left: auto;
         margin-right: auto;
     }

@@ -8,7 +8,7 @@ export default Ember.Controller.extend(StandardActionsMixin, {
     /*** @note - Even if searchVisible is false, we can't assume the searchValue is not editable. We stil need to check for all cases. */
     searchValueChanged: function() {
         var value = this.get('searchValue');
-        var visible = this.get('searchVisible')
+        var visible = this.get('searchVisible');
         if(visible === true) {
             if(value === "") {
                 $("#sorted-items").removeClass('div-invisible');

@@ -232,6 +232,26 @@ Finally to declare a section:
      *
      */
 `
+
+### Roles System
+The roles system allows for administrators to manage the access and abilities a Swyft Admin user has. This will allow for Swyft Admin to become a universal portal for all employees, instead of having separate parts of the site being dedicated to specifc types of employees. Swyft Delivery will eventually be folded into Swyft Admin as a specialized order view.
+
+The `admin` role allows full Admin access. Full access consists of `admin-basic` for Dashboard and About access, `admin-view` for CRUD model viewing, `admin-update` for CRUD update, `admin-delete` for CRUD delete, `admin-wizard` for access to Swyft Admin Wizards and `admin-export`.
+
+`admin-basic` and `admin-export` are single-level roles, as in they don't have deeper customization. CRUD roles can be limited by model with: `admin-<action>:<model identity>`. Giving a user a CRUD role such as `admin-delete` gives them the ability to delete any model. If you wanted a user to only be able to delete records of one model, you would have `admin-delete:<model identity>`. If you wanted to give a user delete (and view) access to all models except one, you would have `admin-delete` and `except:admin-delete:<model identity>`. Every CRUD role automatically gives the user `admin-view` or `admin-view:<model>` access, though this should be explicity included as well.
+
+The system will first check for high-level actions relevant to the action being requested. For a create request, it will check for either `admin` or `admin-create` or `admin-create:<model>`, if one of these exists, then it will check for exceptions `except:admin-create` or `except:admin-create:<model>`.
+
+For a view request, the system will first check for `admin`, `admin-view`, `admin-view:<model>`, `admin-create`, `admin-create:<model>`, `admin-delete`, `admin-delete:<model>`, `admin-update` or `admin-update:<model>`. It will check for exceptions, but as long as there is one valid CRUD action on the model, view access will be granted. That is, even if admin-delete and admin-create is not allowed for the model, if admin-update is allowed, admin-view will be allowed for that model. An exception to admin-view for the model will not apply if there is a valid CRUD action on the model for that user.
+
+In cases where there is a role and the exact same exception to that role, the exception takes precedence.
+
+`except:admin`, `except:admin-basic` are not valid exceptions.
+
+`except` is a reserved keyword. It cannot be used to denote a role. Any role beginning with `except:` will be treated as an exception.
+
+The `master` role gives full Admin access with a special feature, it ignores all exceptions. This role should be used only for select trusted personnel.
+
 ### Deploying
 
 SwyftAPI and SwyftOnline, the server-side and client-side implementations of Swyft's web infrastructure, respectively, are developed separately in order to promote modularity and stability. 
