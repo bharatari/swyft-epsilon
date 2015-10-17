@@ -1,4 +1,5 @@
 var jwt = require('jwt-simple');
+var Q = require('q');
 
 module.exports = {
     /*** @section - Exeternal Authentication Services */
@@ -7,12 +8,9 @@ module.exports = {
         var self = this;
         if(tokenId) {
             LoginToken.findOne({ id: tokenId }).exec(function(err, token) {
-                if(err) {
+                if(err || !token) {
                     cb(false);
-                }
-                else if(!token) {
-                    cb(false);
-                }                
+                }              
                 else {
                     self.verifyToken(token, session, function(result) {
                         if(result) {
@@ -33,12 +31,9 @@ module.exports = {
         var self = this;
         if(tokenId) {
             LoginToken.findOne({ id: tokenId }).exec(function(err, token) {
-                if(err) {
+                if(err || !token) {
                     cb(false);
-                }
-                else if(!token) {
-                    cb(false);
-                }                
+                }             
                 else {
                     self.verifyToken(token, session, function(result) {
                         if(result) {
@@ -121,14 +116,21 @@ module.exports = {
         }
     },
     verifyToken: function(loginToken, session, cb) {
+        var self = this;
         if(loginToken) {
             if(loginToken.expires <= Date.now()) {
-                this.deleteLoginToken(loginToken, function(result) {
+                self.deleteLoginToken(loginToken, function(result) {
                     cb(false);
                 });
             }
             else {
-                var decoded = jwt.decode(loginToken.token, this.jwtTokenSecret);
+                var decoded;
+                try {
+                    decoded = jwt.decode(loginToken.token, this.jwtTokenSecret);
+                }
+                catch(err) {
+                    return cb(false);
+                }
                 if(decoded) {
                     if(decoded.sessionToken) {
                         if(session) {
@@ -192,19 +194,19 @@ module.exports = {
         }    
     },
     deleteLoginToken: function(loginToken, cb) {
-        UtilityService.protect(function() {
+        Q.fcall(function() {
             if(loginToken) {
                 LoginToken.destroy({ id: loginToken.id }).exec(function(err) {
                     cb(true);
                 });    
             }
             else {
-                cb(false); 
+                cb(false);
             }
-             
-        }, function(err) {
+        
+        }).catch(function(err) {
             cb(false);
-        });
+        }).done();
     },
     /*** @section - External Authentication Helper Services */
     getUser: function(token, cb) {

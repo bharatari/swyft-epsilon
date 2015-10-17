@@ -6,24 +6,25 @@ var Chance = require('chance');
 var chance = new Chance();
 var jwt = require('jwt-simple');
 
-describe('AuthService', function() {
+describe.only('AuthService', function() {
     describe('#authenticated()', function() {
         it('should authenticate for valid login', function(done) {
             var expires = moment().add(2, 'days').toDate();
-            var userId = "54231d2716903854156ad062";
             var sessionToken = chance.guid();
             var session = {
                 sessionToken: sessionToken
             };
+            var userId = "54231d2716903854156ad061";
+            
             var authToken = jwt.encode({
                 iss: userId,
                 exp: expires,
                 sessionToken: sessionToken
             }, AuthService.jwtTokenSecret);
-
             LoginToken.create({ token: authToken, expires: expires, userId: userId }).exec(function(err, token) {
                 if(err) {
-                    return res.serverError(err);
+                    assert.ok(false);
+                    done();
                 }
                 else {
                     AuthService.authenticated(token.id, session, function(result) {
@@ -35,20 +36,21 @@ describe('AuthService', function() {
         });
         it('should not authenticate for expired login', function(done) {
             var expires = moment().toDate();
-            var userId = "54231d2716903854156ad062";
             var sessionToken = chance.guid();
             var session = {
                 sessionToken: sessionToken
             };
+            var userId = "54231d2716903854156ad061";
+            
             var authToken = jwt.encode({
                 iss: userId,
                 exp: expires,
                 sessionToken: sessionToken
             }, AuthService.jwtTokenSecret);
-
             LoginToken.create({ token: authToken, expires: expires, userId: userId }).exec(function(err, token) {
                 if(err) {
-                    return res.serverError(err);
+                    assert.ok(false);
+                    done();
                 }
                 else {
                     AuthService.authenticated(token.id, session, function(result) {
@@ -59,21 +61,22 @@ describe('AuthService', function() {
             });
         });
         it('should not authenticate for invalid signature', function(done) {
-            var expires = moment().toDate();
-            var userId = "54231d2716903854156ad062";
+            var expires = moment().add(2, 'days').toDate();
             var sessionToken = chance.guid();
             var session = {
                 sessionToken: sessionToken
             };
+            var userId = "54231d2716903854156ad061";
+            
             var authToken = jwt.encode({
                 iss: userId,
                 exp: expires,
                 sessionToken: sessionToken
-            }, "oa2j39ds0k0");
-
+            }, "oi239c02laksi024h");
             LoginToken.create({ token: authToken, expires: expires, userId: userId }).exec(function(err, token) {
                 if(err) {
-                    return res.serverError(err);
+                    assert.ok(false);
+                    done();
                 }
                 else {
                     AuthService.authenticated(token.id, session, function(result) {
@@ -87,7 +90,7 @@ describe('AuthService', function() {
     describe('#isAdmin()', function() {  
         it('should return true for admin', function(done) {
             var expires = moment().add(2, 'days').toDate();
-            var userId = "54231d2716903854156ad062";
+            var userId = "54231d2716903854156ad061";
             var sessionToken = chance.guid();
             var session = {
                 sessionToken: sessionToken
@@ -100,7 +103,8 @@ describe('AuthService', function() {
 
             LoginToken.create({ token: authToken, expires: expires, userId: userId }).exec(function(err, token) {
                 if(err) {
-                    return res.serverError(err);
+                    assert.ok(false);
+                    done();
                 }
                 else {
                     AuthService.isAdmin(token.id, session, function(result) {
@@ -112,7 +116,7 @@ describe('AuthService', function() {
         });
         it('should return false for delivery', function(done) {
             var expires = moment().add(2, 'days').toDate();
-            var userId = "560ac60f1046eab045395afb";
+            var userId = "5534302641911f380a4142ea";
             var sessionToken = chance.guid();
             var session = {
                 sessionToken: sessionToken
@@ -125,7 +129,8 @@ describe('AuthService', function() {
 
             LoginToken.create({ token: authToken, expires: expires, userId: userId }).exec(function(err, token) {
                 if(err) {
-                    return res.serverError(err);
+                    assert.ok(false);
+                    done();
                 }
                 else {
                     AuthService.isAdmin(token.id, session, function(result) {
@@ -137,7 +142,7 @@ describe('AuthService', function() {
         });
         it('should return false for no roles', function(done) {
             var expires = moment().add(2, 'days').toDate();
-            var userId = "560af7ad48b05570474b35ce";
+            var userId = "5557cfdc892d559412ad45ea";
             var sessionToken = chance.guid();
             var session = {
                 sessionToken: sessionToken
@@ -150,7 +155,8 @@ describe('AuthService', function() {
 
             LoginToken.create({ token: authToken, expires: expires, userId: userId }).exec(function(err, token) {
                 if(err) {
-                    return res.serverError(err);
+                    assert.ok(false);
+                    done();
                 }
                 else {
                     AuthService.isAdmin(token.id, session, function(result) {
