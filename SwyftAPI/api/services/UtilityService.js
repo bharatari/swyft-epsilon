@@ -1,4 +1,5 @@
 var _ = require('lodash'); 
+var uuid = require('node-uuid');
 
 module.exports = {
     splitCSV: function(csv) {
@@ -266,5 +267,8 @@ module.exports = {
             sort: array[0],
             sortType: array[1]
         }
+    },
+    uniqueId: function() {
+        return uuid.v4() + "-" + uuid.v1();
     }
 }

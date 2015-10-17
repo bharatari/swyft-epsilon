@@ -1,8 +1,6 @@
 var bcrypt = require('bcrypt');
 var moment = require('moment');
 var jwt = require('jwt-simple');
-var Chance = require('chance');
-var chance = new Chance();
 
 module.exports={
     login: function(req, res) {
@@ -28,7 +26,7 @@ module.exports={
                 }
                 else {
                     var expires = moment().add(2, 'days').toDate();
-                    var sessionToken = chance.guid();
+                    var sessionToken = UtilityService.uniqueId();
                     var authToken = jwt.encode({
                         iss: user.id,
                         exp: expires,
