@@ -1,6 +1,7 @@
 import Ember from "ember";
 import config from 'swyft-epsilon-online/config/environment';
 import loginUtils from 'swyft-epsilon-online/utils/login-utils';
+import modelUtils from 'swyft-epsilon-online/utils/model-utils';
 import SidebarRouteMixin from 'swyft-epsilon-online/mixins/sidebar-route';
 import AnimateOutRouteMixin from 'swyft-epsilon-online/mixins/animate-out-route';
 import AuthenticatedRouteMixin from 'swyft-epsilon-online/mixins/authenticated-route';
@@ -25,6 +26,9 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, SidebarRouteMixin, An
     },
     setupController: function(controller, model) {
         this._super();
+        if(!modelUtils.valueExists(model.user.dormitory, model.deliveryLocations)) {
+            model.user.dormitory = null;
+        }
         controller.set('cart', model.cart);
         controller.set('user', model.user);
         controller.set('deliveries', model.deliveries);

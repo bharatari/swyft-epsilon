@@ -54,5 +54,18 @@ export default {
                 return data[propertyName];
             }
         }
+    },
+    valueExists: function(item, data) {
+        if(item && data) {
+            for(var i = 0; i < data.length; i++) {
+                if(item === data[i]) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        else {
+            return false;
+        }
     }
 };
