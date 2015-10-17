@@ -1,0 +1,43 @@
+[
+    {
+        "id" : "54231d2716903854156ad061",
+        "username" : "bharatari@email.com",
+        "password" : "password",
+        "firstName" : "Bharat",
+        "lastName" : "Arimilli",
+        "phoneNumber" : "9999999999",
+        "dormitory" : "Main Street Hall",
+        "verified" : true,
+        "token" : "1234",
+        "balance" : -5,
+        "roles" : "admin",
+        "contactConsent" : true
+    },
+    {
+        "id" : "5557cfdc892d559412ad45ea",
+        "username" : "jdoeswyft@exeter.edu",
+        "password" : "password",
+        "firstName" : "Jane",
+        "lastName" : "Doe",
+        "phoneNumber" : "9991112222",
+        "dormitory" : "Kirtland House",
+        "verified" : true,
+        "token" : "1234",
+        "balance" : 0,
+        "contactConsent" : true
+    },
+    {
+        "id" : "5534302641911f380a4142ea",
+        "username" : "aranaswyft@exeter.edu",
+        "password" : "password",
+        "firstName" : "Anjana",
+        "lastName" : "Rana",
+        "phoneNumber" : "1112223333",
+        "dormitory" : "Bancroft Hall",
+        "verified" : true,
+        "token" : "1234",
+        "balance" : 4.9,
+        "contactConsent" : false,
+        "roles" : "delivery"
+    }
+]
