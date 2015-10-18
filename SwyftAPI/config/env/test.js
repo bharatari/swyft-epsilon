@@ -10,14 +10,14 @@ module.exports = {
    ***************************************************************************/
     connections: {
         MongoTest:{
-        adapter: 'sails-mongo',
-        host: 'localhost',
-        port: 27017,
-        database: 'test'
-      }
+            adapter: 'sails-mongo',
+            host: 'localhost',
+            port: 27017,
+            database: 'test'
+          }
     },
     models: {
-        connection: 'MongoTest' //'MongoLocal' 
+        connection: 'MongoTest'
     }
 
 };

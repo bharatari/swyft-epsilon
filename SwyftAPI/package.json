@@ -52,11 +52,13 @@
   "author": "Bharat Arimilli",
   "license": "Copyright 2015 Bharat Arimilli",
   "devDependencies": {
+    "barrels": "^1.5.0",
     "chai": "^3.0.0",
     "ember-template-compiler": "^1.9.0-alpha",
     "grunt-ember-templates": "^0.5.0-alpha",
     "handlebars": "^2.0.0",
-    "mocha": "^2.2.5"
+    "mocha": "^2.2.5",
+    "supertest": "^1.1.0"
   },
   "engines": {
     "node": "0.10.36",

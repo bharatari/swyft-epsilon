@@ -6,7 +6,7 @@ var Chance = require('chance');
 var chance = new Chance();
 var jwt = require('jwt-simple');
 
-describe.only('AuthService', function() {
+describe('AuthService', function() {
     describe('#authenticated()', function() {
         it('should authenticate for valid login', function(done) {
             var expires = moment().add(2, 'days').toDate();

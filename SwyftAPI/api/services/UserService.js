@@ -5,6 +5,7 @@ var mandrill_client = new mandrill.Mandrill('pTw4E8DYFKb696f5YzXmzg');
 var moment = require('moment');
 
 module.exports = {
+    /*** @todo - Move this to EmailService */
     processForgotPasswordToken: function(user, date, cb) {
         ForgotPasswordToken.create({userId:user.id, token:chance.hash({length:25}), expiryDate:date, username:user.username.toLowerCase() }).exec(function(err, token) {
             if(err) {
@@ -150,23 +151,44 @@ module.exports = {
             cb(objects);
         }
     },
-    /** Should take into account orders and account balances **/
+    /*** @todo - Should take into account orders and account balances */
     outstandingPayments: function(userId, cb) {
-        var outstandingOrders = [];
+        var self = this;
+        var outstanding = [];
+        if(userId) {
+            self.outstandingOrders(outstanding, userId, function(result, message) {
+                if(result) {
+                    outstanding = result;
+                }
+                self.outstandingBalance(outstanding, userId, function(result, message) {
+                    if(result) {
+                        cb(result);
+                    }
+                    else {
+                        cb(outstanding);
+                    }
+                });
+            });
+        }
+        else {
+            cb(false, "INVALID_USER_ID");
+        }
+    },
+    outstandingOrders: function(outstanding, userId, cb) {
         if(userId) {
             Order.find({ userId: userId }).exec(function(err, orders) {
                 if(err) {
                     cb(false, "DATABASE_ERR");
                 }
                 else if(orders.length < 1) {
-                    cb(outstandingOrders);
+                    cb(outstanding);
                 }
                 else {
                     async.each(orders, function(order, callback) {
                         if(order) {
                             if(order.deliveryNote) {
                                 if(order.deliveryNote.chargeLater === true) {
-                                    outstandingOrders.push({
+                                    outstanding.push({
                                         type: "Order",
                                         date: moment(order.deliveryTime).tz("America/New_York").format("MM-DD-YYYY hh:mm a"),
                                         amount: order.actualAmount
@@ -176,8 +198,32 @@ module.exports = {
                         }
                         callback();
                     }, function(err) {
-                        cb(outstandingOrders);
+                        cb(outstanding);
                     });
+                }
+            });
+        }
+        else {
+            cb(false, "INVALID_USER_ID");
+        }
+    },
+    outstandingBalance: function(outstanding, userId, cb) {
+        if(userId) {
+            User.findOne({ id: userId }).exec(function(err, user) {
+                if(err || !user) {
+                    cb(false, "DATABASE_ERR");
+                }
+                else {
+                    if(user.balance != null) {
+                        if(user.balance < 0) {
+                            outstanding.push({
+                                type: "Swyft Debit",
+                                date: moment().tz("America/New_York").format("MM-DD-YYYY hh:mm a"),
+                                amount: Math.abs(user.balance)
+                            });
+                        }
+                    }
+                    cb(outstanding);
                 }
             });
         }
@@ -216,6 +262,34 @@ module.exports = {
         }
         else {
             cb(false);
+        }
+    },
+    verifyUser: function(username, token, cb) {
+        var verifiedUser;
+        if(username && token) {
+            User.find({ username: username, verified: false }).exec(function(err, users) {
+                if(err || !users) {
+                    cb(false);
+                }
+                else if(users.length > 0) {
+                    async.each(users, function(user, callback) {
+                        if(user.token === token) {
+                            verifiedUser = user;
+                        }
+                        callback();
+                    }, function(err) {
+                        if(verifiedUser) {
+                            cb(verifiedUser);
+                        }
+                        else {
+                            cb(false);
+                        }
+                    });
+                }
+                else {
+                    cb(false);
+                }
+            });
         }
     }
 }
