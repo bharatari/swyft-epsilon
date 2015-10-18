@@ -78,35 +78,49 @@ module.exports={
         
     },
     verify: function(req, res) {
-        if(req.body.email) {
+        var email;
+        if(req.body) {
+            if(req.body.email) {
+                if(typeof req.body.email === "string") {
+                    email = req.body.email.trim().toLowerCase();
+                }
+                else {
+                    return res.badRequest();
+                }
+            }
+            else {
+                return res.badRequest();
+            }
+        }
+        else {
+            return res.badRequest();
+        }
+        if(email) {
             //Check if verified users with the same email already exist
             //Ideally this shouldn't happen because all duplicates
             //should be deleted when an account is verified
-            UserService.checkDuplicates(req.body.email, function(result) {
+            UserService.checkDuplicates(email, function(result) {
                 if(result) {
-                    User.findOne({ username: req.body.email.toLowerCase() }).exec(function(err, user) {
-                        if(err) {
-                            res.serverError();
-                        }
-                        else if(user) {
-                            if(user.token === req.body.token) {
-                                User.update({ id: user.id }, { verified: true }).exec(function(err, user) {
-                                    if(!err) {
-                                        //Because this account has been successfully verified and we can confirm that this user
-                                        //is the rightful "owner" of this email address, we can safely delete all unverified
-                                        //users with the same email address
-                                        UserService.deleteDuplicates(req.body.email, function(result) {
-                                            res.ok();
-                                        });
-                                    }
-                                    else {
-                                        res.serverError();
-                                    }
-                                });
-                            }
+                    UserService.verifyUser(email, req.body.token, function(user) {
+                        if(!user) {
+                            return res.badRequest();
                         }
                         else {
-                            res.badRequest();
+                            User.update({ id: user.id }, { verified: true }).exec(function(err) {
+                                if(!err) {
+                                    //Because this account has been successfully verified and we can confirm that this user
+                                    //is the rightful "owner" of this email address, we can safely delete all *unverified*
+                                    //users with the same email address
+                                    //If there is a verified user with the same email address, we have much bigger problems
+                                    //and we cannot delete either account
+                                    UserService.deleteDuplicates(email, function(final) {
+                                        res.ok();
+                                    });
+                                }
+                                else {
+                                    res.serverError();
+                                }
+                            });
                         }
                     });
                 }
