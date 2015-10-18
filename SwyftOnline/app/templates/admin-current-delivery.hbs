@@ -1,0 +1,34 @@
+{{partial "navbar-admin-modern"}}
+
+<div class="admin-container">
+    {{admin-navigation currentRoute=currentRoute}}
+
+    <div class="admin-content">
+        <div class="container">
+            <div class="admin-header-bar">
+                <h1 class="admin-header">Current Delivery</h1>
+                <h4 class="admin-subtitle">View orders in current delivery.</h4>
+            </div>
+            <div class="panel admin-panel">
+                <div class="admin-panel-header-area">
+                    <h1 class="admin-panel-header">Form</h1>
+                </div>
+                <div class="delivery-note">
+                    <pre>{{deliveryNote.value}}</pre>
+                </div>
+                <div class="grid-products list-group">
+                    {{#each orders as |order|}}
+                    <button class="grid-product list-group-item admin-current-delivery" {{action 'goToOrder' order}}>
+                        <div class="click-through">
+                            <h4 class="grid-product-title">{{order.user.firstName}} {{order.user.lastName}}</h4>
+                            <span class="grid-product-price">{{order.deliveryLocation}}</span>
+                            <br>
+                            <span class="grid-product-price">{{format-currency order.actualAmount}} {{order.paymentType}}</span>
+                        </div>
+                    </button>
+                    {{/each}}
+                </div>
+            </div>   
+        </div>
+    </div>
+</div>

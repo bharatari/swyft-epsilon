@@ -68,6 +68,8 @@ Router.map(function() {
     this.route("admin-tokens", { path:"/admin/tokens" });
     this.route("admin-new-token", { path:"/admin/new-token" });
     this.route("admin-export-delivery", { path:"/admin/export-delivery/:delivery_id" }); 
+    this.route("admin-current-delivery", { path:"/admin/current-delivery" });
+    this.route("admin-current-delivery-order", { path:"/admin/current-delivery/:order_id" });
     this.route("admin-about", { path:"/admin/about" });
 });
 

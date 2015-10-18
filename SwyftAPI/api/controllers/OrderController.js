@@ -124,22 +124,34 @@ module.exports={
             res.json(orders);
         });
     },
-    getDeliveryOrders:function(req,res){
-        Delivery.find({ adminClosed: false }).exec(function(err, deliveries){
-            DeliveryService.findLatest(deliveries, function(delivery) {
-                Order.find({ deliveryId: delivery.id }).exec(function(err, items){
-                    /*
-                OrderService.joinOrdersSameUser(items, function(results) {
-                    UserService.joinUsers(results, function(orders) {
-                        res.json(orders);
-                    });
+    getDeliveryOrders:function(req,res) {
+        Delivery.find({ adminClosed: false }).exec(function(err, deliveries) {
+            if(err || !deliveries) {
+                return res.ok();
+            }
+            else if(deliveries.length > 0) {
+                DeliveryService.findLatest(deliveries, function(delivery) {
+                    if(delivery) {
+                        Order.find({ deliveryId: delivery.id }).exec(function(err, items) {
+                            if(err || !items) {
+                                return res.ok();
+                            }
+                            else {
+                                UserService.joinUsers(items, function(orders) {
+                                    return res.json(orders);
+                                });
+                            }
+                            
+                        });
+                    }
+                    else {
+                        return res.ok();
+                    }
                 });
-                */
-                    UserService.joinUsers(items, function(orders) {
-                        res.json(orders);
-                    });
-                });
-            });
+            }
+            else {
+                return res.ok();
+            }
         });
     },
     getAggregateOrders:function(req,res){
@@ -198,11 +210,35 @@ module.exports={
         }
     },
     getAdminRecentOrders: function(req, res) {
-        Order.find().limit(10).sort({ createdAt: "desc" }).exec(function(err, orders) {
-            UserService.joinUsers(orders, function(result) {
-                res.json(result);
-            }); 
+        Delivery.find({ adminClosed: false }).exec(function(err, deliveries) {
+            if(err || !deliveries) {
+                return res.ok();
+            }
+            else if(deliveries.length > 0) {
+                DeliveryService.findLatest(deliveries, function(delivery) {
+                    if(delivery) {
+                        Order.find({ deliveryId: delivery.id }).limit(10).sort({ createdAt: "desc" }).exec(function(err, orders) {
+                            if(err || !orders) {
+                                return res.ok();
+                            }
+                            else {
+                                UserService.joinUsers(orders, function(result) {
+                                    return res.json(result);
+                                });
+                            }
+                             
+                        });
+                    }
+                    else {
+                        return res.ok();
+                    }
+                });
+            }
+            else {
+                return res.ok();
+            }
         });
+        
     },
     getOrderMetadata: function(req, res) {
         MetaService.getOrderMetadata(req.query.limit, req.query.where, function(result) {

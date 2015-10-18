@@ -2698,6 +2698,10 @@ figure span {
     font-weight: 600;
 }
 
+.admin-current-delivery {
+    background-color: rgba(245, 245, 245, 1) !important
+}
+
 .flyout-notifications {
     position: fixed;
     overflow: hidden;
