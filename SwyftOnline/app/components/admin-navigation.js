@@ -42,6 +42,7 @@ export default Ember.Component.extend({
         { label: 'Orders', route: 'admin-orders', icon: 'fa-truck' },
         { label: 'Reports', static: true },
         { label: 'Export', route: 'admin-export-picker', icon: 'fa-table' },
+        { label: 'Current Delivery', route: 'admin-current-delivery', icon: 'fa-table' },
         { label: 'Wizards', static: true },
         { label: 'New Swyft Debit', route: 'admin-balance', icon: 'fa-money' },
         { label: 'Delivery Offset', route: 'admin-delivery-offset', icon: 'fa-money' },

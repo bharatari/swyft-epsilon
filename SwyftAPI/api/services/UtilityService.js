@@ -29,6 +29,9 @@ module.exports = {
             return false;
         }
     },
+    /**
+     * @deprecated since domains are no longer a preferred method of error handling. Use promises.
+     */
     protect: function (run, onError) {
         var domain = require('domain').create();
         domain.on('error', onError);

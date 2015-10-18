@@ -31,7 +31,7 @@ module.exports = {
                 data.push({
                     date: delivery.deliveryDate,
                     label: moment(delivery.deliveryDate).format("MM/DD"),
-                    data: total
+                    data: MathService.round(total)
                 });
                 callback();
             });

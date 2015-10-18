@@ -7,53 +7,46 @@ var bcrypt = require('bcrypt');
 module.exports={
     create: function(req,res) {
         req.body.phoneNumber = req.body.phoneNumber.replace(/\D/g,'');
-        if(req.body.username.toLowerCase().indexOf("@exeter.edu") === -1){
-            return res.send(400);
+        if(req.body.username.toLowerCase().indexOf("@exeter.edu") === -1) {
+            return res.badRequest();
         }
-        var token=chance.guid();
-        if(!(req.body.password.length >= 6 && req.body.password.length <= 20)){
-            return res.send(400);
+        var token = chance.guid();
+        if(!(req.body.password.length >= 6 && req.body.password.length <= 20)) {
+            return res.badRequest();
         }
         User.find().exec(function(err, users) {
             for(var i = 0; i < users.length; i++){
                 if(users[i].verified) {
                     if(users[i].username.toLowerCase() === req.body.username.toLowerCase()){
-                        return res.badRequest('EMAIL_IN_USE');
+                        return res.badRequest("EMAIL_IN_USE");
                     }
                 }
             }
             process();
         });
-        function process(){
+        function process() {
             User.create({
-                username:req.body.username.toLowerCase(),
-                password:req.body.password,
-                firstName:req.body.firstName,
-                lastName:req.body.lastName,
-                phoneNumber:req.body.phoneNumber,
-                dormitory:req.body.dormitory,
-                verified:false,
-                token:token,
-                balance:0,
-                contactConsent: req.body.contactConsent,
-                isDriver:false,
-                isAdmin:false,
-                isEmployee:false,
-                isDeliverer:false
-            }).exec(function(err){
-                if(err){
-                    res.send(500);
+                username: req.body.username.toLowerCase(),
+                password: req.body.password,
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                phoneNumber: req.body.phoneNumber,
+                dormitory: req.body.dormitory,
+                verified: false,
+                token: token,
+                balance: 0,
+                contactConsent: req.body.contactConsent
+            }).exec(function(err) {
+                if(err) {
+                    res.serverError();
                 }
-                else{
-                    EmailService.sendSignupEmail(req.body.firstName, req.body.lastName, req.body.username, token, function(){
-                        res.send(200);
+                else {
+                    EmailService.sendSignupEmail(req.body.firstName, req.body.lastName, req.body.username, token, function() {
+                        res.ok();
                     });
-                    
                 }
             });
-            
         }
-        
     },
     resend: function(req,res) {
         User.findOne({ username: req.body.username.toLowerCase() }, function(err, user) {

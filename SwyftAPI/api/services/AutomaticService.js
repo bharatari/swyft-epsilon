@@ -163,6 +163,9 @@ module.exports = {
                             }
                         });
                     }
+                    else {
+                        callback();
+                    }
                 }, function(err) {
                     cb();
                 });

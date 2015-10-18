@@ -20,9 +20,9 @@ export default Ember.Controller.extend({
                     self.transitionToRoute('login');
                 }, 3000);
             }, error: function(xhr, textStatus, error) {
-                var error = errorUtils.processErrorCode(xhr.responseText);
-                if(error) {
-                    self.set('error', error);
+                var errorMessage = errorUtils.processErrorCode(xhr.responseText);
+                if(errorMessage) {
+                    self.set('error', errorMessage);
                     self.set('verifyError', true);
                 }
                 else {
