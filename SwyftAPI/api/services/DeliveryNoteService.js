@@ -1,13 +1,14 @@
 module.exports = {
-    setOrdersToDelivered: function(deliveryId, cb) {
+    setOrdersToDelivered: function(deliveryId, userId, cb) {
         Order.find({ deliveryId: deliveryId }).exec(function(err, orders) {
             async.each(orders, function(order, callback) {
                 if(order.deliveryNote) {
                     order.deliveryNote.isDelivered = true;
                     order.deliveryNote.deliveredAt = new Date();
+                    order.deliveryNote.deliveredBy = userId;
                 }
                 else {
-                    order.deliveryNote = new ModelService.DeliveryNote(null, null, null, true, new Date());
+                    order.deliveryNote = new ModelService.DeliveryNote(null, userId, null, true, new Date());
                 }
                 Order.update({ id: order.id }, order).exec(function(err) {
                     callback();

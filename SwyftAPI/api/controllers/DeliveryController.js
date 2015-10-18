@@ -36,7 +36,7 @@ module.exports = {
         });
     },
     completeDelivery: function(req,res){
-        DeliveryNoteService.setOrdersToDelivered(req.body.deliveryId, function() {
+        DeliveryNoteService.setOrdersToDelivered(req.body.deliveryId, req.user.id, function() {
             res.ok();
         });
     },
