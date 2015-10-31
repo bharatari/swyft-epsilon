@@ -19,7 +19,7 @@ export default Ember.Controller.extend(AdminPageMixin, {
     actions: {
         delete: function(id) {
             this.set('dialogTitle', 'Confirmation');
-            this.set('dialogBody', "You are attempting to permanently delete this global.");
+            this.set('dialogBody', "Parts of the system may rely on this record, deleting it might cause problems. Proceed with extreme caution.");
             this.set('displayDialog', true);
             this.set('deleteId', id);
         },
