@@ -2,7 +2,7 @@
   "name": "swyft-epsilon",
   "private": true,
   "license": "Copyright 2015 Bharat Arimilli",
-  "version": "4.0.0-alpha6",
+  "version": "4.0.0-beta",
   "dependencies": {
     "grunt": "^0.4.5"
   },

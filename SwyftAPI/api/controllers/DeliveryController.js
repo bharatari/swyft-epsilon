@@ -146,20 +146,20 @@ module.exports = {
     getDeliveryLiveStatus: function(req, res) {
         Delivery.find({ adminClosed: false }).exec(function(err, deliveries) {
             if(err || !deliveries) {
-                res.badRequest();
+                return res.ok();
             }
             else if(deliveries.length > 0) {
                 DeliveryService.findLatest(deliveries, function(delivery) {
                     if(delivery) {
-                        res.json(delivery);
+                        return res.json(delivery);
                     }
                     else {
-                        res.ok();
+                        return es.ok();
                     }
                 });
             }
             else {
-                res.ok();
+                return res.ok();
             }
         });
     },

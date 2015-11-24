@@ -62,8 +62,8 @@ module.exports = function(environment) {
     key: "pk_test_NWvAAITL9qMM7mUAjknRjeY1"
   }
   
-  ENV.appVersion = "4.0.0-alpha6";
-  ENV.appVersionLabel = "4.0.0 Alpha 6"
+  ENV.appVersion = "4.0.0-beta";
+  ENV.appVersionLabel = "4.0.0 Beta"
   ENV.appCodename= "Icy Mustard";
    
   return ENV;
