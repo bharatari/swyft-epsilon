@@ -1,4 +1,4 @@
-var moment = require('moment');
+var moment = require('moment-timezone');
 
 module.exports = {
     /***
@@ -48,6 +48,9 @@ module.exports = {
             var date = moment().day(day).set({ hour: hour, minute: minute, second: second });
             if(day === "Sunday") {
                 date = date.add(7, 'days');
+            }
+            if(TimeZoneService.isDST()) {
+                date = date.add(1, 'hours');
             }
             return date;
         }

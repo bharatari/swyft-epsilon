@@ -43,10 +43,8 @@ module.exports.bootstrap = function(cb) {
             AutomaticService.processOutstandingPayments(function() { });
         });
     }, function(err) {
-       console.log('Automatic Service Error'); 
+        console.log('Automatic Service Error: ' + err); 
     });    
-    
-    moment.tz.add(TimeZoneService.timeZones.zones);
     
     math.config({
         number: 'bignumber',

@@ -1,22 +1,29 @@
 module.exports = {
     setOrdersToDelivered: function(deliveryId, userId, cb) {
-        Order.find({ deliveryId: deliveryId }).exec(function(err, orders) {
-            async.each(orders, function(order, callback) {
-                if(order.deliveryNote) {
-                    order.deliveryNote.isDelivered = true;
-                    order.deliveryNote.deliveredAt = new Date();
-                    order.deliveryNote.deliveredBy = userId;
-                }
-                else {
-                    order.deliveryNote = new ModelService.DeliveryNote(null, userId, null, true, new Date());
-                }
-                Order.update({ id: order.id }, order).exec(function(err) {
-                    callback();
+        Delivery.findOne({ id: deliveryId }).exec(function(err, delivery) {
+            if (err || !delivery) {
+                cb("NO_DELIVERY");
+            } else {
+                Order.find({ deliveryId: deliveryId }).exec(function(err, orders) {
+                    async.each(orders, function(order, callback) {
+                        if(order.deliveryNote) {
+                            order.deliveryNote.isDelivered = true;
+                            order.deliveryNote.deliveredAt = delivery.deliveryDate;
+                            order.deliveryNote.deliveredBy = userId;
+                        }
+                        else {
+                            order.deliveryNote = new ModelService.DeliveryNote(null, userId, null, true, new Date());
+                        }
+                        Order.update({ id: order.id }, order).exec(function(err) {
+                            callback();
+                        });
+                    }, function(err) {
+                        cb(null, true);
+                    });
                 });
-            }, function(err) {
-                cb();
-            });
+            }
         });
+        
     },
     getPendingOrders: function(userId, cb) {
         Order.find({ userId: userId.toString() }).exec(function(err, items) {
