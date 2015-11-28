@@ -16,23 +16,6 @@ var math = require('mathjs');
 
 module.exports.bootstrap = function(cb) {
     UtilityService.protect(function() {
-        /*
-        var agenda = new Agenda();
-        agenda.database('swyftdb:Xv56magj@proximus.modulusmongo.net:27017/yju6Wajy');
-        //agenda.database('localhost:27017/local');
-        agenda.define('deliveryProcessor', function(job, done) {
-            AutomaticService.processDeliveryPeriods(function() {
-                AutomaticService.closeDeliveryPeriods(function() { 
-                    done();
-                });
-            });
-        });
-        agenda.every('1 minute', 'deliveryProcessor');
-        agenda.define('sendChargeLaterEmails', function(job, done) {
-        
-        });
-        agenda.start();
-        */
         var deliveryProcessor = schedule.scheduleJob("*/1 * * * *", function() {
             AutomaticService.processDeliveryPeriods(function() {
                 AutomaticService.closeDeliveryPeriods(function() { });

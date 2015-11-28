@@ -21,7 +21,7 @@ module.exports = {
       connection: 'Mongo'
   },
   session: {
-      db: 'yju6Wajy',
+      db: 'igEjo9pe',
       host: 'proximus.modulusmongo.net',
       port: 27017,
   }
