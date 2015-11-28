@@ -1,7 +1,7 @@
 var Chance = require('chance');
 var chance = new Chance();
 var mandrill = require('mandrill-api/mandrill');
-var mandrill_client = new mandrill.Mandrill('pTw4E8DYFKb696f5YzXmzg');
+var mandrill_client = new mandrill.Mandrill(sails.config.mandrillKey);
 var moment = require('moment');
 
 module.exports = {

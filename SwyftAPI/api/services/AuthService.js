@@ -3,7 +3,7 @@ var Q = require('q');
 
 module.exports = {
     /*** @section - Exeternal Authentication Services */
-    jwtTokenSecret: 'm62i9ri75os974n3malodug52',
+    jwtTokenSecret: sails.config.jwtTokenSecret,
     authenticated: function(tokenId, session, cb) {
         var self = this;
         if(tokenId) {

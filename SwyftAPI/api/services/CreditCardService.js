@@ -1,4 +1,4 @@
-var stripe = require("stripe")("sk_test_YJbrXH1QiIxhNSXSRpcGlj8P");
+var stripe = require("stripe")(sails.config.stripeKey);
 var Chance = require('chance');
 var chance = new Chance();
 

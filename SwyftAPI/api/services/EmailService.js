@@ -1,5 +1,5 @@
 var mandrill = require('mandrill-api/mandrill');
-var mandrill_client = new mandrill.Mandrill('pTw4E8DYFKb696f5YzXmzg');
+var mandrill_client = new mandrill.Mandrill(sails.config.mandrillKey);
 
 module.exports = {
     sendSignupEmail: function(firstName, lastName, email, token, cb) {

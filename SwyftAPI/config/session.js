@@ -21,7 +21,7 @@ module.exports.session = {
   * of your users, forcing them to log in again.                             *
   *                                                                          *
   ***************************************************************************/
-  secret: 'f9c7fc58e71374a3d83b843654522ead',
+  // secret: 'f9c7fc58e71374a3d83b843654522ead',
 
 
   /***************************************************************************
@@ -68,18 +68,6 @@ module.exports.session = {
   ***************************************************************************/
 
   adapter: 'mongo',
-  host: 'proximus.modulusmongo.net',
-  //host: 'localhost',
-  port: 27017,
-  db: (function() {
-    if(this.environment === 'production') {
-        return 'igEjo9pe';
-    }
-    else {
-        return 'yju6Wajy';
-    }
-  })(),
-  //db: 'local',
   collection: 'sessions',
     
   /***************************************************************************
@@ -91,8 +79,8 @@ module.exports.session = {
   *                                                                          *
   ***************************************************************************/
 
-  username: 'swyftdb',
-  password: 'Xv56magj'//,
+  // username: 'username',
+  // password: 'password',
   // auto_reconnect: false,
   // ssl: false,
   // stringify: true

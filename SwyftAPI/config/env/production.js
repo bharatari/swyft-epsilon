@@ -17,9 +17,14 @@ module.exports = {
    * environment (see config/connections.js and config/models.js )           *
    ***************************************************************************/
 
-  // models: {
-  //   connection: 'someMysqlServer'
-  // },
+  models: {
+      connection: 'Mongo'
+  },
+  session: {
+      db: 'yju6Wajy',
+      host: 'proximus.modulusmongo.net',
+      port: 27017,
+  }
 
   /***************************************************************************
    * Set the port in the production environment to 80                        *
