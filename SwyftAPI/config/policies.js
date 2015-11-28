@@ -45,9 +45,10 @@ module.exports.policies = {
     "addDeliveryPeriod":['isAdmin', 'userDisabled'],
     "createFulfillment":['isAdmin', 'userDisabled'],
     "getDeliveryOrders":['isDelivery', 'userDisabled'],
+    "getOrder":['isDelivery', 'userDisabled'],
     "getAggregateOrders":[],
     "getAllOrders":['isAdmin', 'userDisabled'],
-    "getAdminRecentOrders":['isAdmin', 'userDisabled'],
+    "getAdminRecentOrders":['isDelivery', 'userDisabled'],
     "liveOrders":['isAdmin', 'userDisabled'],
     "find":['isAdmin', 'removeAdminParams', 'userDisabled'],
     "findOne":['isAdmin', 'userDisabled'],
@@ -147,7 +148,7 @@ module.exports.policies = {
     "remove":['isAdmin', 'userDisabled']  
   },
   AnalyticsController:{
-    "*":['isAdmin', 'userDisabled']
+    "*":['isDelivery', 'userDisabled']
   },
   MenuItemController:{
     "find":['isAdmin', 'removeAdminParams', 'userDisabled'],

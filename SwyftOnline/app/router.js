@@ -25,7 +25,6 @@ Router.map(function() {
     this.route("profile", { path:"/app/profile" });
     this.route("confirmation", { path:"/app/confirmation" });
     this.route("delivery", { path:"/delivery" });
-    this.route("delivery-order", { path:"/delivery/order/:order_id" });
     this.route("admin-export-picker", { path:"/admin/export-picker"});
     this.route("admin-export", { path:"/admin/export/:delivery_id"});
     this.route("admin-unauthorized", { path:"/admin/unauthorized"});

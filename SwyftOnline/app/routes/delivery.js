@@ -4,15 +4,4 @@ import loginUtils from 'swyft-epsilon-online/utils/login-utils';
 import DeliveryRouteMixin from 'swyft-epsilon-online/mixins/delivery-route';
 import SidebarRouteMixin from 'swyft-epsilon-online/mixins/sidebar-route';
 
-export default Ember.Route.extend(DeliveryRouteMixin, SidebarRouteMixin, {
-    model: function() {
-        return Ember.RSVP.hash({
-            orders: Ember.$.getJSON(config.routeLocation + "/api/deliveryOrders", {token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.token, tokenId: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.id}),
-            deliveryNote: Ember.$.getJSON(config.routeLocation + "/api/deliveryNote/global", {token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.token, tokenId: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.id})
-        });
-    },
-    setupController: function(controller, model) {
-        controller.set('orders', model.orders);
-        controller.set('deliveryNote', model.deliveryNote);
-    }
-});
+export default Ember.Route.extend(DeliveryRouteMixin, SidebarRouteMixin, {});

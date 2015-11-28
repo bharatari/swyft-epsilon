@@ -8,7 +8,11 @@ import SidebarRouteMixin from 'swyft-epsilon-online/mixins/sidebar-route';
 export default Ember.Mixin.create(SidebarRouteMixin, {
     beforeModel: function() {
         var self = this;
-        return loginUtils.isAdmin().then(function(value){ }, function(reason) {
+        return loginUtils.checkLogin().then(function(data) {
+            return loginUtils.isAdmin().then(function(value) { }, function(reason) {
+                self.transitionTo('admin-unauthorized');
+            });
+        }, function(reason) {
             self.transitionTo('login', { queryParams: { url: window.location.href }});
         });
     },

@@ -1,26 +1,9 @@
 {{partial "navbar-standard"}}
 
-<div class="img-background container">
-    <h1 class="background-title">delivery</h1>
-</div>
-
-<div class="app-content">
-    <div class="container">
-    <div class="delivery-note">
-        <pre>{{deliveryNote.value}}</pre>
+<div class="container">
+    <div class="error-message">
+        <i class="error-icon ion-map"></i>
+        <h1 class="error-text">We've moved to a better home</h1>
+        <h4 class="error-subtitle">Visit us in Swyft Admin.</h4>
     </div>
-    <div class="grid-products list-group">
-        {{#each orders as |order|}}
-        <button class="grid-product list-group-item" {{action 'goToOrder' order}}>
-            <div class="click-through">
-                <h4 class="grid-product-title">{{order.user.firstName}} {{order.user.lastName}}</h4>
-                <span class="grid-product-price">{{order.deliveryLocation}}</span>
-                <br>
-                <span class="grid-product-price">{{format-currency order.actualAmount}} {{order.paymentType}}</span>
-            </div>
-        </button>
-        {{/each}}
-    </div>
-</div>
-
 </div>
