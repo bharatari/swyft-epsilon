@@ -52,6 +52,7 @@ export default Ember.Component.extend({
         { label: 'Edit News', route: 'admin-news', icon: 'fa-user'},
         { label: 'Edit FAQ', route: 'admin-faq', icon: 'fa-user'},
         { label: 'Edit Terms & Conditions', route: 'admin-terms', icon: 'fa-user'},
+        { label: 'Edit Global Delivery Note', route: 'admin-global-delivery-note', icon: 'fa-user'},
         { label: 'About', static: true },
         { label: 'About', route: 'admin-about', icon: 'fa-user' }
     ],
