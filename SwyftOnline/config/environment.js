@@ -62,9 +62,9 @@ module.exports = function(environment) {
     key: "pk_test_NWvAAITL9qMM7mUAjknRjeY1"
   }
   
-  ENV.appVersion = "4.0.5";
-  ENV.appVersionLabel = "4.0.5 LTS"
-  ENV.appCodename= "Icy Mustard";
+  ENV.appVersion = "4.2.0";
+  ENV.appVersionLabel = "4.2.0"
+  ENV.appCodename= "Dart";
    
   return ENV;
 };
