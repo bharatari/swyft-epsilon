@@ -36,5 +36,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, SidebarRouteMixin, An
         controller.set('deliveryLocations', model.deliveryLocations);
         controller.set('token', "");
         controller.set('tokenValid', true);
+        controller.set('couponValid', true);
     }
 });

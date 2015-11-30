@@ -56,7 +56,6 @@
 
                 {{select-menu action=(action (mut user.dormitory)) content=deliveryLocations selection=user.dormitory class="form-control" prompt="Select a Delivery Location"}}
                 {{input class="form-control" value=user.phoneNumber type="text" placeholder="Phone Number"}}
-                {{validation-box value=token placeholder="One Time Coupon" isValid=tokenValid invalidMessage="The token you entered is invalid."}}
                 {{input class="form-control" value=additionalRequests type="text" placeholder="Additional Requests"}}
 
                 <p class="sub-heading">If you're paying with a 50 or 100 dollar bill, let us know so that we can get you the right amount of change. Please do not place any specific item customization requests here, as we cannot guarantee they will be fullfilled.</p>
@@ -70,6 +69,17 @@
                         {{/each}}
                     </div>            
                 </div>
+                
+                <form class="form-inline discount-box">
+                    <div class="form-group">
+                        <label>Discount Voucher</label>
+                        {{validation-box value=token isValid=tokenValid invalidMessage="The voucher you entered is invalid." type="checkToken"}}
+                    </div>
+                    <div class="form-group">
+                        <label>Coupon Code</label>
+                        {{validation-box value=coupon isValid=couponValid invalidMessage="The coupon you entered is invalid." type="checkCoupon"}}
+                    </div>
+                </form>
                 
                 {{#if deliveryList}}
                     {{#unless checkoutPressed}}

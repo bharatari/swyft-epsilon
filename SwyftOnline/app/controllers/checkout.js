@@ -84,7 +84,7 @@ export default Ember.Controller.extend({
             }
             else {
                 this.set('sliderMax', Math.round((this.get('finalAmount') - 0.01) * 100) / 100);
-            }            
+            }
             this.set('sliderValue', 0.01);
             this.set('displaySlider', true);
         }
@@ -104,10 +104,10 @@ export default Ember.Controller.extend({
         return Math.round((this.get('finalAmount') - this.get('sliderValue')) * 100) / 100;
     }),
     finalAmountCents: Ember.computed('finalAmount', function() {
-        return this.get("finalAmount") * 100;  
+        return this.get("finalAmount") * 100;
     }),
-    checkoutDisabled: Ember.computed('user.dormitory', 'deliveryList.value', 'paymentOptions.value', function() {
-        if(!this.get('user').dormitory || !this.get('deliveryList').value || !this.get('paymentOptions').value || !this.get('tokenValid')) {
+    checkoutDisabled: Ember.computed('user.dormitory', 'deliveryList.value', 'paymentOptions.value', 'tokenValid', 'couponValid', function() {
+        if(!this.get('user').dormitory || !this.get('deliveryList').value || !this.get('paymentOptions').value || !this.get('tokenValid') || !this.get('couponValid')) {
             return true;
         }
         else {
@@ -127,6 +127,7 @@ export default Ember.Controller.extend({
                 userComments: this.get('additionalRequests'),
                 userId: this.get('user').id,
                 token: this.get('token'),
+                coupon: this.get('coupon'),
                 stripeToken: token.id,
                 deliveryId: this.get('deliveryList').value,
                 user: { token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token }
@@ -134,7 +135,7 @@ export default Ember.Controller.extend({
             var url = config.routeLocation + "/api/order";
                 Ember.$.ajax({
                     url: url,
-                    headers: { 
+                    headers: {
                         Accept : "application/json; charset=utf-8",
                         "Content-Type": "application/json; charset=utf-8"
                     },
@@ -149,7 +150,7 @@ export default Ember.Controller.extend({
                     error: function(xhr, textStatus, error) {
                         self.set('displayLoading', false);
                         self.set('modalTitle', 'Whoops.');
-                        self.set('modalBody', "Something went wrong with your request. Your order has not been submitted. If you're using Swyft Debit as your payment type, ensure you have enough balance in your account to proceed. If you attempted to use a one-time coupon, it's either invalid or it has already been used. Otherwise, try emptying your cart and starting over. Please contact us at development@orderswyft.com if you have any further questions.");
+                        self.set('modalBody', "Something went wrong with your request. You should check your profile page to see if this order has been submitted. If it hasn't, try emptying your cart and starting over or contact us for help.");
                         self.set('displayModal', true);
                         self.set('checkoutPressed', false);
                     }
@@ -168,6 +169,7 @@ export default Ember.Controller.extend({
                     userComments: this.get('additionalRequests'),
                     userId: this.get('user').id,
                     token: this.get('token'),
+                    coupon: this.get('coupon'),
                     deliveryId: this.get('deliveryList').value,
                     user: { token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token }
                 };
@@ -186,7 +188,7 @@ export default Ember.Controller.extend({
                 var url = config.routeLocation + "/api/order";
                 Ember.$.ajax({
                     url: url,
-                    headers: { 
+                    headers: {
                         Accept : "application/json; charset=utf-8",
                         "Content-Type": "application/json; charset=utf-8"
                     },

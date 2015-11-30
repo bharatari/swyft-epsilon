@@ -10,14 +10,14 @@ export default Ember.Controller.extend({
     modelName: 'Coupon',
     newDescription: "Add a new Coupon.",
     updateDescription: "Update a Coupon",
-    newHelp: "",
-    updateHelp: "",
+    newHelp: "Using the New Coupon wizard is recommended. Coupon codes need to be unique among all active coupons.",
+    updateHelp: "Coupon codes need to be unique among all active coupons.",
     actions: {
         submit: function(type) {
             this.set('type', type);
             if(type === "new") {
                 this.set('dialogTitle', 'Confirmation');
-                this.set('dialogBody', "You are attempting to add a new coupon.");
+                this.set('dialogBody', "You are attempting to add a new coupon. You probably should be using the New Coupon wizard instead of CRUD.");
                 this.set('displayDialog', true);
             }
             else if(type === "update") {

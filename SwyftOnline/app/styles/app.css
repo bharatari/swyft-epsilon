@@ -2791,6 +2791,10 @@ figure span {
     color: darkgray;
 }
 
+.discount-box {
+    margin-bottom: 20px;
+}
+
 /***
  *
  * @section - CSS Animation Keyframes 

@@ -1,0 +1,29 @@
+{{partial "navbar-admin-modern"}}
+
+{{modal-dialog body=modalBody title=modalTitle displayModal=displayModal}}
+
+<div class="admin-container">
+    {{admin-navigation currentRoute=currentRoute}}
+
+    <div class="admin-content">
+        <div class="container">
+            <div class="admin-header-bar">
+                <h1 class="admin-header">New Coupon</h1>
+                <h4 class="admin-subtitle">Generate a new coupon.</h4>
+                <h4 class="admin-help">Coupon codes need to be unique among all active coupons.</h4>
+            </div>
+            <div class="panel admin-panel">
+                <div class="admin-panel-header-area">
+                    <h1 class="admin-panel-header">Form</h1>
+                </div>
+                <div class="admin-panel-content">
+					{{input class="form-control" value=name type="text" placeholder="Name"}}
+                    {{input class="form-control" value=code type="text" placeholder="Code"}}
+                    {{input class="form-control" value=comments type="text" placeholder="Comments"}}
+                    {{input class="form-control" value=discount type="number" placeholder="Discount"}}
+                    <button class="btn btn-light btn-standard" {{action 'submit'}}>Submit</button>
+                </div>
+            </div>   
+        </div>
+    </div>
+</div>

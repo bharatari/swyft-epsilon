@@ -47,6 +47,7 @@ export default Ember.Component.extend({
         { label: 'New Swyft Debit', route: 'admin-balance', icon: 'fa-money' },
         { label: 'Delivery Offset', route: 'admin-delivery-offset', icon: 'fa-money' },
         { label: 'New One-Time-Use Token', route: 'admin-new-token', icon: 'fa-money'},
+        { label: 'New Coupon', route: 'admin-new-coupon', icon: 'fa-money'},
         { label: 'Complete Delivery', route: 'admin-complete-delivery', icon: 'fa-truck'},
         { label: 'Content Management', static: true },
         { label: 'Edit News', route: 'admin-news', icon: 'fa-user'},

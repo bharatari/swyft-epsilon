@@ -96,7 +96,8 @@ module.exports.policies = {
   },
   CouponController:{
     "*":['isAdmin', 'userDisabled'],
-    "checkToken":[],
+    "checkToken":['isAuthenticated', 'userDisabled'],
+    "checkCoupon":['isAuthenticated', 'userDisabled'],
     "find":['isAdmin', 'removeAdminParams', 'userDisabled'],
     "findOne":['isAdmin', 'userDisabled'],
     "create":['isAdmin', 'removeAdminParams', 'userDisabled'],

@@ -109,9 +109,11 @@ module.exports.routes = {
   'post /api/deliveryNote/delivered':'DeliveryNoteController.setDelivered',
 
   //Coupon Routes
-  'get /api/coupon/checkCoupon/:token':'CouponController.checkToken',
+  'get /api/coupon/checkToken/:token':'CouponController.checkToken',
+  'get /api/coupon/checkCoupon/:coupon':'CouponController.checkCoupon',
   'get /api/coupon/tokens':'CouponController.getOpenTokens',
   'post /api/coupon/token':'CouponController.createIndependentToken',
+  'post /api/coupon/coupon':'CouponController.createCoupon',
   'get /api/coupon/token/:token':'CouponController.getToken',
     
   //Delivery Location Routes
