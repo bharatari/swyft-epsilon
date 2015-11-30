@@ -10,14 +10,14 @@ export default Ember.Controller.extend({
     modelName: 'Token',
     newDescription: "Add a new Token.",
     updateDescription: "Update a Token.",
-    newHelp: "Add new help here",
-    updateHelp: "Add update help here.",
+    newHelp: "Using the New One-Time-Use Token wizard is recommended.",
+    updateHelp: "",
     actions: {
         submit: function(type) {
             this.set('type', type);
             if(type === "new") {
                 this.set('dialogTitle', 'Confirmation');
-                this.set('dialogBody', "You are attempting to add a new token.");
+                this.set('dialogBody', "You are attempting to add a new token. You probably should be using the New One-Time-Use Token wizard instead of CRUD.");
                 this.set('displayDialog', true);
             }
             else if(type === "update") {

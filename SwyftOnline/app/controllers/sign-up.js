@@ -22,10 +22,10 @@ export default Ember.Controller.extend({
                     Ember.$('#confirmPassword').css('background-color', 'white');
                 }
             }
-            
+
         },
         signUp: function() {
-            this.set('buttonPressed', true);  
+            this.set('buttonPressed', true);
             var password1 = $("#password").val();
             var password2 = $("#confirmPassword").val();
             var self = this;
@@ -52,25 +52,25 @@ export default Ember.Controller.extend({
                     Ember.$.ajax({
                         url: config.routeLocation + "/api/user",
                         data: JSON.stringify(data),
-                        headers: { 
+                        headers: {
                             Accept : "application/json; charset=utf-8",
                             "Content-Type": "application/json; charset=utf-8"
                         },
                         type: "POST",
                         success: function(response) {
                             self.set('modalTitle', 'Email Verification');
-                            self.set('modalBody', 'An email has been sent to your given Exeter email address. Before you can login to your Swyft Account you will need to verify your email address using the token that has been emailed to you. Be sure to check your spam folder.');
+                            self.set('modalBody', 'We sent you an email to verify your account. Be sure to check your spam folder as well.');
                             self.set('displayModal', true);
                         },
                         error: function(xhr, textStatus, error) {
                             if(xhr.responseText === "EMAIL_IN_USE"){
                                 self.set('modalTitle', 'Email already in use');
-                                self.set('modalBody', 'That email seems to be already in use. Make sure your email is spelled correctly. If you forgot your password and are trying to gain access to your account, use the Forgot Password link on the login page.');
+                                self.set('modalBody', 'That email seems to be already in use. If you forgot your password and are trying to gain access to your account, use the Forgot Password link on the login page.');
                                 self.set('displayModal', true);
                             }
                             else{
                                 self.set('modalTitle', 'Whoops.');
-                                self.set('modalBody', "Something went wrong with your sign up request. You might have already signed up for a Swyft account with that email address. If you forgot your password and are trying to gain access to your account, please contact us at development@orderswyft.com. Check that you've filled out all fields and followed our password requirements. Otherwise, please try again in a few minutes, and if the error persists, please let us know and we'll be happy to help you out.");
+                                self.set('modalBody', "Something went wrong with your sign up request. Check that you've filled out all fields and followed our password requirements. Contact us if you have any further questions.");
                                 self.set('displayModal', true);
                             }
                             self.set('buttonPressed', false);
@@ -87,5 +87,5 @@ export default Ember.Controller.extend({
                 this.set('buttonPressed', false);
             }
         }
-    }    
+    }
 });
