@@ -18,7 +18,7 @@
                 {{sidebar-item item=item}}
                 {{/each}}
             </ul>
-            <p class="summary-total">Total (including tax): {{dynamic-price valid=tokenValid price=totalPrice value=token finalAmount=finalAmount}}</p>
+            <p class="summary-total">Total (including tax): {{dynamic-price tokenValid=tokenValid tokenValue=token couponValid=couponValid couponValue=coupon price=totalPrice finalAmount=finalAmount}}</p>
         </div>
         <form>
             <div class="info-well well col-md-8 col-md-offset-1">

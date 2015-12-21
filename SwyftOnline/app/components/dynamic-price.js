@@ -15,10 +15,10 @@ export default Ember.Component.extend({
             this.set('finalAmount', this.get('price'));
         }
     }),
-    valueChanged: Ember.observer('value', 'valid', function() {
+    tokenValueChanged: Ember.observer('tokenValue', 'tokenValid', function() {
         var self = this;
-        if(this.get('valid') && this.get('value')) {
-            Ember.$.getJSON(config.routeLocation + "/api/coupon/token/" + this.get('value').trim(), {
+        if(this.get('tokenValid') && this.get('tokenValue')) {
+            Ember.$.getJSON(config.routeLocation + "/api/coupon/token/" + this.get('tokenValue').trim(), {
                 token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.token, 
                 tokenId: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.id
             }).done(function(data) {
