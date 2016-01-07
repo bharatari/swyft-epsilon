@@ -27,6 +27,35 @@ You will need the following things properly installed on your computer.
 * `sails lift`
 * Visit your app at [http://localhost:4200](http://localhost:4200).`
 
+## Credentials
+
+When you clone this repository, you'll need to add a local.js file in the `/config` folder that looks like this:
+
+    module.exports = {
+        jwtTokenSecret: 'some-random-string',
+        mandrillKey: 'mandrill-api-key',
+        stripeKey: 'stripe-api-key',
+
+        connections: {
+            MongoDev: {
+                user: 'username',
+                password: 'password',
+                database: 'database name'
+            },
+            Mongo: {
+                user: 'username',
+                password: 'password',
+                database: 'database name'
+            }
+        },
+
+        session: {
+            secret: 'some-random-string',
+            username: 'username',
+            password: 'password'
+        }
+    }
+
 ## Tests
 Components are structured with describeComponent at the top level, with tests such as render residing under that top level. Then for functions you should have another describe with the name of the function prefixed with a '#'. Under that describe you use the it syntax to describe each test for that function.
 
