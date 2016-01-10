@@ -23,7 +23,7 @@ module.exports = {
                         "type": "to"
                     }]
                 };
-                mandrill_client.messages.send({ "message" : message }, function(result){ 
+                mandrill_client.messages.send({ "message" : message }, function(result){
                     cb(true);
                 });
             }
@@ -36,7 +36,7 @@ module.exports = {
                     delete users[i].password;
                     delete users[i].token;
                 }
-            }  
+            }
         }
         return users;
     },
@@ -59,7 +59,7 @@ module.exports = {
                 if(users[i]) {
                     delete users[i].password;
                 }
-            }  
+            }
         }
         cb(users);
     },
@@ -91,7 +91,7 @@ module.exports = {
                         var sort = UtilityService.splitSortAttrs(query.sort);
                         var data = UtilityService.sortData(items, sort.sort, sort.sortType);
                         cb(UtilityService.paginationSkip(data, query.limit, query.skip));
-                    }); 
+                    });
                 });
             }
             else if(query.skip) {
@@ -145,7 +145,7 @@ module.exports = {
                 });
             }, function(err) {
                 cb(objects);
-            }); 
+            });
         }
         else {
             cb(objects);

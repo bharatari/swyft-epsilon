@@ -17,7 +17,7 @@ module.exports={
                     items = PriceService.processPricing(items);
                     OrderService.processAsync(items, order, function(result) {
                         if(!result) {
-                            return res.badRequest(); 
+                            return res.badRequest();
                         }
                         else {
                             order = result;
@@ -88,7 +88,7 @@ module.exports={
                             });
                         }
                     });
-                });    
+                });
             }
             else {
                 return res.badRequest("INVALID_DELIVERY");
@@ -100,7 +100,7 @@ module.exports={
             UserService.joinUsers(items, function(orders) {
                 return res.json(orders);
             });
-        });        
+        });
     },
     getOrder: function(req, res) {
         Order.findOne({id: req.query.orderId}).exec(function(err, order) {
@@ -141,7 +141,7 @@ module.exports={
                                     return res.json(orders);
                                 });
                             }
-                            
+
                         });
                     }
                     else {
@@ -226,7 +226,7 @@ module.exports={
                                     return res.json(result);
                                 });
                             }
-                             
+
                         });
                     }
                     else {
@@ -238,7 +238,7 @@ module.exports={
                 return res.ok();
             }
         });
-        
+
     },
     getOrderMetadata: function(req, res) {
         MetaService.getOrderMetadata(req.query.limit, req.query.where, function(result) {

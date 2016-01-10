@@ -33,7 +33,7 @@ module.exports = {
             LoginToken.findOne({ id: tokenId }).exec(function(err, token) {
                 if(err || !token) {
                     cb(false);
-                }             
+                }
                 else {
                     self.verifyToken(token, session, function(result) {
                         if(result) {
@@ -73,7 +73,7 @@ module.exports = {
                 }
                 else if(!token) {
                     cb(false);
-                }                
+                }
                 else {
                     self.verifyToken(token, session, function(result) {
                         if(result) {
@@ -109,8 +109,8 @@ module.exports = {
                 else {
                     cb(user);
                 }
-            });     
-        } 
+            });
+        }
         else {
             cb(false);
         }
@@ -149,7 +149,7 @@ module.exports = {
                         else {
                             cb(false);
                         }
-                    }  
+                    }
                     else {
                         cb(false);
                     }
@@ -176,7 +176,7 @@ module.exports = {
             else {
                 cb(false);
             }
-        }      
+        }
     },
     checkDelivery: function(user, cb) {
         if(user) {
@@ -191,19 +191,19 @@ module.exports = {
             else {
                 cb(false);
             }
-        }    
+        }
     },
     deleteLoginToken: function(loginToken, cb) {
         Q.fcall(function() {
             if(loginToken) {
                 LoginToken.destroy({ id: loginToken.id }).exec(function(err) {
                     cb(true);
-                });    
+                });
             }
             else {
                 cb(false);
             }
-        
+
         }).catch(function(err) {
             cb(false);
         }).done();
@@ -226,11 +226,11 @@ module.exports = {
                         }
                     });
                 }
-            } 
+            }
             catch (err) {
                 cb(false);
             }
-        } 
+        }
         else {
             cb(false);
         }

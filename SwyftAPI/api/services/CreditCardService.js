@@ -5,7 +5,7 @@ var chance = new Chance();
 module.exports = {
     chargeCreditCard: function(token, amount, cb) {
         var charge = stripe.charges.create({
-            amount: amount * 100, 
+            amount: amount * 100,
             currency: "usd",
             source: token,
             description: "Swyft Order Charge"

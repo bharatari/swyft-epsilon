@@ -14,8 +14,8 @@ module.exports = {
             "content": new Date().getFullYear()
         }];
         var message = {
-            "merge": true, 
-            "merge_language": "mailchimp", 
+            "merge": true,
+            "merge_language": "mailchimp",
             "merge_vars": [{
                 "rcpt": email,
                 "vars": [{
@@ -68,8 +68,8 @@ module.exports = {
                     "content": new Date().getFullYear()
                 }];
                 var message = {
-                    "merge": true, 
-                    "merge_language": "mailchimp", 
+                    "merge": true,
+                    "merge_language": "mailchimp",
                     "merge_vars": [{
                         "rcpt": email,
                         "vars": [{
@@ -105,7 +105,7 @@ module.exports = {
         else {
             cb(false, "OUTSTANDING_PAYMENTS_UNDEFINED");
         }
-        
+
     },
     sendJoinUsEmail: function(email, firstName, lastName, phoneNumber, type, year, interests, cb) {
         var message = {

@@ -51,7 +51,7 @@ module.exports = {
                         allOptions.push({ name: option.name, category: itemOption.name });
                     }
                     callback2();
-                }, function(err) {   
+                }, function(err) {
                     callback();
                 });
             }
@@ -61,7 +61,7 @@ module.exports = {
         }, function(err) {
             options();
         });
-        
+
         function options() {
             if(item.options) {
                 async.each(item.options, function(option, callback) {
@@ -70,7 +70,7 @@ module.exports = {
                     }
                     /*
                     if(!allOptions.where(option)) {
-                        return cb(false);  
+                        return cb(false);
                     }
                     */
                     callback();
@@ -89,7 +89,7 @@ module.exports = {
                 extras();
             }
         }
-        
+
         function extras() {
             if(item.extras) {
                 async.each(item.extras, function(extra, callback) {
@@ -113,7 +113,7 @@ module.exports = {
                 attachedRequests();
             }
         }
-        
+
         function attachedRequests() {
             if(item.attachedRequests) {
                 async.each(item.attachedRequests, function(attachedRequest, callback) {
@@ -136,11 +136,13 @@ module.exports = {
                 standardOptions();
             }
         }
-        
+
         function standardOptions() {
             //I don't think we're accounting for "No " as in default: true
+            // Test with Pad Thai Bubble Tea with No Ice option
+            // Test with McDonalds item with No something option
             /*
-            if(item.standardOptions){
+            if(item.standardOptions) {
                 var options;
                 async.each(menuItem.itemOptions, function(option, callback) {
                     if(option.name === "Options") {
@@ -156,15 +158,14 @@ module.exports = {
                             return cb(false);
                         }
                         callback();
-                    }, function(err) { 
+                    }, function(err) {
                         cb(item);
                     });
                 }
             }
             else {
                 cb(item);
-            }
-            */
+            }*/
             cb(item);
         }
     },
@@ -189,7 +190,7 @@ module.exports = {
         }
         else {
             final(false);
-        }        
+        }
         function final(order) {
             if(!order) {
                 return cb(false);
@@ -216,10 +217,10 @@ module.exports = {
     },
     submitCash: function(order, userId, cb) {
         order.deliveryNote = new ModelService.DeliveryNote(null, null, null, null, null, null, null, null, null);
-        /** Why do we need to find the user here? **/
+        // Why do we need to find the user here?
         User.findOne({ id: userId }).exec(function(err, user) {
             Order.create(order).exec(function(err, result) {
-                if(!err) {  
+                if(!err) {
                     cb(result);
                 }
                 else {
@@ -233,7 +234,7 @@ module.exports = {
         User.findOne({ id: userId }).exec(function(err, user) {
             if(order.actualAmount <= user.balance){
                 Order.create(order).exec(function(err, result) {
-                    if(!err) {                        
+                    if(!err) {
                         UserTransaction.create({ userId: user.id, type: "deduction", amount: result.actualAmount, orderId: result.id, finalBalance: MathService.subtract(user.balance, result.actualAmount) }).exec(function(err) {
                             if(!err) {
                                 var newBalance = MathService.subtract(user.balance, result.actualAmount);
@@ -250,7 +251,7 @@ module.exports = {
                             else {
                                 cb(false);
                             }
-                        });                        
+                        });
                     }
                     else {
                         cb(false);
@@ -273,7 +274,7 @@ module.exports = {
         User.findOne({ id: userId }).exec(function(err, user) {
             if(referenceOrder.debitPayment <= user.balance) {
                 Order.create(order).exec(function(err, result) {
-                    if(!err) {                        
+                    if(!err) {
                         UserTransaction.create({ userId: user.id, type: "deduction", amount: referenceOrder.debitPayment, orderId: result.id, finalBalance: MathService.subtract(user.balance, referenceOrder.debitPayment) }).exec(function(err) {
                             if(!err) {
                                 var newBalance = MathService.subtract(user.balance, referenceOrder.debitPayment);
@@ -289,7 +290,7 @@ module.exports = {
                             else {
                                 cb(false);
                             }
-                        });                        
+                        });
                     }
                     else {
                         cb(false);
@@ -306,7 +307,7 @@ module.exports = {
         delete order.stripeToken;
         order.deliveryNote = new ModelService.DeliveryNote(null, null, null, null, null, null, null, false, null);
         Order.create(order).exec(function(err, result) {
-            if(!err) {  
+            if(!err) {
                 CreditCardService.chargeCreditCard(referenceOrder.stripeToken, referenceOrder.actualAmount, function(status, message) {
                     if(!status) {
                         Order.destroy({ id: result.id }).exec(function(err) {
@@ -319,7 +320,7 @@ module.exports = {
                                 cb(false, message);
                             }
                         });
-                        
+
                     }
                     else {
                         DeliveryNoteService.setCreditCardToProcessed(result.id, "CREDIT_CARD_SUCCESS", function(response) {
@@ -333,7 +334,7 @@ module.exports = {
             else {
                 cb(false, "DATABASE_ERROR+CREDIT_CARD_NOT_CHARGED");
             }
-        });          
+        });
     },
     similarOrders: function(order1, order2) {
         if(order1.deliveryLocation !== order2.deliveryLocation) {
@@ -364,14 +365,14 @@ module.exports = {
         }
         if(order2.userComments) {
             order.userComments += " " + order2.userComments;
-        }   
+        }
         order.items = [];
         for(var i = 0; i < order1.items.length; i++) {
             order.items.push(order1.items[i]);
         }
         for(var i = 0; i < order2.items.length; i++) {
             order.items.push(order2.items[i]);
-        } 
+        }
         return order;
     },
     joinOrdersSameUser: function(items, callback) {
@@ -401,7 +402,7 @@ module.exports = {
                             }
                         }
                     }
-                }   
+                }
                 cb();
             });
             final();
@@ -460,7 +461,7 @@ module.exports = {
                 }
             }
             cb(items);
-        });  
+        });
     },
     getAllItems: function(orders, cb) {
         var self = this;
@@ -501,7 +502,7 @@ module.exports = {
                         aggregateItem.items.push(item);
                     }
                     callback2();
-                }, function(err) { 
+                }, function(err) {
                     callback();
                 });
             }, function(err) {
@@ -531,8 +532,8 @@ module.exports = {
                     });
                 }, function(err) {
                     cb(aggregate);
-                });                
-            });            
+                });
+            });
         }
     },
     getMasterList: function(orders, cb) {
@@ -562,7 +563,7 @@ module.exports = {
                         processRegion(result, function(finalResult) {
                             masterList.items.push(finalResult);
                             callback();
-                        });  
+                        });
                     });
                 }, function(err) {
                     masterList.deliveryTotal = Math.round(masterList.deliveryTotal * 100) / 100;
@@ -636,7 +637,7 @@ module.exports = {
                         var sort = UtilityService.splitSortAttrs(query.sort);
                         var data = UtilityService.sortData(items, sort.sort, sort.sortType);
                         cb(UtilityService.paginationSkip(data, query.limit, query.skip));
-                    }); 
+                    });
                 });
             }
             else if(query.skip) {
