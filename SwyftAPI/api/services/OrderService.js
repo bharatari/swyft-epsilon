@@ -203,13 +203,7 @@ module.exports = {
                         return cb(false);
                     }
                     else {
-                        CouponService.processCoupon(order, function(result) {
-                            if (!result) {
-                                return cb(false);
-                            } else {
-                                cb(order);
-                            }
-                        });
+                        cb(order);
                     }
                 });
             }
