@@ -31,7 +31,7 @@ module.exports={
                                     if(order.paymentType === "cash") {
                                         OrderService.submitCash(order, req.user.id, function(response){
                                             if(response) {
-                                                response.user = req.user;
+                                                response.user = UserService.deleteSensitive(req.user);
                                                 Order.publishCreate(response.toJSON());
                                                 NotificationService.createOrderNotification(response, function() {
                                                     res.json(response);
@@ -45,8 +45,8 @@ module.exports={
                                     else if(order.paymentType === "swyftdebit") {
                                         OrderService.submitSwyftDebit(order, req.user.id, function(response){
                                             if(response) {
-                                                response.user = req.user;
-                                                Order.publishCreate(response.toJSON()); 
+                                                response.user = UserService.deleteSensitive(req.user);
+                                                Order.publishCreate(response.toJSON());
                                                 NotificationService.createOrderNotification(response, function() {
                                                     res.json(response);
                                                 });
@@ -59,8 +59,8 @@ module.exports={
                                     else if(order.paymentType === "cash+swyftdebit") {
                                         OrderService.submitCashSwyftDebit(order, req.user.id, function(response){
                                             if(response) {
-                                                response.user = req.user;
-                                                Order.publishCreate(response.toJSON()); 
+                                                response.user = UserService.deleteSensitive(req.user);
+                                                Order.publishCreate(response.toJSON());
                                                 NotificationService.createOrderNotification(response, function() {
                                                     res.json(response);
                                                 });
@@ -73,8 +73,8 @@ module.exports={
                                     else if(order.paymentType === "creditcard") {
                                         OrderService.submitCreditCard(order, req.user.id, req.body.stripeToken, function(response, message){
                                             if(response) {
-                                                response.user = req.user;
-                                                Order.publishCreate(response.toJSON()); 
+                                                response.user = UserService.deleteSensitive(req.user);
+                                                Order.publishCreate(response.toJSON());
                                                 NotificationService.createOrderNotification(response, function() {
                                                     res.json(response);
                                                 });
