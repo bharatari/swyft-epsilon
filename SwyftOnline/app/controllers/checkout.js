@@ -56,24 +56,24 @@ export default Ember.Controller.extend({
             return [
                 { id: "swyftdebit", name: "Swyft Debit", disabled: true },
                 { id: "cash", name: "Cash" },
-                { id: "cash+swyftdebit", name:"Cash + Swyft Debit", disabled: true },
-                { id: "creditcard", name:"Credit Card" } 
+                { id: "cash+swyftdebit", name:"Cash + Swyft Debit", disabled: true } /*,
+                //{ id: "creditcard", name:"Credit Card" } */
             ];
         }
         else if(this.get('finalAmount') > this.get('user').balance) {
             return [
                 { id: "swyftdebit", name: "Swyft Debit", disabled: true },
                 { id: "cash", name: "Cash" },
-                { id: "cash+swyftdebit", name:"Cash + Swyft Debit" },
-                { id: "creditcard", name:"Credit Card" } 
+                { id: "cash+swyftdebit", name:"Cash + Swyft Debit" } /*,
+                //{ id: "creditcard", name:"Credit Card" } */
             ];
         }
         else {
             return [
                 { id: "swyftdebit", name: "Swyft Debit" },
                 { id: "cash", name: "Cash" },
-                { id: "cash+swyftdebit", name:"Cash + Swyft Debit" },
-                { id: "creditcard", name:"Credit Card" }  
+                { id: "cash+swyftdebit", name:"Cash + Swyft Debit" }/*,
+                //{ id: "creditcard", name:"Credit Card" }  */
             ];
         }
     }),
