@@ -1,3 +1,4 @@
+/* global fbq */
 import Ember from "ember";
 import config from 'swyft-epsilon-online/config/environment';
 import loginUtils from 'swyft-epsilon-online/utils/login-utils';
@@ -37,5 +38,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, SidebarRouteMixin, An
         controller.set('token', "");
         controller.set('tokenValid', true);
         controller.set('couponValid', true);
+        fbq('track', 'InitiateCheckout');
     }
 });
