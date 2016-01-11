@@ -62,8 +62,8 @@ module.exports = function(environment) {
     key: "pk_test_NWvAAITL9qMM7mUAjknRjeY1"
   }
   
-  ENV.appVersion = "4.2.0";
-  ENV.appVersionLabel = "4.2.0"
+  ENV.appVersion = "4.2.5";
+  ENV.appVersionLabel = "4.2.5 LTS"
   ENV.appCodename= "Dart";
    
   return ENV;
