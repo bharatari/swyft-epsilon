@@ -7,11 +7,11 @@ module.exports = function(req, res, next){
                 if(user) {
                     req.user = user;
                     next();
-                }   
+                }
                 else {
                     return res.forbidden();
                 }
-            }); 
+            });
         }
         else {
             return res.forbidden();

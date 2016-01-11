@@ -1,29 +1,58 @@
+var Mocha = require('mocha'),
+    fs = require('fs'),
+    path = require('path');
+
 var Barrels = require('barrels');
 var Sails = require('sails'),
     sails;
 
-before(function(done) {
+// Instantiate a Mocha instance.
+var mocha = new Mocha();
 
-    // Increase the Mocha timeout so that Sails has enough time to lift.
-    this.timeout(10000);
+Sails.lift({
+    // configuration for testing purposes
+    environment: 'test'
+}, function(err, server) {
+    sails = server;
+    if (err) return;
 
-    Sails.lift({
-        // configuration for testing purposes
-        environment: 'test'
-    }, function(err, server) {
-        sails = server;
-        if (err) return done(err);
-        
-        // here you can load fixtures, etc.
-        var barrels = new Barrels();
-        
-        barrels.populate(function(err) { 
-            done(err, sails); 
-        }); 
+    // here you can load fixtures, etc.
+    var barrels = new Barrels();
+
+    barrels.populate(function(err) {
+        test();
     });
 });
 
-after(function(done) {
-    // here you can clear fixtures, etc.
-    Sails.lower(done);
-});
+function test() {
+  // Add each .js file to the mocha instance
+  fs.readdirSync('test/unit/services').filter(function(file){
+      // Only keep the .js files
+      return file.substr(-3) === '.js';
+
+  }).forEach(function(file){
+      mocha.addFile(
+          path.join('test/unit/services', file)
+      );
+  });
+
+  // Add each .js file to the mocha instance
+  fs.readdirSync('test/unit/controllers').filter(function(file){
+      // Only keep the .js files
+      return file.substr(-3) === '.js';
+
+  }).forEach(function(file){
+      mocha.addFile(
+          path.join('test/unit/controllers', file)
+      );
+  });
+
+  mocha.addFile('test/after.test.js');
+
+  // Run the tests.
+  mocha.run(function(failures){
+    process.on('exit', function () {
+      process.exit(failures);
+    });
+  });
+}

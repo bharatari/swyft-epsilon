@@ -10,7 +10,7 @@ module.exports = {
             LoginToken.findOne({ id: tokenId }).exec(function(err, token) {
                 if(err || !token) {
                     cb(false);
-                }              
+                }
                 else {
                     self.verifyToken(token, session, function(result) {
                         if(result) {

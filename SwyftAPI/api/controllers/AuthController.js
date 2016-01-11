@@ -44,7 +44,7 @@ module.exports={
                                     token : token,
                                     expires: expires,
                                     user: user.toJSON()
-                                });                    
+                                });
                             }
                             else {
                                 return res.serverError();

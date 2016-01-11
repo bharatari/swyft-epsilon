@@ -159,5 +159,19 @@
         "token" : "4444",
         "balance" : 0,
         "contactConsent" : false
+    },
+    {
+        "username" : "swyfttestmocha@exeter.edu",
+        "password" : "testing",
+        "firstName" : "Swyft",
+        "lastName" : "Mocha",
+        "phoneNumber" : "6037932211",
+        "dormitory" : "Gould House",
+        "verified" : true,
+        "token" : "01d9607b-552c-5aa4-82ec-99c2b0602420",
+        "balance" : 0,
+        "contactConsent" : false,
+        "disabled" : false,
+        "id" : "568e6cd983600d183b2d4c1e"
     }
 ]
