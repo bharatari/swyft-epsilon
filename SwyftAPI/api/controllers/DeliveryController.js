@@ -50,44 +50,22 @@ module.exports = {
             }
         });
     },
-    /*** 
+    /**
      * Sets offsets for estimated delivery and arrival times.
      *
      * @param {number} offset - Offset in minutes
      * @param {string} deliveryId
      *
      * @tag - timezone
-     *
      */
     setDeliveryOffset: function(req, res) {
         if(req.body) {
             if(req.body.offset && req.body.deliveryId) {
-                var offset;
-                if(typeof req.body.offset != "number") {
-                    offset = parseInt(req.body.offset);
-                    if(isNaN(offset)) {
+                DeliveryService.setDeliveryOffset(req.body.offset, req.body.deliveryId, function(err, result) {
+                    if(err || !result) {
                         return res.badRequest();
-                    }
-                }
-                Delivery.find({ id: req.body.deliveryId }).exec(function(err, delivery) {
-                    if(!err || delivery) {
-                        var estimatedDelivery = moment(delivery.deliveryDate);
-                        var estimatedArrival = moment(delivery.scheduledArrival);
-                        estimatedDelivery.add(offset, 'minutes');
-                        estimatedArrival.add(offset, 'minutes');
-                        Delivery.update({ id: req.body.deliveryId }, { estimatedArrival: estimatedArrival.toDate(), estimatedDelivery: estimatedDelivery.toDate() }).exec(function(err, data) {
-                            if(err) {
-                                return res.badRequest();
-                            }
-                            else {
-                                NotificationService.createDeliveryNotification(data, offset, function() {
-                                    return res.ok();
-                                });
-                            }
-                        });
-                    }  
-                    else {
-                        return res.badRequest();
+                    } else {
+                        return res.ok();
                     }
                 });
             }

@@ -29,10 +29,10 @@ module.exports = function(environment) {
       
     ENV.contentSecurityPolicy = {
         'default-src': "'none'",
-        'script-src': "'self' 'unsafe-eval' 'unsafe-inline' https://cdnjs.cloudflare.com  https://checkout.stripe.com http://localhost:1337",
+        'script-src': "'self' 'unsafe-eval' 'unsafe-inline' http://connect.facebook.net https://connect.facebook.net http://cdn.mxpnl.com https://cdnjs.cloudflare.com  https://checkout.stripe.com http://localhost:1337",
         'font-src': "'self' http://fonts.gstatic.com https://fonts.gstatic.com https://code.ionicframework.com https://maxcdn.bootstrapcdn.com",
-        'connect-src': "'self' http://localhost:1337 ws://localhost:1337",
-        'img-src': "'self' https://swyftepsilon.blob.core.windows.net",
+        'connect-src': "'self' http://api.mixpanel.com http://localhost:1337 ws://localhost:1337",
+        'img-src': "'self' https://swyftepsilon.blob.core.windows.net https://www.facebook.com",
         'style-src': "'self' 'unsafe-inline' http://fonts.googleapis.com https://fonts.googleapis.com https://maxcdn.bootstrapcdn.com https://cdnjs.cloudflare.com https://code.ionicframework.com", 
         'media-src': "'self'"
     }

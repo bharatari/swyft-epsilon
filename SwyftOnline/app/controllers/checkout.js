@@ -1,5 +1,6 @@
 /* global moment */
 /* jslint unused: false */
+/* global fbq, mixpanel */
 import Ember from "ember";
 import config from 'swyft-epsilon-online/config/environment';
 import cartUtils from 'swyft-epsilon-online/utils/cart-utils';
@@ -7,21 +8,6 @@ import loginUtils from 'swyft-epsilon-online/utils/login-utils';
 import constants from 'swyft-epsilon-online/utils/constants-utils';
 
 export default Ember.Controller.extend({
-    conversionTracking: function() {
-        (function() {
-            var _fbq = window._fbq || (window._fbq = []);
-            if (!_fbq.loaded) {
-                var fbds = document.createElement('script');
-                fbds.async = true;
-                fbds.src = '//connect.facebook.net/en_US/fbds.js';
-                var s = document.getElementsByTagName('script')[0];
-                s.parentNode.insertBefore(fbds, s);
-                _fbq.loaded = true;
-            }
-        })();
-        window._fbq = window._fbq || [];
-        window._fbq.push(['track', '6021240611293', {'value':'0.00','currency':'USD'}]);
-    },
     cartArray: function() {
         if(this.get('cart')) {
             return cartUtils.processCart(this.get('cart'));
@@ -114,6 +100,12 @@ export default Ember.Controller.extend({
             return false;
         }
     }),
+    trackCheckout: function(value) {
+        fbq('track', 'Purchase', {value: value, currency: 'USD'});
+    },
+    checkoutError: function(order, response) {
+        mixpanel.track("Checkout Error", { "order": order, "response": response });
+    },
     actions: {
         checkoutCreditCard: function(token) {
             var self = this;
@@ -144,7 +136,7 @@ export default Ember.Controller.extend({
                     success: function(response) {
                         self.set('displayLoading', false);
                         localStorage.removeItem('cart');
-                        self.conversionTracking();
+                        self.trackCheckout(response.actualAmount.toFixed(2));
                         self.transitionToRoute('confirmation', { queryParams: { id: response.id }});
                     },
                     error: function(xhr, textStatus, error) {
@@ -153,6 +145,7 @@ export default Ember.Controller.extend({
                         self.set('modalBody', "Something went wrong with your request. You should check your profile page to see if this order has been submitted. If it hasn't, try emptying your cart and starting over or contact us for help.");
                         self.set('displayModal', true);
                         self.set('checkoutPressed', false);
+                        self.checkoutError(data, xhr);
                     }
                 });
         },
@@ -197,7 +190,7 @@ export default Ember.Controller.extend({
                     success: function(response) {
                         self.set('displayLoading', false);
                         localStorage.removeItem('cart');
-                        self.conversionTracking();
+                       self.trackCheckout(response.actualAmount.toFixed(2));
                         self.transitionToRoute('confirmation', { queryParams: { id: response.id }});
                     },
                     error: function(xhr, textStatus, error) {
@@ -206,6 +199,7 @@ export default Ember.Controller.extend({
                         self.set('modalBody', "Something went wrong with your request. You should check your profile page to see if this order has been submitted. If it hasn't, try emptying your cart and starting over or contact us for help.");
                         self.set('displayModal', true);
                         self.set('checkoutPressed', false);
+                        self.checkoutError(data, xhr);
                     }
                 });
             }

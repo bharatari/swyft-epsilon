@@ -1,3 +1,5 @@
+/* jslint shadow: true */
+/* global fbq */
 import Ember from "ember";
 import loginUtils from 'swyft-epsilon-online/utils/login-utils';
 import config from 'swyft-epsilon-online/config/environment';
@@ -6,7 +8,6 @@ import cartUtils from 'swyft-epsilon-online/utils/cart-utils';
 import SidebarRouteMixin from 'swyft-epsilon-online/mixins/sidebar-route';
 import StandardActionsMixin from 'swyft-epsilon-online/mixins/standard-actions';
 
-/* jslint shadow: true */
 export default Ember.Controller.extend(StandardActionsMixin, SidebarRouteMixin, {
     item: function() {
         return itemUtils.processItemView(this.get('model'));
@@ -26,6 +27,7 @@ export default Ember.Controller.extend(StandardActionsMixin, SidebarRouteMixin, 
                         localStorage.setItem("cart", JSON.stringify(cart));
                         localStorage.setItem("cartVersion", config.cartVersion);
                     }
+                    fbq('track', 'AddToCart');
                 }
                 catch (exec) {
                     self.set('modalTitle', 'Something went wrong there.');

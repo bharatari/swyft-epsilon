@@ -1,5 +1,5 @@
 /* jslint unused: false */
-/* global $ */
+/* global $, fbq */
 /* jslint eqeqeq: true */
 import Ember from "ember";
 import config from 'swyft-epsilon-online/config/environment';
@@ -22,7 +22,6 @@ export default Ember.Controller.extend({
                     Ember.$('#confirmPassword').css('background-color', 'white');
                 }
             }
-
         },
         signUp: function() {
             this.set('buttonPressed', true);
@@ -61,6 +60,7 @@ export default Ember.Controller.extend({
                             self.set('modalTitle', 'Email Verification');
                             self.set('modalBody', 'We sent you an email to verify your account. Be sure to check your spam folder as well.');
                             self.set('displayModal', true);
+                            fbq('track', 'CompleteRegistration');
                         },
                         error: function(xhr, textStatus, error) {
                             if(xhr.responseText === "EMAIL_IN_USE"){
