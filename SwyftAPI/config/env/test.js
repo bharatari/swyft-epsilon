@@ -19,9 +19,9 @@ module.exports = {
     models: {
         connection: 'MongoTest'
     },
-session: {
-      db: 'test',
-      host: 'localhost',
-      port: 27017,
-  }
+    session: {
+        db: 'test',
+        host: 'localhost',
+        port: 27017,
+    }
 };
