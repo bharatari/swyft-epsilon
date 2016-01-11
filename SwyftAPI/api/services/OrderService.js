@@ -9,18 +9,16 @@ module.exports = {
         var self = this;
         async.each(order.items, function(orderItem, callback) {
             async.each(menuItems, function(item, callback2) {
-                if(orderItem.id === item.id) {
+                if (orderItem.id === item.id) {
                     self.processItem(item, orderItem, function(result) {
-                        if(!result) {
+                        if (!result) {
                             return cb(false);
-                        }
-                        else {
+                        } else {
                             orderItem = result;
                             callback2();
                         }
                     });
-                }
-                else {
+                } else {
                     callback2();
                 }
             }, function(err) {
@@ -42,20 +40,18 @@ module.exports = {
         item.price = menuItem.baseprice;
         var allOptions = new Array();
         async.each(menuItem.itemOptions, function(itemOption, callback) {
-            if(itemOption.name !== "Options") {
+            if (itemOption.name !== "Options") {
                 async.each(itemOption.options, function(option, callback2) {
-                    if(option.price) {
+                    if (option.price) {
                         allOptions.push({ name: option.name, price: option.price, category: itemOption.name });
-                    }
-                    else {
+                    } else {
                         allOptions.push({ name: option.name, category: itemOption.name });
                     }
                     callback2();
                 }, function(err) {
                     callback();
                 });
-            }
-            else {
+            } else {
                 callback();
             }
         }, function(err) {
@@ -63,7 +59,7 @@ module.exports = {
         });
 
         function options() {
-            if(item.options) {
+            if (item.options) {
                 async.each(item.options, function(option, callback) {
                     if(option.price) {
                         option.price = parseFloat(option.price);
@@ -84,14 +80,13 @@ module.exports = {
                         extras();
                     });
                 });
-            }
-            else {
+            } else {
                 extras();
             }
         }
 
         function extras() {
-            if(item.extras) {
+            if (item.extras) {
                 async.each(item.extras, function(extra, callback) {
                     extra.price = parseFloat(extra.price);
                     /*
@@ -108,14 +103,13 @@ module.exports = {
                         attachedRequests();
                     });
                 });
-            }
-            else {
+            } else {
                 attachedRequests();
             }
         }
 
         function attachedRequests() {
-            if(item.attachedRequests) {
+            if (item.attachedRequests) {
                 async.each(item.attachedRequests, function(attachedRequest, callback) {
                     if(attachedRequest.price) {
                         attachedRequest.price = parseFloat(attachedRequest.price);
@@ -131,8 +125,7 @@ module.exports = {
                         standardOptions();
                     });
                 });
-            }
-            else {
+            } else {
                 standardOptions();
             }
         }
@@ -172,38 +165,40 @@ module.exports = {
     processOrder: function(order, cb) {
         order.totalAmount = 0;
         for (var f = 0; f < order.items.length; f++) {
-            if(!order.items[f].quantity) {
+            if (!order.items[f].quantity) {
                 order.items[f].quantity = 1;
             }
             order.totalAmount += order.items[f].price * order.items[f].quantity;
         }
-        if(order.deliveryId) {
+        if (order.deliveryId) {
             Delivery.findOne({ id: order.deliveryId }).exec(function(err, delivery){
-                if(err) {
+                if (err) {
                     final(false);
-                }
-                else {
+                } else {
                     order.deliveryTime=delivery.deliveryDate;
                     final(order);
                 }
             });
-        }
-        else {
+        } else {
             final(false);
         }
         function final(order) {
-            if(!order) {
+            if (!order) {
                 return cb(false);
-            }
-            else {
+            } else {
                 order = PriceService.processTax(order);
                 order.actualAmount = order.totalAmount;
                 CouponService.processToken(order, function(result) {
-                    if(!result) {
+                    if (!result) {
                         return cb(false);
-                    }
-                    else {
-                        cb(order);
+                    } else {
+                        CouponService.processCoupon(order, function(result) {
+                            if (!result) {
+                                return cb(false);
+                            } else {
+                                cb(order);
+                            }
+                        });
                     }
                 });
             }
@@ -214,10 +209,9 @@ module.exports = {
         // Why do we need to find the user here?
         User.findOne({ id: userId }).exec(function(err, user) {
             Order.create(order).exec(function(err, result) {
-                if(!err) {
+                if (!err) {
                     cb(result);
-                }
-                else {
+                } else {
                     cb(false);
                 }
             });

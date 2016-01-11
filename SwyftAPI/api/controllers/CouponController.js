@@ -39,10 +39,9 @@ module.exports = {
             hasBeenUsed: false
         }
         Token.create(data).exec(function(err, token) {
-            if(err) {
+            if (err) {
                 return res.badRequest();
-            }
-            else {
+            } else {
                 res.json(token);
             }
         });
@@ -61,7 +60,7 @@ module.exports = {
             } else {
                 Coupon.create(data).exec(function(err, coupon) {
                     if (err || !coupon) {
-                        res.badRequest("DATABASE_ERR");    
+                        res.badRequest("DATABASE_ERR");
                     } else {
                         res.ok(coupon);
                     }
@@ -76,7 +75,7 @@ module.exports = {
             }
             else {
                 res.json(token);
-            } 
+            }
         });
     },
     getCouponMetadata: function(req, res) {

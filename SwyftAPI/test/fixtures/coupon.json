@@ -1,0 +1,10 @@
+[
+  {
+    "id" : "5693c1cb3ad514eb0036ac7f",
+    "name" : "TestCoupon",
+    "discount" : 0.9,
+    "comments" : "Test Coupon for Swyft Testing",
+    "code" : "TEST_COUPON",
+    "isActive" : true
+  }
+]

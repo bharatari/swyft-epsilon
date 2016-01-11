@@ -15,7 +15,7 @@ module.exports = {
                         delete order.token;
                         order.tokenId = token.id;
                         cb(order);
-                    }); 
+                    });
                 }
             });
         }
@@ -27,7 +27,7 @@ module.exports = {
     processCoupon: function(order, cb) {
         if (order.coupon) {
             Coupon.findOne({ code: order.coupon }).exec(function(err, coupon) {
-                if (err || !token) {
+                if (err || !coupon) {
                     return cb(false);
                 } else if(!coupon.isActive) {
                     return cb(false);
