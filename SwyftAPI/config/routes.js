@@ -39,21 +39,21 @@ module.exports.routes = {
   '/admin/*':'ViewController.homepage',
   '/delivery':'ViewController.homepage',
   '/delivery/*':'ViewController.homepage',
-  '/system/*':'ViewController.homepage',    
-   
+  '/system/*':'ViewController.homepage',
+
   //Authentication Routes
   'post /api/login':'AuthController.login',
   'post /api/logout':'AuthController.logout',
   'get /api/isAuthenticated':'AuthController.isAuthenticated',
   'get /api/isAdmin':'AuthController.isAdmin',
   'get /api/isDelivery':'AuthController.isDelivery',
-  
+
   //Menu Routes
   'get /api/restaurants':'MenuController.restaurants',
   'get /api/restaurant/:restaurant_name':'MenuController.getRestaurant',
   'get /api/menuItems/:restaurant_name':'MenuController.menuItems',
   'get /api/item/:item_id':'MenuController.item',
-  
+
    //User Routes
   'post /api/user':'UserController.create',
   'post /api/user/balance/preliminary':'UserController.preliminaryBalanceRequest',
@@ -71,13 +71,14 @@ module.exports.routes = {
   'get /api/orders':'OrderController.getOrders',
   'get /api/orders/all':'OrderController.getAllOrders',
   'get /api/order':'OrderController.getOrder',
+  'get /api/order/safe':'OrderController.getOwnOrder',
   'get /api/deliveryOrders':'OrderController.getDeliveryOrders',
   'post /api/order':'OrderController.processOrder',
   'delete /api/order':'OrderController.deleteOrder',
   'get /api/orders/pending':'OrderController.pendingOrders',
   'get /api/orders/recent':'OrderController.recentOrders',
   'get /api/orders/adminRecent':'OrderController.getAdminRecentOrders',
-    
+
   //Order Management Routes
   'get /api/orders/aggregate/:delivery_id':'OrderController.getAggregateOrders',
   'get /api/orders/master/:delivery_id':'OrderController.getMasterList',
@@ -101,7 +102,7 @@ module.exports.routes = {
   'post /api/faq':'GlobalController.setFAQ',
   'get /api/terms':'GlobalController.getTerms',
   'post /api/terms':'GlobalController.setTerms',
-    
+
   //Delivery Note Routes
   'get /api/deliveryNote/global':'DeliveryNoteController.getGlobalDeliveryNote',
   'post /api/deliveryNote/global':'DeliveryNoteController.setGlobalDeliveryNote',
@@ -115,22 +116,22 @@ module.exports.routes = {
   'post /api/coupon/token':'CouponController.createIndependentToken',
   'post /api/coupon/coupon':'CouponController.createCoupon',
   'get /api/coupon/token/:token':'CouponController.getToken',
-    
+
   //Delivery Location Routes
   'get /api/deliveryLocations':'DeliveryLocationController.getLocations',
   'get /api/deliveryLocations/simple':'DeliveryLocationController.getLocationsSimple',
   'post /api/deliveryLocations/orders':'DeliveryLocationController.getLocationOrders',
-    
+
   //Analytics Routes
   'get /api/analytics/orders/chart':'AnalyticsController.getOrderChart',
   'get /api/analytics/deliveries/data':'AnalyticsController.getActiveDeliveryData',
   'get /api/analytics/dashboard/statistics':'AnalyticsController.getDashboardStats',
   'get /api/analytics/revenue/chart':'AnalyticsController.getRevenueChart',
-    
+
   //Temporary Routes
   'get /csrfToken':'AuthController.csrfToken',
-    
-  //Admin Routes  
+
+  //Admin Routes
   'get /api/admin/userTransaction/metadata':'UserTransactionController.getTransactionMetadata',
   'get /api/admin/userTransaction/model':'UserTransactionController.getTransactionModel',
   'get /api/admin/userTransaction/:id':'UserTransactionController.findOne',
@@ -160,11 +161,11 @@ module.exports.routes = {
   'get /api/admin/deliveryGroup/metadata':'DeliveryGroupController.getDeliveryGroupMetadata',
   'get /api/admin/attachedRequest/model':'AttachedRequestController.getAttachedRequestModel',
   'get /api/admin/attachedRequest/metadata':'AttachedRequestController.getAttachedRequestMetadata',
- 
+
   //Live Routes
   'get /api/admin/orders/watch':'OrderController.watch',
   'get /api/admin/notifications/subscribe':'NotificationController.subscribe',
-    
+
   //Email Routes
   'post /api/email/join':'EmailController.sendJoinUsEmail'
   /***************************************************************************
