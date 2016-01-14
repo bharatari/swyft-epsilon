@@ -100,11 +100,11 @@ export default Ember.Controller.extend({
             return false;
         }
     }),
-    trackCheckout: function(value) {
+    trackCheckout: function(value, request, response) {
         fbq('track', 'Purchase', {value: value, currency: 'USD'});
     },
-    checkoutError: function(order, response) {
-        mixpanel.track("Checkout Error", { "order": order, "response": response });
+    checkoutError: function(request, response) {
+        mixpanel.track("Checkout Error", { "request": request, "response": response });
     },
     actions: {
         checkoutCreditCard: function(token) {
@@ -136,7 +136,7 @@ export default Ember.Controller.extend({
                     success: function(response) {
                         self.set('displayLoading', false);
                         localStorage.removeItem('cart');
-                        self.trackCheckout(response.actualAmount.toFixed(2));
+                        self.trackCheckout(response.actualAmount.toFixed(2), data, response);
                         self.transitionToRoute('confirmation', { queryParams: { id: response.id }});
                     },
                     error: function(xhr, textStatus, error) {
@@ -190,7 +190,7 @@ export default Ember.Controller.extend({
                     success: function(response) {
                         self.set('displayLoading', false);
                         localStorage.removeItem('cart');
-                       self.trackCheckout(response.actualAmount.toFixed(2));
+                        self.trackCheckout(response.actualAmount.toFixed(2), data, response);
                         self.transitionToRoute('confirmation', { queryParams: { id: response.id }});
                     },
                     error: function(xhr, textStatus, error) {
