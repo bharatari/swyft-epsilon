@@ -1039,7 +1039,7 @@ a.list-group-item:hover, a.list-group-item:focus {
 }
 
 .daniel {
-    background-image: url('/images/BuildingEdit.jpg');
+    background-image: url('/images/Daniel.jpg');
     background-position-y: 30%;
 }
 
@@ -1412,6 +1412,7 @@ a.list-group-item:hover, a.list-group-item:focus {
 
 .row-learn-team {
     background-color: white;    
+    padding-bottom: 100px;
 }
 
 .row-learn-one {
@@ -1485,6 +1486,10 @@ a.list-group-item:hover, a.list-group-item:focus {
     background-color: rgba(255, 94, 94, 0.74);
 }
 
+.learn-more-main {
+    text-align: center;
+}
+    
 .credit-card-icon {
     color: white;    
     font-size: 225px;
@@ -1929,52 +1934,32 @@ figure section {
     display: block;
     position: relative;
     z-index: 10;
-    max-width: 100%;
-    height: auto;
+    width: 280px;
+    height: 280px;
+    border-radius: 140px;
+    margin-left: auto;
+    margin-right: auto;
 }
 figure figcaption {
     display: block;
-    position: absolute;
-    z-index: 5;
+    margin-bottom: 80px;
 }
 figure h3 {
-    color: #fff;
+    color: black;
+    text-align: center;
     font-size: 22px;
     line-height: 1.2;
-    font-weight: 400;
-    letter-spacing: -1px;
+    font-weight: 600;
     font-family: 'Open Sans';
     margin-bottom: 10px;
+    margin-top: 15px;
 }
 figure span {
-    color: #d8d8d8;
+    color: black;
+    text-align: center;
     font-family: 'Open Sans';
     display: block;
     line-height: 1.2;
-}
-#effect-1 figure {
-    background-color: #626262;
-}
-#effect-1 figcaption {
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 20px;
-}
-#effect-1 figure section {
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    -ms-transition: all 0.3s;
-    -o-transition: all 0.3s;
-    transition: all 0.3s;
-}
-#effect-1 figure:hover section,
-#effect-1 figure.hover section {
-    -webkit-transform: translateY(-90px);
-    -moz-transform: translateY(-90px);
-    -ms-transform: translateY(-90px);
-    -o-transform: translateY(-90px);
-    transform: translateY(-90px);
 }
 
 .loading-overlay {
