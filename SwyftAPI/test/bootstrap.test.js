@@ -6,6 +6,16 @@ var Barrels = require('barrels');
 var Sails = require('sails'),
     sails;
 
+/**
+ * Using Mocha programatically due to issues when
+ * Mocha would load files that used sails.config
+ * values before Sails was lifted and then throw errors
+ * that sails was undefined.
+ *
+ * This method allows us to load files only after sails has been
+ * lifted.
+ */
+
 // Instantiate a Mocha instance.
 var mocha = new Mocha();
 
