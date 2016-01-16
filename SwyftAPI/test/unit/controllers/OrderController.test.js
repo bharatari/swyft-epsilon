@@ -58,4 +58,58 @@ describe('OrderController', function() {
                 });
         });
     });
+    describe('#getOwnOrder()', function() {
+        it("should get user's own order", function(done) {
+            var orderId = '569996cd80911ef415faac7d';
+            var agent = superagent.agent();
+
+            request(sails.hooks.http.app)
+                .post('/api/login')
+                .send({ username: "swyfttestmocha@exeter.edu", password: 'testing' })
+                .expect(200)
+                .end(function(err, res) {
+                    if (err) return done(err);
+                    var token = res.body.token;
+
+                    agent.saveCookies(res.res);
+                    var req = request(sails.hooks.http.app).get('/api/order/safe');
+                    agent.attachCookies(req);
+
+                    req
+                        .query({ orderId: orderId, token: token.token, tokenId: token.id })
+                        .expect(200)
+                        .end(function(err, res) {
+                            if (err) return done(err);
+                            assert.ok(true);
+                            done();
+                        });
+                });
+        });
+        it("should 403 for other orders", function(done) {
+            var orderId = '569996cd80911ef415faac7c';
+            var agent = superagent.agent();
+
+            request(sails.hooks.http.app)
+                .post('/api/login')
+                .send({ username: "swyfttestmocha@exeter.edu", password: 'testing' })
+                .expect(200)
+                .end(function(err, res) {
+                    if (err) return done(err);
+                    var token = res.body.token;
+
+                    agent.saveCookies(res.res);
+                    var req = request(sails.hooks.http.app).get('/api/order/safe');
+                    agent.attachCookies(req);
+
+                    req
+                        .query({ orderId: orderId, token: token.token, tokenId: token.id })
+                        .expect(403)
+                        .end(function(err, res) {
+                            if (err) return done(err);
+                            assert.ok(true);
+                            done();
+                        });
+                });
+        });
+    });
 });
