@@ -29,15 +29,15 @@ module.exports.connections = {
   * Run: npm install sails-mongo                                             *
   *                                                                          *
   ***************************************************************************/
-  
-    MongoDev:{
-        adapter: 'sails-mongo',
-        host: 'proximus.modulusmongo.net',
-        port: 27017
-    },
-    Mongo: {
-        adapter: 'sails-mongo',
-        host: 'proximus.modulusmongo.net',
-        port: 27017
-    }
+
+  MongoDev:{
+    adapter: 'sails-mongo',
+    host: 'proximus.modulusmongo.net',
+    port: 27017
+  },
+  Mongo: {
+    adapter: 'sails-mongo',
+    host: 'proximus.modulusmongo.net',
+    port: 27017
+  }
 };

@@ -18,12 +18,12 @@ module.exports = {
    ***************************************************************************/
 
   models: {
-      connection: 'Mongo'
+    connection: 'Mongo'
   },
   session: {
-      db: 'igEjo9pe',
-      host: 'proximus.modulusmongo.net',
-      port: 27017,
+    db: 'igEjo9pe',
+    host: 'proximus.modulusmongo.net',
+    port: 27017,
   }
 
   /***************************************************************************

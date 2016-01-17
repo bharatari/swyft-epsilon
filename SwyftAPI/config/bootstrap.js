@@ -15,26 +15,27 @@ var math = require('mathjs');
  */
 
 module.exports.bootstrap = function(cb) {
-    UtilityService.protect(function() {
-        var deliveryProcessor = schedule.scheduleJob("*/1 * * * *", function() {
-            AutomaticService.processDeliveryPeriods(function() {
-                AutomaticService.closeDeliveryPeriods(function() { });
-            });
-        });
-        var deliveryProcessor = schedule.scheduleJob("30 18 * * 3", function() {
-            console.log("Email Service Running");
-            AutomaticService.processOutstandingPayments(function() { });
-        });
-    }, function(err) {
-        console.log('Automatic Service Error: ' + err); 
-    });    
-    
-    math.config({
-        number: 'bignumber',
-        precision: 64       
+  UtilityService.protect(function() {
+    var deliveryProcessor = schedule.scheduleJob("*/1 * * * *", function() {
+      AutomaticService.processDeliveryPeriods(function() {
+        AutomaticService.closeDeliveryPeriods(function() { });
+      });
     });
-    
-    // It's very important to trigger this callback method when you are finished
-    // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
-    cb();
+
+    var emailService = schedule.scheduleJob("30 18 * * 3", function() {
+      console.log("Email Service Running");
+      AutomaticService.processOutstandingPayments(function() { });
+    });
+  }, function(err) {
+    console.log('Automatic Service Error: ' + err);
+  });
+
+  math.config({
+    number: 'bignumber',
+    precision: 64
+  });
+
+  // It's very important to trigger this callback method when you are finished
+  // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
+  cb();
 };
