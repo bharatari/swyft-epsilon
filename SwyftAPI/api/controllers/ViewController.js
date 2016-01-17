@@ -1,5 +1,5 @@
-module.exports={
-    homepage:function(req,res){
-        res.view('homepage');
-    },
+module.exports = {
+  homepage: function (req, res) {
+    res.view('homepage');
+  }
 }
