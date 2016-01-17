@@ -1,5 +1,5 @@
 module.exports = {
-    submitSwyftDebit: function(userId, amount, cb) {
-        
-    }
+  submitSwyftDebit: function (userId, amount, cb) {
+
+  }
 }
