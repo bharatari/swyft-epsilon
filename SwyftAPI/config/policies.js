@@ -36,7 +36,7 @@ module.exports.policies = {
     "destroy":['isAdmin', 'userDisabled'],
     "populate":['isAdmin', 'userDisabled'],
     "add":['isAdmin', 'userDisabled'],
-    "remove":['isAdmin', 'userDisabled']  
+    "remove":['isAdmin', 'userDisabled']
   },
   OrderController:{
     "*":['isAuthenticated', 'userDisabled', 'suppressSystem'],
@@ -46,6 +46,7 @@ module.exports.policies = {
     "createFulfillment":['isAdmin', 'userDisabled'],
     "getDeliveryOrders":['isDelivery', 'userDisabled'],
     "getOrder":['isDelivery', 'userDisabled'],
+    "getOwnOrder":['isAuthenticated', 'userDisabled'],
     "getAggregateOrders":['isDelivery', 'userDisabled'],
     "getAllOrders":['isAdmin', 'userDisabled'],
     "getAdminRecentOrders":['isDelivery', 'userDisabled'],
@@ -59,8 +60,8 @@ module.exports.policies = {
     "destroy":['isAdmin', 'userDisabled'],
     "populate":['isAdmin', 'userDisabled'],
     "add":['isAdmin', 'userDisabled'],
-    "remove":['isAdmin', 'userDisabled']  
-  },   
+    "remove":['isAdmin', 'userDisabled']
+  },
   UserController:{
     "getUser":['isAuthenticated', 'userDisabled'],
     "preliminaryBalanceRequest":['isAdmin', 'userDisabled'],
@@ -105,7 +106,7 @@ module.exports.policies = {
     "destroy":['isAdmin', 'userDisabled'],
     "populate":['isAdmin', 'userDisabled'],
     "add":['isAdmin', 'userDisabled'],
-    "remove":['isAdmin', 'userDisabled'] 
+    "remove":['isAdmin', 'userDisabled']
   },
   GlobalController:{
     "setNews":['isAdmin', 'userDisabled'],
@@ -118,7 +119,7 @@ module.exports.policies = {
     "destroy":['isAdmin', 'userDisabled'],
     "populate":['isAdmin', 'userDisabled'],
     "add":['isAdmin', 'userDisabled'],
-    "remove":['isAdmin', 'userDisabled']  
+    "remove":['isAdmin', 'userDisabled']
   },
   TokenController:{
     "find":['isAdmin', 'removeAdminParams', 'userDisabled'],
@@ -128,7 +129,7 @@ module.exports.policies = {
     "destroy":['isAdmin', 'userDisabled'],
     "populate":['isAdmin', 'userDisabled'],
     "add":['isAdmin', 'userDisabled'],
-    "remove":['isAdmin', 'userDisabled']  
+    "remove":['isAdmin', 'userDisabled']
   },
   DeliveryLocationController:{
     "find":['isAdmin', 'removeAdminParams', 'userDisabled'],
@@ -138,7 +139,7 @@ module.exports.policies = {
     "destroy":['isAdmin', 'userDisabled'],
     "populate":['isAdmin', 'userDisabled'],
     "add":['isAdmin', 'userDisabled'],
-    "remove":['isAdmin', 'userDisabled']  
+    "remove":['isAdmin', 'userDisabled']
   },
   RestaurantController:{
     "find":['isAdmin', 'removeAdminParams', 'userDisabled'],
@@ -148,7 +149,7 @@ module.exports.policies = {
     "destroy":['isAdmin', 'userDisabled'],
     "populate":['isAdmin', 'userDisabled'],
     "add":['isAdmin', 'userDisabled'],
-    "remove":['isAdmin', 'userDisabled']  
+    "remove":['isAdmin', 'userDisabled']
   },
   AnalyticsController:{
     "*":['isDelivery', 'userDisabled']
@@ -161,7 +162,7 @@ module.exports.policies = {
     "destroy":['isAdmin', 'userDisabled'],
     "populate":['isAdmin', 'userDisabled'],
     "add":['isAdmin', 'userDisabled'],
-    "remove":['isAdmin', 'userDisabled']  
+    "remove":['isAdmin', 'userDisabled']
   },
   DeliveryPeriodController:{
     "find":['isAdmin', 'removeAdminParams', 'userDisabled'],
@@ -171,7 +172,7 @@ module.exports.policies = {
     "destroy":['isAdmin', 'userDisabled'],
     "populate":['isAdmin', 'userDisabled'],
     "add":['isAdmin', 'userDisabled'],
-    "remove":['isAdmin', 'userDisabled'] 
+    "remove":['isAdmin', 'userDisabled']
   },
   DeliveryGroupController:{
     "find":['isAdmin', 'removeAdminParams', 'userDisabled'],
@@ -181,7 +182,7 @@ module.exports.policies = {
     "destroy":['isAdmin', 'userDisabled'],
     "populate":['isAdmin', 'userDisabled'],
     "add":['isAdmin', 'userDisabled'],
-    "remove":['isAdmin', 'userDisabled'] 
+    "remove":['isAdmin', 'userDisabled']
   },
   AttachedRequestController:{
     "find":['isAdmin', 'removeAdminParams', 'userDisabled'],
@@ -191,12 +192,12 @@ module.exports.policies = {
     "destroy":['isAdmin', 'userDisabled'],
     "populate":['isAdmin', 'userDisabled'],
     "add":['isAdmin', 'userDisabled'],
-    "remove":['isAdmin', 'userDisabled'] 
+    "remove":['isAdmin', 'userDisabled']
   },
   NotificationController:{
     "*":['isAdmin', 'userDisabled']
   }
-  
+
   /***************************************************************************
   *                                                                          *
   * Default policy for all controllers and actions (`true` allows public     *

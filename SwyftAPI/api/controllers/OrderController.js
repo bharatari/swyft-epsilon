@@ -107,6 +107,19 @@ module.exports={
             res.json(order);
         });
     },
+    getOwnOrder: function(req, res) {
+        Order.findOne({ id: req.query.orderId }).exec(function(err, order) {
+            if (err || !order) {
+                res.badRequest();
+            } else {
+                if (req.user.id === order.userId) {
+                    res.json(order);
+                } else {
+                    res.forbidden();
+                }
+            }
+        });
+    },
     deleteOrder:function(req,res){
         Order.update({id:req.body.id}, {isDeleted:true}).exec(function(err, order){
             if(!err){
