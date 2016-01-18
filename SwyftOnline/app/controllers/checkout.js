@@ -179,29 +179,32 @@ export default Ember.Controller.extend({
                     data.debitPayment = parseFloat(this.get('sliderValue'));
                 }
                 var url = config.routeLocation + "/api/order";
-                Ember.$.ajax({
-                    url: url,
-                    headers: {
-                        Accept : "application/json; charset=utf-8",
-                        "Content-Type": "application/json; charset=utf-8"
-                    },
-                    data: JSON.stringify(data),
-                    type: "POST",
-                    success: function(response) {
-                        self.set('displayLoading', false);
-                        localStorage.removeItem('cart');
-                        self.trackCheckout(response.actualAmount.toFixed(2), data, response);
-                        self.transitionToRoute('confirmation', { queryParams: { id: response.id }});
-                    },
-                    error: function(xhr, textStatus, error) {
-                        self.set('displayLoading', false);
-                        self.set('modalTitle', 'Whoops.');
-                        self.set('modalBody', "Something went wrong with your request. You should check your profile page to see if this order has been submitted. If it hasn't, try emptying your cart and starting over or contact us for help.");
-                        self.set('displayModal', true);
-                        self.set('checkoutPressed', false);
-                        self.checkoutError(data, xhr);
-                    }
+                Ember.run(function() {
+                    Ember.$.ajax({
+                        url: url,
+                        headers: {
+                            Accept : "application/json; charset=utf-8",
+                            "Content-Type": "application/json; charset=utf-8"
+                        },
+                        data: JSON.stringify(data),
+                        type: "POST",
+                        success: function(response) {
+                            self.set('displayLoading', false);
+                            localStorage.removeItem('cart');
+                            self.trackCheckout(response.actualAmount.toFixed(2), data, response);
+                            self.transitionToRoute('confirmation', { queryParams: { id: response.id }});
+                        },
+                        error: function(xhr, textStatus, error) {
+                            self.set('displayLoading', false);
+                            self.set('modalTitle', 'Whoops.');
+                            self.set('modalBody', "Something went wrong with your request. You should check your profile page to see if this order has been submitted. If it hasn't, try emptying your cart and starting over or contact us for help.");
+                            self.set('displayModal', true);
+                            self.set('checkoutPressed', false);
+                            self.checkoutError(data, xhr);
+                        }
+                    });
                 });
+                
             }
             else {
                 self.set('modalTitle', 'Woah there, not so fast.');
