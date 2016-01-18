@@ -1,7 +1,7 @@
 /* global math */
 import Ember from 'ember';
 
-export default Ember.Helper.helper(function (params, args) {
+export default Ember.Helper.helper((params, args) => {
   let value;
   try {
     value = math.chain(math.bignumber(params[1])).subtract(math.bignumber(params[0])).done();
@@ -14,10 +14,8 @@ export default Ember.Helper.helper(function (params, args) {
   if (value === 0) {
     if (simple) {
       return 'FREE';
-    } else {
-      return sign + '0.00';
     }
-  } else {
-    return sign + value.toFixed(2);
+    return sign + '0.00';
   }
+  return sign + value.toFixed(2);
 });
