@@ -4,7 +4,7 @@ module.exports = {
       id: deliveryId
     }).exec(function (err, delivery) {
       if (err || !delivery) {
-        cb("NO_DELIVERY");
+        cb('NO_DELIVERY');
       } else {
         Order.find({
           deliveryId: deliveryId
@@ -53,7 +53,7 @@ module.exports = {
     Order.find({
       userId: userId.toString()
     }).limit(10).sort({
-      createdAt: "desc"
+      createdAt: 'desc'
     }).exec(function (err, items) {
       var orders = [];
       async.each(items, function (order, callback) {
@@ -96,4 +96,4 @@ module.exports = {
       });
     });
   }
-}
+};

@@ -18,7 +18,7 @@ module.exports = {
   processOffset: function (reqOffset) {
     var offset;
     if (reqOffset) {
-      if (typeof offset != 'number') {
+      if (typeof offset !== 'number') {
         offset = parseInt(reqOffset);
         if (isNaN(offset)) {
           return 0;
@@ -65,4 +65,4 @@ module.exports = {
       }
     });
   }
-}
+};

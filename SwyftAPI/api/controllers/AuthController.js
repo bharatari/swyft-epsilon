@@ -22,7 +22,7 @@ module.exports = {
         } else if (err) {
           return res.serverError(err);
         } else if (!user.verified) {
-          return res.badRequest("NOT_VERIFIED");
+          return res.badRequest('NOT_VERIFIED');
         } else {
           var expires = moment().add(2, 'days').toDate();
           var sessionToken = UtilityService.uniqueId();
@@ -75,7 +75,7 @@ module.exports = {
             if (user.verified) {
               res.ok();
             } else {
-              res.send("NOT_VERIFIED");
+              res.send('NOT_VERIFIED');
             }
           } else {
             return res.forbidden();
@@ -110,4 +110,4 @@ module.exports = {
       _csrf: 'ghwf9ckwl75rjfng32owdf9s44'
     });
   }
-}
+};

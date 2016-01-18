@@ -8,14 +8,14 @@ describe('UserController', function () {
       request(sails.hooks.http.app)
         .post('/api/user/verification/verify')
         .send({
-          email: "swyftcustomer@exeter.edu",
+          email: 'swyftcustomer@exeter.edu',
           token: '112233445566'
         })
         .expect(200)
         .end(function (err, res) {
           if (err) return done(err);
           User.find({
-            username: "swyftcustomer@exeter.edu"
+            username: 'swyftcustomer@exeter.edu'
           }).exec(function (err, users) {
             if (err || !users) {
               assert.ok(false);
@@ -31,14 +31,14 @@ describe('UserController', function () {
       request(sails.hooks.http.app)
         .post('/api/user/verification/verify')
         .send({
-          email: "swyftcustomer@exeter.edu",
+          email: 'swyftcustomer@exeter.edu',
           token: '1234'
         })
         .expect(400)
         .end(function (err, res) {
           if (err) return done(err);
           User.find({
-            username: "swyftcustomer@exeter.edu"
+            username: 'swyftcustomer@exeter.edu'
           }).exec(function (err, users) {
             if (err || !users) {
               assert.ok(false);
@@ -54,14 +54,14 @@ describe('UserController', function () {
       request(sails.hooks.http.app)
         .post('/api/user/verification/verify')
         .send({
-          email: "bharatari@exeter.edu",
+          email: 'bharatari@exeter.edu',
           token: '1234'
         })
         .expect(400)
         .end(function (err, res) {
           if (err) return done(err);
           User.find({
-            username: "bharatari@exeter.edu"
+            username: 'bharatari@exeter.edu'
           }).exec(function (err, users) {
             if (err || !users) {
               assert.ok(false);
@@ -77,14 +77,14 @@ describe('UserController', function () {
       request(sails.hooks.http.app)
         .post('/api/user/verification/verify')
         .send({
-          email: "swyftduplicate@exeter.edu",
+          email: 'swyftduplicate@exeter.edu',
           token: '1122334452111566'
         })
         .expect(200)
         .end(function (err, res) {
           if (err) return done(err);
           User.find({
-            username: "swyftduplicate@exeter.edu"
+            username: 'swyftduplicate@exeter.edu'
           }).exec(function (err, users) {
             if (err || !users) {
               assert.ok(false);
@@ -109,7 +109,7 @@ describe('UserController', function () {
       request(sails.hooks.http.app)
         .post('/api/user/verification/verify')
         .send({
-          email: "swyftduplicate2@exeter.edu",
+          email: 'swyftduplicate2@exeter.edu',
           token: '4444'
         })
         .expect(400, done);

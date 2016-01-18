@@ -7,4 +7,4 @@ module.exports = {
   getDeliveryPeriodModel: function (req, res) {
     res.json(new ModelService.DeliveryPeriod());
   }
-}
+};

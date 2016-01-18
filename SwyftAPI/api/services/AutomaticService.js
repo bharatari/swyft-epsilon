@@ -3,7 +3,7 @@ var moment = require('moment-timezone');
 module.exports = {
   /***
    *
-   * @section - Automatic Delivery Management 
+   * @section - Automatic Delivery Management
    *
    */
   getDeliveryPeriods: function (cb) {
@@ -26,7 +26,7 @@ module.exports = {
     var delivery = this.processMoment(period.deliveryDay, period.deliveryHour, period.deliveryMinute, period.deliverySecond);
     var cutoff = this.processMoment(period.cutoffDay, period.cutoffHour, period.cutoffMinute, period.cutoffSecond);
     var arrival = this.processMoment(period.arrivalDay, period.arrivalHour, period.arrivalMinute, period.arrivalSecond);
-    var newDelivery = new ModelService.AutomaticDelivery(delivery.toDate(), period.id, "All", cutoff.toDate(), period.deliverers, arrival.toDate());
+    var newDelivery = new ModelService.AutomaticDelivery(delivery.toDate(), period.id, 'All', cutoff.toDate(), period.deliverers, arrival.toDate());
     console.log('Delivery Processor Running');
     console.log('Creating Delivery');
     Delivery.create(newDelivery).exec(function (err) {
@@ -34,9 +34,9 @@ module.exports = {
       cb();
     });
   },
-  /** 
+  /**
    * Creates a moment from day, hour, minute and second parameters.
-   * Adds seven days to the moment if the day is Sunday, because moment 
+   * Adds seven days to the moment if the day is Sunday, because moment
    * treats Sundays as part of the previous week.
    *
    * @param {string} day - String representation of day of week.
@@ -46,13 +46,13 @@ module.exports = {
    * @returns {Moment|Date} - Returns date if params are null or undefined.
    */
   processMoment: function (day, hour, minute, second) {
-    if ((day != null) && (hour != null) && (minute != null) && (second != null)) {
+    if ((day !== null) && (hour !== null) && (minute !== null) && (second !== null)) {
       var date = moment().day(day).set({
         hour: hour,
         minute: minute,
         second: second
       });
-      if (day === "Sunday") {
+      if (day === 'Sunday') {
         date = date.add(7, 'days');
       }
       if (TimeZoneService.isDST()) {
@@ -131,7 +131,7 @@ module.exports = {
    *
    */
 
-  /** 
+  /**
    * Finds users with outstanding payments and calls sendOutstandingPaymentsEmail
    *
    * @param {AutomaticService~outstandingPaymentsCallback} cb - Called when function finishes.
@@ -146,7 +146,7 @@ module.exports = {
             UserService.outstandingPayments(user.id, function (result, message) {
               if (result === false) {
                 if (message) {
-                  console.log("Automatic Email System Error: " + message);
+                  console.log('Automatic Email System Error: ' + message);
                   callback();
                 } else {
                   callback();
@@ -160,7 +160,7 @@ module.exports = {
                     }, function (result, message) {
                       if (result === false) {
                         if (message) {
-                          console.log("Automatic Email System Error: " + message);
+                          console.log('Automatic Email System Error: ' + message);
                         }
                       }
                       callback();
@@ -186,7 +186,7 @@ module.exports = {
    * @callback AutomaticService~outstandingPaymentsCallback
    */
 
-  /** 
+  /**
    * Sends emails to users with outstanding payments.
    *
    * @param {Object} object
@@ -198,12 +198,12 @@ module.exports = {
    * @param {AutomaticService~outstandingPaymentsEmailCallback} cb - Called when function finishes.
    */
   sendOutstandingPaymentsEmail: function (object, cb) {
-      if (object) {
-        if (object.user) {
-          EmailService.sendOutstandingPaymentsEmail(object.user.firstName, object.user.lastName, object.user.username, object.outstandingPayments, function (result, message) {
+    if (object) {
+      if (object.user) {
+        EmailService.sendOutstandingPaymentsEmail(object.user.firstName, object.user.lastName, object.user.username, object.outstandingPayments, function (result, message) {
             if (result === false) {
               if (message) {
-                console.log("Automatic Email System Error: " + message.message);
+                console.log('Automatic Email System Error: ' + message.message);
                 cb(false, message);
               } else {
                 cb(false);
@@ -212,16 +212,16 @@ module.exports = {
               cb(true);
             }
           });
-        } else {
-          cb(false, "USER_UNDEFINED");
-        }
       } else {
-        cb(false, "OBJECT_UNDEFINED");
+        cb(false, 'USER_UNDEFINED');
       }
+    } else {
+      cb(false, 'OBJECT_UNDEFINED');
     }
+  }
     /**
      * @callback AutomaticService~outstandingPaymentsEmailCallback
      * @param {boolean} result
      * @param {string} message
      */
-}
+};

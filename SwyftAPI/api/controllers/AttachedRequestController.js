@@ -20,4 +20,4 @@ module.exports = {
   getAttachedRequestModel: function (req, res) {
     res.json(new ModelService.AttachedRequest());
   }
-}
+};

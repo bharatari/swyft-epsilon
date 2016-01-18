@@ -1,15 +1,15 @@
 module.exports = {
   /** Models for internal use **/
   MasterListItem: function (firstName, lastName, items, deliveryLocation, total, phoneNumber, paymentType, chargeLater, deliveryNote) {
-    this.name = firstName.toUpperCase() + " " + lastName.toUpperCase();
+    this.name = firstName.toUpperCase() + ' ' + lastName.toUpperCase();
     this.deliveryLocation = deliveryLocation.toUpperCase();
     this.total = total;
     this.phoneNumber = phoneNumber;
     this.paymentType = paymentType.toUpperCase();
     if (chargeLater === true) {
-      this.charge = "CHARGE LATER";
+      this.charge = 'CHARGE LATER';
     } else {
-      this.charge = "STANDARD CHARGE";
+      this.charge = 'STANDARD CHARGE';
     }
     this.items = items;
     this.deliveryNote = deliveryNote;
@@ -24,22 +24,22 @@ module.exports = {
     this.closed = false;
     this.adminClosed = false;
     this.autoDelivery = true;
-    this.operationalStatus = "scheduled";
-    this.deliveryStatus = "onTime";
+    this.operationalStatus = 'scheduled';
+    this.deliveryStatus = 'onTime';
     this.scheduledArrival = arrival;
     this.estimatedArrival = arrival;
   },
-  /** 
+  /**
    * Represents a DeliveryNote that gets attached to an order.
    *
    * @constructor
-   * @param {string} commentedBy 
-   * @param {string} delivererId 
-   * @param {string} comments 
-   * @param {boolean} isDelivered 
-   * @param {Date} deliveredAt 
-   * @param {number} [cashPayment] 
-   * @param {boolean} [chargeLater] 
+   * @param {string} commentedBy
+   * @param {string} delivererId
+   * @param {string} comments
+   * @param {boolean} isDelivered
+   * @param {Date} deliveredAt
+   * @param {number} [cashPayment]
+   * @param {boolean} [chargeLater]
    * @param {boolean} [creditCardCharged]
    * @param {string} [creditCardMessage]
    */
@@ -65,153 +65,153 @@ module.exports = {
       this.creditCardCharged = creditCardCharged;
     }
     if (typeof creditCardMessage === 'undefined') {
-      this.creditCardMessage = "";
+      this.creditCardMessage = '';
     } else {
       this.creditCardMessage = creditCardMessage;
     }
   },
   /** Models for external use **/
   Transaction: function () {
-    this.userId = "";
-    this.type = "";
+    this.userId = '';
+    this.type = '';
     this.amount = 0;
-    this.comments = "";
-    this.orderId = "";
-    this.transactionCreator = "";
+    this.comments = '';
+    this.orderId = '';
+    this.transactionCreator = '';
     this.finalBalance = 0;
   },
   User: function () {
-    this.username = "";
-    this.firstName = "";
-    this.lastName = "";
-    this.dormitory = "";
-    this.phoneNumber = "";
+    this.username = '';
+    this.firstName = '';
+    this.lastName = '';
+    this.dormitory = '';
+    this.phoneNumber = '';
     this.verified = false;
-    this.token = "";
+    this.token = '';
     this.balance = 0;
     this.contactConsent = true;
-    this.roles = "";
-    this.adminComments = "";
+    this.roles = '';
+    this.adminComments = '';
     this.disabled = false;
   },
   Global: function () {
-    this.key = "";
-    this.value = "";
+    this.key = '';
+    this.value = '';
   },
   Coupon: function () {
-    this.name = "";
-    this.comemnts = "";
+    this.name = '';
+    this.comemnts = '';
     this.isActive = false;
     this.discount = 0.0;
-    this.code = "";
+    this.code = '';
   },
   Token: function () {
-    this.token = "";
+    this.token = '';
     this.discount = 0.0;
-    this.comments = "";
+    this.comments = '';
     this.hasBeenUsed = false;
-    this.usedBy = "";
-    this.orderId = "";
+    this.usedBy = '';
+    this.orderId = '';
   },
   Delivery: function () {
-    this.deliverers = "";
-    this.comments = "";
+    this.deliverers = '';
+    this.comments = '';
     this.deliveryDate = new Date();
     this.estimatedDelivery = new Date();
     this.scheduledArrival = new Date();
     this.estimatedArrival = new Date();
-    this.deliveryPeriod = "";
-    this.restaurants = "All";
+    this.deliveryPeriod = '';
+    this.restaurants = 'All';
     this.autoDelivery = false;
     this.orderCutoff = new Date();
-    this.operationalStatus = "scheduled";
-    this.deliveryStatus = "onTime";
+    this.operationalStatus = 'scheduled';
+    this.deliveryStatus = 'onTime';
     /*** @future - Fulfillments aren't currently used, but are in place to accomodate potential expansion. */
     //this.fulfillment = [];
     this.closed = false;
     this.adminClosed = false;
   },
   DeliveryLocation: function () {
-    this.name = "";
-    this.group = "";
+    this.name = '';
+    this.group = '';
     /*** @future - We currently don't use latitude and longitude for any purpose. */
     //this.latitude = 0.0;
     //this.longitude = 0.0;
     this.disabled = false;
   },
   Restaurant: function () {
-    this.name = "";
-    this.title = "";
+    this.name = '';
+    this.title = '';
     this.unavailable = false;
-    this.aggregateStyle = "";
-    this.notice = "";
-    this.image = "";
-    this.subtitle = "";
+    this.aggregateStyle = '';
+    this.notice = '';
+    this.image = '';
+    this.subtitle = '';
   },
   MenuItem: function () {
-    this.name = "";
+    this.name = '';
     this.baseprice = 0.0;
-    this.category = "";
-    this.description = "";
+    this.category = '';
+    this.description = '';
     this.itemOptions = [];
     this.extras = [];
-    this.attachedRequests = "";
+    this.attachedRequests = '';
     this.unavailable = false;
-    this.restaurant = "";
-    this.adminComments = "";
-    this.note = "";
+    this.restaurant = '';
+    this.adminComments = '';
+    this.note = '';
     this.seasonal = false;
     this.temporary = false;
   },
   Order: function () {
-    this.type = "";
+    this.type = '';
     this.items = [];
-    this.userId = "";
-    this.contactPhone = "";
-    this.adminComments = "";
+    this.userId = '';
+    this.contactPhone = '';
+    this.adminComments = '';
     this.totalAmount = 0.0;
     this.actualAmount = 0.0;
-    this.paymentType = "";
+    this.paymentType = '';
     this.deliveryTime = new Date();
-    this.deliveryId = "";
-    this.deliveryLocation = "";
-    this.couponId = "";
-    this.tokenId = "";
+    this.deliveryId = '';
+    this.deliveryLocation = '';
+    this.couponId = '';
+    this.tokenId = '';
     this.deliveryNote = new ModelService.DeliveryNote(null, null, null, null, null, null, null, null, null);
     this.isDeleted = false;
   },
   DeliveryPeriod: function () {
-    this.deliveryDay = "";
+    this.deliveryDay = '';
     this.deliveryHour = 0.0;
     this.deliveryMinute = 0.0;
     this.deliverySecond = 0.0;
-    this.cutoffDay = "";
+    this.cutoffDay = '';
     this.cutoffHour = 0.0;
     this.cutoffMinute = 0.0;
     this.cutoffSecond = 0.0;
-    this.arrivalDay = "";
+    this.arrivalDay = '';
     this.arrivalHour = 0.0;
     this.arrivalMinute = 0.0;
     this.arrivalSecond = 0.0;
-    this.openDay = "";
+    this.openDay = '';
     this.openHour = 0.0;
     this.openMinute = 0.0;
     this.openSecond = 0.0;
-    this.restaurants = "All";
-    this.deliverers = "";
+    this.restaurants = 'All';
+    this.deliverers = '';
     this.enabled = false;
   },
   AttachedRequest: function () {
-    this.name = "";
-    this.label = "";
+    this.name = '';
+    this.label = '';
     this.options = [];
-    this.available = "";
-    this.watches = "";
-    this.on = "";
+    this.available = '';
+    this.watches = '';
+    this.on = '';
     this.required = false;
   },
   DeliveryGroup: function () {
-    this.name = "";
-    this.codename = "";
+    this.name = '';
+    this.codename = '';
   }
-}
+};

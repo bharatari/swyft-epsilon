@@ -9,7 +9,7 @@ module.exports = {
     },
     type: {
       type: 'string',
-      enum: ["message", "new", "error", "update"]
+      enum: ['message', 'new', 'error', 'update']
     },
     icon: {
       type: 'string'
@@ -21,4 +21,4 @@ module.exports = {
       type: 'string'
     }
   }
-}
+};

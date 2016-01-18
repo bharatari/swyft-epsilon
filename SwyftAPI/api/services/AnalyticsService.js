@@ -10,13 +10,13 @@ module.exports = {
       }).exec(function (err, orders) {
         data.push({
           date: delivery.deliveryDate,
-          label: moment(delivery.deliveryDate).format("MM/DD"),
+          label: moment(delivery.deliveryDate).format('MM/DD'),
           data: orders.length
         });
         callback();
       });
     }, function (err) {
-      data = UtilityService.sortData(data, "date", "ASC");
+      data = UtilityService.sortData(data, 'date', 'ASC');
       cb(data);
     });
   },
@@ -34,13 +34,13 @@ module.exports = {
         }
         data.push({
           date: delivery.deliveryDate,
-          label: moment(delivery.deliveryDate).format("MM/DD"),
+          label: moment(delivery.deliveryDate).format('MM/DD'),
           data: MathService.round(total)
         });
         callback();
       });
     }, function (err) {
-      data = UtilityService.sortData(data, "date", "ASC");
+      data = UtilityService.sortData(data, 'date', 'ASC');
       cb(data);
     });
   },
@@ -73,7 +73,7 @@ module.exports = {
       orderCount: 0,
       userCount: 0,
       deliveryCount: 0
-    }
+    };
     Order.find().exec(function (err, orders) {
       data.orderCount = orders.length;
       User.find().exec(function (err, users) {
@@ -85,4 +85,4 @@ module.exports = {
       });
     });
   }
-}
+};

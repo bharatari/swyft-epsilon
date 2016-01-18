@@ -41,7 +41,7 @@ module.exports = {
       discount: req.body.discount,
       comments: req.body.comments,
       hasBeenUsed: false
-    }
+    };
     Token.create(data).exec(function (err, token) {
       if (err) {
         return res.badRequest();
@@ -60,11 +60,11 @@ module.exports = {
     };
     CouponService.checkDuplicates(req.body.code, function (err, result) {
       if (err || !result) {
-        res.badRequest("DUPLICATE");
+        res.badRequest('DUPLICATE');
       } else {
         Coupon.create(data).exec(function (err, coupon) {
           if (err || !coupon) {
-            res.badRequest("DATABASE_ERR");
+            res.badRequest('DATABASE_ERR');
           } else {
             res.ok(coupon);
           }
@@ -91,4 +91,4 @@ module.exports = {
   getCouponModel: function (req, res) {
     res.json(new ModelService.Coupon());
   }
-}
+};

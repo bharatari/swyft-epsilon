@@ -8,7 +8,7 @@ describe('RoleService', function () {
       var user = {
         roles: 'master'
       };
-      RoleService.canDelete(user, "user", function (result) {
+      RoleService.canDelete(user, 'user', function (result) {
         assert.isTrue(result);
         done();
       });
@@ -17,7 +17,7 @@ describe('RoleService', function () {
       var user = {
         roles: 'admin'
       };
-      RoleService.canDelete(user, "user", function (result) {
+      RoleService.canDelete(user, 'user', function (result) {
         assert.isTrue(result);
         done();
       });
@@ -26,7 +26,7 @@ describe('RoleService', function () {
       var user = {
         roles: 'admin-delete'
       };
-      RoleService.canDelete(user, "user", function (result) {
+      RoleService.canDelete(user, 'user', function (result) {
         assert.isTrue(result);
         done();
       });
@@ -35,7 +35,7 @@ describe('RoleService', function () {
       var user = {
         roles: 'admin-delete, except:admin-delete:attached-request'
       };
-      RoleService.canDelete(user, "attached-request", function (result) {
+      RoleService.canDelete(user, 'attached-request', function (result) {
         assert.isFalse(result);
         done();
       });
@@ -44,7 +44,7 @@ describe('RoleService', function () {
       var user = {
         roles: 'except:admin-delete, admin-delete:delivery-period'
       };
-      RoleService.canDelete(user, "delivery-period", function (result) {
+      RoleService.canDelete(user, 'delivery-period', function (result) {
         assert.isFalse(result);
         done();
       });
@@ -53,7 +53,7 @@ describe('RoleService', function () {
       var user = {
         roles: 'admin-delete:delivery-period'
       };
-      RoleService.canDelete(user, "order", function (result) {
+      RoleService.canDelete(user, 'order', function (result) {
         assert.isFalse(result);
         done();
       });
@@ -62,7 +62,7 @@ describe('RoleService', function () {
       var user = {
         roles: 'except:admin-delete:delivery-period'
       };
-      RoleService.canDelete(user, "delivery-period", function (result) {
+      RoleService.canDelete(user, 'delivery-period', function (result) {
         assert.isFalse(result);
         done();
       });
@@ -73,7 +73,7 @@ describe('RoleService', function () {
       var user = {
         roles: 'master'
       };
-      RoleService.canCreate(user, "user", function (result) {
+      RoleService.canCreate(user, 'user', function (result) {
         assert.isTrue(result);
         done();
       });
@@ -82,7 +82,7 @@ describe('RoleService', function () {
       var user = {
         roles: 'admin'
       };
-      RoleService.canCreate(user, "user", function (result) {
+      RoleService.canCreate(user, 'user', function (result) {
         assert.isTrue(result);
         done();
       });
@@ -91,7 +91,7 @@ describe('RoleService', function () {
       var user = {
         roles: 'admin-create'
       };
-      RoleService.canCreate(user, "user", function (result) {
+      RoleService.canCreate(user, 'user', function (result) {
         assert.isTrue(result);
         done();
       });
@@ -100,7 +100,7 @@ describe('RoleService', function () {
       var user = {
         roles: 'admin-create, except:admin-create:user'
       };
-      RoleService.canCreate(user, "user", function (result) {
+      RoleService.canCreate(user, 'user', function (result) {
         assert.isFalse(result);
         done();
       });
@@ -109,7 +109,7 @@ describe('RoleService', function () {
       var user = {
         roles: 'except:admin-create, admin-create:user'
       };
-      RoleService.canCreate(user, "user", function (result) {
+      RoleService.canCreate(user, 'user', function (result) {
         assert.isFalse(result);
         done();
       });
@@ -118,7 +118,7 @@ describe('RoleService', function () {
       var user = {
         roles: 'admin-create:order'
       };
-      RoleService.canCreate(user, "user", function (result) {
+      RoleService.canCreate(user, 'user', function (result) {
         assert.isFalse(result);
         done();
       });
@@ -127,7 +127,7 @@ describe('RoleService', function () {
       var user = {
         roles: 'except:admin-create:delivery-period'
       };
-      RoleService.canCreate(user, "delivery-period", function (result) {
+      RoleService.canCreate(user, 'delivery-period', function (result) {
         assert.isFalse(result);
         done();
       });
@@ -138,7 +138,7 @@ describe('RoleService', function () {
       var user = {
         roles: 'master'
       };
-      RoleService.canUpdate(user, "user", function (result) {
+      RoleService.canUpdate(user, 'user', function (result) {
         assert.isTrue(result);
         done();
       });
@@ -147,7 +147,7 @@ describe('RoleService', function () {
       var user = {
         roles: 'admin'
       };
-      RoleService.canUpdate(user, "user", function (result) {
+      RoleService.canUpdate(user, 'user', function (result) {
         assert.isTrue(result);
         done();
       });
@@ -156,7 +156,7 @@ describe('RoleService', function () {
       var user = {
         roles: 'admin-update'
       };
-      RoleService.canUpdate(user, "user", function (result) {
+      RoleService.canUpdate(user, 'user', function (result) {
         assert.isTrue(result);
         done();
       });
@@ -165,7 +165,7 @@ describe('RoleService', function () {
       var user = {
         roles: 'admin-update, except:admin-update:user'
       };
-      RoleService.canUpdate(user, "user", function (result) {
+      RoleService.canUpdate(user, 'user', function (result) {
         assert.isFalse(result);
         done();
       });
@@ -174,7 +174,7 @@ describe('RoleService', function () {
       var user = {
         roles: 'except:admin-update, admin-update:user'
       };
-      RoleService.canUpdate(user, "user", function (result) {
+      RoleService.canUpdate(user, 'user', function (result) {
         assert.isFalse(result);
         done();
       });
@@ -183,7 +183,7 @@ describe('RoleService', function () {
       var user = {
         roles: 'admin-update:order'
       };
-      RoleService.canUpdate(user, "user", function (result) {
+      RoleService.canUpdate(user, 'user', function (result) {
         assert.isFalse(result);
         done();
       });
@@ -192,7 +192,7 @@ describe('RoleService', function () {
       var user = {
         roles: 'except:admin-update:delivery-period'
       };
-      RoleService.canUpdate(user, "delivery-period", function (result) {
+      RoleService.canUpdate(user, 'delivery-period', function (result) {
         assert.isFalse(result);
         done();
       });
@@ -203,7 +203,7 @@ describe('RoleService', function () {
       var user = {
         roles: 'master'
       };
-      RoleService.canView(user, "user", function (result) {
+      RoleService.canView(user, 'user', function (result) {
         assert.isTrue(result);
         done();
       });
@@ -212,7 +212,7 @@ describe('RoleService', function () {
       var user = {
         roles: 'admin'
       };
-      RoleService.canView(user, "user", function (result) {
+      RoleService.canView(user, 'user', function (result) {
         assert.isTrue(result);
         done();
       });
@@ -221,7 +221,7 @@ describe('RoleService', function () {
       var user = {
         roles: 'admin-view'
       };
-      RoleService.canView(user, "user", function (result) {
+      RoleService.canView(user, 'user', function (result) {
         assert.isTrue(result);
         done();
       });
@@ -230,7 +230,7 @@ describe('RoleService', function () {
       var user = {
         roles: 'admin-update'
       };
-      RoleService.canView(user, "user", function (result) {
+      RoleService.canView(user, 'user', function (result) {
         assert.isTrue(result);
         done();
       });
@@ -239,7 +239,7 @@ describe('RoleService', function () {
       var user = {
         roles: 'admin-create'
       };
-      RoleService.canView(user, "user", function (result) {
+      RoleService.canView(user, 'user', function (result) {
         assert.isTrue(result);
         done();
       });
@@ -248,7 +248,7 @@ describe('RoleService', function () {
       var user = {
         roles: 'admin-delete'
       };
-      RoleService.canView(user, "user", function (result) {
+      RoleService.canView(user, 'user', function (result) {
         assert.isTrue(result);
         done();
       });
@@ -257,7 +257,7 @@ describe('RoleService', function () {
       var user = {
         roles: 'admin-update, admin-create, except:admin-create:user'
       };
-      RoleService.canView(user, "user", function (result) {
+      RoleService.canView(user, 'user', function (result) {
         assert.isTrue(result);
         done();
       });
@@ -266,7 +266,7 @@ describe('RoleService', function () {
       var user = {
         roles: 'admin, except:admin-update, except:admin-create, except:admin-delete'
       };
-      RoleService.canView(user, "user", function (result) {
+      RoleService.canView(user, 'user', function (result) {
         assert.isTrue(result);
         done();
       });
@@ -275,7 +275,7 @@ describe('RoleService', function () {
       var user = {
         roles: 'admin-delete, except:admin-delete:user'
       };
-      RoleService.canView(user, "user", function (result) {
+      RoleService.canView(user, 'user', function (result) {
         assert.isFalse(result);
         done();
       });
@@ -284,7 +284,7 @@ describe('RoleService', function () {
       var user = {
         roles: 'admin-view, except:admin-view:user'
       };
-      RoleService.canView(user, "user", function (result) {
+      RoleService.canView(user, 'user', function (result) {
         assert.isFalse(result);
         done();
       });
@@ -293,7 +293,7 @@ describe('RoleService', function () {
       var user = {
         roles: 'except:admin-view, admin-view:user'
       };
-      RoleService.canView(user, "user", function (result) {
+      RoleService.canView(user, 'user', function (result) {
         assert.isFalse(result);
         done();
       });
@@ -302,7 +302,7 @@ describe('RoleService', function () {
       var user = {
         roles: 'admin-view:order'
       };
-      RoleService.canView(user, "user", function (result) {
+      RoleService.canView(user, 'user', function (result) {
         assert.isFalse(result);
         done();
       });
@@ -311,16 +311,16 @@ describe('RoleService', function () {
       var user = {
         roles: 'admin, except:admin-update, except:admin-create, except:admin-delete, except:admin-view'
       };
-      RoleService.canView(user, "user", function (result) {
+      RoleService.canView(user, 'user', function (result) {
         assert.isFalse(result);
         done();
       });
     });
     it('should return false for user with no roles property', function (done) {
       var user = {
-        name: "Customer"
+        name: 'Customer'
       };
-      RoleService.canView(user, "user", function (result) {
+      RoleService.canView(user, 'user', function (result) {
         assert.isFalse(result);
         done();
       });
@@ -329,7 +329,7 @@ describe('RoleService', function () {
       var user = {
         roles: 'except:admin-view:delivery-period'
       };
-      RoleService.canView(user, "delivery-period", function (result) {
+      RoleService.canView(user, 'delivery-period', function (result) {
         assert.isFalse(result);
         done();
       });
@@ -384,7 +384,7 @@ describe('RoleService', function () {
       var roleExceptions = [
         'except:admin-export'
       ];
-      assert.isTrue(RoleService.fullAccess(roles, roleExceptions, "admin-export"));
+      assert.isTrue(RoleService.fullAccess(roles, roleExceptions, 'admin-export'));
     });
     it('should return true for non-relevant role exception', function () {
       var roles = [
@@ -393,7 +393,7 @@ describe('RoleService', function () {
       var roleExceptions = [
         'except:admin-export'
       ];
-      assert.isTrue(RoleService.fullAccess(roles, roleExceptions, "admin-create:user", "admin-create"));
+      assert.isTrue(RoleService.fullAccess(roles, roleExceptions, 'admin-create:user', 'admin-create'));
     });
     it('should return false for relevant role exception', function () {
       var roles = [
@@ -402,7 +402,7 @@ describe('RoleService', function () {
       var roleExceptions = [
         'except:admin-export'
       ];
-      assert.isFalse(RoleService.fullAccess(roles, roleExceptions, "admin-export"));
+      assert.isFalse(RoleService.fullAccess(roles, roleExceptions, 'admin-export'));
     });
   });
 });

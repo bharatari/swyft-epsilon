@@ -7,4 +7,4 @@ module.exports = {
   getRestaurantModel: function (req, res) {
     res.json(new ModelService.Restaurant());
   }
-}
+};

@@ -7,29 +7,29 @@ describe('OrderController', function () {
   describe('#processOrder()', function () {
     it('should process a valid order', function (done) {
       var sampleOrder = {
-        "items": [{
-          "name": "McCafé Coffee",
-          "id": "549a7c80f2ede1f4234eecf9",
-          "quantity": 1,
-          "restaurant": "mcdonalds",
-          "standardOptions": [],
-          "options": [{
-            "price": 0.5,
-            "name": "Medium",
-            "category": "Size"
+        'items': [{
+          'name': 'McCafé Coffee',
+          'id': '549a7c80f2ede1f4234eecf9',
+          'quantity': 1,
+          'restaurant': 'mcdonalds',
+          'standardOptions': [],
+          'options': [{
+            'price': 0.5,
+            'name': 'Medium',
+            'category': 'Size'
           }],
-          "extras": [],
-          "attachedRequests": [],
-          "price": 1.7,
-          "itemOptions": "Medium"
+          'extras': [],
+          'attachedRequests': [],
+          'price': 1.7,
+          'itemOptions': 'Medium'
         }],
-        "paymentType": "cash",
-        "deliveryLocation": "Main Street Hall",
-        "contactPhone": "6037937340",
-        "userId": "54231d2716903854156ad062",
-        "token": "",
-        "deliveryId": "56798eb1ef2b22f44f738535",
-        "user": {}
+        'paymentType': 'cash',
+        'deliveryLocation': 'Main Street Hall',
+        'contactPhone': '6037937340',
+        'userId': '54231d2716903854156ad062',
+        'token': '',
+        'deliveryId': '56798eb1ef2b22f44f738535',
+        'user': {}
       };
 
       var agent = superagent.agent();
@@ -37,7 +37,7 @@ describe('OrderController', function () {
       request(sails.hooks.http.app)
         .post('/api/login')
         .send({
-          username: "swyfttestmocha@exeter.edu",
+          username: 'swyfttestmocha@exeter.edu',
           password: 'testing'
         })
         .expect(200)
@@ -69,7 +69,7 @@ describe('OrderController', function () {
       request(sails.hooks.http.app)
         .post('/api/login')
         .send({
-          username: "swyfttestmocha@exeter.edu",
+          username: 'swyfttestmocha@exeter.edu',
           password: 'testing'
         })
         .expect(200)
@@ -95,14 +95,14 @@ describe('OrderController', function () {
             });
         });
     });
-    it("should 403 for other orders", function (done) {
+    it('should 403 for other orders', function (done) {
       var orderId = '569996cd80911ef415faac7c';
       var agent = superagent.agent();
 
       request(sails.hooks.http.app)
         .post('/api/login')
         .send({
-          username: "swyfttestmocha@exeter.edu",
+          username: 'swyfttestmocha@exeter.edu',
           password: 'testing'
         })
         .expect(200)

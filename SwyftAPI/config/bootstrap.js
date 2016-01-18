@@ -14,19 +14,19 @@ var math = require('mathjs');
  * http://sailsjs.org/#/documentation/reference/sails.config/sails.config.bootstrap.html
  */
 
-module.exports.bootstrap = function(cb) {
-  UtilityService.protect(function() {
-    var deliveryProcessor = schedule.scheduleJob("*/1 * * * *", function() {
-      AutomaticService.processDeliveryPeriods(function() {
-        AutomaticService.closeDeliveryPeriods(function() { });
+module.exports.bootstrap = function (cb) {
+  UtilityService.protect(function () {
+    var deliveryProcessor = schedule.scheduleJob('*/1 * * * *', function () {
+      AutomaticService.processDeliveryPeriods(function () {
+        AutomaticService.closeDeliveryPeriods(function () { });
       });
     });
 
-    var emailService = schedule.scheduleJob("30 18 * * 3", function() {
-      console.log("Email Service Running");
-      AutomaticService.processOutstandingPayments(function() { });
+    var emailService = schedule.scheduleJob('30 18 * * 3', function () {
+      console.log('Email Service Running');
+      AutomaticService.processOutstandingPayments(function () { });
     });
-  }, function(err) {
+  }, function (err) {
     console.log('Automatic Service Error: ' + err);
   });
 

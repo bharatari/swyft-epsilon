@@ -52,4 +52,4 @@ module.exports = {
   getTransactionModel: function (req, res) {
     res.json(new ModelService.Transaction());
   }
-}
+};

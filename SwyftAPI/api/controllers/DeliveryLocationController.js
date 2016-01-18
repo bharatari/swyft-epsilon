@@ -38,4 +38,4 @@ module.exports = {
   getDeliveryLocationModel: function (req, res) {
     res.json(new ModelService.DeliveryLocation());
   }
-}
+};

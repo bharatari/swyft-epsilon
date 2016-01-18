@@ -4,7 +4,7 @@ var uuid = require('node-uuid');
 module.exports = {
   splitCSV: function (csv) {
     if (csv) {
-      return csv.split(", ");
+      return csv.split(', ');
     } else {
       return [];
     }
@@ -69,7 +69,7 @@ module.exports = {
     }
     if (data) {
       for (var i = 0; i < data.length; i++) {
-        if (filterType === "equalTo") {
+        if (filterType === 'equalTo') {
           if (typeof this.nestedProperty(data[i], filterProperty) === 'string') {
             if (typeof filterValue === 'string') {
               if (this.nestedProperty(data[i], filterProperty).toLowerCase() === filterValue.toLowerCase()) {
@@ -85,7 +85,7 @@ module.exports = {
               newData.push(data[i]);
             }
           }
-        } else if (filterType === "notEqualTo") {
+        } else if (filterType === 'notEqualTo') {
           if (typeof this.nestedProperty(data[i], filterProperty) === 'string') {
             if (typeof filterValue === 'string') {
               if (this.nestedProperty(data[i], filterProperty).toLowerCase() !== filterValue.toLowerCase()) {
@@ -101,15 +101,15 @@ module.exports = {
               newData.push(data[i]);
             }
           }
-        } else if (filterType === "lessThan") {
+        } else if (filterType === 'lessThan') {
           if (this.nestedProperty(data[i], filterProperty) < filterValue) {
             newData.push(data[i]);
           }
-        } else if (filterType === "greaterThan") {
+        } else if (filterType === 'greaterThan') {
           if (this.nestedProperty(data[i], filterProperty) > filterValue) {
             newData.push(data[i]);
           }
-        } else if (filterType === "contains") {
+        } else if (filterType === 'contains') {
           if (typeof this.nestedProperty(data[i], filterProperty) === 'string') {
             if (typeof filterValue === 'string') {
               if (this.nestedProperty(data[i], filterProperty).toLowerCase().indexOf(filterValue) !== -1) {
@@ -125,7 +125,7 @@ module.exports = {
   nestedProperty: function (object, property) {
     if (object && property) {
       if (property.indexOf('.') !== -1) {
-        var array = property.split(".");
+        var array = property.split('.');
         var value = object;
         for (var i = 0; i < array.length; i++) {
           if (value) {
@@ -168,15 +168,15 @@ module.exports = {
   },
   convertFilterType: function (filterType) {
     var propertyDictionary = new Array();
-    propertyDictionary["greaterThan"] = '>';
-    propertyDictionary["lessThan"] = '<';
-    propertyDictionary["notEqualTo"] = '!';
-    propertyDictionary["contains"] = 'contains';
+    propertyDictionary['greaterThan'] = '>';
+    propertyDictionary['lessThan'] = '<';
+    propertyDictionary['notEqualTo'] = '!';
+    propertyDictionary['contains'] = 'contains';
     return propertyDictionary[filterType];
   },
   /** Converts filters from Waterline syntax to Firefly syntax **/
   convertFilterFromWaterline: function (filter) {
-    if (typeof filter === "string") {
+    if (typeof filter === 'string') {
       try {
         filter = JSON.parse(filter);
       } catch (err) {
@@ -187,7 +187,7 @@ module.exports = {
     try {
       for (var property in filter) {
         if (filter.hasOwnProperty(property)) {
-          if (typeof filter[property] === "object") {
+          if (typeof filter[property] === 'object') {
             var obj = filter[property];
             if (obj['<']) {
               filters.push({
@@ -238,13 +238,13 @@ module.exports = {
     }
   },
   splitSortAttrs: function (sort) {
-    var array = sort.split(" ");
+    var array = sort.split(' ');
     return {
       sort: array[0],
       sortType: array[1]
-    }
+    };
   },
   uniqueId: function () {
-    return uuid.v4() + "-" + uuid.v1();
+    return uuid.v4() + '-' + uuid.v1();
   }
-}
+};

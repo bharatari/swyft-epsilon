@@ -1,14 +1,14 @@
 module.exports = {
-  /*** 
+  /***
    *
-   * @section - External Service Methods 
+   * @section - External Service Methods
    *
    */
 
   //we should check to make sure that the roles array is an array of strings, if not just cb(false) immediately
   canUpdate: function (user, model, cb) {
-    var parent = "admin-update"
-    var role = parent + ":" + model;
+    var parent = 'admin-update';
+    var role = parent + ':' + model;
     if (user) {
       if (user.roles) {
         var array = UtilityService.splitCSV(user.roles);
@@ -39,8 +39,8 @@ module.exports = {
     }
   },
   canCreate: function (user, model, cb) {
-    var parent = "admin-create"
-    var role = parent + ":" + model;
+    var parent = 'admin-create';
+    var role = parent + ':' + model;
     if (user) {
       if (user.roles) {
         var array = UtilityService.splitCSV(user.roles);
@@ -71,8 +71,8 @@ module.exports = {
     }
   },
   canDelete: function (user, model, cb) {
-    var parent = "admin-delete"
-    var role = parent + ":" + model;
+    var parent = 'admin-delete';
+    var role = parent + ':' + model;
     if (user) {
       if (user.roles) {
         var array = UtilityService.splitCSV(user.roles);
@@ -103,14 +103,14 @@ module.exports = {
     }
   },
   canView: function (user, model, cb) {
-    var parent = "admin-view"
-    var createParent = "admin-create";
-    var updateParent = "admin-update";
-    var deleteParent = "admin-delete";
-    var role = parent + ":" + model;
-    var createRole = createParent + ":" + model;
-    var updateRole = updateParent + ":" + model;
-    var deleteRole = deleteParent + ":" + model;
+    var parent = 'admin-view';
+    var createParent = 'admin-create';
+    var updateParent = 'admin-update';
+    var deleteParent = 'admin-delete';
+    var role = parent + ':' + model;
+    var createRole = createParent + ':' + model;
+    var updateRole = updateParent + ':' + model;
+    var deleteRole = deleteParent + ':' + model;
     if (user) {
       if (user.roles) {
         var array = UtilityService.splitCSV(user.roles);
@@ -136,7 +136,7 @@ module.exports = {
           } else if (!this.containsRoleException(roleExceptions, role) && !this.containsRoleException(roles, parent) && (this.containsRole(roles, parent) || this.containsRole(roles, role))) {
             cb(true);
           } else {
-            cb(false)
+            cb(false);
           }
         }
       } else {
@@ -146,7 +146,7 @@ module.exports = {
       cb(false);
     }
   },
-  //wizard is name of the route 
+  //wizard is name of the route
   //we need to have something that maps API routes to the names of the wizard routes
   canUseWizard: function (user, wizard, cb) {
     //wizard = "admin-someth
@@ -155,15 +155,15 @@ module.exports = {
 
   },
 
-  /*** 
+  /***
    *
-   * @section - Internal Service Methods 
+   * @section - Internal Service Methods
    *
    */
 
-  /*** 
+  /***
    * Returns whether user should get a role based on a super-role such as master or admin. Without role and parent, the function simply returns false for admin when role exceptions exist.
-   * 
+   *
    *
    * @param {string} roles - Array of roles that has already been filtered.
    *
@@ -172,9 +172,9 @@ module.exports = {
     if (roles) {
       var admin = false;
       for (var i = 0; i < roles.length; i++) {
-        if (roles[i] === "master") {
+        if (roles[i] === 'master') {
           return true;
-        } else if (roles[i] === "admin") {
+        } else if (roles[i] === 'admin') {
           admin = true;
         }
       }
@@ -214,9 +214,9 @@ module.exports = {
   },
   //Start at top, can't have exceptions there
   //Move down, remove mid-tier exceptions and lower children of the mid-tier exception
-  /*** 
+  /***
    * Returns valid roles by removing roles that have corrolating role exceptions. Filters
-   * redundancies. This does not necessarily validate a user for an action because 
+   * redundancies. This does not necessarily validate a user for an action because
    * checks still have to occur above and below the heirarcy.
    *
    * @param {string} roles - Comma separated list of roles.
@@ -225,8 +225,8 @@ module.exports = {
   splitRoles: function (array) {
     var roles = [];
     for (var i = 0; i < array.length; i++) {
-      if (typeof array[i] === "string") {
-        if (array[i].substring(0, 7) !== "except:") {
+      if (typeof array[i] === 'string') {
+        if (array[i].substring(0, 7) !== 'except:') {
           roles.push(array[i]);
         }
       }
@@ -237,8 +237,8 @@ module.exports = {
   splitRoleException: function (array) {
     var roleExceptions = [];
     for (var i = 0; i < array.length; i++) {
-      if (typeof array[i] === "string") {
-        if (array[i].substring(0, 7) === "except:") {
+      if (typeof array[i] === 'string') {
+        if (array[i].substring(0, 7) === 'except:') {
           roleExceptions.push(array[i]);
         }
       }
@@ -250,7 +250,7 @@ module.exports = {
       this.removeInvalidExceptions(roleExceptions);
       for (var i = 0; i < roles.length; i++) {
         for (var e = 0; e < roleExceptions.length; e++) {
-          if (roleExceptions[e] === "except:" + roles[i]) {
+          if (roleExceptions[e] === 'except:' + roles[i]) {
             roles.splice(i, 1);
             roleExceptions.splice(e, 1);
             e--;
@@ -279,7 +279,7 @@ module.exports = {
     'except:admin',
     'except:admin-basic'
   ],
-  /*** 
+  /***
    * Removes roles with roleExceptions and all of their children.
    *
    * @param {string} roles - Array of roles that has already been filtered.
@@ -306,7 +306,7 @@ module.exports = {
     }
   },
   removeExcept: function (roleException) {
-    if (typeof roleException === "string") {
+    if (typeof roleException === 'string') {
       roleException = roleException.substring(7, roleException.length);
     }
     return roleException;
@@ -326,7 +326,7 @@ module.exports = {
   containsRoleException: function (roleExceptions, role) {
     if (roleExceptions && role) {
       for (var i = 0; i < roleExceptions.length; i++) {
-        if (roleExceptions[i] === "except:" + role) {
+        if (roleExceptions[i] === 'except:' + role) {
           return true;
         }
       }
@@ -335,4 +335,4 @@ module.exports = {
       return false;
     }
   }
-}
+};

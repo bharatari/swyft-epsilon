@@ -33,12 +33,12 @@ module.exports = {
   },
   createDelivery: function (req, res) {
     var deliveryTime = new Date(req.body.deliveryTime);
-    var orderCutoff = new Date(req.body.orderCutoff)
+    var orderCutoff = new Date(req.body.orderCutoff);
     Delivery.create({
       deliverers: req.body.deliverers,
       deliveryDate: deliveryTime,
       comments: req.body.comments,
-      restaurants: "All",
+      restaurants: 'All',
       autoDelivery: true,
       orderCutoff: orderCutoff
     }).exec(function (err, fulfillment) {
@@ -165,4 +165,4 @@ module.exports = {
   getDeliveryModel: function (req, res) {
     res.json(new ModelService.Delivery());
   }
-}
+};

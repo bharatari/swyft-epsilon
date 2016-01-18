@@ -25,8 +25,8 @@ module.exports = {
                   return res.badRequest();
                 } else {
                   order = result2;
-                  order.type = "scheduled";
-                  if (order.paymentType === "cash") {
+                  order.type = 'scheduled';
+                  if (order.paymentType === 'cash') {
                     OrderService.submitCash(order, req.user.id, function (response) {
                       if (response) {
                         response.user = UserService.deleteSensitive(req.user);
@@ -38,7 +38,7 @@ module.exports = {
                         res.badRequest();
                       }
                     });
-                  } else if (order.paymentType === "swyftdebit") {
+                  } else if (order.paymentType === 'swyftdebit') {
                     OrderService.submitSwyftDebit(order, req.user.id, function (response) {
                       if (response) {
                         response.user = UserService.deleteSensitive(req.user);
@@ -50,7 +50,7 @@ module.exports = {
                         res.badRequest();
                       }
                     });
-                  } else if (order.paymentType === "cash+swyftdebit") {
+                  } else if (order.paymentType === 'cash+swyftdebit') {
                     OrderService.submitCashSwyftDebit(order, req.user.id, function (response) {
                       if (response) {
                         response.user = UserService.deleteSensitive(req.user);
@@ -62,7 +62,7 @@ module.exports = {
                         res.badRequest();
                       }
                     });
-                  } else if (order.paymentType === "creditcard") {
+                  } else if (order.paymentType === 'creditcard') {
                     OrderService.submitCreditCard(order, req.user.id, req.body.stripeToken, function (response, message) {
                       if (response) {
                         response.user = UserService.deleteSensitive(req.user);
@@ -81,7 +81,7 @@ module.exports = {
           });
         });
       } else {
-        return res.badRequest("INVALID_DELIVERY");
+        return res.badRequest('INVALID_DELIVERY');
       }
     });
   },
@@ -226,7 +226,7 @@ module.exports = {
     });
   },
   watch: function (req, res) {
-    if (req.isSocket == true) {
+    if (req.isSocket === true) {
       Order.watch(req);
       res.send('Connected');
     } else {
@@ -245,7 +245,7 @@ module.exports = {
             Order.find({
               deliveryId: delivery.id
             }).limit(10).sort({
-              createdAt: "desc"
+              createdAt: 'desc'
             }).exec(function (err, orders) {
               if (err || !orders) {
                 return res.ok();
@@ -274,4 +274,4 @@ module.exports = {
   getOrderModel: function (req, res) {
     res.json(new ModelService.Order());
   }
-}
+};

@@ -5,7 +5,7 @@ var UtilityService = require('../../../api/services/UtilityService');
 describe('UtilityService', function () {
   describe('#splitCSV()', function () {
     it('should split a comma and space separated string into an array', function () {
-      var CSV = "admin, delivery, employee";
+      var CSV = 'admin, delivery, employee';
       var array = UtilityService.splitCSV(CSV);
       var expected = [
         'admin',
@@ -15,13 +15,13 @@ describe('UtilityService', function () {
       assert.deepEqual(array, expected);
     });
     it('should return an empty array for empty strings', function () {
-      var CSV = "";
+      var CSV = '';
       var array = UtilityService.splitCSV(CSV);
       var expected = [];
       assert.deepEqual(array, expected);
     });
     it('should return an array with a single element for single element strings', function () {
-      var CSV = "admin";
+      var CSV = 'admin';
       var array = UtilityService.splitCSV(CSV);
       var expected = ['admin'];
       assert.deepEqual(array, expected);
@@ -29,26 +29,26 @@ describe('UtilityService', function () {
   });
   describe('#CSVContains()', function () {
     it('should return true if CSV contains string', function () {
-      var CSV = "admin, delivery, employee";
-      var result = UtilityService.CSVContains(CSV, "admin");
+      var CSV = 'admin, delivery, employee';
+      var result = UtilityService.CSVContains(CSV, 'admin');
       var expected = true;
       assert.equal(result, expected);
     });
     it('should return false if CSV does not contain string', function () {
-      var CSV = "delivery, employee";
-      var result = UtilityService.CSVContains(CSV, "admin");
+      var CSV = 'delivery, employee';
+      var result = UtilityService.CSVContains(CSV, 'admin');
       var expected = false;
       assert.equal(result, expected);
     });
     it('should return false if CSV is empty', function () {
-      var CSV = "";
-      var result = UtilityService.CSVContains(CSV, "admin");
+      var CSV = '';
+      var result = UtilityService.CSVContains(CSV, 'admin');
       var expected = false;
       assert.equal(result, expected);
     });
     it('should return true if CSV contains string and only that string', function () {
-      var CSV = "admin";
-      var result = UtilityService.CSVContains(CSV, "admin");
+      var CSV = 'admin';
+      var result = UtilityService.CSVContains(CSV, 'admin');
       var expected = true;
       assert.equal(result, expected);
     });
@@ -500,7 +500,7 @@ describe('UtilityService', function () {
         name: 'dw'
       }, {
         name: 'fw'
-      }, ];
+      },];
       assert.deepEqual(result, expected);
       done();
     });
@@ -548,16 +548,16 @@ describe('UtilityService', function () {
       var object = {
         user: {
           name: {
-            first: "Swyft",
-            last: "Epsilon"
+            first: 'Swyft',
+            last: 'Epsilon'
           }
         }
       };
       var result = UtilityService.nestedProperty(object, 'user');
       var expected = {
         name: {
-          first: "Swyft",
-          last: "Epsilon"
+          first: 'Swyft',
+          last: 'Epsilon'
         }
       };
       assert.deepEqual(result, expected);
@@ -567,15 +567,15 @@ describe('UtilityService', function () {
       var object = {
         user: {
           name: {
-            first: "Swyft",
-            last: "Epsilon"
+            first: 'Swyft',
+            last: 'Epsilon'
           }
         }
       };
       var result = UtilityService.nestedProperty(object, 'user.name');
       var expected = {
-        first: "Swyft",
-        last: "Epsilon"
+        first: 'Swyft',
+        last: 'Epsilon'
       };
       assert.deepEqual(result, expected);
       done();
@@ -584,13 +584,13 @@ describe('UtilityService', function () {
       var object = {
         user: {
           name: {
-            first: "Swyft",
-            last: "Epsilon"
+            first: 'Swyft',
+            last: 'Epsilon'
           }
         }
       };
       var result = UtilityService.nestedProperty(object, 'user.name.first');
-      var expected = "Swyft";
+      var expected = 'Swyft';
       assert.deepEqual(result, expected);
       done();
     });
@@ -620,18 +620,18 @@ describe('UtilityService', function () {
       }];
       var waterline = UtilityService.convertFilters(epsilon);
       var expected = {
-        "user.firstName": "bharat",
-        "type": {
-          "!": "deposit"
+        'user.firstName': 'bharat',
+        'type': {
+          '!': 'deposit'
         },
-        "amount": {
-          "<": 10
+        'amount': {
+          '<': 10
         },
-        "finalBalance": {
-          ">": 20
+        'finalBalance': {
+          '>': 20
         },
-        "roles": {
-          "contains": "admin"
+        'roles': {
+          'contains': 'admin'
         }
       };
       assert.deepEqual(waterline, expected);
@@ -645,7 +645,7 @@ describe('UtilityService', function () {
       done();
     });
     it('should return empty object for invalid input', function (done) {
-      var epsilon = "invalid";
+      var epsilon = 'invalid';
       var waterline = UtilityService.convertFilters(epsilon);
       var expected = {};
       assert.deepEqual(waterline, expected);
@@ -655,25 +655,25 @@ describe('UtilityService', function () {
   describe('#convertFilterType()', function () {
     it('should return > for greaterThan', function (done) {
       var result = UtilityService.convertFilterType('greaterThan');
-      var expected = '>'
+      var expected = '>';
       assert.deepEqual(result, expected);
       done();
     });
     it('should return < for lessThan', function (done) {
       var result = UtilityService.convertFilterType('lessThan');
-      var expected = '<'
+      var expected = '<';
       assert.deepEqual(result, expected);
       done();
     });
     it('should return ! for notEqualTo', function (done) {
       var result = UtilityService.convertFilterType('notEqualTo');
-      var expected = '!'
+      var expected = '!';
       assert.deepEqual(result, expected);
       done();
     });
     it('should return contains for contains', function (done) {
       var result = UtilityService.convertFilterType('contains');
-      var expected = 'contains'
+      var expected = 'contains';
       assert.deepEqual(result, expected);
       done();
     });
@@ -681,18 +681,18 @@ describe('UtilityService', function () {
   describe('#convertFilterFromWaterline()', function () {
     it('should convert from waterline criteria object to epsilon filter array', function (done) {
       var waterline = {
-        "user.firstName": "bharat",
-        "type": {
-          "!": "deposit"
+        'user.firstName': 'bharat',
+        'type': {
+          '!': 'deposit'
         },
-        "amount": {
-          "<": 10
+        'amount': {
+          '<': 10
         },
-        "finalBalance": {
-          ">": 20
+        'finalBalance': {
+          '>': 20
         },
-        "roles": {
-          "contains": "admin"
+        'roles': {
+          'contains': 'admin'
         }
       };
       var firefly = UtilityService.convertFilterFromWaterline(waterline);
@@ -722,18 +722,18 @@ describe('UtilityService', function () {
     });
     it('should convert from waterline criteria object JSON string to epsilon filter array', function (done) {
       var waterline = {
-        "user.firstName": "bharat",
-        "type": {
-          "!": "deposit"
+        'user.firstName': 'bharat',
+        'type': {
+          '!': 'deposit'
         },
-        "amount": {
-          "<": 10
+        'amount': {
+          '<': 10
         },
-        "finalBalance": {
-          ">": 20
+        'finalBalance': {
+          '>': 20
         },
-        "roles": {
-          "contains": "admin"
+        'roles': {
+          'contains': 'admin'
         }
       };
       var firefly = UtilityService.convertFilterFromWaterline(JSON.stringify(waterline));
@@ -762,14 +762,14 @@ describe('UtilityService', function () {
       done();
     });
     it('should return empty array for invalid JSON string', function (done) {
-      var waterline = "23%1040120qmiwd{{}]]2";
+      var waterline = '23%1040120qmiwd{{}]]2';
       var firefly = UtilityService.convertFilterFromWaterline(waterline);
       var expected = [];
       assert.deepEqual(firefly, expected);
       done();
     });
     it('should return empty array for invalid object', function (done) {
-      var waterline = "invalid";
+      var waterline = 'invalid';
       var firefly = UtilityService.convertFilterFromWaterline(waterline);
       var expected = [];
       assert.deepEqual(firefly, expected);
@@ -781,16 +781,16 @@ describe('UtilityService', function () {
       var object = {
         user: {
           name: {
-            first: "Swyft",
-            last: "Epsilon"
+            first: 'Swyft',
+            last: 'Epsilon'
           }
         }
       };
       var result = UtilityService.getPropertyValue(object, 'user');
       var expected = {
         name: {
-          first: "Swyft",
-          last: "Epsilon"
+          first: 'Swyft',
+          last: 'Epsilon'
         }
       };
       assert.deepEqual(result, expected);
@@ -799,7 +799,7 @@ describe('UtilityService', function () {
   });
   describe('#splitSortAttrs()', function () {
     it('should split sort and sortType into object', function (done) {
-      var sort = "createdAt DESC"
+      var sort = 'createdAt DESC';
       var result = UtilityService.splitSortAttrs(sort);
       var expected = {
         sort: 'createdAt',

@@ -15,14 +15,14 @@ describe('DeliveryService', function () {
   });
   describe('#processDeliveryOffset()', function () {
     it('should process delivery offset', function () {
-      var deliveryDate = moment().day("Monday").set({
+      var deliveryDate = moment().day('Monday').set({
         hour: 10,
         minute: 10,
         second: 10,
         milliseconds: 10
       });
       var result = moment(DeliveryService.processDeliveryOffset(deliveryDate, 20));
-      var expected = moment().day("Monday").set({
+      var expected = moment().day('Monday').set({
         hour: 10,
         minute: 30,
         second: 10,
@@ -33,14 +33,14 @@ describe('DeliveryService', function () {
   });
   describe('#processArrivalOffset()', function () {
     it('should process arrival offset', function () {
-      var scheduledArrival = moment().day("Monday").set({
+      var scheduledArrival = moment().day('Monday').set({
         hour: 10,
         minute: 10,
         second: 10,
         milliseconds: 10
       });
       var result = moment(DeliveryService.processArrivalOffset(scheduledArrival, 20));
-      var expected = moment().day("Monday").set({
+      var expected = moment().day('Monday').set({
         hour: 10,
         minute: 30,
         second: 10,

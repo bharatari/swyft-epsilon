@@ -1,7 +1,7 @@
 var moment = require('moment');
 
 module.exports = {
-  /*** 
+  /***
    * Creates a notification for a new order.
    *
    * @param {Order} order
@@ -13,11 +13,11 @@ module.exports = {
     UtilityService.protect(function () {
       if (order) {
         if (order.user) {
-          var body = "Name: " + order.user.firstName + " " + order.user.lastName + "<br>" + "Amount: " + order.actualAmount;
+          var body = 'Name: ' + order.user.firstName + ' ' + order.user.lastName + '<br>' + 'Amount: ' + order.actualAmount;
           Notification.create({
-            title: "New Order",
+            title: 'New Order',
             body: body,
-            type: "new"
+            type: 'new'
           }).exec(function (err, data) {
             if (err) {
               cb();
@@ -27,7 +27,7 @@ module.exports = {
             }
           });
         } else {
-          cb()
+          cb();
         }
       } else {
         cb();
@@ -40,7 +40,7 @@ module.exports = {
    * @callback NotificationService~callback
    */
 
-  /*** 
+  /***
    * Creates a notification for a changed delivery offest.
    *
    * @param {Delivery} delivery
@@ -53,11 +53,11 @@ module.exports = {
   createDeliveryNotification: function (delivery, offset, cb) {
     UtilityService.protect(function () {
       if (delivery) {
-        var body = "Delivery: " + moment(delivery.deliveryDate).format("MM-DD-YYYY hh:mm a Z") + "<br>" + "Offset: " + offset + " minutes";
+        var body = 'Delivery: ' + moment(delivery.deliveryDate).format('MM-DD-YYYY hh:mm a Z') + '<br>' + 'Offset: ' + offset + ' minutes';
         Notification.create({
-          title: "Delivery Offset Changed",
+          title: 'Delivery Offset Changed',
           body: body,
-          type: "update"
+          type: 'update'
         }).exec(function (err, data) {
           if (err) {
             cb();
@@ -74,7 +74,7 @@ module.exports = {
     });
   },
 
-  /*** 
+  /***
    * Creates a notification for a changed delivery status.
    *
    * @param {Delivery} delivery
@@ -87,11 +87,11 @@ module.exports = {
   createDeliveryStatusNotification: function (delivery, status, cb) {
     UtilityService.protect(function () {
       if (delivery) {
-        var body = "Delivery: " + moment(delivery.deliveryDate).format("MM-DD-YYYY hh:mm a Z") + "<br>" + "Delivery Status: " + status;
+        var body = 'Delivery: ' + moment(delivery.deliveryDate).format('MM-DD-YYYY hh:mm a Z') + '<br>' + 'Delivery Status: ' + status;
         Notification.create({
-          title: "Delivery Status Changed",
+          title: 'Delivery Status Changed',
           body: body,
-          type: "update"
+          type: 'update'
         }).exec(function (err, data) {
           if (err) {
             cb();
@@ -107,7 +107,7 @@ module.exports = {
       cb();
     });
   },
-  /*** 
+  /***
    * Creates a notification for a changed delivery status.
    *
    * @param {Delivery} delivery
@@ -120,11 +120,11 @@ module.exports = {
   createOperationalStatusNotification: function (delivery, status, cb) {
     UtilityService.protect(function () {
       if (delivery) {
-        var body = "Delivery: " + moment(delivery.deliveryDate).format("MM-DD-YYYY hh:mm a Z") + "<br>" + "Operational Status: " + status;
+        var body = 'Delivery: ' + moment(delivery.deliveryDate).format('MM-DD-YYYY hh:mm a Z') + '<br>' + 'Operational Status: ' + status;
         Notification.create({
-          title: "Operational Status Changed",
+          title: 'Operational Status Changed',
           body: body,
-          type: "update"
+          type: 'update'
         }).exec(function (err, data) {
           if (err) {
             cb();
@@ -140,4 +140,4 @@ module.exports = {
       cb();
     });
   },
-}
+};

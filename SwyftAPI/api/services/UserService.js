@@ -19,18 +19,18 @@ module.exports = {
         cb(false);
       } else {
         var message = {
-          "html": "<h1>Forgot your password?</h1><p>No worries. Just copy the following link into your web browser to reset your password: https://www.orderswyft.com/app/reset-password/" + token.token + ". For security purposes, this link will expire in 24 hours. If you believe this email was sent to you in error, please let us know immediately.",
-          "subject": "Forgot Password",
-          "from_email": "swyftdeveloper@outlook.com",
-          "from_name": "Swyft",
-          "to": [{
-            "email": user.username,
-            "name": user.firstName + " " + user.lastName,
-            "type": "to"
+          'html': '<h1>Forgot your password?</h1><p>No worries. Just copy the following link into your web browser to reset your password: https://www.orderswyft.com/app/reset-password/' + token.token + '. For security purposes, this link will expire in 24 hours. If you believe this email was sent to you in error, please let us know immediately.',
+          'subject': 'Forgot Password',
+          'from_email': 'swyftdeveloper@outlook.com',
+          'from_name': 'Swyft',
+          'to': [{
+            'email': user.username,
+            'name': user.firstName + ' ' + user.lastName,
+            'type': 'to'
           }]
         };
         mandrill_client.messages.send({
-          "message": message
+          'message': message
         }, function (result) {
           cb(true);
         });
@@ -173,7 +173,7 @@ module.exports = {
         });
       });
     } else {
-      cb(false, "INVALID_USER_ID");
+      cb(false, 'INVALID_USER_ID');
     }
   },
   outstandingOrders: function (outstanding, userId, cb) {
@@ -182,7 +182,7 @@ module.exports = {
         userId: userId
       }).exec(function (err, orders) {
         if (err) {
-          cb(false, "DATABASE_ERR");
+          cb(false, 'DATABASE_ERR');
         } else if (orders.length < 1) {
           cb(outstanding);
         } else {
@@ -191,8 +191,8 @@ module.exports = {
               if (order.deliveryNote) {
                 if (order.deliveryNote.chargeLater === true) {
                   outstanding.push({
-                    type: "Order",
-                    date: moment(order.deliveryTime).tz("America/New_York").format("MM-DD-YYYY hh:mm a"),
+                    type: 'Order',
+                    date: moment(order.deliveryTime).tz('America/New_York').format('MM-DD-YYYY hh:mm a'),
                     amount: order.actualAmount
                   });
                 }
@@ -205,7 +205,7 @@ module.exports = {
         }
       });
     } else {
-      cb(false, "INVALID_USER_ID");
+      cb(false, 'INVALID_USER_ID');
     }
   },
   outstandingBalance: function (outstanding, userId, cb) {
@@ -214,13 +214,13 @@ module.exports = {
         id: userId
       }).exec(function (err, user) {
         if (err || !user) {
-          cb(false, "DATABASE_ERR");
+          cb(false, 'DATABASE_ERR');
         } else {
-          if (user.balance != null) {
+          if (user.balance !== null) {
             if (user.balance < 0) {
               outstanding.push({
-                type: "Swyft Debit",
-                date: moment().tz("America/New_York").format("MM-DD-YYYY hh:mm a"),
+                type: 'Swyft Debit',
+                date: moment().tz('America/New_York').format('MM-DD-YYYY hh:mm a'),
                 amount: Math.abs(user.balance)
               });
             }
@@ -229,7 +229,7 @@ module.exports = {
         }
       });
     } else {
-      cb(false, "INVALID_USER_ID");
+      cb(false, 'INVALID_USER_ID');
     }
   },
   checkDuplicates: function (username, cb) {
@@ -294,4 +294,4 @@ module.exports = {
       });
     }
   }
-}
+};

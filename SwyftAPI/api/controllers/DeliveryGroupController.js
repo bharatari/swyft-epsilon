@@ -7,4 +7,4 @@ module.exports = {
   getDeliveryGroupModel: function (req, res) {
     res.json(new ModelService.DeliveryGroup());
   }
-}
+};

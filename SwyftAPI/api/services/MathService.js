@@ -19,4 +19,4 @@ module.exports = {
   number: function (value) {
     return math.bignumber(this.round(value));
   }
-}
+};

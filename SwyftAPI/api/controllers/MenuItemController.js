@@ -20,4 +20,4 @@ module.exports = {
   getMenuItemModel: function (req, res) {
     res.json(new ModelService.MenuItem());
   }
-}
+};

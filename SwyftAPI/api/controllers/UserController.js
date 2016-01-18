@@ -7,7 +7,7 @@ var bcrypt = require('bcrypt');
 module.exports = {
   create: function (req, res) {
     req.body.phoneNumber = req.body.phoneNumber.replace(/\D/g, '');
-    if (req.body.username.toLowerCase().indexOf("@exeter.edu") === -1) {
+    if (req.body.username.toLowerCase().indexOf('@exeter.edu') === -1) {
       return res.badRequest();
     }
     var token = chance.guid();
@@ -18,7 +18,7 @@ module.exports = {
       for (var i = 0; i < users.length; i++) {
         if (users[i].verified) {
           if (users[i].username.toLowerCase() === req.body.username.toLowerCase()) {
-            return res.badRequest("EMAIL_IN_USE");
+            return res.badRequest('EMAIL_IN_USE');
           }
         }
       }
@@ -82,7 +82,7 @@ module.exports = {
     var email;
     if (req.body) {
       if (req.body.email) {
-        if (typeof req.body.email === "string") {
+        if (typeof req.body.email === 'string') {
           email = req.body.email.trim().toLowerCase();
         } else {
           return res.badRequest();
@@ -124,7 +124,7 @@ module.exports = {
             }
           });
         } else {
-          res.badRequest("DUPLICATE_USER");
+          res.badRequest('DUPLICATE_USER');
         }
       });
     } else {
@@ -205,7 +205,7 @@ module.exports = {
         }).exec(function (err) {
           return res.badRequest();
         });
-      } else if (token.username != req.body.username.toLowerCase()) {
+      } else if (token.username !== req.body.username.toLowerCase()) {
         return res.badRequest();
       } else {
         bcrypt.genSalt(10, function (err, salt) {
@@ -267,9 +267,9 @@ module.exports = {
     balance = Math.round(parseFloat(balance * 100)) / 100;
 
     if (transactionAmount < 0) {
-      transactionType = "deduction";
+      transactionType = 'deduction';
     } else {
-      transactionType = "deposit";
+      transactionType = 'deposit';
     }
 
     var object = {
@@ -279,7 +279,7 @@ module.exports = {
       comments: req.body.comments,
       transactionCreator: req.user.id,
       finalBalance: balance
-    }
+    };
 
     UserTransaction.create(object).exec(function (err, transaction) {
       if (err) {
@@ -355,4 +355,4 @@ module.exports = {
   getUserModel: function (req, res) {
     res.json(new ModelService.User());
   }
-}
+};

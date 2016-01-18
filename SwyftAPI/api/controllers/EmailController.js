@@ -12,4 +12,4 @@ module.exports = {
       res.badRequest();
     }
   }
-}
+};

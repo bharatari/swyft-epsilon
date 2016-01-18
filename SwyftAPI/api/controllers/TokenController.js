@@ -7,4 +7,4 @@ module.exports = {
   getTokenModel: function (req, res) {
     res.json(new ModelService.Token());
   }
-}
+};

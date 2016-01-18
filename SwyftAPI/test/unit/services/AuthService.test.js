@@ -14,7 +14,7 @@ describe('AuthService', function () {
       var session = {
         sessionToken: sessionToken
       };
-      var userId = "54231d2716903854156ad061";
+      var userId = '54231d2716903854156ad061';
 
       var authToken = jwt.encode({
         iss: userId,
@@ -43,7 +43,7 @@ describe('AuthService', function () {
       var session = {
         sessionToken: sessionToken
       };
-      var userId = "54231d2716903854156ad061";
+      var userId = '54231d2716903854156ad061';
 
       var authToken = jwt.encode({
         iss: userId,
@@ -72,13 +72,13 @@ describe('AuthService', function () {
       var session = {
         sessionToken: sessionToken
       };
-      var userId = "54231d2716903854156ad061";
+      var userId = '54231d2716903854156ad061';
 
       var authToken = jwt.encode({
         iss: userId,
         exp: expires,
         sessionToken: sessionToken
-      }, "oi239c02laksi024h");
+      }, 'oi239c02laksi024h');
       LoginToken.create({
         token: authToken,
         expires: expires,
@@ -99,7 +99,7 @@ describe('AuthService', function () {
   describe('#isAdmin()', function () {
     it('should return true for admin', function (done) {
       var expires = moment().add(2, 'days').toDate();
-      var userId = "54231d2716903854156ad061";
+      var userId = '54231d2716903854156ad061';
       var sessionToken = chance.guid();
       var session = {
         sessionToken: sessionToken
@@ -128,7 +128,7 @@ describe('AuthService', function () {
     });
     it('should return false for delivery', function (done) {
       var expires = moment().add(2, 'days').toDate();
-      var userId = "5534302641911f380a4142ea";
+      var userId = '5534302641911f380a4142ea';
       var sessionToken = chance.guid();
       var session = {
         sessionToken: sessionToken
@@ -157,7 +157,7 @@ describe('AuthService', function () {
     });
     it('should return false for no roles', function (done) {
       var expires = moment().add(2, 'days').toDate();
-      var userId = "5557cfdc892d559412ad45ea";
+      var userId = '5557cfdc892d559412ad45ea';
       var sessionToken = chance.guid();
       var session = {
         sessionToken: sessionToken

@@ -6,7 +6,7 @@ module.exports = {
     },
     type: {
       type: 'string',
-      enum: ["deposit", "deduction"]
+      enum: ['deposit', 'deduction']
     },
     amount: {
       type: 'float'
@@ -24,4 +24,4 @@ module.exports = {
       type: 'float'
     }
   }
-}
+};

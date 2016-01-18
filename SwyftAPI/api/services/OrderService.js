@@ -36,11 +36,11 @@ module.exports = {
             return false;
         return true;
       });
-    }
+    };
     item.price = menuItem.baseprice;
     var allOptions = new Array();
     async.each(menuItem.itemOptions, function (itemOption, callback) {
-      if (itemOption.name !== "Options") {
+      if (itemOption.name !== 'Options') {
         async.each(itemOption.options, function (option, callback2) {
           if (option.price) {
             allOptions.push({
@@ -233,7 +233,7 @@ module.exports = {
           if (!err) {
             UserTransaction.create({
               userId: user.id,
-              type: "deduction",
+              type: 'deduction',
               amount: result.actualAmount,
               orderId: result.id,
               finalBalance: MathService.subtract(user.balance, result.actualAmount)
@@ -281,7 +281,7 @@ module.exports = {
           if (!err) {
             UserTransaction.create({
               userId: user.id,
-              type: "deduction",
+              type: 'deduction',
               amount: referenceOrder.debitPayment,
               orderId: result.id,
               finalBalance: MathService.subtract(user.balance, referenceOrder.debitPayment)
@@ -333,7 +333,7 @@ module.exports = {
             });
 
           } else {
-            DeliveryNoteService.setCreditCardToProcessed(result.id, "CREDIT_CARD_SUCCESS", function (response) {
+            DeliveryNoteService.setCreditCardToProcessed(result.id, 'CREDIT_CARD_SUCCESS', function (response) {
               if (response) {
                 cb(result);
               }
@@ -341,7 +341,7 @@ module.exports = {
           }
         });
       } else {
-        cb(false, "DATABASE_ERROR+CREDIT_CARD_NOT_CHARGED");
+        cb(false, 'DATABASE_ERROR+CREDIT_CARD_NOT_CHARGED');
       }
     });
   },
@@ -361,7 +361,7 @@ module.exports = {
     order.id = order1.id;
     order.paymentType = order1.paymentType;
     //order.deliveryLocation = order1.deliveryLocation;
-    order.deliveryLocation = "HELLO";
+    order.deliveryLocation = 'HELLO';
     order.contactPhone = order1.contactPhone;
     order.actualAmount = order1.actualAmount;
     order.actualAmountAmount += order2.actualAmount;
@@ -370,7 +370,7 @@ module.exports = {
       order.userComments += order1.userComments;
     }
     if (order2.userComments) {
-      order.userComments += " " + order2.userComments;
+      order.userComments += ' ' + order2.userComments;
     }
     order.items = [];
     for (var i = 0; i < order1.items.length; i++) {
@@ -439,11 +439,11 @@ module.exports = {
       item1.quantity = item1.quantity + item2.quantity;
     }
     if (item1.additionalRequests && item2.additionalRequests) {
-      item1.additionalRequests = "[ " + item1.additionalRequests + " ], " + "[ " + item2.additionalRequests + " ], ";
+      item1.additionalRequests = '[ ' + item1.additionalRequests + ' ], ' + '[ ' + item2.additionalRequests + ' ], ';
     } else if (item1.additionalRequests) {
-      item1.additionalRequests = "[ " + item1.additionalRequests + " ]";
+      item1.additionalRequests = '[ ' + item1.additionalRequests + ' ]';
     } else if (item2.additionalRequests) {
-      item1.additionalRequests = "[ " + item2.additionalRequests + " ]";
+      item1.additionalRequests = '[ ' + item2.additionalRequests + ' ]';
     }
     return item1;
   },
@@ -455,7 +455,7 @@ module.exports = {
           if (!orders[i].items[e].quantity) {
             orders[i].items[e].quantity = 1;
           }
-          orders[i].items[e].customerName = orders[i].user.firstName + " " + orders[i].user.lastName;
+          orders[i].items[e].customerName = orders[i].user.firstName + ' ' + orders[i].user.lastName;
           items.push(orders[i].items[e]);
         }
       }
@@ -474,7 +474,7 @@ module.exports = {
       } else {
         async.each(restaurants, function (restaurant, callback) {
           var fullRender;
-          if (restaurant.aggregateStyle === "full") {
+          if (restaurant.aggregateStyle === 'full') {
             fullRender = true;
           } else {
             fullRender = false;
@@ -591,7 +591,7 @@ module.exports = {
         name: masterListItem.deliveryLocation
       }).exec(function (err, location) {
         if (err || !location) {
-          masterListItem.region = "REGION_ERR";
+          masterListItem.region = 'REGION_ERR';
           final(masterListItem);
         } else {
           DeliveryGroup.findOne({
@@ -664,4 +664,4 @@ module.exports = {
       }
     }
   }
-}
+};

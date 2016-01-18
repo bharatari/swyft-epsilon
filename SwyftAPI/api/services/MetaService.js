@@ -440,24 +440,24 @@ module.exports = {
   getDeliveryMetadata: function (recordsPerPage, filters, cb) {
     var self = this;
     var combined = [{
-        propertyName: 'id',
-        displayName: 'ID',
-        display: true,
-        type: 'string',
-        editable: false
-      }, {
-        propertyName: 'deliverers',
-        displayName: 'Deliverers',
-        display: true,
-        type: 'string',
-        editable: true
-      }, {
-        propertyName: 'comments',
-        displayName: 'Comments',
-        display: true,
-        type: 'string',
-        editable: true
-      }, {
+      propertyName: 'id',
+      displayName: 'ID',
+      display: true,
+      type: 'string',
+      editable: false
+    }, {
+      propertyName: 'deliverers',
+      displayName: 'Deliverers',
+      display: true,
+      type: 'string',
+      editable: true
+    }, {
+      propertyName: 'comments',
+      displayName: 'Comments',
+      display: true,
+      type: 'string',
+      editable: true
+    }, {
         propertyName: 'operationalStatus',
         displayName: 'Operational Status',
         display: true,
@@ -1290,7 +1290,7 @@ module.exports = {
       }, {
         propertyName: 'onFalse',
         displayName: 'When False'
-      }, ],
+      },],
       editable: true
     }, {
       propertyName: 'watches',
@@ -1337,4 +1337,4 @@ module.exports = {
       });
     });
   }
-}
+};

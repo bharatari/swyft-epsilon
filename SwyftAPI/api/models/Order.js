@@ -3,7 +3,7 @@ module.exports = {
   attributes: {
     type: {
       type: 'string',
-      enum: ["scheduled", "asap"]
+      enum: ['scheduled', 'asap']
     },
     items: {
       type: 'array'
@@ -28,7 +28,7 @@ module.exports = {
     },
     paymentType: {
       type: 'string',
-      enum: ["creditcard", "swyftdebit", "cash", "cash+swyftdebit"]
+      enum: ['creditcard', 'swyftdebit', 'cash', 'cash+swyftdebit']
     },
     deliveryTime: {
       type: 'datetime'
@@ -53,4 +53,4 @@ module.exports = {
       defaultsTo: false
     }
   }
-}
+};

@@ -18,4 +18,4 @@ module.exports = {
     order.totalAmount = Math.round(order.totalAmount * 10) / 10;
     return order;
   }
-}
+};

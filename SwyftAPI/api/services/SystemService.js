@@ -3,4 +3,4 @@ module.exports = {
   suppressSignUps: false,
   suppressSystem: false,
   allowASAPorders: false
-}
+};
