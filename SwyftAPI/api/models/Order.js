@@ -52,5 +52,5 @@ module.exports = {
       type: 'boolean',
       defaultsTo: false
     }
-  },
+  }
 }
