@@ -1,0 +1,11 @@
+{
+  "extends": "airbnb",
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "eol-last" : [2, "unix"],
+    "no-multiple-empty-lines": [2, {"max": 3, "maxEOF": 1}],
+    "no-trailing-spaces": [2, { "skipBlankLines": true }]
+  }
+}
