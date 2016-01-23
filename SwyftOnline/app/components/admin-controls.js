@@ -1,9 +1,9 @@
-import Ember from "ember";
+import Ember from 'ember';
 
-export default Ember.Component.extend({ 
-    actions: {
-        goToNew: function() {
-            this.sendAction('new');
-        }
-    }
+export default Ember.Component.extend({
+  actions: {
+    goToNew() {
+      this.sendAction('new');
+    },
+  },
 });

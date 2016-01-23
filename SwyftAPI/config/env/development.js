@@ -18,11 +18,11 @@ module.exports = {
    ***************************************************************************/
 
   models: {
-      connection: 'MongoDev' 
+    connection: 'MongoDev'
   },
   session: {
-      db: 'yju6Wajy',
-      host: 'proximus.modulusmongo.net',
-      port: 27017,
+    db: 'yju6Wajy',
+    host: 'proximus.modulusmongo.net',
+    port: 27017,
   }
 };

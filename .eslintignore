@@ -1,0 +1,12 @@
+node_modules/**
+SwyftAPI/assets/**
+SwyftAPI/node_modules/**
+SwyftAPI/tasks/**
+SwyftAPI/views/**
+SwyftOnline/bower_components/**
+SwyftOnline/dist/**
+SwyftOnline/node_modules/**
+SwyftOnline/public/**
+SwyftOnline/tmp/**
+SwyftOnline/vendor/**
+SwyftOnline/app/templates/**
