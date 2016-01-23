@@ -1,5 +1,5 @@
 /* jslint unused: false */
-/* global $, fbq */
+/* global $, fbq, mixpanel */
 /* jslint eqeqeq: true */
 import Ember from "ember";
 import config from 'swyft-epsilon-online/config/environment';
@@ -63,15 +63,16 @@ export default Ember.Controller.extend({
                             fbq('track', 'CompleteRegistration');
                         },
                         error: function(xhr, textStatus, error) {
-                            if(xhr.responseText === "EMAIL_IN_USE"){
+                            if (xhr.responseText === "EMAIL_IN_USE"){
                                 self.set('modalTitle', 'Email already in use');
                                 self.set('modalBody', 'That email seems to be already in use. If you forgot your password and are trying to gain access to your account, use the Forgot Password link on the login page.');
                                 self.set('displayModal', true);
-                            }
-                            else{
+                                mixpanel.track("Sign Up Error", { "request": data, "response": xhr, "type": "EMAIL_IN_USE" });
+                            } else {
                                 self.set('modalTitle', 'Whoops.');
                                 self.set('modalBody', "Something went wrong with your sign up request. Check that you've filled out all fields and followed our password requirements. Contact us if you have any further questions.");
                                 self.set('displayModal', true);
+                                mixpanel.track("Sign Up Error", { "request": data, "response": xhr });
                             }
                             self.set('buttonPressed', false);
                         }

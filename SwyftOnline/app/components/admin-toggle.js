@@ -1,10 +1,10 @@
 /* global $ */
-import Ember from "ember";
+import Ember from 'ember';
 
-export default Ember.Component.extend({ 
-    actions: {
-        toggle: function() {
-            $('#admin-menu').offcanvas('toggle');
-        }
-    }
+export default Ember.Component.extend({
+  actions: {
+    toggle() {
+      $('#admin-menu').offcanvas('toggle');
+    },
+  },
 });

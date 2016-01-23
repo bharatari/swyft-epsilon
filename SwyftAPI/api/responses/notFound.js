@@ -17,7 +17,7 @@
  * automatically.
  */
 
-module.exports = function notFound (data, options) {
+module.exports = function notFound(data, options) {
 
   // Get access to `req`, `res`, & `sails`
   var req = this.req;
@@ -29,7 +29,7 @@ module.exports = function notFound (data, options) {
 
   // Log error to console
   if (data !== undefined) {
-    sails.log.verbose('Sending 404 ("Not Found") response: \n',data);
+    sails.log.verbose('Sending 404 ("Not Found") response: \n', data);
   }
   else sails.log.verbose('Sending 404 ("Not Found") response');
 
@@ -66,7 +66,7 @@ module.exports = function notFound (data, options) {
       // Additionally:
       // • If the view was missing, ignore the error but provide a verbose log.
       if (err.code === 'E_VIEW_FAILED') {
-        sails.log.verbose('res.notFound() :: Could not locate view for error page (sending JSON instead).  Details: ',err);
+        sails.log.verbose('res.notFound() :: Could not locate view for error page (sending JSON instead).  Details: ', err);
       }
       // Otherwise, if this was a more serious error, log to the console with the details.
       else {

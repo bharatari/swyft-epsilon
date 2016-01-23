@@ -28,7 +28,7 @@
                 {{/unless}}
                 <h3 class="option-group-header">Payment Options</h3>
                 <div class="option-group">
-                    <div class="list-group">
+                    <div class="list-group payment-list-group">
                         {{#each paymentOptions as |paymentOption|}}
                         <label class="list-group-item">
                             {{#if paymentOption.disabled}}
@@ -61,7 +61,7 @@
                 <p class="sub-heading">If you're paying with a 50 or 100 dollar bill, let us know so that we can get you the right amount of change. Please do not place any specific item customization requests here, as we cannot guarantee they will be fullfilled.</p>
                 <h3 class="option-group-header">When do you want your food?</h3>
                 <div class="option-group">
-                    <div class="list-group">
+                    <div class="list-group delivery-list-group">
                         {{#each deliveryList as |delivery|}}
                         <label class="list-group-item">{{radio-button selected=deliveryList.value name="deliveryList" class="option" value=delivery.id}}<span class="option-text">{{delivery.displayTime}} &nbsp;|&nbsp; <span class="light-text">Order Cutoff: {{delivery.displayCutoff}}</span></span></label>
                         {{else}}

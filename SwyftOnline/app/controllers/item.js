@@ -1,5 +1,5 @@
 /* jslint shadow: true */
-/* global fbq */
+/* global fbq, mixpanel */
 import Ember from "ember";
 import loginUtils from 'swyft-epsilon-online/utils/login-utils';
 import config from 'swyft-epsilon-online/config/environment';
@@ -33,6 +33,7 @@ export default Ember.Controller.extend(StandardActionsMixin, SidebarRouteMixin, 
                     self.set('modalTitle', 'Something went wrong there.');
                     self.set('modalBody', loginUtils.localStorageAlert);
                     self.set('displayModal', true);
+                    mixpanel.track("Add to Cart Error");
                 }
                 this.transitionToRoute('restaurants');
             }
