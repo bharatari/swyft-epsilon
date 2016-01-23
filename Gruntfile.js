@@ -14,6 +14,7 @@ module.exports = function(grunt) {
                     {expand: true, cwd: 'SwyftAPI/config', src: ['**'], dest: 'SwyftDeploy/config'},
                     {expand: true, cwd: 'SwyftAPI/tasks', src: ['**'], dest: 'SwyftDeploy/tasks'},
                     {expand: true, cwd: 'SwyftAPI/test', src: ['**'], dest: 'SwyftDeploy/test'},
+                    {expand: true, cwd: 'SwyftAPI/views', src: ['**'], dest: 'SwyftDeploy/views'},
                     {src: 'SwyftAPI/app.js', dest: 'SwyftDeploy/app.js'},
                     {src: 'SwyftAPI/forever.js', dest: 'SwyftDeploy/forever.js'},
                     {src: 'SwyftAPI/package.json', dest: 'SwyftDeploy/package.json'},
