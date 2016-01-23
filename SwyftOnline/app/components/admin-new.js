@@ -1,15 +1,15 @@
-import Ember from "ember";
+import Ember from 'ember';
 
-export default Ember.Component.extend({ 
-    actions: {
-        accept: function() {
-            this.sendAction('accept');
-        },
-        cancel: function() {
-            this.sendAction('cancel');
-        },
-        submit: function(type) {
-            this.sendAction('submit', type);
-        }
-    }
+export default Ember.Component.extend({
+  actions: {
+    accept() {
+      this.sendAction('accept');
+    },
+    cancel() {
+      this.sendAction('cancel');
+    },
+    submit(type) {
+      this.sendAction('submit', type);
+    },
+  },
 });

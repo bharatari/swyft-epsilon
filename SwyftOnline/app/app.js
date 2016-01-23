@@ -13,18 +13,20 @@ Ember.MODEL_FACTORY_INJECTIONS = true;
 App = Ember.Application.extend({
   modulePrefix: config.modulePrefix,
   podModulePrefix: config.podModulePrefix,
-  ready: function() {
+  /* eslint-disable */
+  ready: function () {
     moment.tz.add(constants.timeZones.zones);
     $.ajaxSetup({ cache: false, crossDomain: true,
     xhrFields: {
-        withCredentials: true
-    }});
+      withCredentials: true
+    } });
     Ember.$.ajaxSetup({ cache: false, crossDomain: true,
     xhrFields: {
-        withCredentials: true
-    }});
+      withCredentials: true
+    } });
   },
-  Resolver
+  /* eslint-enable */
+  Resolver,
 });
 
 loadInitializers(App, config.modulePrefix);

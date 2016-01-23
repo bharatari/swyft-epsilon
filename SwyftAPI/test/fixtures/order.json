@@ -1,156 +1,156 @@
 [
-    {
-      "items" : [{
-          "name" : "McCafé Coffee",
-          "id" : "549a7c80f2ede1f4234eecf9",
-          "quantity" : 1,
-          "restaurant" : "mcdonalds",
-          "standardOptions" : [],
-          "options" : [{
-              "price" : 1,
-              "name" : "Large",
-              "category" : "Size"
-            }],
-          "extras" : [],
-          "attachedRequests" : [],
-          "price" : 2.2,
-          "itemOptions" : "Large"
+  {
+    'items' : [{
+      'name' : 'McCafé Coffee',
+      'id' : '549a7c80f2ede1f4234eecf9',
+      'quantity' : 1,
+      'restaurant' : 'mcdonalds',
+      'standardOptions' : [],
+      'options' : [{
+          'price' : 1,
+          'name' : 'Large',
+          'category' : 'Size'
         }],
-      "paymentType" : "cash",
-      "deliveryLocation" : "Main Street Hall",
-      "contactPhone" : "1112223333",
-      "userId" : "5534302641911f380a666666",
-      "deliveryId" : "560e03c2a65411d035e0f53d",
-      "totalAmount" : 2.4,
-      "actualAmount" : 2.4,
-      "type" : "scheduled",
-      "deliveryNote" : {
-        "commentedBy" : null,
-        "deliveredBy" : null,
-        "comments" : null,
-        "isDelivered" : null,
-        "deliveredAt" : null,
-        "cashPayment" : null,
-        "chargeLater" : true,
-        "creditCardCharged" : null,
-        "creditCardMessage" : null
-      },
-      "isDeleted" : false
+      'extras' : [],
+      'attachedRequests' : [],
+      'price' : 2.2,
+      'itemOptions' : 'Large'
+    }],
+    'paymentType' : 'cash',
+    'deliveryLocation' : 'Main Street Hall',
+    'contactPhone' : '1112223333',
+    'userId' : '5534302641911f380a666666',
+    'deliveryId' : '560e03c2a65411d035e0f53d',
+    'totalAmount' : 2.4,
+    'actualAmount' : 2.4,
+    'type' : 'scheduled',
+    'deliveryNote' : {
+      'commentedBy' : null,
+      'deliveredBy' : null,
+      'comments' : null,
+      'isDelivered' : null,
+      'deliveredAt' : null,
+      'cashPayment' : null,
+      'chargeLater' : true,
+      'creditCardCharged' : null,
+      'creditCardMessage' : null
     },
-    {
-      "items" : [{
-          "name" : "McCafé Coffee",
-          "id" : "549a7c80f2ede1f4234eecf9",
-          "quantity" : 1,
-          "restaurant" : "mcdonalds",
-          "standardOptions" : [],
-          "options" : [{
-              "price" : 1,
-              "name" : "Large",
-              "category" : "Size"
-            }],
-          "extras" : [],
-          "attachedRequests" : [],
-          "price" : 2.2,
-          "itemOptions" : "Large"
+    'isDeleted' : false
+  },
+  {
+    'items' : [{
+      'name' : 'McCafé Coffee',
+      'id' : '549a7c80f2ede1f4234eecf9',
+      'quantity' : 1,
+      'restaurant' : 'mcdonalds',
+      'standardOptions' : [],
+      'options' : [{
+          'price' : 1,
+          'name' : 'Large',
+          'category' : 'Size'
         }],
-      "paymentType" : "cash",
-      "deliveryLocation" : "Main Street Hall",
-      "contactPhone" : "1112223333",
-      "userId" : "5534302641911f380a666667",
-      "deliveryId" : "560e03c2a65411d035e0f53d",
-      "totalAmount" : 2.4,
-      "actualAmount" : 2.4,
-      "type" : "scheduled",
-      "deliveryNote" : {
-        "commentedBy" : null,
-        "deliveredBy" : null,
-        "comments" : null,
-        "isDelivered" : null,
-        "deliveredAt" : null,
-        "cashPayment" : null,
-        "chargeLater" : true,
-        "creditCardCharged" : null,
-        "creditCardMessage" : null
-      },
-      "isDeleted" : false
+      'extras' : [],
+      'attachedRequests' : [],
+      'price' : 2.2,
+      'itemOptions' : 'Large'
+    }],
+    'paymentType' : 'cash',
+    'deliveryLocation' : 'Main Street Hall',
+    'contactPhone' : '1112223333',
+    'userId' : '5534302641911f380a666667',
+    'deliveryId' : '560e03c2a65411d035e0f53d',
+    'totalAmount' : 2.4,
+    'actualAmount' : 2.4,
+    'type' : 'scheduled',
+    'deliveryNote' : {
+      'commentedBy' : null,
+      'deliveredBy' : null,
+      'comments' : null,
+      'isDelivered' : null,
+      'deliveredAt' : null,
+      'cashPayment' : null,
+      'chargeLater' : true,
+      'creditCardCharged' : null,
+      'creditCardMessage' : null
     },
-    {
-      "items" : [{
-          "name" : "McCafé Coffee",
-          "id" : "549a7c80f2ede1f4234eecf9",
-          "quantity" : 1,
-          "restaurant" : "mcdonalds",
-          "standardOptions" : [],
-          "options" : [{
-              "price" : 1,
-              "name" : "Large",
-              "category" : "Size"
-            }],
-          "extras" : [],
-          "attachedRequests" : [],
-          "price" : 2.2,
-          "itemOptions" : "Large"
+    'isDeleted' : false
+  },
+  {
+    'items' : [{
+      'name' : 'McCafé Coffee',
+      'id' : '549a7c80f2ede1f4234eecf9',
+      'quantity' : 1,
+      'restaurant' : 'mcdonalds',
+      'standardOptions' : [],
+      'options' : [{
+          'price' : 1,
+          'name' : 'Large',
+          'category' : 'Size'
         }],
-      "paymentType" : "cash",
-      "deliveryLocation" : "Main Street Hall",
-      "contactPhone" : "1112223333",
-      "userId" : "5534302641911f380a666668",
-      "deliveryId" : "560e03c2a65411d035e0f53d",
-      "totalAmount" : 2.4,
-      "actualAmount" : 2.4,
-      "type" : "scheduled",
-      "deliveryNote" : {
-        "commentedBy" : null,
-        "deliveredBy" : null,
-        "comments" : null,
-        "isDelivered" : null,
-        "deliveredAt" : null,
-        "cashPayment" : null,
-        "chargeLater" : false,
-        "creditCardCharged" : null,
-        "creditCardMessage" : null
-      },
-      "isDeleted" : false,
-      "id" : "569996cd80911ef415faac7c"
+      'extras' : [],
+      'attachedRequests' : [],
+      'price' : 2.2,
+      'itemOptions' : 'Large'
+    }],
+    'paymentType' : 'cash',
+    'deliveryLocation' : 'Main Street Hall',
+    'contactPhone' : '1112223333',
+    'userId' : '5534302641911f380a666668',
+    'deliveryId' : '560e03c2a65411d035e0f53d',
+    'totalAmount' : 2.4,
+    'actualAmount' : 2.4,
+    'type' : 'scheduled',
+    'deliveryNote' : {
+      'commentedBy' : null,
+      'deliveredBy' : null,
+      'comments' : null,
+      'isDelivered' : null,
+      'deliveredAt' : null,
+      'cashPayment' : null,
+      'chargeLater' : false,
+      'creditCardCharged' : null,
+      'creditCardMessage' : null
     },
-    {
-      "items" : [{
-          "name" : "McCafé Coffee",
-          "id" : "549a7c80f2ede1f4234eecf9",
-          "quantity" : 1,
-          "restaurant" : "mcdonalds",
-          "standardOptions" : [],
-          "options" : [{
-              "price" : 1,
-              "name" : "Large",
-              "category" : "Size"
-            }],
-          "extras" : [],
-          "attachedRequests" : [],
-          "price" : 2.2,
-          "itemOptions" : "Large"
+    'isDeleted' : false,
+    'id' : '569996cd80911ef415faac7c'
+  },
+  {
+    'items' : [{
+      'name' : 'McCafé Coffee',
+      'id' : '549a7c80f2ede1f4234eecf9',
+      'quantity' : 1,
+      'restaurant' : 'mcdonalds',
+      'standardOptions' : [],
+      'options' : [{
+          'price' : 1,
+          'name' : 'Large',
+          'category' : 'Size'
         }],
-      "paymentType" : "cash",
-      "deliveryLocation" : "Gould House",
-      "contactPhone" : "1112223333",
-      "userId" : "568e6cd983600d183b2d4c1e",
-      "deliveryId" : "560e03c2a65411d035e0f53d",
-      "totalAmount" : 2.4,
-      "actualAmount" : 2.4,
-      "type" : "scheduled",
-      "deliveryNote" : {
-        "commentedBy" : null,
-        "deliveredBy" : null,
-        "comments" : null,
-        "isDelivered" : null,
-        "deliveredAt" : null,
-        "cashPayment" : null,
-        "chargeLater" : false,
-        "creditCardCharged" : null,
-        "creditCardMessage" : null
-      },
-      "isDeleted" : false,
-      "id" : "569996cd80911ef415faac7d"
-    }
-]
+      'extras' : [],
+      'attachedRequests' : [],
+      'price' : 2.2,
+      'itemOptions' : 'Large'
+    }],
+    'paymentType' : 'cash',
+    'deliveryLocation' : 'Gould House',
+    'contactPhone' : '1112223333',
+    'userId' : '568e6cd983600d183b2d4c1e',
+    'deliveryId' : '560e03c2a65411d035e0f53d',
+    'totalAmount' : 2.4,
+    'actualAmount' : 2.4,
+    'type' : 'scheduled',
+    'deliveryNote' : {
+      'commentedBy' : null,
+      'deliveredBy' : null,
+      'comments' : null,
+      'isDelivered' : null,
+      'deliveredAt' : null,
+      'cashPayment' : null,
+      'chargeLater' : false,
+      'creditCardCharged' : null,
+      'creditCardMessage' : null
+    },
+    'isDeleted' : false,
+    'id' : '569996cd80911ef415faac7d'
+  }
+];
