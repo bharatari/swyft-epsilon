@@ -12,7 +12,7 @@ child.on('restart', function () {
 });
 
 child.on('exit', function (code) {
-  console.log('Swyft Epsilon has exited with code: ' + code;
+  console.log('Swyft Epsilon has exited with code: ' + code);
 });
 
 child.start();
