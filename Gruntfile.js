@@ -6,6 +6,19 @@ module.exports = function(grunt) {
                 files: [ 
                     {expand: true, cwd: 'SwyftOnline/dist/', src: ['**'], dest: 'SwyftAPI/assets/SwyftOnline/'},
                 ]
+            },
+            deploy: {
+                files: [
+                    {expand: true, cwd: 'SwyftAPI/api', src: ['**'], dest: 'SwyftDeploy/api'},
+                    {expand: true, cwd: 'SwyftAPI/assets', src: ['**'], dest: 'SwyftDeploy/assets'},
+                    {expand: true, cwd: 'SwyftAPI/config', src: ['**'], dest: 'SwyftDeploy/config'},
+                    {expand: true, cwd: 'SwyftAPI/tasks', src: ['**'], dest: 'SwyftDeploy/tasks'},
+                    {expand: true, cwd: 'SwyftAPI/test', src: ['**'], dest: 'SwyftDeploy/test'},
+                    {src: 'SwyftAPI/app.js', dest: 'SwyftDeploy/app.js'},
+                    {src: 'SwyftAPI/forever.js', dest: 'SwyftDeploy/forever.js'},
+                    {src: 'SwyftAPI/package.json', dest: 'SwyftDeploy/package.json'},
+                    {src: 'SwyftAPI/Gruntfile.js', dest: 'SwyftDeploy/Gruntfile.js'}
+                ]
             }
         },
         replace: {
@@ -46,5 +59,5 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-text-replace');
     grunt.loadNpmTasks('grunt-contrib-clean');
     
-    grunt.registerTask('default', ['clean', 'copy', 'replace'])
+    grunt.registerTask('default', ['clean', 'copy', 'replace', 'copy:deploy'])
 }
