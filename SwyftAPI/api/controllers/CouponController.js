@@ -73,7 +73,7 @@ module.exports = {
       } else {
         Coupon.create(data).exec(function (err, coupon) {
           if (err || !coupon) {
-            res.badRequest('DATABASE_ERR';
+            res.badRequest('DATABASE_ERR');
           } else {
             res.ok(coupon);
           }
@@ -100,4 +100,4 @@ module.exports = {
   getCouponModel: function (req, res) {
     res.json(new ModelService.Coupon());
   }
-}
+};

@@ -71,6 +71,7 @@ module.exports.routes = {
   'get /api/orders': 'OrderController.getOrders',
   'get /api/orders/all': 'OrderController.getAllOrders',
   'get /api/order': 'OrderController.getOrder',
+  'get /api/order/safe': 'OrderController.getOwnOrder',
   'get /api/deliveryOrders': 'OrderController.getDeliveryOrders',
   'post /api/order': 'OrderController.processOrder',
   'delete /api/order': 'OrderController.deleteOrder',

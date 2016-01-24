@@ -36,7 +36,7 @@ module.exports = {
             return false;
         return true;
       });
-    }
+    };
     item.price = menuItem.baseprice;
     var allOptions = new Array();
     async.each(menuItem.itemOptions, function (itemOption, callback) {
@@ -670,4 +670,4 @@ module.exports = {
       }
     }
   }
-}
+};
