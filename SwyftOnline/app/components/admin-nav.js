@@ -6,10 +6,10 @@ export default Ember.Component.extend({
   classNameBindings: ['activeRoute:active', 'static:admin-sidebar-static'],
   attributeBindings: ['role'],
   role: 'presentation',
-  activeRoute() {
+  activeRoute: Ember.computed('currentRoute', 'route', function () {
     if (this.get('currentRoute') === this.get('route')) {
       return true;
     }
     return false;
-  }.property('currentRoute', 'route'),
+  }),
 });
