@@ -1,56 +1,56 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  typeString() {
+  typeString: Ember.computed('property', function() {
     if (this.get('property').type === 'string') {
       return true;
     }
     return false;
-  }.property('property'),
-  typeDateTime() {
+  }),
+  typeDateTime: Ember.computed('property', function () {
     if (this.get('property').type === 'datetime') {
       return true;
     }
     return false;
-  }.property('property'),
-  typeNumber() {
+  }),
+  typeNumber: Ember.computed('property', function () {
     if (this.get('property').type === 'number') {
       return true;
     }
     return false;
-  }.property('property'),
-  typeEnum() {
+  }),
+  typeEnum: Ember.computed('property', function () {
     if (this.get('property').type === 'enum') {
       return true;
     }
     return false;
-  }.property('property'),
-  typeBoolean() {
+  }),
+  typeBoolean: Ember.computed('property', function () {
     if (this.get('property').type === 'boolean') {
       return true;
     }
     return false;
-  }.property('property'),
-  typeArray() {
+  }),
+  typeArray: Ember.computed('property', function () {
     if (this.get('property').type === 'array') {
       return true;
     }
     return false;
-  }.property('property'),
-  typeObject() {
+  }),
+  typeObject: Ember.computed('property', function () {
     if (this.get('property').type === 'object') {
       return true;
     }
     return false;
-  }.property('property'),
+  }),
   booleanValues: [
     { propertyName: true, displayName: 'True' },
     { propertyName: false, displayName: 'False' }
   ],
-  adminDiscourage() {
+  adminDiscourage: Ember.computed('property', function () {
     if (this.get('property').advancedField) {
       return 'form-control admin-discourage';
     }
     return 'form-control';
-  }.property('property')
+  })
 });

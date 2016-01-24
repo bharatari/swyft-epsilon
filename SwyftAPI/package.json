@@ -44,7 +44,8 @@
   "scripts": {
     "start": "node app.js",
     "debug": "node debug app.js",
-    "test": "node test/bootstrap.test.js"
+    "test": "node test/bootstrap.test.js",
+    "test-server": "set NODE_ENV=test && node app.js"
   },
   "main": "app.js",
   "repository": {

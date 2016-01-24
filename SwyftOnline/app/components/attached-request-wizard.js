@@ -8,7 +8,7 @@ export default Ember.Component.extend({
     { propertyName: true, displayName: 'True' },
     { propertyName: false, displayName: 'False' },
   ],
-  id: Ember.computed('properties', () => {
+  id: Ember.computed('properties', function () {
     const properties = this.get('properties');
     for (let i = 0; i < properties.length; i++) {
       if (properties[i].displayName === 'ID') {
@@ -16,7 +16,7 @@ export default Ember.Component.extend({
       }
     }
   }),
-  name: Ember.computed('properties', () => {
+  name: Ember.computed('properties', function () {
     const properties = this.get('properties');
     for (let i = 0; i < properties.length; i++) {
       if (properties[i].displayName === 'Name') {
@@ -24,7 +24,7 @@ export default Ember.Component.extend({
       }
     }
   }),
-  label: Ember.computed('properties', () => {
+  label: Ember.computed('properties', function () {
     const properties = this.get('properties');
     for (let i = 0; i < properties.length; i++) {
       if (properties[i].displayName === 'Label') {
@@ -32,7 +32,7 @@ export default Ember.Component.extend({
       }
     }
   }),
-  options: Ember.computed('properties', () => {
+  options: Ember.computed('properties', function () {
     const properties = this.get('properties');
     for (let i = 0; i < properties.length; i++) {
       if (properties[i].displayName === 'Options') {
@@ -40,7 +40,7 @@ export default Ember.Component.extend({
       }
     }
   }),
-  available: Ember.computed('properties', () => {
+  available: Ember.computed('properties', function () {
     const properties = this.get('properties');
     for (let i = 0; i < properties.length; i++) {
       if (properties[i].displayName === 'Available') {
@@ -48,7 +48,7 @@ export default Ember.Component.extend({
       }
     }
   }),
-  watches: Ember.computed('properties', () => {
+  watches: Ember.computed('properties', function () {
     const properties = this.get('properties');
     for (let i = 0; i < properties.length; i++) {
       if (properties[i].displayName === 'Watches') {
@@ -56,7 +56,7 @@ export default Ember.Component.extend({
       }
     }
   }),
-  on: Ember.computed('properties', () => {
+  on: Ember.computed('properties', function () {
     const properties = this.get('properties');
     for (let i = 0; i < properties.length; i++) {
       if (properties[i].displayName === 'On') {
@@ -64,7 +64,7 @@ export default Ember.Component.extend({
       }
     }
   }),
-  required: Ember.computed('properties', () => {
+  required: Ember.computed('properties', function () {
     const properties = this.get('properties');
     for (let i = 0; i < properties.length; i++) {
       if (properties[i].displayName === 'Required') {

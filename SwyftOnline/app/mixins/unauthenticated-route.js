@@ -5,11 +5,15 @@ import loginUtils from 'swyft-epsilon-online/utils/login-utils';
 
 export default Ember.Mixin.create({
     beforeModel: function() {
-        var self = this;
-        loginUtils.checkLogin().then(function(value){
+      var self = this;
+      var promise;
+      Ember.run(function () {
+        promise = loginUtils.checkLogin().then(function(value){
             self.transitionTo('restaurants');
         }, function(reason){
             self.set('isAuthenticated', false);
         });
+      });
+      return promise;
     }
 });
