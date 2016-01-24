@@ -5,12 +5,16 @@ import loginUtils from 'swyft-epsilon-online/utils/login-utils';
 
 export default Ember.Mixin.create({
     beforeModel: function() {
-        this._super();
-        var self = this;
-        return loginUtils.checkLogin().then(function(data){
-            self.set('isAuthenticated', true);
+      this._super();
+      var self = this;
+      var promise;
+      Ember.run(function () {
+        promise = loginUtils.checkLogin().then(function (data) {
+          self.set('isAuthenticated', true);
         }, function(reason) {
-            self.set('isAuthenticated', false);
-        });
+          self.set('isAuthenticated', false);
+        });       
+      });
+      return promise;
     }
 });

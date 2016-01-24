@@ -12,15 +12,20 @@ export default Ember.Route.extend(SessionRouteMixin, AnimateOutRouteMixin, Sideb
         }
     },
     model: function(params) {
-        return Ember.RSVP.hash({
-            item: Ember.$.getJSON(config.routeLocation + "/api/item/" + params.item_id),
-            //restaurant: Ember.$.getJSON(config.routeLocation + "/api/restaurant/" + params.restaurantId)
-        });
+      var promise;
+      Ember.run(function () {
+        promise = {
+          item: Ember.$.getJSON(config.routeLocation + "/api/item/" + params.item_id)
+        }; 
+      });
+      return Ember.RSVP.hash(promise);
     },
     setupController: function(controller, model) {
         this._super();
-        controller.set('model', model.item);
-        //controller.set('restaurant', model.restaurant);
-        controller.set('isAuthenticated', this.get('isAuthenticated'));
+        var self = this;
+        Ember.run(function () {
+          controller.set('model', model.item);
+          controller.set('isAuthenticated', self.get('isAuthenticated'));
+        });
     }
 });
