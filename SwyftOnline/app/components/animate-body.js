@@ -2,7 +2,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  animate() {
+  didInsertElement() {
     var delay = this.get('animateDelay');
     if (delay) {
       setTimeout(function () {
@@ -13,5 +13,5 @@ export default Ember.Component.extend({
         $('.animate-in-body').removeClass('invisible').addClass('fadeIn');
       }, 500);
     }
-  }.on('didInsertElement'),
+  },
 });
