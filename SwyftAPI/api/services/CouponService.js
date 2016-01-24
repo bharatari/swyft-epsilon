@@ -1,4 +1,47 @@
+var Q = require('q');
+
 module.exports = {
+  getToken: function (code) {
+    return Q.promise(function (resolve, reject) {
+      Token.findOne({
+        token: code
+      }).exec(function (err, token) {
+        if (!token) {
+          reject(err);
+        } else if (token.hasBeenUsed) {
+          reject(err);
+        } else {
+          resolve(token);
+        }
+      });
+    });
+  },
+  getCoupon: function (code) {
+    return Q.promise(function (resolve, reject) {
+      Coupon.findOne({
+        code: code
+      }).exec(function (err, coupon) {
+        if (err || !coupon) {
+          reject(err);
+        } else if (!coupon.isActive) {
+          reject(err);
+        } else {
+          resolve(coupon);
+        }
+      });
+    });
+  },
+  getDiscount: function (code, cb) {
+    Q.allSettled([this.getToken(code), this.getCoupon(code)]).spread(function (token, coupon) {
+      if (token.state === 'fulfilled') {
+        cb(null, token.value);
+      } else if (coupon.state === 'fulfilled') {
+        cb(null, coupon.value);
+      } else {
+        cb(true);
+      }
+    });
+  },
   processToken: function (order, cb) {
     if (order.token) {
       Token.findOne({
@@ -35,7 +78,7 @@ module.exports = {
       Coupon.findOne({
         code: order.coupon
       }).exec(function (err, coupon) {
-        if (err || !token) {
+        if (err || !coupon) {
           return cb(false);
         } else if (!coupon.isActive) {
           return cb(false);

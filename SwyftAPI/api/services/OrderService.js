@@ -202,7 +202,13 @@ module.exports = {
           if (!result) {
             return cb(false);
           } else {
-            cb(order);
+            CouponService.processCoupon(order, function (result) {
+              if (!result) {
+                return cb(false);
+              } else {
+                cb(order);
+              }
+            });
           }
         });
       }

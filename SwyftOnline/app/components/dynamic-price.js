@@ -17,20 +17,18 @@ export default Ember.Component.extend({
     }),
     tokenValueChanged: Ember.observer('tokenValue', 'tokenValid', function() {
         var self = this;
-        if(this.get('tokenValid') && this.get('tokenValue')) {
-            Ember.$.getJSON(config.routeLocation + "/api/coupon/token/" + this.get('tokenValue').trim(), {
+        if (this.get('tokenValid') && this.get('tokenValue')) {
+            Ember.$.getJSON(config.routeLocation + "/api/coupon/discount/" + this.get('tokenValue').trim(), {
                 token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.token, 
                 tokenId: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.id
             }).done(function(data) {
-                if(data.hasBeenUsed) {
-                    self.set('discount', null);
-                }
-                else {
-                    self.set('discount', data.discount);
-                } 
+                self.set('discount', data.discount);
+            }).fail(function() {
+                self.set('discount', null);
             });
-        }
-        else {
+        } else {
+            // FIXME finalAmount doesn't update properly on view when discount
+            // goes back to null
             this.set('discount', null);
         }
     })

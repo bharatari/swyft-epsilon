@@ -116,6 +116,7 @@ module.exports.routes = {
   'post /api/coupon/token': 'CouponController.createIndependentToken',
   'post /api/coupon/coupon': 'CouponController.createCoupon',
   'get /api/coupon/token/:token': 'CouponController.getToken',
+  'get /api/coupon/discount/:code': 'CouponController.getDiscount',
 
   //Delivery Location Routes
   'get /api/deliveryLocations': 'DeliveryLocationController.getLocations',

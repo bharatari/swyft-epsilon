@@ -1,13 +1,18 @@
 /* jslint unused: false */
 import Ember from "ember";
 import config from 'swyft-epsilon-online/config/environment';
+import loginUtils from 'swyft-epsilon-online/utils/login-utils';
 
 export default Ember.Component.extend({
     valueChanged: function() {
         var self = this;
-        if(this.get('value')) {
+        if(this.get('value').trim()) {
             Ember.$.ajax({
-                url: config.routeLocation + "/api/coupon/" + this.get('type') + "/" + this.get('value').trim(),
+                url: config.routeLocation + "/api/coupon/discount/" + this.get('value').trim(),
+                data: {
+                    token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.token, 
+                    tokenId: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.id
+                },
                 headers: { 
                     Accept : "application/json; charset=utf-8",
                     "Content-Type": "application/json; charset=utf-8"
