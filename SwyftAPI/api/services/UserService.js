@@ -216,7 +216,7 @@ module.exports = {
         if (err || !user) {
           cb(false, 'DATABASE_ERR');
         } else {
-          if (user.balance !== null) {
+          if (user.balance != null) {
             if (user.balance < 0) {
               outstanding.push({
                 type: 'Swyft Debit',

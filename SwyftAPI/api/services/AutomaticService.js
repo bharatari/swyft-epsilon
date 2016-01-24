@@ -46,7 +46,7 @@ module.exports = {
    * @returns {Moment|Date} - Returns date if params are null or undefined.
    */
   processMoment: function (day, hour, minute, second) {
-    if ((day !== null) && (hour !== null) && (minute !== null) && (second !== null)) {
+    if ((day != null) && (hour != null) && (minute != null) && (second != null)) {
       var date = moment().day(day).set({
         hour: hour,
         minute: minute,
