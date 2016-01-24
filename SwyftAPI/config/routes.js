@@ -118,18 +118,18 @@ module.exports.routes = {
   'get /api/coupon/discount/:code': 'CouponController.getDiscount',
 
   //Delivery Location Routes
-  'get /api/deliveryLocations':'DeliveryLocationController.getLocations',
-  'get /api/deliveryLocations/simple':'DeliveryLocationController.getLocationsSimple',
-  'post /api/deliveryLocations/orders':'DeliveryLocationController.getLocationOrders',
+  'get /api/deliveryLocations': 'DeliveryLocationController.getLocations',
+  'get /api/deliveryLocations/simple': 'DeliveryLocationController.getLocationsSimple',
+  'post /api/deliveryLocations/orders': 'DeliveryLocationController.getLocationOrders',
 
   //Analytics Routes
-  'get /api/analytics/orders/chart':'AnalyticsController.getOrderChart',
-  'get /api/analytics/deliveries/data':'AnalyticsController.getActiveDeliveryData',
-  'get /api/analytics/dashboard/statistics':'AnalyticsController.getDashboardStats',
-  'get /api/analytics/revenue/chart':'AnalyticsController.getRevenueChart',
+  'get /api/analytics/orders/chart': 'AnalyticsController.getOrderChart',
+  'get /api/analytics/deliveries/data': 'AnalyticsController.getActiveDeliveryData',
+  'get /api/analytics/dashboard/statistics': 'AnalyticsController.getDashboardStats',
+  'get /api/analytics/revenue/chart': 'AnalyticsController.getRevenueChart',
 
   //Temporary Routes
-  'get /csrfToken':'AuthController.csrfToken',
+  'get /csrfToken': 'AuthController.csrfToken',
 
   //Admin Routes
   'get /api/admin/userTransaction/metadata': 'UserTransactionController.getTransactionMetadata',
@@ -168,6 +168,7 @@ module.exports.routes = {
 
   //Email Routes
   'post /api/email/join': 'EmailController.sendJoinUsEmail'
+
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *
