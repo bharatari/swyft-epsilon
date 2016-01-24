@@ -9,12 +9,19 @@ import AnimateOutRouteMixin from 'swyft-epsilon-online/mixins/animate-out-route'
 
 export default Ember.Route.extend(SessionRouteMixin, AnimateOutRouteMixin, SidebarRouteMixin, ResetScrollMixin, {
     model: function() {
-        return Ember.$.getJSON(config.routeLocation + "/api/restaurants");
+      var promise;
+      Ember.run(function () {
+        promise = Ember.$.getJSON(config.routeLocation + "/api/restaurants");
+      });
+      return promise;
     },
     setupController: function(controller, model) {
-        this._super();
+      this._super();
+      var self = this;
+      Ember.run(function () {
         controller.set('restaurants', model);
-        controller.set('isAuthenticated', this.get('isAuthenticated'));
+        controller.set('isAuthenticated', self.get('isAuthenticated'));
         controller.set('searchValue', "");
+      });
     }
 });

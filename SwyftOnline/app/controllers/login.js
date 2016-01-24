@@ -8,19 +8,23 @@ export default Ember.Controller.extend({
     queryParams: ['url'],
     loginError: false,
     actions: {
-        login: function() {
+        login() {
             var self = this;
             if(!loginUtils.checkLocalStorage()) {
                 alert(loginUtils.localStorageAlert);
                 return;
             }
             var data = {username: this.get("username"), password: this.get("password")};
-            Ember.$.ajax({type:"POST", url: config.routeLocation + "/api/login", headers: { 
-                Accept : "application/json; charset=utf-8",
-                "Content-Type": "application/json; charset=utf-8"
-            },
-            data: JSON.stringify(data), success: function(data, textStatus, jqXHR){
-                if(data.token) {
+            Ember.run(function () {
+              Ember.$.ajax({
+                type:"POST", 
+                url: config.routeLocation + "/api/login", 
+                headers: { 
+                  Accept : "application/json; charset=utf-8",
+                  "Content-Type": "application/json; charset=utf-8"
+                },
+                data: JSON.stringify(data), success: function(data, textStatus, jqXHR){
+                  if(data.token) {
                     //Store cart and cartVersion to restore after clear
                     var cart = cartUtils.getCartForRestore();
                     var cartVersion = cartUtils.getCartVersionForRestore();
@@ -32,29 +36,31 @@ export default Ember.Controller.extend({
                     localStorage.setItem("app_platform_label", config.appCodename);
                     localStorage.setItem("app_platform", "swyft_epsilon " + config.appVersion);
                     if(self.get('url')) {
-                        window.location.assign(self.get('url'));
+                      window.location.assign(self.get('url'));
                     }
                     else {
-                        self.transitionToRoute('restaurants');
+                      self.transitionToRoute('restaurants');
                     }
-                }
-                else {
+                  }
+                  else {
                     self.set('loginError', true);
-                }
-            }, error: function(jqXHR){
-                self.set('loginError', true);
-            }});
+                  }
+                }, error: function(jqXHR){
+                  self.set('loginError', true);
+              }});
+            });
+            
         },
-        close: function() {
+        close() {
             this.set('loginError', false);
         },
-        signUp: function() {
+        signUp() {
             this.transitionToRoute('sign-up');
         },
-        forgotPassword: function() {
+        forgotPassword() {
             this.transitionToRoute('forgot-password');
         },
-        resend: function () {
+        resend() {
             this.transitionToRoute('resend-verification');
         }
     }
