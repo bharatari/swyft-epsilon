@@ -376,7 +376,7 @@ module.exports = {
       order.userComments += order1.userComments;
     }
     if (order2.userComments) {
-      order.userComments += " " + order2.userComments;
+      order.userComments += ' ' + order2.userComments;
     }
     order.items = [];
     for (var i = 0; i < order1.items.length; i++) {
@@ -461,7 +461,7 @@ module.exports = {
           if (!orders[i].items[e].quantity) {
             orders[i].items[e].quantity = 1;
           }
-          orders[i].items[e].customerName = orders[i].user.firstName + " " + orders[i].user.lastName;
+          orders[i].items[e].customerName = orders[i].user.firstName + ' ' + orders[i].user.lastName;
           items.push(orders[i].items[e]);
         }
       }
