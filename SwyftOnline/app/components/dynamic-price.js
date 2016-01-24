@@ -4,10 +4,10 @@ import loginUtils from 'swyft-epsilon-online/utils/login-utils';
 
 export default Ember.Component.extend({  
     classNames: ['inline'],
-    discountedAmount: Ember.computed('price', function() {
+    discountedAmount: Ember.computed('price', 'finalAmount',function() {
         return Math.round((this.get('price') - this.get('finalAmount')) * 100) / 100;
     }),
-    computePrice: Ember.observer('price', 'discount', function() {        
+    computePrice: Ember.observer('price', 'discount', function() { 
         if(this.get('discount')) {
             this.set('finalAmount', this.get('price') * this.get('discount'));
         }
@@ -23,7 +23,8 @@ export default Ember.Component.extend({
                 tokenId: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.id
             }).done(function(data) {
                 self.set('discount', data.discount);
-                self.computeDiscounted();
+            }).fail(function() {
+                self.set('discount', null);
             });
         } else {
             // FIXME finalAmount doesn't update properly on view when discount
