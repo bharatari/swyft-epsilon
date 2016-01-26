@@ -453,7 +453,11 @@ body {
 }
 
 .quick-link {
-  color: black !important;
+  color: rgba(112, 112, 112, 1) !important;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 1px;
   font-family: 'Open Sans', 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
   -webkit-transition: color 0.2s ease-out;
   -moz-transition: color 0.2s ease-out;
@@ -464,7 +468,7 @@ body {
 
 .quick-link:focus, .quick-link:hover {
   text-decoration: none;
-  color: darkgray;
+  color: black !important;
 }
 
 .login-button {
