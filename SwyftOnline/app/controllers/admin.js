@@ -29,6 +29,18 @@ export default Ember.Controller.extend({
             );
         });
     }.on('init'),
+    delivery: Ember.computed('deliveries', function () {
+      const deliveries = this.get('deliveries');
+      if (deliveries) {
+        if (deliveries[0]) {
+          return deliveries[0];
+        } else {
+          return null;
+        }
+      } else {
+        return null;
+      }
+    }),
     currentRoute: 'admin',
     appVersion: config.appVersion,
     appVersionLabel: config.appVersionLabel,

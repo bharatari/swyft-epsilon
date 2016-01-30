@@ -91,13 +91,16 @@
             <div class="col-md-6">
                 <div class="panel table-responsive admin-panel admin-panel-fixed-height">
                     <div class="admin-panel-header-area">
-                        <h1 class="admin-panel-header">Current Delivery</h1>
+                        <h1 class="admin-panel-header">Delivery Status</h1>
                     </div>
                     <div class="admin-panel-content">
-                        <h1>Swyft Epsilon {{format-datetime delivery "deliveryDate"}}</h1>
-                        <h4>Status {{delivery.deliveryStatus}}</h4>
-                        <h4>Operational Status {{delivery.operationalStatus}}</h4>
-                        <p>This panel will become the live delivery status display by 4.0.0 Beta.</p>
+                        <h1 class="admin-delivery-status-title">{{format-delivery-datetime delivery.deliveryDate}}</h1>
+                        <h4 class="admin-delivery-status-timezone">Eastern Standard Time</h4>
+                        <hr class="admin-delivery-status-divider"/>
+                        <h4 class="admin-delivery-status-section">Status</h4>
+                        {{admin-delivery-status status=delivery.deliveryStatus}}
+                        <h4 class="admin-delivery-status-section">Operational Status</h4>
+                        {{admin-delivery-status status=delivery.operationalStatus}}
                     </div>
                 </div>
             </div>
