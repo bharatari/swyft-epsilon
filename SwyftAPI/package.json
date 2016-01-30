@@ -1,7 +1,7 @@
 {
   "name": "swyft-epsilon-api",
   "private": true,
-  "version": "4.3.2",
+  "version": "4.3.4",
   "description": "SwyftAPI is the server-side implementation of Swyft's web infrastructure.",
   "keywords": [],
   "dependencies": {
