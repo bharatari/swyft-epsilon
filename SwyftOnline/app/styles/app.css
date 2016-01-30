@@ -2708,6 +2708,51 @@ figure span {
   background-color: rgba(245, 245, 245, 1) !important
 }
 
+.admin-delivery-status-title {
+  font-family: 'Open Sans', 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.admin-delivery-status-section {
+  font-family: 'Open Sans', 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.admin-delivery-status-text {
+  font-family: 'Open Sans', 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline;
+}
+
+.admin-delivery-status-timezone {
+  font-family: 'Open Sans', 'Roboto', 'Helvetica Neue', 'Segoe UI', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.admin-delivery-status-divider {
+  border-top: 1.5px solid lightgray;
+}
+
+.status-icon-error {
+  color: red;
+  font-size: 26px;
+  margin-right: 10px;
+}
+
+.status-icon-success {
+  color: green;
+  font-size: 26px;
+  margin-right: 10px;
+}
+
 .flyout-notifications {
   position: fixed;
   overflow: hidden;

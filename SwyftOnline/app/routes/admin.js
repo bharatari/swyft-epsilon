@@ -10,7 +10,7 @@ export default Ember.Route.extend(DeliveryRouteMixin, {
             user: Ember.$.getJSON(config.routeLocation + "/api/user", {token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.token, tokenId: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.id}),
             activeDeliveries: Ember.$.getJSON(config.routeLocation + "/api/analytics/deliveries/data", {token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.token, tokenId: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.id}),
             dashboardStats: Ember.$.getJSON(config.routeLocation + "/api/analytics/dashboard/statistics", {token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.token, tokenId: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.id}),
-            delivery: Ember.$.getJSON(config.routeLocation + "/api/analytics/dashboard/statistics", {token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.token, tokenId: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.id})
+            deliveries: Ember.$.getJSON(config.routeLocation + "/api/deliveries", {token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.token, tokenId: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token.id})
         });
     },
     setupController: function(controller, model) {
@@ -19,6 +19,6 @@ export default Ember.Route.extend(DeliveryRouteMixin, {
         controller.set('user', model.user);
         controller.set('activeDeliveries', model.activeDeliveries);
         controller.set('dashboardStats', model.dashboardStats);
-        controller.set('delivery', model.delivery);
+        controller.set('deliveries', model.deliveries);
     }
 });
