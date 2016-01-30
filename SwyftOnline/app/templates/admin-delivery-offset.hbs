@@ -25,7 +25,7 @@
                     <h1 class="admin-panel-header">Delivery Status</h1>
                 </div>
                 {{input class="form-control" value=deliveryStatusData.deliveryId type="text" placeholder="Delivery ID"}}
-                {{select-menu action=(action (mut deliveryStatusData.status)) content=deliveryStatus.enum selection=deliveryStatusData.status class="form-control" optionValuePath="propertyName" optionLabelPath="displayName" prompt="Select a Status"}}
+                {{select-menu action=(action (mut deliveryStatusData.status)) content=deliveryStatus.enum selection=deliveryStatusData.status inputClass="form-control" optionValuePath="propertyName" optionLabelPath="displayName" prompt="Select a Status"}}
                 <button class="btn btn-light btn-standard" {{action 'submitStatus'}}>Submit</button>
             </div>   
             <div class="panel admin-panel">
@@ -33,7 +33,7 @@
                     <h1 class="admin-panel-header">Operational Status</h1>
                 </div>
                 {{input class="form-control" value=operationalStatusData.deliveryId type="text" placeholder="Delivery ID"}}
-                {{select-menu action=(action (mut operationalStatusData.status)) content=operationalStatus.enum selection=operationalStatusData.status class="form-control" optionValuePath="propertyName" optionLabelPath="displayName" prompt="Select a Status"}}
+                {{select-menu action=(action (mut operationalStatusData.status)) content=operationalStatus.enum selection=operationalStatusData.status inputClass="form-control" optionValuePath="propertyName" optionLabelPath="displayName" prompt="Select a Status"}}
                 <button class="btn btn-light btn-standard" {{action 'submitOperationalStatus'}}>Submit</button>
             </div>       
         </div>

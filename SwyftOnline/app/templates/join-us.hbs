@@ -25,8 +25,8 @@
                 {{input class="form-control" value=firstName type="text" placeholder="First Name"}}
                 {{input class="form-control" value=lastName type="text" placeholder="Last Name"}}
                 {{input class="form-control" value=phoneNumber type="text" placeholder="Phone Number"}}
-                {{select-menu action=(action (mut type)) content=studentTypes selection=type class="form-control" prompt="Boarding Student or Day Student?"}}
-                {{select-menu action=(action (mut year)) content=years selection=year class="form-control" prompt="Year"}}
+                {{select-menu action=(action (mut type)) content=studentTypes selection=type inputClass="form-control" prompt="Boarding Student or Day Student?"}}
+                {{select-menu action=(action (mut year)) content=years selection=year inputClass="form-control" prompt="Year"}}
                 {{input class="form-control" value=interests type="text" placeholder="What positions would you be interested in?"}}
             </div>
             {{#unless buttonPressed}}

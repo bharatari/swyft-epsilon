@@ -92,8 +92,8 @@ export default Ember.Controller.extend({
     finalAmountCents: Ember.computed('finalAmount', function() {
         return this.get("finalAmount") * 100;
     }),
-    checkoutDisabled: Ember.computed('user.dormitory', 'deliveryList.value', 'paymentOptions.value', 'tokenValid', 'couponValid', function() {
-        if(!this.get('user').dormitory || !this.get('deliveryList').value || !this.get('paymentOptions').value || !this.get('tokenValid') || !this.get('couponValid')) {
+    checkoutDisabled: Ember.computed('user.dormitory', 'deliveryList.value', 'paymentOptions.value', 'tokenValid', function() {
+        if(!this.get('user').dormitory || !this.get('deliveryList').value || !this.get('paymentOptions').value || !this.get('tokenValid')) {
             return true;
         }
         else {
@@ -119,7 +119,6 @@ export default Ember.Controller.extend({
                 userComments: this.get('additionalRequests'),
                 userId: this.get('user').id,
                 token: this.get('token'),
-                coupon: this.get('coupon'),
                 stripeToken: token.id,
                 deliveryId: this.get('deliveryList').value,
                 user: { token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token }
@@ -162,7 +161,6 @@ export default Ember.Controller.extend({
                     userComments: this.get('additionalRequests'),
                     userId: this.get('user').id,
                     token: this.get('token'),
-                    coupon: this.get('coupon'),
                     deliveryId: this.get('deliveryList').value,
                     user: { token: JSON.parse(localStorage.getItem(loginUtils.localStorageKey)).token }
                 };

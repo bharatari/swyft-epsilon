@@ -1,19 +1,18 @@
-{{#if prompt}}
-<option disabled selected={{is-not selection}}>
-    {{prompt}}
-</option>
-{{/if}}
-
-{{#each content as |item|}}
-{{#if optionValuePath}}
-    <option value="{{read-path item optionValuePath}}"
-        selected={{is-equal item selection optionValuePath}}>
-            {{read-path item optionLabelPath}}
+<select class={{inputClass}}>
+  {{#if prompt}}
+    <option disabled selected={{is-not selection}}>
+      {{prompt}}
     </option>
-{{else}}
-    <option value="{{item}}"
-        selected={{is-equal item selection}}>
-            {{item}}
-    </option>
-{{/if}}
-{{/each}}
+  {{/if}}
+  {{#each content as |item|}}
+    {{#if optionValuePath}}
+      <option value="{{read-path item optionValuePath}}" selected={{is-equal item selection optionValuePath}}>
+        {{read-path item optionLabelPath}}
+      </option>
+    {{else}}
+      <option value="{{item}}" selected={{is-equal item selection}}>
+        {{item}}
+      </option>
+    {{/if}}
+  {{/each}}
+</select>

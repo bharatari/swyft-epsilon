@@ -71,7 +71,7 @@ module.exports.policies = {
     'findOne':['isAdmin', 'userDisabled'],
     'setContactConsent':['isAuthenticated', 'userDisabled'],
     // In this case, create should be public (sign up)
-    /* "create":['isAdmin' , 'removeAdminParams', 'userDisabled'], */
+    /* 'create':['isAdmin' , 'removeAdminParams', 'userDisabled'], */
     'update':['isAdmin', 'removeAdminParams', 'userDisabled'],
     'destroy':['isAdmin', 'userDisabled'],
     'populate':['isAdmin', 'userDisabled'],
@@ -97,6 +97,7 @@ module.exports.policies = {
   },
   CouponController:{
     '*':['isAdmin', 'userDisabled'],
+    'getDiscount':['isAuthenticated', 'userDisabled'],
     'checkToken':['isAuthenticated', 'userDisabled'],
     'checkCoupon':['isAuthenticated', 'userDisabled'],
     'find':['isAdmin', 'removeAdminParams', 'userDisabled'],

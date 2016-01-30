@@ -18,7 +18,7 @@
                 {{sidebar-item item=item}}
                 {{/each}}
             </ul>
-            <p class="summary-total">Total (including tax): {{dynamic-price tokenValid=tokenValid tokenValue=token couponValid=couponValid couponValue=coupon price=totalPrice finalAmount=finalAmount}}</p>
+            <p class="summary-total">Total (including tax): {{dynamic-price tokenValid=tokenValid tokenValue=token price=totalPrice finalAmount=finalAmount}}</p>
         </div>
         <form>
             <div class="info-well well col-md-8 col-md-offset-1">
@@ -54,7 +54,7 @@
 
                 <h3 class="option-group-header">Options</h3>
 
-                {{select-menu action=(action (mut user.dormitory)) content=deliveryLocations selection=user.dormitory class="form-control" prompt="Select a Delivery Location"}}
+                {{select-menu action=(action (mut user.dormitory)) content=deliveryLocations selection=user.dormitory inputClass="form-control" prompt="Select a Delivery Location"}}
                 {{input class="form-control" value=user.phoneNumber type="text" placeholder="Phone Number"}}
                 {{input class="form-control" value=additionalRequests type="text" placeholder="Additional Requests"}}
 
@@ -72,12 +72,8 @@
                 
                 <form class="form-inline discount-box">
                     <div class="form-group">
-                        <label>Discount Voucher</label>
-                        {{validation-box value=token isValid=tokenValid invalidMessage="The voucher you entered is invalid." type="checkToken"}}
-                    </div>
-                    <div class="form-group">
-                        <label>Coupon Code</label>
-                        {{validation-box value=coupon isValid=couponValid invalidMessage="The coupon you entered is invalid." type="checkCoupon"}}
+                        <label>Coupon</label>
+                        {{validation-box value=token isValid=tokenValid invalidMessage="The code you entered is invalid." type="checkToken"}}
                     </div>
                 </form>
                 

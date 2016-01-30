@@ -20,7 +20,7 @@
 <div class="form-group">
     <label class="col-sm-2 control-label">{{available.displayName}}</label>
     <div class="col-sm-9">
-        {{select-menu action=(action (mut available.value)) content=available.enum selection=available.value optionValuePath="propertyName" optionLabelPath="displayName" prompt="Select a Value" class="form-control"}}
+        {{select-menu action=(action (mut available.value)) content=available.enum selection=available.value optionValuePath="propertyName" optionLabelPath="displayName" prompt="Select a Value" inputClass="form-control"}}
     </div>
 </div> 
 <div class="form-group">
@@ -38,7 +38,7 @@
 <div class="form-group">
   	<label class="col-sm-2 control-label">{{required.displayName}}</label>
    	<div class="col-sm-9">
-        {{select-menu action=(action (mut required.value)) content=booleanValues selection=required.value optionValuePath="propertyName" optionLabelPath="displayName" prompt="Select a Value" class="form-control"}}
+        {{select-menu action=(action (mut required.value)) content=booleanValues selection=required.value optionValuePath="propertyName" optionLabelPath="displayName" prompt="Select a Value" inputClass="form-control"}}
     </div>
 </div>
 

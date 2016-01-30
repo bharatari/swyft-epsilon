@@ -39,7 +39,7 @@
         <div class="form-group admin-control-group">
             <label class="col-sm-2 control-label admin-control-label">{{property.displayName}}</label>
             <div class="col-sm-9">
-                {{select-menu action=(action (mut property.value)) content=property.enum selection=property.value optionValuePath="propertyName" optionLabelPath="displayName" class=adminDiscourage prompt="Select a Value"}}
+                {{select-menu action=(action (mut property.value)) content=property.enum selection=property.value optionValuePath="propertyName" optionLabelPath="displayName" inputClass=adminDiscourage prompt="Select a Value"}}
             </div>
         </div>    
     {{/if}}
@@ -48,7 +48,7 @@
         <div class="form-group admin-control-group">
             <label class="col-sm-2 control-label admin-control-label">{{property.displayName}}</label>
             <div class="col-sm-9">
-                {{select-menu action=(action (mut property.value)) content=booleanValues selection=property.value optionValuePath="propertyName" optionLabelPath="displayName" class=adminDiscourage prompt="Select a Value"}}
+                {{select-menu action=(action (mut property.value)) content=booleanValues selection=property.value optionValuePath="propertyName" optionLabelPath="displayName" inputClass=adminDiscourage prompt="Select a Value"}}
             </div>
         </div>  
     {{/if}}
@@ -113,7 +113,7 @@
         <div class="form-group admin-control-group">
             <label class="col-sm-2 control-label admin-control-label">{{property.displayName}}</label>
             <div class="col-sm-9">
-                {{select-menu action=(action (mut property.value)) content=property.enum selection=property.value optionValuePath="propertyName" optionLabelPath="displayName" class=adminDiscourage disabled="true" prompt="No Value"}}
+                {{select-menu action=(action (mut property.value)) content=property.enum selection=property.value optionValuePath="propertyName" optionLabelPath="displayName" inputClass=adminDiscourage disabled="true" prompt="No Value"}}
             </div>
         </div>    
     {{/if}}
@@ -122,7 +122,7 @@
         <div class="form-group admin-control-group">
             <label class="col-sm-2 control-label admin-control-label">{{property.displayName}}</label>
             <div class="col-sm-9">
-                {{select-menu action=(action (mut property.value)) content=booleanValues selection=property.value optionValuePath="propertyName" optionLabelPath="displayName" class=adminDiscourage disabled="true" prompt="No Value"}}
+                {{select-menu action=(action (mut property.value)) content=booleanValues selection=property.value optionValuePath="propertyName" optionLabelPath="displayName" inputClass=adminDiscourage disabled="true" prompt="No Value"}}
             </div>
         </div>  
     {{/if}}

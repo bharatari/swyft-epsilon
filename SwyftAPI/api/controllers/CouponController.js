@@ -2,6 +2,15 @@ var Chance = require('chance');
 var chance = new Chance();
 
 module.exports = {
+  getDiscount: function (req, res) {
+    CouponService.getDiscount(req.params.code, function (err, discount) {
+      if (err || !discount) {
+        res.badRequest();
+      } else {
+        res.ok(discount);
+      }
+    });
+  },
   checkToken: function (req, res) {
     Token.findOne({
       token: req.params.token

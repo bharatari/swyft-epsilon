@@ -3,13 +3,13 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">Property</label>
             <div class="col-sm-9">
-                {{select-menu action=(action (mut filterProperty)) selection=filterProperty content=objectProperties optionValuePath="propertyName" optionLabelPath="displayName" class="form-control"}}
+                {{select-menu action=(action (mut filterProperty)) selection=filterProperty content=objectProperties optionValuePath="propertyName" optionLabelPath="displayName" inputClass="form-control"}}
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">Type</label>
             <div class="col-sm-9">
-                {{select-menu action=(action (mut filterType)) selection=filterType content=filterTypes class="form-control" optionValuePath="propertyName" optionLabelPath="displayName"}}
+                {{select-menu action=(action (mut filterType)) selection=filterType content=filterTypes inputClass="form-control" optionValuePath="propertyName" optionLabelPath="displayName"}}
             </div>
         </div>
         <div class="form-group">

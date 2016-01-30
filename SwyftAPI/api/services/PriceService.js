@@ -1,5 +1,5 @@
 module.exports = {
-  productMarkup: 1.20,
+  productMarkup: 1.30,
   tax: 1.09,
   processPricingSingle: function (item) {
     item.baseprice = item.baseprice * this.productMarkup;
