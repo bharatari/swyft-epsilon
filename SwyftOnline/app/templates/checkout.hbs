@@ -54,7 +54,7 @@
 
                 <h3 class="option-group-header">Options</h3>
 
-                {{select-menu action=(action (mut user.dormitory)) content=deliveryLocations selection=user.dormitory class="form-control" prompt="Select a Delivery Location"}}
+                {{select-menu action=(action (mut user.dormitory)) content=deliveryLocations selection=user.dormitory inputClass="form-control" prompt="Select a Delivery Location"}}
                 {{input class="form-control" value=user.phoneNumber type="text" placeholder="Phone Number"}}
                 {{input class="form-control" value=additionalRequests type="text" placeholder="Additional Requests"}}
 

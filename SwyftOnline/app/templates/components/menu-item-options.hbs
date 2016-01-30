@@ -3,7 +3,7 @@
   {{input type="text" class="form-control" value=itemOption.options placeholder="Comma Separated List"}}
   <div class="form-group">
     <p class="admin-menu-item-wizard-mini-header">Do these options come by default?</p>
-    {{select-menu class="form-control" action=(action (mut itemOption.default)) content=booleanValues selection=itemOption.default optionValuePath="propertyName" optionLabelPath="displayName" prompt="Select a Value"}}
+    {{select-menu inputClass="form-control" action=(action (mut itemOption.default)) content=booleanValues selection=itemOption.default optionValuePath="propertyName" optionLabelPath="displayName" prompt="Select a Value"}}
   </div>
 {{else}}
   {{input type="text" class="no-box-textbox item-option-name" value=itemOption.name placeholder="Item Option Name"}}

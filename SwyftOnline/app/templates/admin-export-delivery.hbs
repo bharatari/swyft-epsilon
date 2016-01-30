@@ -10,7 +10,7 @@
                 <h4 class="admin-subtitle">Orders sorted by delivered and not delivered.</h4>
             </div>
             <div class="admin-content-margin">
-                {{select-menu action=(action (mut deliveryLocation)) content=deliveryLocations selection=deliveryLocation class="form-control" prompt="Select a Delivery Location"}}
+                {{select-menu action=(action (mut deliveryLocation)) content=deliveryLocations selection=deliveryLocation inputClass="form-control" prompt="Select a Delivery Location"}}
                 <h3>Not Delivered</h3>
                 <div class="table-responsive">
                     <table class="table table-hover master-sheet">
