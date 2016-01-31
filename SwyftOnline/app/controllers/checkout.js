@@ -120,9 +120,18 @@ export default Ember.Controller.extend({
       }
     }),
     updateFinalAmount(discount) {
+      let paymentOption;
+      if (this.get('paymentOptions').value) {
+        paymentOption = this.get('paymentOptions').value;   
+      }
+
       if (discount) {
         this.set('finalAmount', this.get('totalPrice') * discount);
         this.set('discountedAmount', Math.round((this.get('totalPrice') - this.get('finalAmount')) * 100) / 100);
+        
+        if (paymentOption) {
+          Ember.set(this.get('paymentOptions'), 'value', paymentOption);
+        }
       } else {
         this.set('finalAmount', this.get('totalPrice'));
         this.set('discountedAmount', discount);
