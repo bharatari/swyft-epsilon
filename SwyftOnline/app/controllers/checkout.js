@@ -119,6 +119,13 @@ export default Ember.Controller.extend({
         }
       }
     }),
+    isLoading: Ember.computed('isValid', 'token', function () {
+      if (this.get('isValid') && this.get('token') && !this.get('discountedAmount')) {
+        return true;
+      } else {
+        return false;
+      }
+    }),
     updateFinalAmount(discount) {
       let paymentOption;
       if (this.get('paymentOptions').value) {

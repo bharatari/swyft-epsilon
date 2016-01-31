@@ -1311,9 +1311,16 @@ a.list-group-item:hover, a.list-group-item:focus {
   color: gray;
 }
 
+.loading-message {
+  margin-top: 10px;
+  color: green;
+  font-weight: 600;
+}
+
 .invalid-message {
-  margin-top: 5px;
+  margin-top: 10px;
   color: red;
+  font-weight: 600;
 }
 
 .remaining-total {
