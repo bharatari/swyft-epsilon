@@ -1,4 +1,7 @@
 {{input class="form-control" value=token type="text" placeholder=placeholder}}
+{{#if isLoading}}
+  <p class="loading-message">Loading...</p>
+{{/if}}
 {{#unless isValid}}
   <p class="invalid-message">The code you entered is invalid.</p>
 {{/unless}}

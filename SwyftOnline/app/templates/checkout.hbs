@@ -73,7 +73,7 @@
                 <form class="form-inline discount-box">
                     <div class="form-group">
                         <label>Coupon</label>
-                        {{validation-box isValid=isValid updateToken=(action 'updateToken') token=token}}
+                        {{validation-box isLoading=isLoading isValid=isValid updateToken=(action 'updateToken') token=token}}
                     </div>
                 </form>
                 
