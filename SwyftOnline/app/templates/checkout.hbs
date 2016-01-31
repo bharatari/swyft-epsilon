@@ -18,7 +18,7 @@
                 {{sidebar-item item=item}}
                 {{/each}}
             </ul>
-            <p class="summary-total">Total (including tax): {{dynamic-price tokenValid=tokenValid tokenValue=token price=totalPrice finalAmount=finalAmount}}</p>
+            <p class="summary-total">Total (including tax): {{dynamic-price token=token discountedAmount=discountedAmount finalAmount=finalAmount totalPrice=totalPrice}}</p>
         </div>
         <form>
             <div class="info-well well col-md-8 col-md-offset-1">
@@ -73,7 +73,7 @@
                 <form class="form-inline discount-box">
                     <div class="form-group">
                         <label>Coupon</label>
-                        {{validation-box value=token isValid=tokenValid invalidMessage="The code you entered is invalid." type="checkToken"}}
+                        {{validation-box isValid=isValid updateToken=(action 'updateToken') token=token}}
                     </div>
                 </form>
                 
