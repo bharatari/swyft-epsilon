@@ -1,4 +1,9 @@
-{{format-currency finalAmount}}
-{{#if discount}}
-    <p class="text-subtitle">DISCOUNT: ${{discountedAmount}}</p>
+{{#if finalAmount}}
+  {{format-currency finalAmount}}
+{{else}}
+  {{format-currency totalPrice}}
+{{/if}}
+
+{{#if discountedAmount}}
+    <p class="text-subtitle">DISCOUNT: {{format-currency discountedAmount}}</p>
 {{/if}}

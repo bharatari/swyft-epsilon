@@ -198,17 +198,11 @@ module.exports = {
       } else {
         order = PriceService.processTax(order);
         order.actualAmount = order.totalAmount;
-        CouponService.processToken(order, function (result) {
+        CouponService.processDiscount(order, function (result) {
           if (!result) {
             return cb(false);
           } else {
-            CouponService.processCoupon(order, function (result) {
-              if (!result) {
-                return cb(false);
-              } else {
-                cb(order);
-              }
-            });
+            cb(order);
           }
         });
       }

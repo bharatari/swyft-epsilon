@@ -42,16 +42,15 @@ module.exports = {
       }
     });
   },
-  processToken: function (order, cb) {
-    if (order.token) {
+  processToken: function (order) {
+    return Q.promise(function (resolve, reject) {
       Token.findOne({
         token: order.token
       }).exec(function (err, token) {
         if (!token) {
-          return cb(false);
-        }
-        if (token.hasBeenUsed) {
-          return cb(false);
+          reject(err);
+        } else if (token.hasBeenUsed) {
+          reject(token);
         } else {
           order.actualAmount *= token.discount;
           order.actualAmount = Math.round(order.actualAmount * 100) / 100;
@@ -64,34 +63,44 @@ module.exports = {
           }).exec(function (err) {
             delete order.token;
             order.tokenId = token.id;
-            cb(order);
+            resolve(order);
           });
+        }
+      });
+    });
+  },
+  processCoupon: function (order) {
+    return Q.promise(function (resolve, reject) {
+      Coupon.findOne({
+        code: order.token
+      }).exec(function (err, coupon) {
+        if (err || !coupon) {
+          reject(err);
+        } else if (!coupon.isActive) {
+          reject(coupon);
+        } else {
+          order.actualAmount *= coupon.discount;
+          order.actualAmount = Math.round(order.actualAmount * 100) / 100;
+          delete order.token;
+          order.couponId = coupon.id;
+          resolve(order);
+        }
+      });
+    });
+  },
+  processDiscount: function (order, cb) {
+    if (order.token) {
+      Q.allSettled([this.processToken(order), this.processCoupon(order)]).spread(function (tokenOrder, couponOrder) {
+        if (tokenOrder.state === 'fulfilled') {
+          return cb(tokenOrder.value);
+        } else if (couponOrder.state === 'fulfilled') {
+          return cb(couponOrder.value);
+        } else {
+          return cb(false);
         }
       });
     } else {
       delete order.token;
-      cb(order);
-    }
-  },
-  processCoupon: function (order, cb) {
-    if (order.coupon) {
-      Coupon.findOne({
-        code: order.coupon
-      }).exec(function (err, coupon) {
-        if (err || !coupon) {
-          return cb(false);
-        } else if (!coupon.isActive) {
-          return cb(false);
-        } else {
-          order.actualAmount *= coupon.discount;
-          order.actualAmount = Math.round(order.actualAmount * 100) / 100;
-          delete order.coupon;
-          order.couponId = coupon.id;
-          cb(order);
-        }
-      });
-    } else {
-      delete order.coupon;
       cb(order);
     }
   },
