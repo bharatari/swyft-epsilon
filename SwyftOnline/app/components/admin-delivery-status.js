@@ -12,11 +12,13 @@ export default Ember.Component.extend({
     if (this.get('status') === 'onTime') {
       return 'On-Time'
     } else if (this.get('status') === 'delayed') {
-      return 'delayed';
+      return 'Delayed';
     } else if (this.get('status') === 'scheduled') {
-      return 'scheduled';
-    } else {
+      return 'Scheduled';
+    } else if (this.get('status') === 'irrops') {
       return 'Irregular Operations';
+    } else {
+      return 'No Delivery';
     }
   })
 });
