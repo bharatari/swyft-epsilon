@@ -24,6 +24,34 @@ You will need the following things properly installed on your computer.
 * `sails lift`
 * Visit [http://localhost:1337](http://localhost:1337).`
 
+## Deploying
+
+Swyft Epsilon API and Swyft Epsilon Online, the server-side and client-side implementations of Swyft's web infrastructure, respectively, are developed separately in order to promote modularity and stability. For production, however, the Swyft Epsilon Online project is hosted with this Swyft Epsilon API server. A combined build is created in a folder called SwyftDeploy using a grunt task that can be run by `grunt default`. If changes have been made to Swyft Epsilon Online, follow the steps listed in its deployment guide. If no changes have been made to SwyftOnline, run `grunt default` in the root Swyft directory to populate SwyftDeploy with updated code.
+
+Ensure that all development environment settings, such as CORS have been switched off within Swyft Epsilon API. Assuming you have already run the `grunt default` command (in the Swyft root directory), the SwyftDeploy folder in the root Swyft directory should be populated with a ready-to-deploy build. The SwyftDeploy folder should be a git repository with the remote set to a private hosted Git repository.
+
+### Update existing deployment
+
+* Commit the new build/changes to the private SwyftDeploy repository
+* Move to the production VM (virtual machine)
+* Switch to the folder where the Swyft Epsilon code exists
+* `git pull <repository-url>`  to pull these changes from the hosted SwyftDeploy repository
+* `npm install`
+* `node forever.js`
+
+### First deployment
+
+* Run `grunt default` to combine built SwyftOnline files and SwyftAPI into a SwyftDeploy folder
+* Create a git repository in the SwyftDeploy folder
+* Create a private hosted Git repository (on Bitbucket, for example) and set the remote of the local SwyftDeploy repository to this hosted repository
+* Commit the contents of the SwyftDeploy folder and push to the remote
+* Move to the production VM (virtual machine)
+* Switch to a folder to clone the hosted SwyftDeploy repository
+* `git clone <repository-url>`
+* Switch into the cloned repository
+* `npm install`
+* `node forever.js`
+
 ## Credentials
 
 When you clone this repository, you'll need to add a local.js file in the `/config` folder that looks like this:
@@ -91,15 +119,8 @@ The `master` role gives full Admin access and ignores all exceptions. This role 
 
 As of Swyft Epsilon 4.3.7, the dynamic roles system was downsized into a simpler implementation inherited from Swyft Epsilon's former roles implementation. This system uses two earlier roles `admin` and `delivery`. The `admin` route gives users full access to Swyft Admin while `delivery` provides access to a subset of Swyft Admin. The downsized roles system allowed for a rapid shift to a unified Swyft Admin experience with very few changes needed in other parts of the system.
 
-### Deploying
 
-Swyft Epsilon API and Swyft Epsilon Online, the server-side and client-side implementations of Swyft's web infrastructure, respectively, are developed separately in order to promote modularity and stability.
-
-For production, however, the Swyft Epsilon Online project is hosted with this Swyft Epsilon API server. If changes have been made to Swyft Epsilon Online, follow the steps listed in its deployment guide.
-
-Ensure that all development environment settings, such as CORS have been switched off within Swyft Epsilon API.
-
-#License
+# License
 
 Copyright 2016 Bharat Arimilli.
 This project is property of Bharat Arimilli.
