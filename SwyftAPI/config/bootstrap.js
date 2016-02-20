@@ -1,4 +1,3 @@
-/*var Agenda = require('agenda'); */
 var schedule = require('node-schedule');
 var moment = require('moment-timezone');
 var math = require('mathjs');
