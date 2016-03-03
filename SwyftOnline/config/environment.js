@@ -62,8 +62,8 @@ module.exports = function(environment) {
     key: "pk_test_NWvAAITL9qMM7mUAjknRjeY1"
   }
   
-  ENV.appVersion = "4.3.7";
-  ENV.appVersionLabel = "4.3.7"
+  ENV.appVersion = "4.3.8";
+  ENV.appVersionLabel = "4.3.8"
   ENV.appCodename= "Indigo";
    
   return ENV;
