@@ -33,7 +33,7 @@ When you clone this repository, you'll need to add a local.js file in the `/conf
 
     module.exports = {
         jwtTokenSecret: 'some-random-string',
-        mandrillKey: 'mandrill-api-key',
+        sendgridKey: 'sendgrid-api-key',
         stripeKey: 'stripe-api-key',
 
         connections: {
@@ -62,10 +62,10 @@ Components are structured with describeComponent at the top level, with tests su
 ## Features
 
 ### Automatic Delivery Service
-From Version 3, Epsilon has had an Automatic Delivery Management feature that creates and closes deliveries automatically based on a predefined schedule. This predefined schedule is contained within the `deliveryPeriods` MongoDB collection. The resulting deliveries are contained within the `deliveries` collection. Automatically created deliveries have a `autoDelivery` attribute set to `true`, which flags the delivery for automatic closing. If one wants to create a delivery that is manually closed, simply set this property to `false`. If an automatically created delivery needs to be removed (in the case that operations are not running that specific day), simply deleting the delivery will cause the automatic service to create another delivery in it's place. The record in `deliveryPeriods` needs to be disabled, which will stop the system from automatically creating deliveries based on that schedule, and then the delivery itself in `deliveries` can be deleted. 
+From Version 3, Epsilon has had an Automatic Delivery Management feature that creates and closes deliveries automatically based on a predefined schedule. This predefined schedule is contained within the `deliveryPeriods` MongoDB collection. The resulting deliveries are contained within the `deliveries` collection. Automatically created deliveries have a `autoDelivery` attribute set to `true`, which flags the delivery for automatic closing. If one wants to create a delivery that is manually closed, simply set this property to `false`. If an automatically created delivery needs to be removed (in the case that operations are not running that specific day), simply deleting the delivery will cause the automatic service to create another delivery in it's place. The record in `deliveryPeriods` needs to be disabled, which will stop the system from automatically creating deliveries based on that schedule, and then the delivery itself in `deliveries` can be deleted.
 
 ### Notes
-The `/** HARDCODE **/` flag is used to label a function that does not work in a modular or data-agnostic fashion. 
+The `/** HARDCODE **/` flag is used to label a function that does not work in a modular or data-agnostic fashion.
 The `/** FUTURE **/` flag is used to label properties or functions that exist to accomodate future expansion, but are not used currently.
 The `/** TEMPORARY **/` flag is used to label properties or functions that exist to accomodate current circumstances, but will be changed soon.
 
@@ -74,7 +74,7 @@ The attachedRequests evolved from comboOptions and is now a property that can be
 ### Limitations
 The `user` property is used to manage admin authentication, and therefore it should not be used as a property on models or for any other purpose. On Admin CRUD, for models that have joined data there is a conflict as the `user` property is used to authenticate changes, and is also used to store joined user data. In this case, it's best to use the alternative admin authentication property `_user` and then use `user` for the joined data. Because `user` and `_user` are not properties on any model, they are always deleted on the server before requests are processed.
 
-The `token` property should be used with caution. It is generally reserved for admin authentication on req.query.token and req.query.tokenId. For request bodies, the token is reserved on req.body.user.token. 
+The `token` property should be used with caution. It is generally reserved for admin authentication on req.query.token and req.query.tokenId. For request bodies, the token is reserved on req.body.user.token.
 
 Internal Models defined in ModelService or model-utils (on the client) must follow strict guidelines regarding passed-in parameters. If a parameter is not passed in or if a parameter isn't being used at the time of instantiation, it's value should be falsey. For unused parameters simply pass in the value `null`.
 
@@ -92,11 +92,11 @@ Swyft Epsilon uses the JSDoc convention for most commenting. However, for commen
 `
     /***
      *
-     * @section - Automatic Delivery Management 
+     * @section - Automatic Delivery Management
      *
      */
-`     
-     
+`
+
 `
     /***
      *
@@ -143,13 +143,13 @@ We have tags that work especially well for CSS. Tags can be especially useful. Y
      * @tag - vendor-prefix, html5
      *
      */
-     
+
     /***
      *
-     * @usedby - whatever page/component 
+     * @usedby - whatever page/component
      *
      */
-    
+
     /***
      *
      * Swyft Epsilon Online CSS
@@ -162,21 +162,21 @@ We have tags that work especially well for CSS. Tags can be especially useful. Y
      * @author - Bharat Arimilli
      * @collaborators - Jane Doe, John Doe
      * @copyright - 2015
-     * @license - Some License 
-     * @css-support-min - IE9 (minimum browser versions) 
+     * @license - Some License
+     * @css-support-min - IE9 (minimum browser versions)
      * @css-support-except - Chrome 42, >IE9 (if there is a specific exception from the minimum or css-support declaration, or if you need to declare maximum browser versions)
      * @css-support-tested - IE11, Edge, Chrome (list browser version that have been specifically tested)
      * @css-support - IE9, Safari, Edge, Opera, Chrome (list browsers and/or browser versions that are supported)
      *
      */
-     
+
     /***
      *
      * @fix - Making something work in Safari (fix just denotes CSS specific to a browser to make something work)
-     * @fix-for - Safari 
+     * @fix-for - Safari
      *
      */
-     
+
     /***
      *
      * @workaround - Simulating some modern CSS feature (workaround is best for legacy CSS hacks)
@@ -190,14 +190,14 @@ You can also use a condensed block form (although the normal block form is recom
 `  /***
     * @tag - vendor-prefix, html5
     */
-`   
+`
 
 Firefly comments can be written in inline or block form.
 
 `
     /*** @future - Accomodates ability for a delivery to split into multiple fulfillments */
 `
-  
+
 `
     /*** @note - Values should be comma-separated */
 `
@@ -205,7 +205,7 @@ Firefly comments can be written in inline or block form.
 You should not try to mix both forms as comments will become confusing and less readable.
 
 `
-    /*** @future -  Accomodates ability for a delivery to split into multiple fulfillments 
+    /*** @future -  Accomodates ability for a delivery to split into multiple fulfillments
      *
      * Do not do this
      *
@@ -218,10 +218,10 @@ Sections allow you to organize code files into logical sections.
 `
     /***
      *
-     * @section - Automatic Delivery Management 
+     * @section - Automatic Delivery Management
      *
      */
-`   
+`
 
 For large code files, such as CSS files, it may be necessary to organize code into sections and mark them. The top level sections follow the same single space convention from the `*`. Sub-sections are triple-spaced from their parents, and there is no limit on the levels of sub-sections that exist.
 
@@ -248,13 +248,13 @@ Finally to declare a section:
     /***
      *
      * @section - 1. CSS Resets
-     * 
+     *
      * This section contains CSS Resets borrowed from Normalize.css.
      *
      */
-     
-    /*** @section - 1. CSS Resets */ 
-    
+
+    /*** @section - 1. CSS Resets */
+
     /***
      *
      * @section - 1.2.1 Even more sections
@@ -283,15 +283,15 @@ The `master` role gives full Admin access with a special feature, it ignores all
 
 ### Deploying
 
-SwyftAPI and SwyftOnline, the server-side and client-side implementations of Swyft's web infrastructure, respectively, are developed separately in order to promote modularity and stability. 
+SwyftAPI and SwyftOnline, the server-side and client-side implementations of Swyft's web infrastructure, respectively, are developed separately in order to promote modularity and stability.
 
 For production, however, the SwyftOnline project is hosted with this SwyftAPI server. If changes have been made to SwyftOnline, follow the steps listed in its deployment guide.
 
 Ensure that all development environment settings, such as CORS have been switched off within SwyftAPI.
 
-Once the proper SwyftOnline files have been setup and necessary changes haves been made to the server for productiojn, simply change to the SwyftAPI root folder in a Node.js console and `modulus deploy`. You may be asked to login to your Modulus.io account, and if you have multiple projects associated with your account, you will be asked to pick one. Be sure to choose `SwyftApp`. 
+Once the proper SwyftOnline files have been setup and necessary changes haves been made to the server for productiojn, simply change to the SwyftAPI root folder in a Node.js console and `modulus deploy`. You may be asked to login to your Modulus.io account, and if you have multiple projects associated with your account, you will be asked to pick one. Be sure to choose `SwyftApp`.
 
-# Future 
+# Future
 ## Delivery Management
 Swyft Epsilon has been built with future expansion in mind. Fulfillments and ASAP orders are two ways of accomodating larger and more complex logistics scenarios.
 #License

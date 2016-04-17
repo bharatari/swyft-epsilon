@@ -75,7 +75,7 @@ module.exports={
                 }
             });
         });
-        
+
     },
     verify: function(req, res) {
         var email;
@@ -165,7 +165,7 @@ module.exports={
                             res.send(500);
                         }
                         else{
-                            UserService.processForgotPasswordToken(user, date, function(response){
+                            EmailService.processForgotPasswordToken(user, date, function(response){
                                 if(response) {
                                     res.ok();
                                 }
@@ -177,7 +177,7 @@ module.exports={
                     });
                 }
                 else {
-                    UserService.processForgotPasswordToken(user, date, function(response){
+                    EmailService.processForgotPasswordToken(user, date, function(response){
                         if(response) {
                             res.ok();
                         }
@@ -187,7 +187,7 @@ module.exports={
                     });
                 }
             });
-            
+
         });
     },
     resetPassword: function(req,res) {
@@ -237,10 +237,10 @@ module.exports={
             else {
                 var transactionAmount = req.body.amount;
                 var balance = user.balance;
-                
+
                 user.balance += parseFloat(transactionAmount);
                 user.balance = Math.round(parseFloat(user.balance * 100))/100;
-                
+
                 res.send({
                     userId: req.body.userId,
                     firstName: user.firstName,
@@ -251,7 +251,7 @@ module.exports={
                     comments: req.body.comments
                 });
             }
-        });        
+        });
     },
     balanceRequest: function(req, res) {
         var transactionType;
@@ -259,23 +259,23 @@ module.exports={
         var balance = parseFloat(req.body.previousBalance);
         balance += transactionAmount;
         balance = Math.round(parseFloat(balance * 100))/100;
-        
+
         if(transactionAmount < 0) {
             transactionType = "deduction";
         }
         else {
             transactionType = "deposit";
         }
-        
+
         var object = {
-            userId: req.body.userId, 
-            type: transactionType, 
-            amount: Math.abs(transactionAmount), 
+            userId: req.body.userId,
+            type: transactionType,
+            amount: Math.abs(transactionAmount),
             comments: req.body.comments,
             transactionCreator: req.user.id,
             finalBalance: balance
         }
-        
+
         UserTransaction.create(object).exec(function(err, transaction) {
             if(err) {
                 return res.badRequest();
@@ -295,7 +295,7 @@ module.exports={
     validForgotPasswordToken: function(req, res) {
         ForgotPasswordToken.findOne({ token: req.params.token }).exec(function(err, token){
             if(err) {
-                return res.badRequest();   
+                return res.badRequest();
             }
             else if(!token) {
                 return res.badRequest();
