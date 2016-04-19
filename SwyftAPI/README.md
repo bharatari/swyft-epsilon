@@ -32,16 +32,18 @@ Ensure that all development environment settings, such as CORS have been switche
 
 ### Update existing deployment
 
+* Build SwyftOnline using `ember build --environment=production` in the SwyftOnline folder
+* Run `grunt default` in the root Swyft directory to combine built SwyftOnline files and SwyftAPI into a SwyftDeploy folder
 * Commit the new build/changes to the private SwyftDeploy repository
 * Move to the production VM (virtual machine)
 * Switch to the folder where the Swyft Epsilon code exists
 * `git pull <repository-url>`  to pull these changes from the hosted SwyftDeploy repository
 * `npm install`
-* `node forever.js`
+* `node forever.js NODE_ENV=production`
 
 ### First deployment
 
-* Run `grunt default` to combine built SwyftOnline files and SwyftAPI into a SwyftDeploy folder
+* Run `grunt default` in the root Swyft directory to combine built SwyftOnline files and SwyftAPI into a SwyftDeploy folder
 * Create a git repository in the SwyftDeploy folder
 * Create a private hosted Git repository (on Bitbucket, for example) and set the remote of the local SwyftDeploy repository to this hosted repository
 * Commit the contents of the SwyftDeploy folder and push to the remote
@@ -50,7 +52,7 @@ Ensure that all development environment settings, such as CORS have been switche
 * `git clone <repository-url>`
 * Switch into the cloned repository
 * `npm install`
-* `node forever.js`
+* `node forever.js NODE_ENV=production`
 
 ## Credentials
 
