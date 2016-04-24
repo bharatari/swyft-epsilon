@@ -168,7 +168,7 @@ module.exports = {
             if (err) {
               res.send(500);
             } else {
-              UserService.processForgotPasswordToken(user, date, function (response) {
+              EmailService.processForgotPasswordToken(user, date, function (response) {
                 if (response) {
                   res.ok();
                 } else {
@@ -178,7 +178,7 @@ module.exports = {
             }
           });
         } else {
-          UserService.processForgotPasswordToken(user, date, function (response) {
+          EmailService.processForgotPasswordToken(user, date, function (response) {
             if (response) {
               res.ok();
             } else {
