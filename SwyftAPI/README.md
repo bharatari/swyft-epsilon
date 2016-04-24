@@ -39,7 +39,7 @@ Ensure that all development environment settings, such as CORS have been switche
 * Switch to the folder where the Swyft Epsilon code exists
 * `git pull <repository-url>`  to pull these changes from the hosted SwyftDeploy repository
 * `npm install`
-* `node forever.js NODE_ENV=production`
+* `NODE_ENV=production node forever.js `
 
 ### First deployment
 
@@ -52,7 +52,7 @@ Ensure that all development environment settings, such as CORS have been switche
 * `git clone <repository-url>`
 * Switch into the cloned repository
 * `npm install`
-* `node forever.js NODE_ENV=production`
+* `NODE_ENV=production node forever.js`
 
 ## Credentials
 
