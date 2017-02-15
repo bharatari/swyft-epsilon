@@ -60,7 +60,7 @@ When you clone this repository, you'll need to add a local.js file in the `/conf
 
     module.exports = {
       jwtTokenSecret: 'some-random-string',
-      mandrillKey: 'mandrill-api-key',
+      sendgridKey: 'sendgrid-api-key',
       stripeKey: 'stripe-api-key',
 
       connections: {
